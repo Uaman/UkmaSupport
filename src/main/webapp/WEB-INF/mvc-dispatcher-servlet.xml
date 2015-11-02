@@ -19,4 +19,22 @@
         <property name="password" value="DPdsJaB3QJPy2Rztl8YuJ5futy"/>
     </bean>
 
+    <!--> Mail Sender bean for sending emails <-->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.mail.ru" />
+        <property name="port" value="25" />
+        <property name="username" value="uukkmmaa.ssuuppoorrtt@mail.ru" />
+        <property name="password" value="ceggjhn4444" />  <!-->I think it's bad :( <-->
+
+        <!-- The name of the property, following JavaBean naming conventions -->
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+            </props>
+        </property>
+    </bean>
+
 </beans>
