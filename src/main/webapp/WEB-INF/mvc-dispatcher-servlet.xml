@@ -12,4 +12,11 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <bean id="dataSource"  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://ec2-54-217-208-102.eu-west-1.compute.amazonaws.com/d3n5tjmb82o7ko?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
+        <property name="username" value="xihegrjcahwwvo"/>
+        <property name="password" value="DPdsJaB3QJPy2Rztl8YuJ5futy"/>
+    </bean>
+
 </beans>
