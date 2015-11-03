@@ -53,7 +53,7 @@
 		<table border="0">
 			<h1>${message}</h1>
 			<tr>
-				<td colspan="2" align="center"><input type="submit" value="Registration" /></td>
+				<td colspan="2" align="center"><input type="submit" value="registration" /></td>
 			</tr>
 		</table>
 	</form:form>

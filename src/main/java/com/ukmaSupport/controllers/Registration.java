@@ -6,15 +6,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,17 +33,17 @@ public class Registration {
     public String viewRegistration(Map<String, Object> model) {
         User userForm = new User();
         model.put("userForm", userForm);
-        return "Registration";
+        return "registration";
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String processRegistration(@ModelAttribute("userForm") User user, Map<String, Object> model, BindingResult result) {
         model.put("userForm", user);
         if(result.hasErrors()) {
-            return "Registration";
+            return "registration";
         } else {
             model.put("userForm", user);
         }
-        return "RegistrationSuccess";
+        return "registrationSuccess";
     }
 }
