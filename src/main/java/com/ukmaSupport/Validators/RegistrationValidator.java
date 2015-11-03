@@ -1,14 +1,9 @@
 package com.ukmaSupport.Validators;
-import java.util.List;
 
 import com.ukmaSupport.models.User;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-
-/**
- * Created by Roma on 03.11.2015.
- */
 
 public class RegistrationValidator implements Validator {
 

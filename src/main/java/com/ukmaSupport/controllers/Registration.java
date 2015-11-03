@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Map;
 
-/**
- * Created by Roma on 02.11.2015.
- */
 @Controller
 @RequestMapping(value = "/register")
 public class Registration {
