@@ -2,9 +2,7 @@ package com.ukmaSupport.models;
 
 import java.io.Serializable;
 
-/**
- * Created by viktor on 04.11.15.
- */
+
 public class Auditorium implements Serializable {
     private int id;
     private int userId;

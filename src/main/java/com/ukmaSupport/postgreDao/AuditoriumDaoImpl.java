@@ -1,7 +1,7 @@
 package com.ukmaSupport.postgreDao;
 
 import com.ukmaSupport.models.Auditorium;
-import com.ukmaSupport.models.AuditoriumMapper;
+import com.ukmaSupport.mapper.AuditoriumMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -9,9 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Created by viktor on 04.11.15.
- */
+
 @Repository("auditoriumDao")
 public class AuditoriumDaoImpl implements AuditoriumDao {
     @Autowired
