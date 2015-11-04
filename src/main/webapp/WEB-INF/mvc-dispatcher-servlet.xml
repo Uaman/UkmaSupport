@@ -9,6 +9,7 @@
 
 
     <context:component-scan base-package="com.ukmaSupport.controllers"/>
+    <context:component-scan base-package="com.ukmaSupport.postgreDao"/>
     <mvc:annotation-driven />
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
@@ -20,8 +21,9 @@
     </bean>
     <bean id="registrationValidator" class="com.ukmaSupport.Validators.RegistrationValidator" />
 
-
-
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
 
     <bean id="dataSource"  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
