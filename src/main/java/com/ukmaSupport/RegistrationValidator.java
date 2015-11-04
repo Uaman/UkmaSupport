@@ -1,4 +1,4 @@
-package com.ukmaSupport.Validators;
+package com.ukmaSupport;
 
 import com.ukmaSupport.models.User;
 import org.springframework.validation.Errors;
