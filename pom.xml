@@ -12,13 +12,9 @@
         <springsecurity.version>4.0.1.RELEASE</springsecurity.version>
         <sitemesh.version>2.5</sitemesh.version>
         <jstl.version>1.2</jstl.version>
-
-
     </properties>
 
-
     <dependencies>
-
 
         <!-- Spring Security -->
         <dependency>
@@ -32,12 +28,6 @@
             <version>${springsecurity.version}</version>
         </dependency>
 
-
-
-
-
-
-
         <!--<dependency>-->
             <!--<groupId>opensymphony</groupId>-->
             <!--<artifactId>sitemesh</artifactId>-->
@@ -49,17 +39,6 @@
             <artifactId>mail</artifactId>
             <version>1.4.7</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>5.1.2.Final</version>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -131,7 +110,6 @@
             <version>1.1.0.Final</version>
         </dependency>
 
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -150,12 +128,7 @@
             <artifactId>jquery</artifactId>
             <version>2.1.4</version>
         </dependency>
-
-
     </dependencies>
-
-
-
 
     <build>
         <finalName>UkmaSupport</finalName>

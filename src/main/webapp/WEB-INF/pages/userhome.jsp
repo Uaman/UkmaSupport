@@ -30,7 +30,21 @@
 <form:form method="POST" action="userhome">
   <form:errors path="*" cssClass="errorblock" element="div" />
   <table>
-
+    <tr>
+      <td><form:label path="title">Title</form:label></td>
+      <td><form:input path="title" /></td>
+      <td><form:errors path="title" cssClass="error" /></td>
+    </tr>
+    <tr>
+      <td><form:label path="order">Order</form:label></td>
+      <td><th:textarea path="order" /></td>
+      <td><form:errors path="order" cssClass="error" /></td>
+    </tr>
+    <tr>
+      <td><form:label path="id">id</form:label></td>
+      <td><form:input path="id" /></td>
+      <td><form:errors path="id" cssClass="error" /></td>
+    </tr>
     <tr>
       <td colspan="2">
         <input type="submit" value="Submit"/>

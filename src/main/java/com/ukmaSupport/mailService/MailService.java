@@ -5,10 +5,6 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
-/**
- * Created by Alex Selivanov on 02.11.2015.
- */
-
 @Service("mailService")  // for using in such a way - MailService mai;Service = (MailService) context.getBean("mailService");
 public class MailService {
 
