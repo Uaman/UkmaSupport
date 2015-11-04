@@ -1,16 +1,50 @@
-package com.ukmaSupport.models;
+package com.ukmaSupport.POJO.models;
 
-import com.sun.istack.internal.NotNull;
+import java.util.Date;
 
 /**
  * Created by Roma on 02.11.2015.
  */
 public class User {
     private String firstName;
+
     private String lastName;
+
     private String password;
+
     private String confPassword;
+
     private String email;
+
+    private Date dateOfEntry;
+
+    private String role;
+
+    private String accountStatus;
+
+    public String getAccountStatus() {
+        return accountStatus;
+    }
+
+    public void setAccountStatus(String accountStatus) {
+        this.accountStatus = accountStatus;
+    }
+
+    public Date getDateOfEntry() {
+        return dateOfEntry;
+    }
+
+    public void setDateOfEntry(Date dateOfEntry) {
+        this.dateOfEntry = dateOfEntry;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public String getFirstName() {
         return firstName;

@@ -1,6 +1,6 @@
 package com.ukmaSupport.controllers;
 
-import com.ukmaSupport.models.User;
+import com.ukmaSupport.POJO.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;

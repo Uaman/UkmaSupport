@@ -30,6 +30,11 @@
         <property name="password" value="DPdsJaB3QJPy2Rztl8YuJ5futy"/>
     </bean>
 
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+
+
 
     <!--> Mail Sender bean for sending emails <-->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">

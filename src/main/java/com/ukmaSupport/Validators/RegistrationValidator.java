@@ -1,7 +1,7 @@
 package com.ukmaSupport.Validators;
 import java.util.List;
 
-import com.ukmaSupport.models.User;
+import com.ukmaSupport.POJO.models.User;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
