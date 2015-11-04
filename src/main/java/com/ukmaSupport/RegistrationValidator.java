@@ -25,7 +25,7 @@ public class RegistrationValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "valid.password", "Password is required.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confPassword", "valid.confPassword", "Confirm password is required.");
         if (!form.getPassword().equals(form.getConfPassword())) {
-            errors.rejectValue("confPassword", "valid.confPasswordDiff", "Passwords are required.");
+            errors.rejectValue("confPassword", "valid.confPasswordDiff", "Passwords are different.");
         }
     }
 }

@@ -7,7 +7,6 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-
     <context:component-scan base-package="com.ukmaSupport.controllers"/>
     <context:component-scan base-package="com.ukmaSupport.postgreDao"/>
     <mvc:annotation-driven />
@@ -17,10 +16,9 @@
     </bean>
     <bean id="messageSource"
           class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basename" value="validation" />
+        <property name="basename" value="messages" />
+        <property name="defaultEncoding" value="UTF-8" />
     </bean>
-
-
 
     <bean id="registrationValidator" class="com.ukmaSupport.RegistrationValidator"/>
 
@@ -35,7 +33,6 @@
         <property name="username" value="xihegrjcahwwvo"/>
         <property name="password" value="DPdsJaB3QJPy2Rztl8YuJ5futy"/>
     </bean>
-
 
     <!--> Mail Sender bean for sending emails <-->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
@@ -54,8 +51,4 @@
             </props>
         </property>
     </bean>
-
-
-
-
 </beans>
