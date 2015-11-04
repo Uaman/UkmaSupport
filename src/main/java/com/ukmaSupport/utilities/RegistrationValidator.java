@@ -1,4 +1,4 @@
-package com.ukmaSupport;
+package com.ukmaSupport.utilities;
 
 import com.ukmaSupport.models.User;
 import org.springframework.stereotype.Component;
@@ -19,8 +19,8 @@ public class RegistrationValidator implements Validator {
         User form = (User) obj;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "valid.firstName", "First name is required.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "valid.lastName", "Last name is required.");
-        if(!form.getEmail().matches(EMAIL_PATTERN)) {
-            errors.rejectValue("email","valid.email", "Email is required.");
+        if (!form.getEmail().matches(EMAIL_PATTERN)) {
+            errors.rejectValue("email", "valid.email", "Email is required.");
         }
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "valid.password", "Password is required.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confPassword", "valid.confPassword", "Confirm password is required.");

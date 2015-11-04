@@ -1,6 +1,6 @@
 package com.ukmaSupport.controllers;
 
-import com.ukmaSupport.RegistrationValidator;
+import com.ukmaSupport.utilities.RegistrationValidator;
 import com.ukmaSupport.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
