@@ -28,10 +28,10 @@ public class UserDaoImpl implements UserDao {
                 new ParameterizedRowMapper<User>() {
                     public User mapRow(ResultSet rs, int rowNum) throws SQLException {
                         User user = new User();
-                        user.setFirstName(rs.getString("firstname"));
-                        user.setLastName(rs.getString("lastname"));
+                        user.setFirstName(rs.getString("first_name"));
+                        user.setLastName(rs.getString("last_name"));
                         user.setEmail(rs.getString("email"));
-                        user.setAccountStatus(rs.getString("statusaccount"));
+                        user.setAccountStatus(rs.getString("status_account"));
                         //user.setRole();
                         user.setDateOfEntry(JavaDateConverter.convertToJavaDate(rs.getDate("dateOfEntry")));
                         return user;

@@ -12,7 +12,7 @@ public class AuditoriumMapper implements RowMapper<Auditorium> {
     public Auditorium mapRow(ResultSet resultSet, int i) throws SQLException {
         Auditorium auditorium = new Auditorium();
         auditorium.setId(resultSet.getInt("id"));
-        auditorium.setUserId(resultSet.getInt("userid"));
+        auditorium.setUserId(resultSet.getInt("user_id"));
         auditorium.setNumber(resultSet.getString("number"));
         return auditorium;
     }
