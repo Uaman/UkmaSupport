@@ -3,6 +3,9 @@ package com.ukmaSupport.models;
 import java.util.Date;
 
 public class User {
+
+    private int Id;
+
     private String firstName;
 
     private String lastName;
@@ -81,5 +84,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
     }
 }

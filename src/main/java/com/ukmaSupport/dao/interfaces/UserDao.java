@@ -2,19 +2,17 @@ package com.ukmaSupport.dao.interfaces;
 
 import com.ukmaSupport.models.User;
 
+import java.util.List;
+
 public interface UserDao {
 
-    public User getUserByID(int id);
+    User getUserByID(int id);
 
-    public void createUser(String firstname, String lastname,
-                           int userRoleID, String email, java.sql.Date dateOfEntry,
-                           String statusAccount, String password);
+    void deleteUser(int id);
 
-    public void deleteUser(int id);
+    void updateUser(User user);
 
-    public void updateUser(int id, String firstname, String lastname,
-                           int userRoleID, String email, java.sql.Date dateOfEntry,
-                           String statusAccount, String password);
+    List<User> getAll();
 
-    public User getUserByName(String firstname, String lastname);
+    User getUserByEmail(String email);
 }
