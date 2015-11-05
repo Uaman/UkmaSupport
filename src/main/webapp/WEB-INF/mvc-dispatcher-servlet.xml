@@ -21,7 +21,7 @@
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
-    <bean id="registrationValidator" class="com.ukmaSupport.utilities.RegistrationValidator"/>
+    <bean id="registrationValidator" class="com.ukmaSupport.utils.RegistrationValidator"/>
 
     <!-- jdbcTemplate uses dataSource -->
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">

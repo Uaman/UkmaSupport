@@ -1,4 +1,4 @@
-package com.ukmaSupport.utilities;
+package com.ukmaSupport.utils;
 
 import org.springframework.validation.BindingResult;
 

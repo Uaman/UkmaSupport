@@ -1,7 +1,7 @@
 package com.ukmaSupport.controllers;
 
-import com.ukmaSupport.models.Auditorium;
-import com.ukmaSupport.models.User;
+import com.ukmaSupport.POJO.Auditorium;
+import com.ukmaSupport.POJO.User;
 import com.ukmaSupport.postgreDao.AuditoriumDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,12 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-/**
- * Created by viktor on 02.11.15.
- */
-
 @Controller
-
 public class UserController {
     @Autowired
     private AuditoriumDao auditoriumDao;

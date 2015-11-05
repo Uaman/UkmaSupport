@@ -2,7 +2,7 @@ package com.ukmaSupport.controllers;
 
 
 import com.ukmaSupport.POJO.*;
-import com.ukmaSupport.utilities.RegistrationValidator;
+import com.ukmaSupport.utils.RegistrationValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -30,7 +30,7 @@ public class Registration {
     public String processRegistration(@ModelAttribute("userForm") User user, Model model, BindingResult result) {
         model.addAttribute("userForm", user);
         validator.validate(user, result);
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             return "registration/registration";
         }
         return "registration/registrationSuccess";

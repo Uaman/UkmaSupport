@@ -15,12 +15,13 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
     @Autowired
     private JdbcTemplate template;
 
-    public AuditoriumDaoImpl(){
+    public AuditoriumDaoImpl() {
     }
 
     public AuditoriumDaoImpl(JdbcTemplate template) throws SQLException {
         this.template = template;
     }
+
     @Override
     public void save(Auditorium auditorium) {
         this.template.update("INSERT INTO auditorium(userid,number) VALUES(?,?)",
@@ -37,7 +38,7 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
     @Override
     public void update(Auditorium auditorium) {
         this.template.update("UPDATE auditorium SET userid=?,number=? WHERE id=?",
-                auditorium.getUserId(), auditorium.getNumber(),auditorium.getId());
+                auditorium.getUserId(), auditorium.getNumber(), auditorium.getId());
     }
 
     @Override

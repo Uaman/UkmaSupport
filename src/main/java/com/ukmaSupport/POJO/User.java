@@ -2,10 +2,6 @@ package com.ukmaSupport.POJO;
 
 import java.util.Date;
 
-/**
- * Created by Roma on 02.11.2015.
- */
-
 public class User {
     private String firstName;
 
@@ -52,7 +48,7 @@ public class User {
     }
 
     public void setFirstName(String firstName) {
-        this.firstName=firstName;
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -60,7 +56,7 @@ public class User {
     }
 
     public void setLastName(String lastName) {
-        this.lastName=lastName;
+        this.lastName = lastName;
     }
 
     public String getPassword() {
@@ -68,7 +64,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password=password;
+        this.password = password;
     }
 
     public String getConfPassword() {
@@ -76,7 +72,7 @@ public class User {
     }
 
     public void setConfPassword(String confPassword) {
-        this.confPassword=confPassword;
+        this.confPassword = confPassword;
     }
 
     public String getEmail() {
@@ -84,6 +80,6 @@ public class User {
     }
 
     public void setEmail(String email) {
-        this.email=email;
+        this.email = email;
     }
 }
