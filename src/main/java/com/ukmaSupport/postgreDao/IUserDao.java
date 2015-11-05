@@ -1,10 +1,8 @@
 package com.ukmaSupport.postgreDao;
 
-import com.ukmaSupport.POJO.models.User;
+import com.ukmaSupport.POJO.User;
 
-/**
- * Created by Dima on 02.11.2015.
- */
+
 public interface IUserDao {
 
     public User getUserByID(int id);

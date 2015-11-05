@@ -1,10 +1,11 @@
 package com.ukmaSupport.postgreDao.impl;
 
-import com.ukmaSupport.POJO.models.User;
+import com.ukmaSupport.POJO.User;
 import com.ukmaSupport.postgreDao.IUserDao;
 import com.ukmaSupport.utils.JavaDateConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
@@ -20,7 +21,7 @@ import java.sql.SQLException;
 public class UserDao implements IUserDao {
 
     @Autowired
-    private SimpleJdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     private String GET_USER_BY_ID = "SELECT * FROM user WHERE id_user = ? ";
 
