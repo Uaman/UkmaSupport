@@ -24,20 +24,20 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
 
     @Override
     public void save(Auditorium auditorium) {
-        this.template.update("INSERT INTO auditorium(userid,number) VALUES(?,?)",
+        this.template.update("INSERT INTO auditorium(user_id,number) VALUES(?,?)",
                 auditorium.getUserId(), auditorium.getNumber());
     }
 
     @Override
     public Auditorium getById(int id) {
-        String sql = "SELECT id,userid,number FROM auditorium WHERE id=?";
+        String sql = "SELECT id,user_id,number FROM auditorium WHERE id=?";
         return (com.ukmaSupport.models.Auditorium) this.template.queryForObject(sql, new Object[]{id}, new AuditoriumMapper());
 
     }
 
     @Override
     public void update(Auditorium auditorium) {
-        this.template.update("UPDATE auditorium SET userid=?,number=? WHERE id=?",
+        this.template.update("UPDATE auditorium SET user_id=?,number=? WHERE id=?",
                 auditorium.getUserId(), auditorium.getNumber(), auditorium.getId());
     }
 
@@ -48,7 +48,7 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
 
     @Override
     public List<Auditorium> getAll() {
-        String sql = "SELECT id,userid,number FROM auditorium";
+        String sql = "SELECT id,user_id,number FROM auditorium";
         return this.template.query(sql, new AuditoriumMapper());
     }
 }
