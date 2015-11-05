@@ -2,7 +2,7 @@ package com.ukmaSupport.postgreDao;
 
 import com.ukmaSupport.POJO.User;
 
-public interface IUserDao {
+public interface UserDao {
 
     public User getUserByID(int id);
 

@@ -1,14 +1,14 @@
-package com.ukmaSupport.postgreDao;
+package com.ukmaSupport.postgreDao.impl;
 
 import com.ukmaSupport.POJO.Auditorium;
 import com.ukmaSupport.mapper.AuditoriumMapper;
+import com.ukmaSupport.postgreDao.AuditoriumDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
 import java.util.List;
-
 
 @Repository("auditoriumDao")
 public class AuditoriumDaoImpl implements AuditoriumDao {

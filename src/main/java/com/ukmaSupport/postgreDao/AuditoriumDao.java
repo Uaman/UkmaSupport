@@ -4,7 +4,6 @@ import com.ukmaSupport.POJO.Auditorium;
 
 import java.util.List;
 
-
 public interface AuditoriumDao {
     //Create
     public void save(Auditorium auditorium);

@@ -1,24 +1,17 @@
 package com.ukmaSupport.postgreDao.impl;
 
 import com.ukmaSupport.POJO.User;
-import com.ukmaSupport.postgreDao.IUserDao;
+import com.ukmaSupport.postgreDao.UserDao;
 import com.ukmaSupport.utils.JavaDateConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 
 import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * Created by Dima on 04.11.2015.
- */
-public class UserDao implements IUserDao {
+public class UserDaoImpl implements UserDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -28,7 +21,6 @@ public class UserDao implements IUserDao {
     private String DELETE_USER = "DELETE FROM user WHERE id_user = ?";
 
     private String CREATE_USER = "";
-
 
     @Override
     public User getUserByID(final int id) {
@@ -44,7 +36,7 @@ public class UserDao implements IUserDao {
                         user.setDateOfEntry(JavaDateConverter.convertToJavaDate(rs.getDate("dateOfEntry")));
                         return user;
                     }
-                },id);
+                }, id);
 
     }
 
@@ -55,12 +47,11 @@ public class UserDao implements IUserDao {
 
     @Override
     public void deleteUser(int id) {
-        jdbcTemplate.update(DELETE_USER,id);
+        jdbcTemplate.update(DELETE_USER, id);
     }
 
     @Override
     public void updateUser(int id, String firstname, String lastname, int userRoleID, String email, Date dateOfEntry, String statusAccount, String password) {
-
     }
 
     @Override
