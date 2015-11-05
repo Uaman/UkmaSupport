@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.List;
 
+@Repository("userDao")
 public class UserDaoImpl implements UserDao {
 
     @Autowired
@@ -82,7 +84,7 @@ public class UserDaoImpl implements UserDao {
             user.setLastName(rs.getString("last_name"));
             user.setEmail(rs.getString("email"));
             user.setPassword(rs.getString("password"));
-            user.setRole(rs.getString("user_roleid"));//переробити норм
+            user.setRole(rs.getString("user_roleid"));//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
             user.setAccountStatus(rs.getString("status_account"));
             user.setDateOfEntry(JavaDateConverter.convertToJavaDate(rs.getDate("data_entry")));
             return user;

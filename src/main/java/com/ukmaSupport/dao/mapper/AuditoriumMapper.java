@@ -1,4 +1,4 @@
-package com.ukmaSupport.mapper;
+package com.ukmaSupport.dao.mapper;
 
 import com.ukmaSupport.models.Auditorium;
 import org.springframework.jdbc.core.RowMapper;
