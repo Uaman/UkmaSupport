@@ -1,6 +1,6 @@
 package com.ukmaSupport.controllers;
 
-import com.ukmaSupport.POJO.*;
+import com.ukmaSupport.models.*;
 import com.ukmaSupport.utils.RegistrationValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,7 +20,7 @@ public class Registration {
 
     @RequestMapping(method = RequestMethod.GET)
     public String viewRegistration(Model model) {
-        com.ukmaSupport.POJO.User userForm = new User();
+        com.ukmaSupport.models.User userForm = new User();
         model.addAttribute("userForm", userForm);
         return "registration/registration";
     }

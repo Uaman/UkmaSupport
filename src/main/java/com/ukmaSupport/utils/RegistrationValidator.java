@@ -1,6 +1,6 @@
 package com.ukmaSupport.utils;
 
-import com.ukmaSupport.POJO.User;
+import com.ukmaSupport.models.User;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;

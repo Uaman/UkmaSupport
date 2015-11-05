@@ -1,4 +1,4 @@
-package com.ukmaSupport.POJO;
+package com.ukmaSupport.models;
 
 import java.util.Date;
 

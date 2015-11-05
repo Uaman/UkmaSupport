@@ -1,6 +1,6 @@
-package com.ukmaSupport.postgreDao;
+package com.ukmaSupport.dao.interfaces;
 
-import com.ukmaSupport.POJO.Auditorium;
+import com.ukmaSupport.models.Auditorium;
 
 import java.util.List;
 

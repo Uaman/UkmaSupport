@@ -1,12 +1,12 @@
 package com.ukmaSupport.mapper;
 
-import com.ukmaSupport.POJO.Auditorium;
+import com.ukmaSupport.models.Auditorium;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// Map each row of the result set object to the Auditorium POJO object
+// Map each row of the result set object to the Auditorium's model object
 public class AuditoriumMapper implements RowMapper<Auditorium> {
     @Override
     public Auditorium mapRow(ResultSet resultSet, int i) throws SQLException {

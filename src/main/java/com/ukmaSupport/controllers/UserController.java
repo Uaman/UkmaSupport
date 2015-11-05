@@ -1,8 +1,8 @@
 package com.ukmaSupport.controllers;
 
-import com.ukmaSupport.POJO.Auditorium;
-import com.ukmaSupport.POJO.User;
-import com.ukmaSupport.postgreDao.AuditoriumDao;
+import com.ukmaSupport.models.Auditorium;
+import com.ukmaSupport.models.User;
+import com.ukmaSupport.dao.interfaces.AuditoriumDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

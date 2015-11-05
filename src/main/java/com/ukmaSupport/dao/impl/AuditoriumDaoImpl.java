@@ -1,8 +1,8 @@
-package com.ukmaSupport.postgreDao.impl;
+package com.ukmaSupport.dao.impl;
 
-import com.ukmaSupport.POJO.Auditorium;
+import com.ukmaSupport.models.Auditorium;
 import com.ukmaSupport.mapper.AuditoriumMapper;
-import com.ukmaSupport.postgreDao.AuditoriumDao;
+import com.ukmaSupport.dao.interfaces.AuditoriumDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -31,7 +31,7 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
     @Override
     public Auditorium getById(int id) {
         String sql = "SELECT id,userid,number FROM auditorium WHERE id=?";
-        return (com.ukmaSupport.POJO.Auditorium) this.template.queryForObject(sql, new Object[]{id}, new AuditoriumMapper());
+        return (com.ukmaSupport.models.Auditorium) this.template.queryForObject(sql, new Object[]{id}, new AuditoriumMapper());
 
     }
 

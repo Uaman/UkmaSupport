@@ -1,7 +1,7 @@
-package com.ukmaSupport.postgreDao.impl;
+package com.ukmaSupport.dao.impl;
 
-import com.ukmaSupport.POJO.User;
-import com.ukmaSupport.postgreDao.UserDao;
+import com.ukmaSupport.models.User;
+import com.ukmaSupport.dao.interfaces.UserDao;
 import com.ukmaSupport.utils.JavaDateConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -37,7 +37,6 @@ public class UserDaoImpl implements UserDao {
                         return user;
                     }
                 }, id);
-
     }
 
     @Override

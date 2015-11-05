@@ -1,6 +1,6 @@
-package com.ukmaSupport.postgreDao;
+package com.ukmaSupport.dao.interfaces;
 
-import com.ukmaSupport.POJO.User;
+import com.ukmaSupport.models.User;
 
 public interface UserDao {
 
