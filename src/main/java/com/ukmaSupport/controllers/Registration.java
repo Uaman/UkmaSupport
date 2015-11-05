@@ -1,5 +1,6 @@
 package com.ukmaSupport.controllers;
 
+import com.ukmaSupport.dao.interfaces.UserDao;
 import com.ukmaSupport.models.*;
 import com.ukmaSupport.utils.RegistrationValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping(value = "/register")
 public class Registration {
+    @Autowired
+    private UserDao userDao;
+
     @Autowired
     @Qualifier("registrationValidator")
     private RegistrationValidator validator;
@@ -32,6 +36,7 @@ public class Registration {
         if (result.hasErrors()) {
             return "registration/registration";
         }
+        userDao.saveOrUpdate(user);
         return "registration/registrationSuccess";
     }
 }

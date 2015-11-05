@@ -31,17 +31,17 @@ public class UserDaoImpl implements UserDao {
     private static final String UPDATE_QUERY = "UPDATE users SET user_roleid=(SELECT user_roles.id FROM user_roles WHERE user_roles.role=?), first_name=?, last_name=?, email=?, data_entry=?, password=?, status_account=? WHERE id_user=?";
 
     @Override
-    public User getUserByID(int id) {
+    public User getByID(int id) {
         return jdbcTemplate.queryForObject(GET_USER_BY_ID, new Object[]{id}, rowMapper);
     }
 
     @Override
-    public void deleteUser(int id) {
+    public void delete(int id) {
         jdbcTemplate.update(DELETE_USER, id);
     }
 
     @Override
-    public void updateUser(final User user) {
+    public void saveOrUpdate(final User user) {
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
@@ -58,11 +58,14 @@ public class UserDaoImpl implements UserDao {
                     prepStat.setString(1, "user");
                 else
                     prepStat.setString(1, user.getRole());
+                if (user.getAccountStatus() == null)
+                    prepStat.setString(7, "active");
+                else
+                    prepStat.setString(7, user.getAccountStatus());
                 prepStat.setString(2, user.getFirstName());
                 prepStat.setString(3, user.getLastName());
                 prepStat.setString(4, user.getEmail());
                 prepStat.setString(6, user.getPassword());
-                prepStat.setString(7, user.getAccountStatus());
                 return prepStat;
             }
         });
@@ -74,8 +77,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getUserByEmail(String email) {
-        return jdbcTemplate.queryForObject(GET_USER_BY_EMAIL, new Object[]{email}, rowMapper);
+    public User getByEmail(String email) {//very bad but working version
+        //jdbcTemplate.queryForObject(GET_USER_BY_EMAIL, new Object[]{email}, rowMapper);
+        List<User> a = jdbcTemplate.query(GET_USER_BY_EMAIL, new Object[]{email}, rowMapper);
+        if (!a.isEmpty())
+            return a.get(0);
+        return null;
     }
 
     private static final RowMapper<User> rowMapper = new RowMapper<User>() {

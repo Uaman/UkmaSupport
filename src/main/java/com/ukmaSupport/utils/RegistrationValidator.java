@@ -1,6 +1,8 @@
 package com.ukmaSupport.utils;
 
+import com.ukmaSupport.dao.interfaces.UserDao;
 import com.ukmaSupport.models.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -8,6 +10,8 @@ import org.springframework.validation.Validator;
 
 @Component
 public class RegistrationValidator implements Validator {
+    @Autowired
+    private UserDao userDao;
 
     private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
@@ -28,5 +32,7 @@ public class RegistrationValidator implements Validator {
         if (!form.getPassword().equals(form.getConfPassword())) {
             errors.rejectValue("confPassword", "valid.confPasswordDiff", "Passwords are different.");
         }
+        if (userDao.getByEmail(form.getEmail()) != null)
+            errors.rejectValue("email", "valid.duplicatedEmail", "Email is required.");
     }
 }
