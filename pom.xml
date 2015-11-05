@@ -27,12 +27,14 @@
             <artifactId>spring-security-config</artifactId>
             <version>${springsecurity.version}</version>
         </dependency>
+        <!--><-->
 
         <!--<dependency>-->
             <!--<groupId>opensymphony</groupId>-->
             <!--<artifactId>sitemesh</artifactId>-->
             <!--<version>${sitemesh.version}</version>-->
         <!--</dependency>-->
+
         <!--> Dependencies for sending emails <-->
         <dependency>
             <groupId>javax.mail</groupId>
@@ -128,6 +130,7 @@
             <artifactId>jquery</artifactId>
             <version>2.1.4</version>
         </dependency>
+        <!--><-->
     </dependencies>
 
     <build>

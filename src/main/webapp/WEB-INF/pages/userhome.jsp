@@ -1,5 +1,5 @@
 <%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%--
   Created by IntelliJ IDEA.
   User: viktor
@@ -12,12 +12,11 @@
 <html>
 <head>
 
-
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
           th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
-          rel="stylesheet" media="screen" />
+          rel="stylesheet" media="screen"/>
 
     <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
             th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
@@ -28,14 +27,14 @@
 <body>
 <h1>Form</h1>
 <form:form method="POST" action="userhome">
-  <form:errors path="*" cssClass="errorblock" element="div" />
+    <form:errors path="*" cssClass="errorblock" element="div"/>
 
     <tr>
-      <td colspan="2">
-        <input type="submit" value="Submit"/>
-      </td>
+        <td colspan="2">
+            <input type="submit" value="Submit"/>
+        </td>
     </tr>
-  </table>
+    </table>
 </form:form>
 </body>
 </html>

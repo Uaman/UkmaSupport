@@ -1,7 +1,5 @@
 package com.ukmaSupport.utils;
 
-import org.springframework.validation.BindingResult;
-
 import com.ukmaSupport.POJO.User;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -18,11 +16,7 @@ public class RegistrationValidator implements Validator {
     }
 
     @Override
-    public void validate(Object o, Errors errors) {
-
-    }
-
-    public void validate(Object obj, BindingResult errors) {
+    public void validate(Object obj, Errors errors) {
         User form = (User) obj;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "valid.firstName", "First name is required.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "valid.lastName", "Last name is required.");

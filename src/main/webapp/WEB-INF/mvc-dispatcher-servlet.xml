@@ -15,6 +15,7 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!-- error messages and validator for registration -->
     <bean id="messageSource"
           class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basename" value="messages"/>
@@ -22,6 +23,7 @@
     </bean>
 
     <bean id="registrationValidator" class="com.ukmaSupport.utils.RegistrationValidator"/>
+    <!--><-->
 
     <!-- jdbcTemplate uses dataSource -->
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
@@ -35,7 +37,7 @@
         <property name="username" value="xihegrjcahwwvo"/>
         <property name="password" value="DPdsJaB3QJPy2Rztl8YuJ5futy"/>
     </bean>
-
+    <!--><-->
 
     <!--> Mail Sender bean for sending emails <-->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
@@ -55,4 +57,5 @@
             </props>
         </property>
     </bean>
+    <!--><-->
 </beans>

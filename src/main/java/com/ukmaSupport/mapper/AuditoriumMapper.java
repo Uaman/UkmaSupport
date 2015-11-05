@@ -6,7 +6,6 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 // Map each row of the result set object to the Auditorium POJO object
 public class AuditoriumMapper implements RowMapper<Auditorium> {
     @Override
