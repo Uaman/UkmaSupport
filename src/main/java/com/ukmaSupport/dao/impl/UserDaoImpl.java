@@ -18,17 +18,17 @@ public class UserDaoImpl implements UserDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private static final String GET_ALL_USERS = "SELECT * FROM user";
+    private static final String GET_ALL_USERS = "SELECT users.id_user, user_roles.role, users.first_name, users.last_name, users.email, users.data_entry, users.password, users.status_account FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid";
 
-    private static final String GET_USER_BY_ID = "SELECT * FROM user WHERE id_user = ? ";
+    private static final String GET_USER_BY_ID = "SELECT users.id_user, user_roles.role, users.first_name, users.last_name, users.email, users.data_entry, users.password, users.status_account FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid WHERE id_user = ? ";
 
-    private static final String GET_USER_BY_EMAIL = "SELECT * FROM user WHERE email = ? ";
+    private static final String GET_USER_BY_EMAIL = "SELECT users.id_user, user_roles.role, users.first_name, users.last_name, users.email, users.data_entry, users.password, users.status_account FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid WHERE email = ? ";
 
-    private static final String DELETE_USER = "DELETE FROM user WHERE id_user = ?";
+    private static final String DELETE_USER = "DELETE FROM users WHERE id_user = ?";
 
-    private static final String INSERT_QUERY = "INSERT INTO user (user_roleid, first_name, last_name, email, data_entry, password, status_account) VALUES((SELECT userrole.id FROM userrole WHERE user_role.role=?),?,?,?,?,?,?)";
+    private static final String INSERT_QUERY = "INSERT INTO users (user_roleid, first_name, last_name, email, data_entry, password, status_account) VALUES((SELECT user_roles.id FROM user_roles WHERE user_roles.role=?),?,?,?,?,?,?)";
 
-    private static final String UPDATE_QUERY = "UPDATE user SET user_roleid=(SELECT userrole.id FROM userrole WHERE user_role.role=?), first_name=?, last_name=?, email=?, data_entry=?, password=?, status_account WHERE id=?";
+    private static final String UPDATE_QUERY = "UPDATE users SET user_roleid=(SELECT user_roles.id FROM user_roles WHERE user_roles.role=?), first_name=?, last_name=?, email=?, data_entry=?, password=?, status_account=? WHERE id_user=?";
 
     @Override
     public User getUserByID(int id) {
@@ -48,12 +48,16 @@ public class UserDaoImpl implements UserDao {
                 PreparedStatement prepStat;
                 if (user.getId() == 0) {
                     prepStat = con.prepareStatement(INSERT_QUERY);
-                    prepStat.setDate(5, (java.sql.Date) java.util.Calendar.getInstance().getTime());
+                    prepStat.setDate(5, new java.sql.Date(new java.util.Date().getTime()));
                 } else {
                     prepStat = con.prepareStatement(UPDATE_QUERY);
-                    prepStat.setDate(5, (java.sql.Date) user.getDateOfEntry());
+                    prepStat.setInt(8, user.getId());
+                    prepStat.setDate(5, new java.sql.Date(user.getDateOfEntry().getTime()));
                 }
-                prepStat.setString(1, user.getRole());
+                if (user.getRole() == null)
+                    prepStat.setString(1, "user");
+                else
+                    prepStat.setString(1, user.getRole());
                 prepStat.setString(2, user.getFirstName());
                 prepStat.setString(3, user.getLastName());
                 prepStat.setString(4, user.getEmail());
@@ -84,7 +88,7 @@ public class UserDaoImpl implements UserDao {
             user.setLastName(rs.getString("last_name"));
             user.setEmail(rs.getString("email"));
             user.setPassword(rs.getString("password"));
-            user.setRole(rs.getString("user_roleid"));//���������� ����
+            user.setRole(rs.getString("role"));
             user.setAccountStatus(rs.getString("status_account"));
             user.setDateOfEntry(JavaDateConverter.convertToJavaDate(rs.getDate("data_entry")));
             return user;
