@@ -19,8 +19,8 @@ public class Registration {
     @Autowired
     private UserDao userDao;
 
-    @Autowired
-    private MailService mailService;
+//    @Autowired
+//    private MailService mailService;
 
     @Autowired
     @Qualifier("registrationValidator")
