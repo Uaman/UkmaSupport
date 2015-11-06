@@ -33,9 +33,8 @@ public class Registration {
     public String processRegistration(@ModelAttribute("userForm") User user, Model model, BindingResult result) {
         model.addAttribute("userForm", user);
         validator.validate(user, result);
-        if (result.hasErrors()) {
+        if (result.hasErrors())
             return "registration/registration";
-        }
         userDao.saveOrUpdate(user);
         return "registration/registrationSuccess";
     }

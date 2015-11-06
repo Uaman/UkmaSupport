@@ -31,8 +31,9 @@ public class UserDaoImpl implements UserDao {
     private static final String UPDATE_QUERY = "UPDATE users SET user_roleid=(SELECT user_roles.id FROM user_roles WHERE user_roles.role=?), first_name=?, last_name=?, email=?, data_entry=?, password=?, status_account=? WHERE id_user=?";
 
     @Override
-    public User getByID(int id) {
-        return jdbcTemplate.queryForObject(GET_USER_BY_ID, new Object[]{id}, rowMapper);
+    public User getById(int id) {
+        List<User> users = jdbcTemplate.query(GET_USER_BY_ID, new Object[]{id}, rowMapper);
+        return users.isEmpty() ? null : users.get(0);
     }
 
     @Override
@@ -77,12 +78,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getByEmail(String email) {//very bad but working version
-        //jdbcTemplate.queryForObject(GET_USER_BY_EMAIL, new Object[]{email}, rowMapper);
-        List<User> a = jdbcTemplate.query(GET_USER_BY_EMAIL, new Object[]{email}, rowMapper);
-        if (!a.isEmpty())
-            return a.get(0);
-        return null;
+    public User getByEmail(String email) {
+        List<User> users = jdbcTemplate.query(GET_USER_BY_EMAIL, new Object[]{email}, rowMapper);
+        return users.isEmpty() ? null : users.get(0);
     }
 
     private static final RowMapper<User> rowMapper = new RowMapper<User>() {

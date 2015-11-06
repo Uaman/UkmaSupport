@@ -24,14 +24,12 @@ public class RegistrationValidator implements Validator {
         User form = (User) obj;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "valid.firstName", "First name is required.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "valid.lastName", "Last name is required.");
-        if (!form.getEmail().matches(EMAIL_PATTERN)) {
+        if (!form.getEmail().matches(EMAIL_PATTERN))
             errors.rejectValue("email", "valid.email", "Email is required.");
-        }
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "valid.password", "Password is required.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confPassword", "valid.confPassword", "Confirm password is required.");
-        if (!form.getPassword().equals(form.getConfPassword())) {
+        if (!form.getPassword().equals(form.getConfPassword()))
             errors.rejectValue("confPassword", "valid.confPasswordDiff", "Passwords are different.");
-        }
         if (userDao.getByEmail(form.getEmail()) != null)
             errors.rejectValue("email", "valid.duplicatedEmail", "Email is required.");
     }
