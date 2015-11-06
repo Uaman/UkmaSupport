@@ -8,7 +8,7 @@ public interface OrderDao {
 
     Order getById(int id);
 
-    void createOrUpdate(String role);
+    void createOrUpdate(Order order);
 
     void delete(int id);
 

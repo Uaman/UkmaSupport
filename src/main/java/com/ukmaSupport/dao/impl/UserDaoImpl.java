@@ -95,7 +95,7 @@ public class UserDaoImpl implements UserDao {
             user.setPassword(rs.getString("password"));
             user.setRole(rs.getString("role"));
             user.setAccountStatus(rs.getString("status_account"));
-            user.setDateOfEntry(JavaDateConverter.convertToJavaDate(rs.getDate("data_entry")));
+            user.setDateOfEntry(new java.util.Date(rs.getDate("data_entry").getTime()));
             return user;
         }
     };
