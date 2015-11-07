@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 public class MailService {
 
+    /**** test ******/
+
     @Autowired
     private MailSender mailSender;  // MailSender interface defines a strateg for sending simple mails
 
@@ -21,4 +23,5 @@ public class MailService {
 
         mailSender.send(message);
     }
+
 }
