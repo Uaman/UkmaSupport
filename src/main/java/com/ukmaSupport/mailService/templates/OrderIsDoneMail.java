@@ -1,15 +1,18 @@
 package com.ukmaSupport.mailService.templates;
 
-/**
- * Created by Alex Selivanov on 03.11.2015.
- *
- * Sending emails to User that order is DONE.
- */
-public class OrderIsDoneMail extends Mail {
-    private static final String SUBJECT = "Your order is DONE";
-    private static final String BODY = "Your order is DONE ... (+ some link on this order)";
+import com.ukmaSupport.mailService.MailService;
+import org.springframework.beans.factory.annotation.Autowired;
 
-    public OrderIsDoneMail() {
-        super(SUBJECT, BODY);
+public class OrderIsDoneMail {
+    private static final String FROM_ADDR = "uukkmmaa.ssuuppoorrtt@gmail.com";  //mail server
+
+    @Autowired
+    private MailService mailService;
+
+    public void send(String toAddr/*, String link*/){
+        String subject = "Your order is done";
+        String body = "Your order is done. Details: " + /*link +*/ "\n\nUKMA Support\nhttp://support-naukma.azurewebsites.net/";
+
+        mailService.sendEmail(toAddr, FROM_ADDR, subject, body);
     }
 }

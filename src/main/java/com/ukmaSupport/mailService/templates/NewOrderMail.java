@@ -1,16 +1,18 @@
 package com.ukmaSupport.mailService.templates;
 
-/**
- * Created by Alex Selivanov on 03.11.2015.
- *
- * Sending emails to Lab Assistants about new order.
- */
-public class NewOrderMail extends Mail {
-    private static final String SUBJECT = "You have new order";
-    private static final String BODY = "You have new order (+ some link on this order)";
+import com.ukmaSupport.mailService.MailService;
+import org.springframework.beans.factory.annotation.Autowired;
 
-    public NewOrderMail() {
+public class NewOrderMail {
+    private static final String FROM_ADDR = "uukkmmaa.ssuuppoorrtt@gmail.com";  //mail server
 
-        super(SUBJECT, BODY);
+    @Autowired
+    private MailService mailService;
+
+    public void send(String toAddr/*, String link*/){
+        String subject = "You have new order";
+        String body = "You have new order. Details: " + /*link +*/ "\n\nUKMA Support\nhttp://support-naukma.azurewebsites.net/";
+
+        mailService.sendEmail(toAddr, FROM_ADDR, subject, body);
     }
 }

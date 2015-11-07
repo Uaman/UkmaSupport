@@ -1,15 +1,20 @@
 package com.ukmaSupport.mailService.templates;
 
-/**
- * Created by Alex Selivanov on 03.11.2015.
- *
- * Send email to just registered User for confirmation of registration.
- */
-public class RegistrationMail extends Mail {
-    private static final String SUBJECT = "Welcome to UKMA Support";
-    private static final String BODY = "Hello! Welcome to UKMA Support (+ registration confirmation)";
 
-    public RegistrationMail() {
-        super(SUBJECT, BODY);
+import com.ukmaSupport.mailService.MailService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class RegistrationMail {
+    private static final String FROM_ADDR = "uukkmmaa.ssuuppoorrtt@gmail.com";  //mail server
+
+    @Autowired
+    private MailService mailService;
+
+    public void send(String toAddr/*, String password*/){
+        String subject = "Welcome to UKMA Support";
+        String body = "Welcome to UKMA Support." + "\n\n" + "Your login: " + toAddr + '\n' + "Your password: " + /*password +*/
+                "\n\nUKMA Support\nhttp://support-naukma.azurewebsites.net/";
+
+        mailService.sendEmail(toAddr, FROM_ADDR, subject, body);
     }
 }

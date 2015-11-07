@@ -1,16 +1,19 @@
 package com.ukmaSupport.mailService.templates;
 
-/**
- * Created by Alex Selivanov on 03.11.2015.
- *
- * Sending emails to Users about accepting of their orders.
- */
-public class OrderIsAcceptedMail extends Mail {
-    private static final String SUBJECT = "Accepted order";
-    private static final String BODY = "Lab. Assistant has accepted your order. (+ some link on this order)";
 
-    public OrderIsAcceptedMail() {
+import com.ukmaSupport.mailService.MailService;
+import org.springframework.beans.factory.annotation.Autowired;
 
-        super(SUBJECT, BODY);
+public class OrderIsAcceptedMail {
+    private static final String FROM_ADDR = "uukkmmaa.ssuuppoorrtt@gmail.com";  //mail server
+
+    @Autowired
+    private MailService mailService;
+
+    public void send(String toAddr/*, String link*/){
+        String subject = "Your order was accepted";
+        String body = "Your order was accepted. Details: " + /*link +*/ "\n\nUKMA Support\nhttp://support-naukma.azurewebsites.net/";
+
+        mailService.sendEmail(toAddr, FROM_ADDR, subject, body);
     }
 }

@@ -41,9 +41,9 @@
 
     <!--> Mail Sender bean for sending emails <-->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host" value="smtp.mail.ru"/>
-        <property name="port" value="25"/>
-        <property name="username" value="uukkmmaa.ssuuppoorrtt@mail.ru"/>
+        <property name="host" value="smtp.gmail.com"/>
+        <property name="port" value="587"/>
+        <property name="username" value="uukkmmaa.ssuuppoorrtt@gmail.com"/>
         <property name="password" value="ceggjhn4444"/>
         <!-->I think it's bad :( <-->
 
@@ -61,7 +61,10 @@
     <bean id="mailService" class="com.ukmaSupport.mailService.MailService"></bean>
     <!--><-->
 
-    <!--> Registartion mail <-->
+    <!--> mail templates <-->
     <bean id="regMail" class="com.ukmaSupport.mailService.templates.RegistrationMail"></bean>
+    <bean id="newOrderMail" class="com.ukmaSupport.mailService.templates.NewOrderMail"></bean>
+    <bean id="orderIsDoneMail" class="com.ukmaSupport.mailService.templates.OrderIsDoneMail"></bean>
+    <bean id="orderIsAcceptedMail" class="com.ukmaSupport.mailService.templates.OrderIsAcceptedMail"></bean>
 
 </beans>
