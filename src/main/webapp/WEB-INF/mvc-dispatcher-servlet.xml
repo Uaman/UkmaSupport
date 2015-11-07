@@ -57,5 +57,11 @@
             </props>
         </property>
     </bean>
+
+    <bean id="mailService" class="com.ukmaSupport.mailService.MailService"></bean>
     <!--><-->
+
+    <!--> Registartion mail <-->
+    <bean id="regMail" class="com.ukmaSupport.mailService.templates.RegistrationMail"></bean>
+
 </beans>
