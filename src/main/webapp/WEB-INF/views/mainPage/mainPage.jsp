@@ -44,7 +44,7 @@
 
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a id = "registration" class="leftWord" href="register">Реєстрація</a></li>
+                <li><a id = "registration" class="leftWord" href="/register">Реєстрація</a></li>
             </ul>
         </div>
     </div>
@@ -57,20 +57,21 @@
                     </script></span>
         <span id="txt"></span>
     </div>
-
+    <spring:url var="authUrl" value="/static/j_spring_security_check" />
+    <form method="post"  action="${authUrl}">
     <div class="col-md-offset-4 col-md-4 vertalign">
 
         <form class="form-horizontal">
 
             <div class="form-group">
                 <div class="col-md-offset-1 col-md-10">
-                    <input type="email" class="form-control form-style" id="email" placeholder="Введіть email">
+                    <input type="email" class="form-control form-style" id="email" name="j_username" placeholder="Введіть email">
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-offset-1 col-md-10">
-                    <input type="password" class="form-control form-style" id="password" placeholder="Пароль">
+                    <input type="password" class="form-control form-style" id="password" name="j_password" placeholder="Пароль">
                 </div>
             </div>
 
@@ -85,9 +86,11 @@
             <div class="col-md-offset-1">
                 <a id="forgotpassword" href="#">Forgot password?</a>
             </div>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
         </form>
     </div>
+    </form>
 
     <div class="navbar-fixed-bottom">
         <div class="thick"></div>
