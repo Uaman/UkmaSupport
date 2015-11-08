@@ -35,13 +35,15 @@
 <br>
 <br>
 
-<form>
+
     <br>
 
+    <spring:url var="authUrl" value="/static/j_spring_security_check" />
+    <form method="post"  action="${authUrl}">
     <div class="col-lg-3">
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon">Email:</span>
-            <input type="text" class="form-control" placeholder="email" aria-describedby="basic-addon1">
+            <input type="text" id="email" name="j_username" class="form-control" placeholder="email" aria-describedby="basic-addon1">
         </div>
     </div>
     <br>
@@ -50,15 +52,17 @@
     <div class="col-lg-3">
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Password:</span>
-            <input type="password" class="form-control" placeholder="password" aria-describedby="basic-addon1">
+            <input type="password" id="password" name="j_password" class="form-control" placeholder="password" aria-describedby="basic-addon1">
         </div>
     </div>
-    <br><br>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <br><br>
 
     <div class="col-lg-3">
-        <button type="button" class="btn btn-success">Log in</button>
+        <button type="submit" class="btn btn-success">Log in</button>
     </div>
-</form>
+    </form>
+
 </body>
 </html>
 

@@ -24,6 +24,7 @@ public class UserController {
 
     @RequestMapping(value = "/userhome", method = RequestMethod.POST)
     public String addStudent(@ModelAttribute("users")User users,BindingResult bindingResult, ModelMap model) {
+
         System.out.println("error"+bindingResult.hasErrors());
       //  model.addAttribute("title", users.getTitle());
       //  model.addAttribute("order", users.getOrder());
