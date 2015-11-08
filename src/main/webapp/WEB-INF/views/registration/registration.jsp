@@ -60,10 +60,6 @@
                 </tr>
 
             </table>
-            <!-- <div>
-
-            <input type="hidden" name="_csrf" value="8ab59d35-bc06-4000-aa49-fa9e5c21a538" />
-            </div>-->
             <div class="form-group">
                 <div class="col-md-offset-7 col-md-4">
                     <button id="register-button" type="submit" value="Register" class="btn btn-primary btn-block button-style">Register</button>
