@@ -1,15 +1,19 @@
 package com.ukmaSupport.dao.impl;
 
-import com.ukmaSupport.models.User;
 import com.ukmaSupport.dao.interfaces.UserDao;
-import com.ukmaSupport.utils.JavaDateConverter;
+import com.ukmaSupport.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository("userDao")
@@ -30,17 +34,20 @@ public class UserDaoImpl implements UserDao {
 
     private static final String UPDATE_QUERY = "UPDATE users SET user_roleid=(SELECT user_roles.id FROM user_roles WHERE user_roles.role=?), first_name=?, last_name=?, email=?, data_entry=?, password=?, status_account=? WHERE id_user=?";
 
+    @Transactional(propagation= Propagation.SUPPORTS, readOnly=true)
     @Override
     public User getById(int id) {
         List<User> users = jdbcTemplate.query(GET_USER_BY_ID, new Object[]{id}, rowMapper);
         return users.isEmpty() ? null : users.get(0);
     }
 
+    @Transactional(propagation= Propagation.REQUIRED, readOnly=false)
     @Override
     public void delete(int id) {
         jdbcTemplate.update(DELETE_USER, id);
     }
 
+    @Transactional(propagation= Propagation.REQUIRED, readOnly=false)
     @Override
     public void saveOrUpdate(final User user) {
         jdbcTemplate.update(new PreparedStatementCreator() {
@@ -72,11 +79,13 @@ public class UserDaoImpl implements UserDao {
         });
     }
 
+    @Transactional(propagation= Propagation.SUPPORTS, readOnly=true)
     @Override
     public List<User> getAll() {
         return jdbcTemplate.query(GET_ALL_USERS, rowMapper);
     }
 
+    @Transactional(propagation= Propagation.SUPPORTS, readOnly=true)
     @Override
     public User getByEmail(String email) {
         List<User> users = jdbcTemplate.query(GET_USER_BY_EMAIL, new Object[]{email}, rowMapper);

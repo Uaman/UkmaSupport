@@ -31,4 +31,13 @@ public class Auditorium implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Auditorium{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", number='" + number + '\'' +
+                '}';
+    }
 }

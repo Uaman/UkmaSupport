@@ -1,8 +1,10 @@
 package com.ukmaSupport.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+
+public class User implements Serializable {
 
     private int id;
 
@@ -88,6 +90,21 @@ public class User {
 
     public int getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", confPassword='" + confPassword + '\'' +
+                ", email='" + email + '\'' +
+                ", dateOfEntry=" + dateOfEntry +
+                ", role='" + role + '\'' +
+                ", accountStatus='" + accountStatus + '\'' +
+                '}';
     }
 
     public void setId(int id) {

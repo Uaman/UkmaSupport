@@ -3,13 +3,16 @@ package com.ukmaSupport.dao.impl;
 import com.ukmaSupport.dao.interfaces.RoleDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.reflect.Type;
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
 
-
+@Repository("roleDao")
 public class RoleImpl implements RoleDao {
 
     @Autowired
@@ -21,6 +24,7 @@ public class RoleImpl implements RoleDao {
 
     private String DELETE_ROLE = "DELETE FROM user_roles WHERE id = ?";
 
+    @Transactional(propagation= Propagation.SUPPORTS, readOnly=true)
     @Override
     public String getRoleById(int id) {
         return jdbcTemplate.queryForObject(GET_ROLE_BY_ID, new Object[]{id}, new RowMapper<String>() {
@@ -31,11 +35,13 @@ public class RoleImpl implements RoleDao {
         });
     }
 
+    @Transactional(propagation= Propagation.REQUIRED, readOnly=false)
     @Override
     public void addNewRole(String role) {
         jdbcTemplate.update(ADD_NEW_ROLE,new Object[]{role},new Object[]{Types.VARCHAR});
     }
 
+    @Transactional(propagation= Propagation.REQUIRED, readOnly=false)
     @Override
     public void deleteRole(int id) {
         jdbcTemplate.update(DELETE_ROLE,new Object[]{id});

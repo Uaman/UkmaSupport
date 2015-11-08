@@ -5,7 +5,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+// Map each row of the result set object to the Workplace's model object
 public class WorkplaceMapper implements RowMapper<Workplace> {
     @Override
     public Workplace mapRow(ResultSet resultSet, int i) throws SQLException {

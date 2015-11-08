@@ -1,8 +1,8 @@
 package com.ukmaSupport.controllers;
 
-import com.ukmaSupport.models.Auditorium;
+import com.ukmaSupport.dao.interfaces.UserDao;
+import com.ukmaSupport.dao.interfaces.WorkplaceDao;
 import com.ukmaSupport.models.User;
-import com.ukmaSupport.dao.interfaces.AuditoriumDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,7 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UserController {
     @Autowired
-    private AuditoriumDao auditoriumDao;
+    private UserDao userDao;
+    @Autowired
+    private WorkplaceDao workplaceDao;
 
     @RequestMapping(value = "/userhome", method = RequestMethod.GET)
     public ModelAndView student() {
@@ -30,10 +32,13 @@ public class UserController {
       //  model.addAttribute("order", users.getOrder());
       //  model.addAttribute("id", users.getId());
         //Test dao auditorium
-        Auditorium auditorium=new Auditorium();
-        auditorium.setUserId(1);
-        auditorium.setNumber("2-304");
-        auditoriumDao.save(auditorium);
+      /*  Workplace workplace=new Workplace();
+        workplace.setAuditoriumId(2);
+        workplace.setAccessNumber(2344);
+
+        workplaceDao.save(workplace);*/
+       System.out.println(userDao.getAll());
+
      if(bindingResult.hasErrors()) {
          return "userhome";
      }

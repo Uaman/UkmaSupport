@@ -2,12 +2,13 @@ package com.ukmaSupport.dao.impl;
 
 import com.ukmaSupport.dao.interfaces.OrderDao;
 import com.ukmaSupport.models.Order;
-import com.ukmaSupport.utils.JavaDateConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,12 +32,13 @@ public class OrderDaoImpl implements OrderDao {
 
     private static final String UPDATE_QUERY = "UPDATE orders SET user_id=?, assistant_id=?, workplace_id=?, title=?, content=?, created_at=?, status=? WHERE id=?";
 
+    @Transactional(propagation= Propagation.SUPPORTS, readOnly=true)
     @Override
     public Order getById(int id) {
         List<Order> users = jdbcTemplate.query(GET_ORDER_BY_ID, new Object[]{id}, rowMapper);
         return users.isEmpty() ? null : users.get(0);
     }
-
+    @Transactional(propagation= Propagation.REQUIRED, readOnly=false)
     @Override
     public void createOrUpdate(final Order order) {
         jdbcTemplate.update(new PreparedStatementCreator() {
@@ -61,12 +63,13 @@ public class OrderDaoImpl implements OrderDao {
             }
         });
     }
-
+    @Transactional(propagation= Propagation.REQUIRED, readOnly=false)
     @Override
     public void delete(int id) {
         jdbcTemplate.update(DELETE_ORDER, id);
     }
 
+    @Transactional(propagation= Propagation.SUPPORTS, readOnly=true)
     @Override
     public List<Order> getAll() {
         return jdbcTemplate.query(GET_ALL_ORDERS, rowMapper);
