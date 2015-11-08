@@ -73,5 +73,6 @@
     <bean id="newOrderMail" class="com.ukmaSupport.mailService.templates.NewOrderMail"></bean>
     <bean id="orderIsDoneMail" class="com.ukmaSupport.mailService.templates.OrderIsDoneMail"></bean>
     <bean id="orderIsAcceptedMail" class="com.ukmaSupport.mailService.templates.OrderIsAcceptedMail"></bean>
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
 
 </beans>

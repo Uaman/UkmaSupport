@@ -22,7 +22,7 @@
             th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
 
     <link href="../static/css/guru.css"
-          th:href="@{css/guru.css}" rel="stylesheet" media="screen"/>
+          th:href="@{../../resources/css/guru.css}" rel="stylesheet" media="screen"/>
 </head>
 <body>
 <h1>Form</h1>
