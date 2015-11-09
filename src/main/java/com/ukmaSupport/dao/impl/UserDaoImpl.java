@@ -34,20 +34,17 @@ public class UserDaoImpl implements UserDao {
 
     private static final String UPDATE_QUERY = "UPDATE users SET user_roleid=(SELECT user_roles.id FROM user_roles WHERE user_roles.role=?), first_name=?, last_name=?, email=?, data_entry=?, password=?, status_account=? WHERE id_user=?";
 
-    @Transactional(propagation= Propagation.SUPPORTS, readOnly=true)
     @Override
     public User getById(int id) {
         List<User> users = jdbcTemplate.query(GET_USER_BY_ID, new Object[]{id}, rowMapper);
         return users.isEmpty() ? null : users.get(0);
     }
 
-    @Transactional(propagation= Propagation.REQUIRED, readOnly=false,rollbackFor = Exception.class)
     @Override
     public void delete(int id) {
         jdbcTemplate.update(DELETE_USER, id);
     }
 
-    @Transactional(propagation= Propagation.REQUIRED, readOnly=false,rollbackFor = Exception.class)
     @Override
     public void saveOrUpdate(final User user) {
         jdbcTemplate.update(new PreparedStatementCreator() {
@@ -62,30 +59,22 @@ public class UserDaoImpl implements UserDao {
                     prepStat.setInt(8, user.getId());
                     prepStat.setDate(5, new java.sql.Date(user.getDateOfEntry().getTime()));
                 }
-                if (user.getRole() == null)
-                    prepStat.setString(1, "user");
-                else
-                    prepStat.setString(1, user.getRole());
-                if (user.getAccountStatus() == null)
-                    prepStat.setString(7, "active");
-                else
-                    prepStat.setString(7, user.getAccountStatus());
+                prepStat.setString(1, user.getRole());
                 prepStat.setString(2, user.getFirstName());
                 prepStat.setString(3, user.getLastName());
                 prepStat.setString(4, user.getEmail());
                 prepStat.setString(6, user.getPassword());
+                prepStat.setString(7, user.getAccountStatus());
                 return prepStat;
             }
         });
     }
 
-    @Transactional(propagation= Propagation.SUPPORTS, readOnly=true)
     @Override
     public List<User> getAll() {
         return jdbcTemplate.query(GET_ALL_USERS, rowMapper);
     }
 
-    @Transactional(propagation= Propagation.SUPPORTS, readOnly=true)
     @Override
     public User getByEmail(String email) {
         List<User> users = jdbcTemplate.query(GET_USER_BY_EMAIL, new Object[]{email}, rowMapper);

@@ -28,7 +28,8 @@ public class Registration {
 
     @RequestMapping(method = RequestMethod.GET)
     public String viewRegistration(Model model) {
-        com.ukmaSupport.models.User userForm = new User();
+        User userForm = new User();
+        System.out.print(userForm.getFirstName());
         model.addAttribute("userForm", userForm);
         return "registration/registration";
     }
@@ -40,9 +41,7 @@ public class Registration {
         if (result.hasErrors())
             return "registration/registration";
         userDao.saveOrUpdate(user);
-
         registrationMail.send(user.getEmail());
-
         return "registration/registrationSuccess";
     }
 }
