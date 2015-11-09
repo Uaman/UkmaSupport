@@ -14,7 +14,7 @@ public class RegistrationValidator implements Validator {
     private UserService userDao;
 
     private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-    //private static final String FIO_PATTERN = "^[a-zA-Z][a-zA-Z0-9-_\\.]{1,20}$";
+    private static final String FIO_PATTERN = "[\\p{InCyrillic}]+";
 
     public boolean supports(Class<?> paramClass) {
         return User.class.equals(paramClass);
@@ -23,10 +23,10 @@ public class RegistrationValidator implements Validator {
     @Override
     public void validate(Object obj, Errors errors) {
         User form = (User) obj;
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "valid.firstName", "First name is required.");
-//        if (!form.getFirstName().matches(FIO_PATTERN))
-//            errors.rejectValue("firstName", "valid.firstName", "FirstName is required.");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "valid.lastName", "Last name is required.");
+        if (!form.getFirstName().matches(FIO_PATTERN))
+            errors.rejectValue("firstName", "valid.firstName", "FirstName is required.");
+        if (!form.getLastName().matches(FIO_PATTERN))
+            errors.rejectValue("lastName", "valid.lastName", "LastName is required.");
         if (!form.getEmail().matches(EMAIL_PATTERN))
             errors.rejectValue("email", "valid.email", "Email is required.");
         else if (userDao.getByEmail(form.getEmail()) != null)
