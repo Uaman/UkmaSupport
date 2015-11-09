@@ -19,7 +19,7 @@ import java.util.List;
 public class UserServices implements UserDetailsService {
 
     @Autowired
-    UserDao userDao;
+    private UserDao userDao;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {

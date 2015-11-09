@@ -1,8 +1,8 @@
 package com.ukmaSupport.controllers;
 
-import com.ukmaSupport.dao.interfaces.UserDao;
-import com.ukmaSupport.dao.interfaces.WorkplaceDao;
 import com.ukmaSupport.models.User;
+import com.ukmaSupport.services.interfaces.UserService;
+import com.ukmaSupport.services.interfaces.WorkplaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,9 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UserController {
     @Autowired
-    private UserDao userDao;
+    private UserService userDao;
     @Autowired
-    private WorkplaceDao workplaceDao;
+    private WorkplaceService workplaceDao;
 
     @RequestMapping(value = "/userhome", method = RequestMethod.GET)
     public ModelAndView student() {
