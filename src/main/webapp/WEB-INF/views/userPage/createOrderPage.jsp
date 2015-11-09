@@ -22,14 +22,14 @@
   </div>
 </div>
 
-
-<div class="form-group">
-  <div class="col-md-offset-4 col-md-4">
-    <input type="text" class="form-control form-style" id="title" name="title" placeholder="title">
+<form:form id="userForm" action="register" method="post" commandName="userForm">
+  <div class="form-group">
+    <div class="col-md-offset-4 col-md-4">
+      <input type="text" class="form-control form-style" id="title" name="title" placeholder="title">
+    </div>
   </div>
-</div>
-<br>
-<br>
+  <br>
+  <br>
   <form class="form-inline">
     <div class="col-md-offset-4 col-md-4">
       <div class="form-group">
@@ -46,6 +46,19 @@
     </div>
   </form>
 
+  <div class="form-group">
+    <div class="col-md-offset-4 col-md-4">
+      <textarea class="form-control" style="resize: none" rows="4" cols="50" name="description" placeholder="description">
+     </textarea>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-offset-4 col-md-4">
+      <button class="button-bar" type="submit">Create order</button>
+    </div>
+  </div>
+</form>
 
 
 

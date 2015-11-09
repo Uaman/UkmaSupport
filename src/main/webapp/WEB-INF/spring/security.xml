@@ -19,6 +19,7 @@
     </beans:bean>
 
     <beans:bean id="myUserDetailsService" class="com.ukmaSupport.services.UserServices" />
+    <beans:bean id="encoder" class="com.ukmaSupport.services.SpringSecurityEncoder"/>
 
 
     <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -57,6 +58,7 @@
 
     <authentication-manager>
         <security:authentication-provider user-service-ref="myUserDetailsService">
+            <!--<password-encoder ref="encoder" />-->
         </security:authentication-provider>
     </authentication-manager>
 

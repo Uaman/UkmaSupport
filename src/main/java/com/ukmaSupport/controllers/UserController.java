@@ -1,10 +1,12 @@
 package com.ukmaSupport.controllers;
 
+import com.ukmaSupport.models.Order;
 import com.ukmaSupport.models.User;
 import com.ukmaSupport.services.interfaces.UserService;
 import com.ukmaSupport.services.interfaces.WorkplaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -52,8 +54,19 @@ public class UserController {
     }
 
     @RequestMapping(value = "/createOrder", method = RequestMethod.GET)
-    public String createOrder() {
+    public String createOrder(ModelMap model) {
+        Order order = new Order();
+        model.addAttribute("newOrder", order);
+
         return "userPage/createOrderPage";
+    }
+
+    @RequestMapping(value = "/createOrder", method = RequestMethod.POST)
+    public String createOrderPost(@ModelAttribute("newOrder") Order order, Model model, BindingResult result) {
+
+        model.addAttribute("newOrder" , order);
+
+        return "null";
     }
 
 
