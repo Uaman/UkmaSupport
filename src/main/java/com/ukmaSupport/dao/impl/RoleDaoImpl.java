@@ -13,20 +13,19 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 @Repository("roleDao")
-public class RoleImpl implements RoleDao {
+public class RoleDaoImpl implements RoleDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private String GET_ROLE_BY_ID = "SELECT role FROM user_roles WHERE id = ?";
+    private static final String GET_ROLE_BY_ID = "SELECT role FROM user_roles WHERE id = ?";
 
-    private String ADD_NEW_ROLE = "INSERT INTO user_roles (role) VALUE (?)";
+    private static final String ADD_NEW_ROLE = "INSERT INTO user_roles (role) VALUE (?)";
 
-    private String DELETE_ROLE = "DELETE FROM user_roles WHERE id = ?";
+    private static final String DELETE_ROLE = "DELETE FROM user_roles WHERE id = ?";
 
-    @Transactional(propagation= Propagation.SUPPORTS, readOnly=true)
     @Override
-    public String getRoleById(int id) {
+    public String getById(int id) {
         return jdbcTemplate.queryForObject(GET_ROLE_BY_ID, new Object[]{id}, new RowMapper<String>() {
             @Override
             public String mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -35,15 +34,13 @@ public class RoleImpl implements RoleDao {
         });
     }
 
-    @Transactional(propagation= Propagation.REQUIRED, readOnly=false,rollbackFor = Exception.class)
     @Override
-    public void addNewRole(String role) {
-        jdbcTemplate.update(ADD_NEW_ROLE,new Object[]{role},new Object[]{Types.VARCHAR});
+    public void save(String role) {
+        jdbcTemplate.update(ADD_NEW_ROLE, new Object[]{role}, new Object[]{Types.VARCHAR});
     }
 
-    @Transactional(propagation= Propagation.REQUIRED, readOnly=false)
     @Override
-    public void deleteRole(int id) {
-        jdbcTemplate.update(DELETE_ROLE,new Object[]{id});
+    public void delete(int id) {
+        jdbcTemplate.update(DELETE_ROLE, id);
     }
 }

@@ -1,7 +1,6 @@
-package com.ukmaSupport.dao.interfaces;
+package com.ukmaSupport.services.interfaces;
 
-
-public interface RoleDao {
+public interface RoleService {
 
     String getById(int id);
 
