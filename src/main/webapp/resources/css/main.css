@@ -142,10 +142,10 @@ a {
 .regErrors{
 	color: #ff0000;
 	width: 250px;
-	position: absolute; 
+	position: absolute;
 	z-index: 999;
 	padding-left: 15px;
-	margin-top: -27px;
+	margin-top: 9px;
 }
 a img {
     border: none; 

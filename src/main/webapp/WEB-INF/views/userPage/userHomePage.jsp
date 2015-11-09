@@ -36,6 +36,11 @@
     </table>
 </form:form>
 
+<div align="center">
+    <h1>Excel View </h1>
+    <h3><a href="/downloadExcel">Download Excel Document</a></h3>
+</div>
+
 
 <div class="navbar-fixed-bottom">
     <div class="thick"></div>

@@ -119,6 +119,12 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- poi library for excel generation -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.7</version>
+        </dependency>
 
     </dependencies>
 
