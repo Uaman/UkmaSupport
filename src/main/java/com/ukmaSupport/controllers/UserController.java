@@ -2,6 +2,7 @@ package com.ukmaSupport.controllers;
 
 import com.ukmaSupport.models.User;
 import com.ukmaSupport.services.interfaces.UserService;
+import com.ukmaSupport.services.interfaces.WorkplaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,13 +16,17 @@ import java.util.List;
 
 @Controller
 public class UserController {
+
     @Autowired
     private UserService userDao;
+
+    @Autowired
+    private WorkplaceService workplaceDao;
 
 
     @RequestMapping(value = "/userhome", method = RequestMethod.GET)
     public ModelAndView student() {
-        return new ModelAndView("userhome", "command", new User());
+        return new ModelAndView("userPage/userHomePage", "command", new User());
     }
 
     @RequestMapping(value = "/userhome", method = RequestMethod.POST)
@@ -40,11 +45,18 @@ public class UserController {
        System.out.println(userDao.getAll());
 
      if(bindingResult.hasErrors()) {
-         return "userhome";
+         return "userPage/userHomePage";
      }
       return "result";
 
     }
+
+    @RequestMapping(value = "/createOrder", method = RequestMethod.GET)
+    public String createOrder() {
+        return "userPage/createOrderPage";
+    }
+
+
     @RequestMapping(value = "/downloadExcel", method = RequestMethod.GET)
     public ModelAndView downloadExcel() {
         // create some sample data
@@ -54,4 +66,5 @@ public class UserController {
         // return a view which will be resolved by an excel view resolver
         return new ModelAndView("excelView", "listUsers", listUsers);
     }
+
 }

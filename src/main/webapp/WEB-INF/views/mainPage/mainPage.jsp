@@ -39,7 +39,7 @@
     <div id = "header">
 
         <div>
-            <a href="#"><img id="logo" alt="brand" src="../resources/img/logo.png" /></a>
+            <a href="/"><img id="logo" alt="brand" src="../resources/img/logo.png" /></a>
         </div>
 
         <div class="collapse navbar-collapse">
