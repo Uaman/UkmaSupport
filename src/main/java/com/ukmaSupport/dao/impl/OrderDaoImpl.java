@@ -32,13 +32,12 @@ public class OrderDaoImpl implements OrderDao {
 
     private static final String UPDATE_QUERY = "UPDATE orders SET user_id=?, assistant_id=?, workplace_id=?, title=?, content=?, created_at=?, status=? WHERE id=?";
 
-    @Transactional(propagation= Propagation.SUPPORTS, readOnly=true)
     @Override
     public Order getById(int id) {
         List<Order> users = jdbcTemplate.query(GET_ORDER_BY_ID, new Object[]{id}, rowMapper);
         return users.isEmpty() ? null : users.get(0);
     }
-    @Transactional(propagation= Propagation.REQUIRED, readOnly=false,rollbackFor = Exception.class)
+
     @Override
     public void createOrUpdate(final Order order) {
         jdbcTemplate.update(new PreparedStatementCreator() {
@@ -63,13 +62,12 @@ public class OrderDaoImpl implements OrderDao {
             }
         });
     }
-    @Transactional(propagation= Propagation.REQUIRED, readOnly=false,rollbackFor = Exception.class)
+
     @Override
     public void delete(int id) {
         jdbcTemplate.update(DELETE_ORDER, id);
     }
 
-    @Transactional(propagation= Propagation.SUPPORTS, readOnly=true)
     @Override
     public List<Order> getAll() {
         return jdbcTemplate.query(GET_ALL_ORDERS, rowMapper);
