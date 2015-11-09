@@ -2,7 +2,6 @@ package com.ukmaSupport.controllers;
 
 import com.ukmaSupport.models.User;
 import com.ukmaSupport.services.interfaces.UserService;
-import com.ukmaSupport.services.interfaces.WorkplaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,12 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
 public class UserController {
     @Autowired
     private UserService userDao;
-    @Autowired
-    private WorkplaceService workplaceDao;
+
 
     @RequestMapping(value = "/userhome", method = RequestMethod.GET)
     public ModelAndView student() {
@@ -44,5 +44,14 @@ public class UserController {
      }
       return "result";
 
+    }
+    @RequestMapping(value = "/downloadExcel", method = RequestMethod.GET)
+    public ModelAndView downloadExcel() {
+        // create some sample data
+        List<User> listUsers =userDao.getAll();
+
+
+        // return a view which will be resolved by an excel view resolver
+        return new ModelAndView("excelView", "listUsers", listUsers);
     }
 }

@@ -18,6 +18,10 @@
 </head>
 <body>
 <h1>Form</h1>
+<div align="center">
+    <h1>Excel View </h1>
+    <h3><a href="/downloadExcel">Download Excel Document</a></h3>
+</div>
 <form:form method="POST" action="userhome">
     <form:errors path="*" cssClass="errorblock" element="div"/>
 
