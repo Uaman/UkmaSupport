@@ -17,18 +17,19 @@ public class WorkplaceDaoImpl implements WorkplaceDao {
     @Autowired
     private JdbcTemplate template;
 
-    public WorkplaceDaoImpl(){}
+    public WorkplaceDaoImpl() {
+    }
+
     public WorkplaceDaoImpl(JdbcTemplate template) throws SQLException {
         this.template = template;
     }
-    @Transactional(propagation= Propagation.REQUIRED, readOnly=false,rollbackFor = Exception.class)
+
     @Override
     public void save(Workplace workplace) {
         this.template.update("INSERT INTO workplace (auditorium_id,access_num) VALUES(?,?)",
                 workplace.getAuditoriumId(), workplace.getAccessNumber());
     }
 
-    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
     public Workplace getById(int id) {
         String sql = "SELECT id,auditorium_id,acces_num FROM workplace WHERE id=?";
@@ -36,20 +37,17 @@ public class WorkplaceDaoImpl implements WorkplaceDao {
 
     }
 
-    @Transactional(propagation= Propagation.REQUIRED, readOnly=false,rollbackFor = Exception.class)
     @Override
     public void update(Workplace workplace) {
         this.template.update("UPDATE workplace SET auditorium_id=?,access_num=? WHERE id=?",
-                 workplace.getAuditoriumId(), workplace.getAccessNumber(),workplace.getId());
+                workplace.getAuditoriumId(), workplace.getAccessNumber(), workplace.getId());
     }
 
-    @Transactional(propagation= Propagation.REQUIRED, readOnly=false,rollbackFor = Exception.class)
     @Override
-    public void deleteById(int id) {
+    public void delete(int id) {
         this.template.update("DELETE FROM workplace WHERE id=?", id);
     }
 
-    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
     public List<Workplace> getAll() {
         String sql = "SELECT id,auditorium_id,access_num FROM workplace";

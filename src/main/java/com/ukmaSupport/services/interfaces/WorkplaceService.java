@@ -1,10 +1,11 @@
-package com.ukmaSupport.dao.interfaces;
+package com.ukmaSupport.services.interfaces;
 
 import com.ukmaSupport.models.Workplace;
 
 import java.util.List;
 
-public interface WorkplaceDao {
+public interface WorkplaceService {
+
     //Create
     void save(Workplace workplace);
 
