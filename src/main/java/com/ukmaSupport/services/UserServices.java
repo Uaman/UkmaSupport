@@ -1,8 +1,6 @@
 package com.ukmaSupport.services;
 
-import com.ukmaSupport.dao.interfaces.UserDao;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.ukmaSupport.services.interfaces.UserService;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,7 +17,7 @@ import java.util.List;
 public class UserServices implements UserDetailsService {
 
     @Autowired
-    private UserDao userDao;
+    private UserService userDao;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
