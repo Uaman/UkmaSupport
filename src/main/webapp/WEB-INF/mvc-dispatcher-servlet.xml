@@ -9,8 +9,8 @@
 
     <context:component-scan base-package="com.ukmaSupport.controllers"/>
     <context:component-scan base-package="com.ukmaSupport.dao"/>
-    <context:component-scan base-package="com.ukmaSupport.mailService.templates" />
-    <context:component-scan base-package="com.ukmaSupport.mailService" />
+    <context:component-scan base-package="com.ukmaSupport.mailService.templates"/>
+    <context:component-scan base-package="com.ukmaSupport.mailService"/>
 
     <!--<context:component-scan base-package="com.ukmaSupport.services"/>-->
     <mvc:annotation-driven/>
@@ -20,7 +20,7 @@
     </bean>
 
 
-    <bean id="myUserDetailsService" class="com.ukmaSupport.services.UserServices" />
+    <bean id="myUserDetailsService" class="com.ukmaSupport.services.UserServices"/>
     <context:annotation-config/>
 
 
@@ -64,6 +64,7 @@
                 <prop key="mail.smtp.auth">true</prop>
                 <prop key="mail.smtp.starttls.enable">true</prop>
                 <prop key="mail.debug">true</prop>
+                <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
             </props>
         </property>
     </bean>
@@ -75,6 +76,6 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
     </bean>
 </beans>
