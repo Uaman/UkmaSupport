@@ -24,7 +24,7 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
         this.template = template;
     }
 
-    @Transactional(propagation= Propagation.REQUIRED, readOnly=false)
+    @Transactional(propagation= Propagation.REQUIRED, readOnly=false,rollbackFor = Exception.class)
     @Override
     public void save(Auditorium auditorium) {
         this.template.update("INSERT INTO auditorium(user_id,number) VALUES(?,?)",
@@ -39,7 +39,7 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
 
     }
 
-    @Transactional(propagation= Propagation.REQUIRED, readOnly=false)
+    @Transactional(propagation= Propagation.REQUIRED, readOnly=false,rollbackFor = Exception.class)
     @Override
     public void update(Auditorium auditorium) {
         this.template.update("UPDATE auditorium SET user_id=?,number=? WHERE id=?",

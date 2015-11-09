@@ -41,13 +41,13 @@ public class UserDaoImpl implements UserDao {
         return users.isEmpty() ? null : users.get(0);
     }
 
-    @Transactional(propagation= Propagation.REQUIRED, readOnly=false)
+    @Transactional(propagation= Propagation.REQUIRED, readOnly=false,rollbackFor = Exception.class)
     @Override
     public void delete(int id) {
         jdbcTemplate.update(DELETE_USER, id);
     }
 
-    @Transactional(propagation= Propagation.REQUIRED, readOnly=false)
+    @Transactional(propagation= Propagation.REQUIRED, readOnly=false,rollbackFor = Exception.class)
     @Override
     public void saveOrUpdate(final User user) {
         jdbcTemplate.update(new PreparedStatementCreator() {

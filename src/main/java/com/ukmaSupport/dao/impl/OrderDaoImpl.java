@@ -38,7 +38,7 @@ public class OrderDaoImpl implements OrderDao {
         List<Order> users = jdbcTemplate.query(GET_ORDER_BY_ID, new Object[]{id}, rowMapper);
         return users.isEmpty() ? null : users.get(0);
     }
-    @Transactional(propagation= Propagation.REQUIRED, readOnly=false)
+    @Transactional(propagation= Propagation.REQUIRED, readOnly=false,rollbackFor = Exception.class)
     @Override
     public void createOrUpdate(final Order order) {
         jdbcTemplate.update(new PreparedStatementCreator() {
@@ -63,7 +63,7 @@ public class OrderDaoImpl implements OrderDao {
             }
         });
     }
-    @Transactional(propagation= Propagation.REQUIRED, readOnly=false)
+    @Transactional(propagation= Propagation.REQUIRED, readOnly=false,rollbackFor = Exception.class)
     @Override
     public void delete(int id) {
         jdbcTemplate.update(DELETE_ORDER, id);

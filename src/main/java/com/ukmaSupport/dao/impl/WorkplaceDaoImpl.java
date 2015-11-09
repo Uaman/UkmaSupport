@@ -21,7 +21,7 @@ public class WorkplaceDaoImpl implements WorkplaceDao {
     public WorkplaceDaoImpl(JdbcTemplate template) throws SQLException {
         this.template = template;
     }
-    @Transactional(propagation= Propagation.REQUIRED, readOnly=false)
+    @Transactional(propagation= Propagation.REQUIRED, readOnly=false,rollbackFor = Exception.class)
     @Override
     public void save(Workplace workplace) {
         this.template.update("INSERT INTO workplace (auditorium_id,access_num) VALUES(?,?)",
@@ -35,13 +35,15 @@ public class WorkplaceDaoImpl implements WorkplaceDao {
         return (Workplace) this.template.queryForObject(sql, new Object[]{id}, new WorkplaceMapper());
 
     }
-    @Transactional(propagation= Propagation.REQUIRED, readOnly=false)
+
+    @Transactional(propagation= Propagation.REQUIRED, readOnly=false,rollbackFor = Exception.class)
     @Override
     public void update(Workplace workplace) {
         this.template.update("UPDATE workplace SET auditorium_id=?,access_num=? WHERE id=?",
                  workplace.getAuditoriumId(), workplace.getAccessNumber(),workplace.getId());
     }
 
+    @Transactional(propagation= Propagation.REQUIRED, readOnly=false,rollbackFor = Exception.class)
     @Override
     public void deleteById(int id) {
         this.template.update("DELETE FROM workplace WHERE id=?", id);

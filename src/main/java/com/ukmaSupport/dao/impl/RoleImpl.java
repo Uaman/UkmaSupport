@@ -35,7 +35,7 @@ public class RoleImpl implements RoleDao {
         });
     }
 
-    @Transactional(propagation= Propagation.REQUIRED, readOnly=false)
+    @Transactional(propagation= Propagation.REQUIRED, readOnly=false,rollbackFor = Exception.class)
     @Override
     public void addNewRole(String role) {
         jdbcTemplate.update(ADD_NEW_ROLE,new Object[]{role},new Object[]{Types.VARCHAR});
