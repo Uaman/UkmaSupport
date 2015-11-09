@@ -29,7 +29,6 @@ public class Registration {
     @RequestMapping(method = RequestMethod.GET)
     public String viewRegistration(Model model) {
         User userForm = new User();
-        System.out.print(userForm.getFirstName());
         model.addAttribute("userForm", userForm);
         return "registration/registration";
     }
