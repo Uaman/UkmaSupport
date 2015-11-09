@@ -1,10 +1,10 @@
-package com.ukmaSupport.dao.interfaces;
+package com.ukmaSupport.services.interfaces;
 
 import com.ukmaSupport.models.Auditorium;
 
 import java.util.List;
 
-public interface AuditoriumDao {
+public interface AuditoriumService {
     //Create
     void save(Auditorium auditorium);
 
