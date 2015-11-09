@@ -23,6 +23,34 @@
 </div>
 
 
+<div class="form-group">
+  <div class="col-md-offset-4 col-md-4">
+    <input type="text" class="form-control form-style" id="title" name="title" placeholder="title">
+  </div>
+</div>
+<br>
+<br>
+  <form class="form-inline">
+    <div class="col-md-offset-4 col-md-4">
+      <div class="form-group">
+      <select class="form-control">
+
+      </select>
+      </div>
+
+      <div class="form-group">
+        <select class="form-control">
+
+        </select>
+      </div>
+    </div>
+  </form>
+
+
+
+
+
+
 <div class="navbar-fixed-bottom">
   <div class="thick"></div>
   <div class="thin"></div>
