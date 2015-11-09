@@ -21,7 +21,7 @@ public class UserController {
 
     @RequestMapping(value = "/userhome", method = RequestMethod.GET)
     public ModelAndView student() {
-        return new ModelAndView("userhome", "command", new User());
+        return new ModelAndView("userPage/userHomePage", "command", new User());
     }
 
     @RequestMapping(value = "/userhome", method = RequestMethod.POST)
@@ -40,9 +40,16 @@ public class UserController {
        System.out.println(userDao.getAll());
 
      if(bindingResult.hasErrors()) {
-         return "userhome";
+         return "userPage/userHomePage";
      }
       return "result";
 
     }
+
+
+    @RequestMapping(value = "/createOrder", method = RequestMethod.GET)
+    public String createOrder() {
+        return "userPage/createOrderPage";
+    }
+
 }
