@@ -9,6 +9,9 @@
 
     <context:component-scan base-package="com.ukmaSupport.controllers"/>
     <context:component-scan base-package="com.ukmaSupport.dao"/>
+    <context:component-scan base-package="com.ukmaSupport.mailService.templates" />
+    <context:component-scan base-package="com.ukmaSupport.mailService" />
+
     <!--<context:component-scan base-package="com.ukmaSupport.services"/>-->
     <mvc:annotation-driven/>
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -64,15 +67,8 @@
             </props>
         </property>
     </bean>
-
-    <bean id="mailService" class="com.ukmaSupport.mailService.MailService"></bean>
     <!--><-->
 
-    <!--> mail templates <-->
-    <bean id="regMail" class="com.ukmaSupport.mailService.templates.RegistrationMail"></bean>
-    <bean id="newOrderMail" class="com.ukmaSupport.mailService.templates.NewOrderMail"></bean>
-    <bean id="orderIsDoneMail" class="com.ukmaSupport.mailService.templates.OrderIsDoneMail"></bean>
-    <bean id="orderIsAcceptedMail" class="com.ukmaSupport.mailService.templates.OrderIsAcceptedMail"></bean>
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
     <!--> transaction-manager <-->
