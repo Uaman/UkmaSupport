@@ -4,6 +4,7 @@ import com.ukmaSupport.mailService.templates.RegistrationMail;
 import com.ukmaSupport.models.*;
 import com.ukmaSupport.services.interfaces.UserService;
 import com.ukmaSupport.utils.RegistrationValidator;
+import com.ukmaSupport.utils.PasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ public class Registration {
     @Autowired
     private RegistrationMail registrationMail;
 
+
     @Autowired
     @Qualifier("registrationValidator")
     private RegistrationValidator validator;
@@ -39,6 +41,7 @@ public class Registration {
         validator.validate(user, result);
         if (result.hasErrors())
             return "registration/registration";
+        user = PasswordEncryptor.encodeUser(user);
         userDao.saveOrUpdate(user);
         registrationMail.send(user.getEmail());
         return "registration/registrationSuccess";

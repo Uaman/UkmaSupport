@@ -58,7 +58,7 @@
 
     <authentication-manager>
         <security:authentication-provider user-service-ref="myUserDetailsService">
-            <!--<password-encoder ref="encoder" />-->
+            <password-encoder ref="encoder" />
         </security:authentication-provider>
     </authentication-manager>
 
