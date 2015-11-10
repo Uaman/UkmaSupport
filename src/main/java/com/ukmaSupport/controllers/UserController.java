@@ -3,6 +3,7 @@ package com.ukmaSupport.controllers;
 import com.ukmaSupport.models.Auditorium;
 import com.ukmaSupport.models.Order;
 import com.ukmaSupport.models.User;
+import com.ukmaSupport.models.Workplace;
 import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.UserService;
 import com.ukmaSupport.services.interfaces.WorkplaceService;
@@ -57,6 +58,7 @@ public class UserController {
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
     public @ResponseBody String getCharNum(@RequestParam("text") String text) {
         System.out.println(text);
+        List<Workplace> workplaces = workplaceDao.getByAuditoryName(text);
 
         return "";
     }
