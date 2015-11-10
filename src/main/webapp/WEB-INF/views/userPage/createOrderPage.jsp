@@ -35,14 +35,20 @@
 <form class="form-inline">
     <div class="col-md-offset-4 col-md-4">
         <div class="form-group">
-            <select class="form-control">
-
+            <label for="sel1">auditorium:</label>
+            <select name="listString" class="form-control" id="sel1">
+                <c:forEach items="${auditoriums}" var="item" varStatus="count">
+                    <option value="${count.index}">${item.number}</option>
+                </c:forEach>
             </select>
         </div>
 
         <div class="form-group">
-            <select class="form-control">
-
+            <label for="sel2">workplace:</label>
+            <select name="listString" class="form-control" id="sel2">
+                <c:forEach items="${auditoriums}" var="item" varStatus="count">
+                    <option value="${count.index}">${item.number}</option>
+                </c:forEach>
             </select>
         </div>
     </div>

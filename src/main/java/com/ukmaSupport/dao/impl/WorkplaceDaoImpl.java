@@ -36,6 +36,12 @@ public class WorkplaceDaoImpl implements WorkplaceDao {
     }
 
     @Override
+    public  List<Workplace> getByAuditorium(int id) {
+        String sql = "SELECT id,auditorium_id,access_num FROM workplace WHERE auditorium_id=?";
+        return this.template.query(sql, new WorkplaceMapper());
+    }
+
+    @Override
     public void update(Workplace workplace) {
         this.template.update("UPDATE workplace SET auditorium_id=?,access_num=? WHERE id=?",
                 workplace.getAuditoriumId(), workplace.getAccessNumber(), workplace.getId());

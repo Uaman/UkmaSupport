@@ -11,6 +11,9 @@ public interface WorkplaceDao {
     //Read
     Workplace getById(int id);
 
+    //Read
+    List<Workplace> getByAuditorium(int id);
+
     //Update
     void update(Workplace workplace);
 

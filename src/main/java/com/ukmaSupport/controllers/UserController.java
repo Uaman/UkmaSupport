@@ -1,7 +1,9 @@
 package com.ukmaSupport.controllers;
 
+import com.ukmaSupport.models.Auditorium;
 import com.ukmaSupport.models.Order;
 import com.ukmaSupport.models.User;
+import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.UserService;
 import com.ukmaSupport.services.interfaces.WorkplaceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class UserController {
 
     @Autowired
     private UserService userDao;
+
+    @Autowired
+    private AuditoriumService auditoriumDao;
 
     @Autowired
     private WorkplaceService workplaceDao;
@@ -53,13 +58,17 @@ public class UserController {
     @RequestMapping(value = "/createOrder", method = RequestMethod.GET)
     public String createOrder(ModelMap model) {
         Order order = new Order();
+        List<Auditorium> auditoriums = auditoriumDao.getAll();
         model.addAttribute("newOrder", order);
+        model.addAttribute("auditoriums", auditoriums);
         return "userPage/createOrderPage";
     }
 
     @RequestMapping(value = "/createOrder", method = RequestMethod.POST)
     public String createOrderPost(@ModelAttribute("newOrder") Order order, Model model, BindingResult result) {
+        List<Auditorium> auditoriums = auditoriumDao.getAll();
         model.addAttribute("newOrder", order);
+        model.addAttribute("auditoriums",  auditoriums);
         return "null";
     }
 
