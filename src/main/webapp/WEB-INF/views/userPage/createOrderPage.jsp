@@ -14,14 +14,12 @@
   <script type="text/javascript">
 
       function  getWorkPlace() {
-        var info = $("#sel1").val();
         $.ajax({
           url : 'ajaxtest',
           type : 'GET',
-          dataType : 'json',
-          data:({
-            "text" : info
-          }),
+          data:{
+            text : $("#sel1").val()
+          },
           success : function(data) {
           }
         });
@@ -63,7 +61,7 @@
             <select name="auditorium" class="form-control" id="sel1"  onchange="getWorkPlace()" >
               <option value="" disabled selected>Select auditorium</option>
               <c:forEach items="${auditoriums}" var="item" varStatus="count">
-                    <option value="${count.index}">${item.number}</option>
+                    <option value="${item.number}">${item.number}</option>
                 </c:forEach>
             </select>
         </div>
