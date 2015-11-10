@@ -20,7 +20,7 @@
           type : 'GET',
           dataType : 'json',
           data:({
-            text : info
+            "text" : info
           }),
           success : function(data) {
           }
@@ -73,7 +73,7 @@
             <select name="workplace" class="form-control" id="sel2" path="workplace_access_num">
               <option value="" disabled selected>Select workplace</option>
               <c:forEach items="${auditoriums}" var="item" varStatus="count">
-                    <option value="${count.index}">${item.number}</option>
+                    <option value="${item.number}">${item.number}</option>
                 </c:forEach>
             </select>
         </div>

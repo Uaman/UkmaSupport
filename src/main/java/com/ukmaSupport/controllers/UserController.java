@@ -55,8 +55,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
-    public @ResponseBody String getCharNum(@RequestParam String text) {
-        System.out.println("Why so serious?");
+    public @ResponseBody String getCharNum(@RequestParam("text") String text) {
+        System.out.println(text);
 
         return "";
     }
