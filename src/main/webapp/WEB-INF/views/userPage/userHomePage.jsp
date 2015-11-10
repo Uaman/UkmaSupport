@@ -11,6 +11,8 @@
 </head>
 
 <body>
+<div id="wrap">
+
 <div id="header">
     <div>
         <a href="/"><img id="logo" alt="brand" src="../resources/img/logo.png"/></a>
@@ -19,6 +21,7 @@
     </div>
 </div>
 <h1>Form</h1>
+
 <form:form method="GET" action="createOrder">
     <form:errors path="*" cssClass="errorblock" element="div"/>
     <tr>
@@ -33,7 +36,7 @@
 
     <h3><a href="/downloadExcel">Download Excel Document</a></h3>
 </div>
-
+</div>
 <div class="navbar-fixed-bottom">
     <div class="thick"></div>
     <div class="thin"></div>

@@ -11,11 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.xml.ws.Response;
 import java.util.List;
 
 @Controller
@@ -53,6 +52,13 @@ public class UserController {
             return "userPage/userHomePage";
         return "result";
 
+    }
+
+    @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
+    public @ResponseBody String getCharNum(@RequestParam String text) {
+        System.out.println("Why so serious?");
+
+        return "";
     }
 
     @RequestMapping(value = "/createOrder", method = RequestMethod.GET)
