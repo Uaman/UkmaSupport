@@ -13,6 +13,9 @@ public interface WorkplaceService {
     Workplace getById(int id);
 
     //Read
+    Workplace getByNumber(int number);
+
+    //Read
     List<Workplace> getByAuditoryName(String name);
 
     //Update

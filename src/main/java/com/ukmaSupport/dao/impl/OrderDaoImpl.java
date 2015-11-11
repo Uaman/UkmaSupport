@@ -28,7 +28,7 @@ public class OrderDaoImpl implements OrderDao {
 
     private static final String DELETE_ORDER = "DELETE FROM orders WHERE id=?";
 
-    private static final String INSERT_QUERY = "INSERT INTO orders (user_id, assistant_id, workplace_id, title, content, created_at, status) VALUES(?,?,(SELECT workplace.id FROM workplace WHERE workplace.access_num=?),?,?,?,?)";
+    private static final String INSERT_QUERY = "INSERT INTO orders (user_id, assistant_id, workplace_id, title, content, created_at, status) VALUES(?,?,?,?,?,?,?)";
 
     private static final String UPDATE_QUERY = "UPDATE orders SET user_id=?, assistant_id=?, workplace_id=(SELECT workplace.id FROM workplace WHERE workplace.access_num=?), title=?, content=?, created_at=?, status=? WHERE id=?";
 
@@ -59,7 +59,7 @@ public class OrderDaoImpl implements OrderDao {
                 }
                 prepStat.setInt(1, order.getUserId());
                 prepStat.setInt(2, order.getAssistantId());
-                prepStat.setString(3, order.getWorkplace_access_num());
+                prepStat.setInt(3, order.getWorkplace_id());
                 prepStat.setString(4, order.getTitle());
                 prepStat.setString(5, order.getContent());
                 prepStat.setString(7, order.getStatus());

@@ -6,11 +6,20 @@ public class Order {
     private int id;
     private int userId;
     private int assistantId;
+    private int workplace_id;
     private String workplace_access_num;
     private String title;
     private String content;
     private Date createdAt;
     private String status;
+
+    public int getWorkplace_id() {
+        return workplace_id;
+    }
+
+    public void setWorkplace_id(int workplace_id) {
+        this.workplace_id = workplace_id;
+    }
 
     public int getId() {
         return id;

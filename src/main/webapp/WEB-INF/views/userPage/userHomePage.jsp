@@ -102,6 +102,7 @@
         </table>
     </div>
 
+<form method="get" action="/createOrder">
     <div class="col-md-offset-7">
         <form class="form-horizontal">
             <div class="form-group">
@@ -111,7 +112,7 @@
             </div>
         </form>
     </div>
-
+</form>
     <div class="navbar-fixed-bottom">
         <div class="thick"></div>
         <div class="thin"></div>

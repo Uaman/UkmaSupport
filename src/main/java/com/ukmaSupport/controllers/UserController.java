@@ -88,12 +88,11 @@ public class UserController {
     public String createOrderPost(@ModelAttribute("newOrder") Order order,ModelMap model, BindingResult result) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
-        order.setUserId((Integer)session.getAttribute("id"));
-        order.setCreatedAt(new Date());
+        order.setUserId((Integer) session.getAttribute("id"));
         order.setStatus("Undone");
         order.setAssistantId(order.getUserId());
-        System.out.println(order);
-        //orderDao.createOrUpdate(order);
+        order.setWorkplace_id(workplaceDao.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
+        orderDao.createOrUpdate(order);
         return "redirect:/userhome";
     }
     @RequestMapping(value = "userhome/list" , method = RequestMethod.GET)
@@ -101,7 +100,7 @@ public class UserController {
 
         List<Order> orders = orderService.getAll();
         model.addAttribute("userOrder", orders);
-        model.addAttribute("message","Gt");
+        model.addAttribute("message", "Gt");
         return "userPage/userOrder";
     }
 
