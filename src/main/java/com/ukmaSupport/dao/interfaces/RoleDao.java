@@ -3,10 +3,9 @@ package com.ukmaSupport.dao.interfaces;
 
 public interface RoleDao {
 
-    public String getRoleById(int id);
+    String getById(int id);
 
-    public void addNewRole(String role);
+    void save(String role);
 
-    public void deleteRole(int id);
-
+    void delete(int id);
 }

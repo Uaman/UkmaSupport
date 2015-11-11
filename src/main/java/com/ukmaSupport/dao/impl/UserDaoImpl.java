@@ -1,15 +1,17 @@
 package com.ukmaSupport.dao.impl;
 
-import com.ukmaSupport.models.User;
 import com.ukmaSupport.dao.interfaces.UserDao;
-import com.ukmaSupport.utils.JavaDateConverter;
+import com.ukmaSupport.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository("userDao")
@@ -55,18 +57,12 @@ public class UserDaoImpl implements UserDao {
                     prepStat.setInt(8, user.getId());
                     prepStat.setDate(5, new java.sql.Date(user.getDateOfEntry().getTime()));
                 }
-                if (user.getRole() == null)
-                    prepStat.setString(1, "user");
-                else
-                    prepStat.setString(1, user.getRole());
-                if (user.getAccountStatus() == null)
-                    prepStat.setString(7, "active");
-                else
-                    prepStat.setString(7, user.getAccountStatus());
+                prepStat.setString(1, user.getRole());
                 prepStat.setString(2, user.getFirstName());
                 prepStat.setString(3, user.getLastName());
                 prepStat.setString(4, user.getEmail());
                 prepStat.setString(6, user.getPassword());
+                prepStat.setString(7, user.getAccountStatus());
                 return prepStat;
             }
         });

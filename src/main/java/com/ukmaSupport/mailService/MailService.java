@@ -3,11 +3,10 @@ package com.ukmaSupport.mailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MailService {
-
-    /**** test ******/
 
     @Autowired
     private MailSender mailSender;  // MailSender interface defines a strateg for sending simple mails

@@ -119,18 +119,13 @@
             <scope>test</scope>
         </dependency>
 
-        <!--> Dependencies for css <-->
+        <!-- poi library for excel generation -->
         <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>bootstrap</artifactId>
-            <version>3.3.5</version>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.7</version>
         </dependency>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>jquery</artifactId>
-            <version>2.1.4</version>
-        </dependency>
-        <!--><-->
+
     </dependencies>
 
     <build>

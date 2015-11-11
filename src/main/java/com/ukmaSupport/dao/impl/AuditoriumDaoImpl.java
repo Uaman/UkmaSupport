@@ -31,8 +31,7 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
     @Override
     public Auditorium getById(int id) {
         String sql = "SELECT id,user_id,number FROM auditorium WHERE id=?";
-        return (com.ukmaSupport.models.Auditorium) this.template.queryForObject(sql, new Object[]{id}, new AuditoriumMapper());
-
+        return this.template.queryForObject(sql, new Object[]{id}, new AuditoriumMapper());
     }
 
     @Override
@@ -42,7 +41,7 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void delete(int id) {
         this.template.update("DELETE FROM auditorium WHERE id=?", id);
     }
 

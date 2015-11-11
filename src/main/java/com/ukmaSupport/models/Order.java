@@ -6,7 +6,7 @@ public class Order {
     private int id;
     private int userId;
     private int assistantId;
-    private int workplaceId;
+    private String workplace_access_num;
     private String title;
     private String content;
     private Date createdAt;
@@ -36,12 +36,12 @@ public class Order {
         this.assistantId = assistantId;
     }
 
-    public int getWorkplaceId() {
-        return workplaceId;
+    public String getWorkplace_access_num() {
+        return workplace_access_num;
     }
 
-    public void setWorkplaceId(int workplaceId) {
-        this.workplaceId = workplaceId;
+    public void setWorkplace_access_num(String workplace_access_num) {
+        this.workplace_access_num = workplace_access_num;
     }
 
     public String getTitle() {

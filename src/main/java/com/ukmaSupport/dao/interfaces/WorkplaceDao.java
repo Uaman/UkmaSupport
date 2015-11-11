@@ -1,24 +1,25 @@
 package com.ukmaSupport.dao.interfaces;
 
-
-
 import com.ukmaSupport.models.Workplace;
 
 import java.util.List;
 
 public interface WorkplaceDao {
     //Create
-    public void save(Workplace workplace);
+    void save(Workplace workplace);
 
     //Read
-    public Workplace getById(int id);
+    Workplace getById(int id);
+
+    //Read
+    List<Workplace> getByAuditoriumName(String name);
 
     //Update
-    public void update(Workplace workplace);
+    void update(Workplace workplace);
 
     //Delete
-    public void deleteById(int id);
+    void delete(int id);
 
     //Get All
-    public List<Workplace> getAll();
+    List<Workplace> getAll();
 }

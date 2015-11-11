@@ -15,10 +15,13 @@ public class WorkplaceDaoImpl implements WorkplaceDao {
     @Autowired
     private JdbcTemplate template;
 
-    public WorkplaceDaoImpl(){}
+    public WorkplaceDaoImpl() {
+    }
+
     public WorkplaceDaoImpl(JdbcTemplate template) throws SQLException {
         this.template = template;
     }
+
     @Override
     public void save(Workplace workplace) {
         this.template.update("INSERT INTO workplace (auditorium_id,access_num) VALUES(?,?)",
@@ -33,13 +36,19 @@ public class WorkplaceDaoImpl implements WorkplaceDao {
     }
 
     @Override
-    public void update(Workplace workplace) {
-        this.template.update("UPDATE workplace SET auditorium_id=?,access_num=? WHERE id=?",
-                 workplace.getAuditoriumId(), workplace.getAccessNumber(),workplace.getId());
+    public List<Workplace> getByAuditoriumName(String name) {
+        String sql = "SELECT id, auditorium_id, access_num FROM workplace INNER JOIN auditorium ON workplace.auditorium_id = auditorium.id WHERE auditorium.number = ?";
+        return this.template.query(sql, new WorkplaceMapper());
     }
 
     @Override
-    public void deleteById(int id) {
+    public void update(Workplace workplace) {
+        this.template.update("UPDATE workplace SET auditorium_id=?,access_num=? WHERE id=?",
+                workplace.getAuditoriumId(), workplace.getAccessNumber(), workplace.getId());
+    }
+
+    @Override
+    public void delete(int id) {
         this.template.update("DELETE FROM workplace WHERE id=?", id);
     }
 

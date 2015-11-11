@@ -1,9 +1,10 @@
 package com.ukmaSupport.controllers;
 
-import com.ukmaSupport.dao.interfaces.UserDao;
 import com.ukmaSupport.mailService.templates.RegistrationMail;
 import com.ukmaSupport.models.*;
+import com.ukmaSupport.services.interfaces.UserService;
 import com.ukmaSupport.utils.RegistrationValidator;
+import com.ukmaSupport.utils.PasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -17,10 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/register")
 public class Registration {
     @Autowired
-    private UserDao userDao;
+    private UserService userDao;
 
     @Autowired
     private RegistrationMail registrationMail;
+
 
     @Autowired
     @Qualifier("registrationValidator")
@@ -28,7 +30,7 @@ public class Registration {
 
     @RequestMapping(method = RequestMethod.GET)
     public String viewRegistration(Model model) {
-        com.ukmaSupport.models.User userForm = new User();
+        User userForm = new User();
         model.addAttribute("userForm", userForm);
         return "registration/registration";
     }
@@ -39,10 +41,9 @@ public class Registration {
         validator.validate(user, result);
         if (result.hasErrors())
             return "registration/registration";
+        user = PasswordEncryptor.encodeUser(user);
         userDao.saveOrUpdate(user);
-
         registrationMail.send(user.getEmail());
-
         return "registration/registrationSuccess";
     }
 }

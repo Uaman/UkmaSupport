@@ -1,0 +1,153 @@
+@import url("reset.css");
+
+* {
+  margin: 0;
+}
+
+html, body {
+   margin:0;
+   padding:0;
+   height:100%;
+}
+
+body{
+	background: url(../img/bcg.png);
+	font-family: "Trebuchet MS", "Helvetica", sans-serif;
+	font-size: medium;
+	color: #000;
+}
+
+#wrap{
+	min-height:100%;
+    position:relative;
+	width: 900px;
+	background-color: #fff;
+	margin: 0 auto;
+	box-shadow: -6px 0 4px -4px rgba(0, 0, 0, .1), 6px 0 4px -4px rgba(0, 0, 0, .1);
+}
+
+#header{
+	background-color: #333366;
+	height: 100px;
+}
+
+#logo{
+	padding: 15px;
+}
+
+#time{
+	color: #000;
+	padding: 15px;
+	margin-right: 20px;
+	text-align: right;
+	margin-top: 3px;
+	font-family: Garamond; 
+	font-size: 19px;
+}
+
+li {
+    list-style-type: none; 
+}
+ 
+ul {
+    margin-left: 0; /* IE  Opera */
+    padding-left: 0; /* Firefox, Safari, Chrome */
+  }
+  
+a {	
+	text-decoration: none; 
+}
+
+.leftWord {
+    color: #ffffff;
+	font-family: "Century Gothic";
+	font-size: 19px;
+	padding: 15px;
+	margin-right: 20px;
+	margin-top: -75px;
+	border-radius: 7px;
+}
+
+.footertext  {
+    font-size: 12px;
+	font-family: "Century Gothic";
+    color: #333366;
+	text-align: center;
+	padding: 15px;
+}
+
+.vertalign {
+    padding-top: 100px;
+}
+.form-style {
+    border-color: #333366;
+    border-radius: 7px;
+	padding: 10px;
+}
+.button-style {
+    background-color: #333366;
+    border-radius: 7px;
+	margin: 15px;
+	
+}
+
+#login-button{
+	width: 220px;
+	margin-left: -150px;
+}
+
+
+.thin, .thick{
+	margin: 0 auto; 
+	width: 900px;
+	background-color: #333366;
+}
+.thin{ height: 1px; margin-bottom: 2px;}
+.thick{ height: 3px; margin-bottom: 2px;}
+
+.navbar-fixed-bottom {
+	height: 66px;
+}
+
+#forgotpassword{
+	margin-left: 3px;
+}
+
+/**** Registration *****/
+
+#mainRegister{
+	margin-left: 250px; 
+	margin-right: 250px; 
+	margin-top: 30px;	
+}
+
+.centralWord {
+	font-family: "Century Gothic";
+	font-size: 36px;
+	padding: 40px;	
+	text-align: center;
+}
+
+.labels{
+	width: 200px;
+	font-size: 16px;
+	padding: 10px;
+}
+
+#register-button{
+	width: 150px;
+	margin-left: -45px;
+}
+
+.regErrors{
+	color: #ff0000;
+	width: 250px;
+	position: absolute;
+	z-index: 999;
+	padding-left: 15px;
+	margin-top: 9px;
+}
+a img {
+    border: none; 
+}
+

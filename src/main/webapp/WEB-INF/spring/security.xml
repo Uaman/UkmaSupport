@@ -1,32 +1,70 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security"
              xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
-    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+             xmlns:security="http://www.springframework.org/schema/security"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+             http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security-4.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.ukmaSupport.services"/>
+    <context:component-scan base-package="com.ukmaSupport.dao"/>
+
+    <beans:bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <beans:property name="dataSource" ref="dataSource"/>
+    </beans:bean>
+
+    <beans:bean id="myUserDetailsService" class="com.ukmaSupport.services.UserServices" />
+    <beans:bean id="encoder" class="com.ukmaSupport.services.SpringSecurityEncoder"/>
+
+
+    <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <beans:property name="driverClassName" value="org.postgresql.Driver"/>
+        <beans:property name="url"
+                  value="jdbc:postgresql://ec2-54-217-208-102.eu-west-1.compute.amazonaws.com/d3n5tjmb82o7ko?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
+        <beans:property name="username" value="xihegrjcahwwvo"/>
+        <beans:property name="password" value="DPdsJaB3QJPy2Rztl8YuJ5futy"/>
+    </beans:bean>
+
+
+    <!--<beans:bean id="myUserDetailsService" class="com.ukmaSupport.services.UserServices" />-->
 
     <http>
 
         <form-login login-processing-url="/static/j_spring_security_check"
-                    default-target-url="/"
+                    login-page="/"
+                    default-target-url="/succesfullRegistration"
+                    username-parameter="j_username"
+                    password-parameter="j_password"
                     authentication-failure-url="/login?error"/>
         <logout logout-success-url="/login?logout"/>
-        <csrf/>
+
+        <!--login-page="/login"-->
+        <!--username-parameter="email"-->
+        <!--password-parameter="password"-->
+        <!--<csrf/>-->
+        <!--<csrf disabled="true"/>-->
 
         <intercept-url pattern="/" access="permitAll"/>
-        <intercept-url pattern="/home" access="permitAll"/>
+        <intercept-url pattern="/userhome" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/dba**" access="hasRole('ADMIN') and hasRole('DBA')"/>
-        <form-login authentication-failure-url="/Access_Denied"/>
+
     </http>
 
     <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="bill" password="abc123" authorities="ROLE_USER"/>
-                <user name="admin" password="root123" authorities="ROLE_ADMIN"/>
-                <user name="dba" password="root123" authorities="ROLE_ADMIN,ROLE_DBA"/>
-            </user-service>
-        </authentication-provider>
+        <security:authentication-provider user-service-ref="myUserDetailsService">
+            <password-encoder ref="encoder" />
+        </security:authentication-provider>
     </authentication-manager>
+
+
+
+
+
 
 </beans:beans>

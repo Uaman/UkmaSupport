@@ -1,19 +1,28 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <context:component-scan base-package="com.ukmaSupport.controllers"/>
     <context:component-scan base-package="com.ukmaSupport.dao"/>
+    <context:component-scan base-package="com.ukmaSupport.mailService.templates"/>
+    <context:component-scan base-package="com.ukmaSupport.mailService"/>
+
+    <!--<context:component-scan base-package="com.ukmaSupport.services"/>-->
     <mvc:annotation-driven/>
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+
+    <bean id="myUserDetailsService" class="com.ukmaSupport.services.UserServices"/>
+    <context:annotation-config/>
+
 
     <!-- error messages and validator for registration -->
     <bean id="messageSource"
@@ -29,6 +38,7 @@
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="dataSource"/>
     </bean>
+
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
@@ -54,17 +64,26 @@
                 <prop key="mail.smtp.auth">true</prop>
                 <prop key="mail.smtp.starttls.enable">true</prop>
                 <prop key="mail.debug">true</prop>
+                <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
             </props>
         </property>
     </bean>
-
-    <bean id="mailService" class="com.ukmaSupport.mailService.MailService"></bean>
     <!--><-->
 
-    <!--> mail templates <-->
-    <bean id="regMail" class="com.ukmaSupport.mailService.templates.RegistrationMail"></bean>
-    <bean id="newOrderMail" class="com.ukmaSupport.mailService.templates.NewOrderMail"></bean>
-    <bean id="orderIsDoneMail" class="com.ukmaSupport.mailService.templates.OrderIsDoneMail"></bean>
-    <bean id="orderIsAcceptedMail" class="com.ukmaSupport.mailService.templates.OrderIsAcceptedMail"></bean>
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
 
+    <!--> transaction-manager <-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+        <property name="order" value="1"></property>
+        <property name="basename" value="views"></property>
+    </bean>
 </beans>

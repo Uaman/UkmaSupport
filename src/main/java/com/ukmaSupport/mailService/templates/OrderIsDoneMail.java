@@ -2,7 +2,9 @@ package com.ukmaSupport.mailService.templates;
 
 import com.ukmaSupport.mailService.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderIsDoneMail {
     private static final String FROM_ADDR = "uukkmmaa.ssuuppoorrtt@gmail.com";  //mail server
 
