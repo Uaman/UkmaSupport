@@ -32,7 +32,6 @@ public class AdminController {
 
     @RequestMapping(value = "/adminPage", method = RequestMethod.POST)
     public String adminPage(@ModelAttribute("users") User users, BindingResult bindingResult, Model model) {
-        //model.addAttribute();
         if (bindingResult.hasErrors())
             return "adminPages/adminPage";
         return "result";
