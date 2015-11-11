@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveOrUpdate(User user) {
         if (user.getRole() == null)
-            user.setRole("user");
+            user.setRole("USER");
         if (user.getAccountStatus() == null)
             user.setAccountStatus("active");
         userDao.saveOrUpdate(user);

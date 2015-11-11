@@ -12,6 +12,7 @@
         <springsecurity.version>4.0.1.RELEASE</springsecurity.version>
         <sitemesh.version>2.5</sitemesh.version>
         <jstl.version>1.2</jstl.version>
+        <jackson.version>2.6.3</jackson.version>
     </properties>
 
     <dependencies>
@@ -125,6 +126,19 @@
             <artifactId>poi</artifactId>
             <version>3.7</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
 
     </dependencies>
 

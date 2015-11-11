@@ -21,6 +21,15 @@
             text : $("#sel1").val()
           },
           success : function(data) {
+              $('#sel2').html('');// to clear the previous option
+              $('#res').html(data);
+
+
+
+              $.each(data, function(i, workplace) {
+                  $('#sel2').append($('<option>').text(workplace.accessNumber).attr('value', workplace.accessNumber));
+              });
+
           }
         });
       }
@@ -44,19 +53,17 @@
     </div>
 </div>
 
-<form:form id="userForm" action="register" method="post" commandName="userForm">
+<form:form id="newOrder" action="/createOrder" method="post" commandName="newOrder">
     <div class="form-group">
         <div class="col-md-offset-3 col-md-7">
             <input type="text" class="form-control form-style" id="title" name="title" placeholder="title" path="title">
         </div>
     </div>
-</form:form>
 <br>
 <br>
 
-<form class="form-inline">
-    <div class="col-md-offset-3 col-md-8">
-        <div class="form-group">
+    <div class="col-md-offset-3 col-md-3">
+        <div class="form-inline">
             <label for="sel1">auditorium:</label>
             <select name="auditorium" class="form-control" id="sel1"  onchange="getWorkPlace()" >
               <option value="" disabled selected>Select auditorium</option>
@@ -66,31 +73,32 @@
             </select>
         </div>
 
-        <div class="form-group">
+        <div class="form-inline">
             <label for="sel2">workplace:</label>
-            <select name="workplace" class="form-control" id="sel2" path="workplace_access_num">
+            <select name="workplace_access_num" class="form-control" id="sel2" path="workplace_access_num">
               <option value="" disabled selected>Select workplace</option>
-              <c:forEach items="${auditoriums}" var="item" varStatus="count">
-                    <option value="${item.number}">${item.number}</option>
-                </c:forEach>
+                <option value="adf">adgvadg</option>
             </select>
         </div>
     </div>
-</form>
 
 <div class="form-group">
     <div class="col-md-offset-3 col-md-7">
-    <textarea class="form-control" style="resize: none" rows="4" cols="50" name="description" path="content" placeholder="description">
-    </textarea>
+    <textarea  id="content" style="resize: none" rows="4" cols="50" name="content" path="content" placeholder="description"></textarea>
     </div>
 </div>
 
 <div class="form-group">
     <div class="col-md-offset-4 col-md-6">
-        <button class="button-bar" type="submit">Create order</button>
+        <button class="button" type="submit">Create order</button>
     </div>
 </div>
+
+
+
 </div>
+</form:form>
+
 
 <div class="navbar-fixed-bottom">
     <div class="thick"></div>

@@ -88,12 +88,11 @@ a {
 	background-color: #333366;
 	border-radius: 7px;
 	margin: 15px;
-
 }
 
 #login-button{
-	width: 220px;
-	margin-left: -150px;
+	width: 196px;
+	margin-left: -138px;
 }
 
 
@@ -110,7 +109,7 @@ a {
 }
 
 #forgotpassword{
-	margin-left: 3px;
+	margin-left: 15px;
 }
 
 /**** Registration *****/
@@ -135,8 +134,8 @@ a {
 }
 
 #register-button{
-	width: 150px;
-	margin-left: -45px;
+	width: 169px;
+	margin-left: -50px;
 }
 
 .regErrors{
