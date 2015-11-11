@@ -43,7 +43,9 @@ public class Registration {
             return "registration/registration";
         user = PasswordEncryptor.encodeUser(user);
         userDao.saveOrUpdate(user);
-        registrationMail.send(user.getEmail());
+
+        registrationMail.send(user.getEmail(), "http://localhost:8080/mailVerification?id=" + user.getId());
+
         return "registration/registrationSuccess";
     }
 }
