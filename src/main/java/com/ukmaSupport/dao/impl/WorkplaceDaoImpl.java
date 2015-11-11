@@ -37,8 +37,8 @@ public class WorkplaceDaoImpl implements WorkplaceDao {
 
     @Override
     public List<Workplace> getByAuditoriumName(String name) {
-        String sql = "SELECT id, auditorium_id, access_num FROM workplace INNER JOIN auditorium ON workplace.auditorium_id = auditorium.id WHERE auditorium.number = ?";
-        return this.template.query(sql, new WorkplaceMapper());
+        String sql = "SELECT workplace.id, workplace.auditorium_id, workplace.access_num FROM workplace INNER JOIN auditorium ON workplace.auditorium_id = auditorium.id WHERE auditorium.number = ?";
+        return this.template.query(sql,new Object[]{name}, new WorkplaceMapper());
     }
 
     @Override

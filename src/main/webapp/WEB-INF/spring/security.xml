@@ -50,9 +50,8 @@
         <!--<csrf disabled="true"/>-->
 
         <intercept-url pattern="/" access="permitAll"/>
-        <intercept-url pattern="/userhome**" access="hasRole('USER')"/>
-        <intercept-url pattern="/admin**" access="hasRole('ADMIN')"/>
-        <intercept-url pattern="/dba**" access="hasRole('ADMIN') and hasRole('DBA')"/>
+        <intercept-url pattern="/userhome**" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')"/>
 
     </http>
 

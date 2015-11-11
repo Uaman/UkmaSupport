@@ -21,6 +21,11 @@
             text : $("#sel1").val()
           },
           success : function(data) {
+              $('#sel2').html('');// to clear the previous option
+              $.each(content, function(i, workplace) {
+                  $('#sel2').append($('<option>').text(workplace.accessNumber).attr('value', workplace.accessNumber));
+              });
+
           }
         });
       }
@@ -70,9 +75,7 @@
             <label for="sel2">workplace:</label>
             <select name="workplace" class="form-control" id="sel2" path="workplace_access_num">
               <option value="" disabled selected>Select workplace</option>
-              <c:forEach items="${auditoriums}" var="item" varStatus="count">
-                    <option value="${item.number}">${item.number}</option>
-                </c:forEach>
+
             </select>
         </div>
     </div>
@@ -90,6 +93,7 @@
         <button class="button-bar" type="submit">Create order</button>
     </div>
 </div>
+
 </div>
 
 <div class="navbar-fixed-bottom">
