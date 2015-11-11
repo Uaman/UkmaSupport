@@ -18,7 +18,7 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
     public AuditoriumDaoImpl() {
     }
 
-    public AuditoriumDaoImpl(JdbcTemplate tevcgdmplate) throws SQLException {
+    public AuditoriumDaoImpl(JdbcTemplate template) throws SQLException {
         this.template = template;
     }
 
