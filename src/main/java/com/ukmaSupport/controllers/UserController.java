@@ -5,6 +5,7 @@ import com.ukmaSupport.models.Order;
 import com.ukmaSupport.models.User;
 import com.ukmaSupport.models.Workplace;
 import com.ukmaSupport.services.interfaces.AuditoriumService;
+import com.ukmaSupport.services.interfaces.OrderService;
 import com.ukmaSupport.services.interfaces.UserService;
 import com.ukmaSupport.services.interfaces.WorkplaceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,13 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import javax.xml.ws.Response;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -29,6 +34,10 @@ public class UserController {
 
     @Autowired
     private WorkplaceService workplaceDao;
+
+    @Autowired
+    private OrderService orderDao;
+
 
     @RequestMapping(value = "/userhome", method = RequestMethod.GET)
     public ModelAndView student() {
@@ -75,8 +84,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "/createOrder", method = RequestMethod.POST)
-    public String createOrderPost(@ModelAttribute("newOrder") Order order, Model model, BindingResult result) {
-
-        return "null";
+    public String createOrderPost(@ModelAttribute("newOrder") Order order,ModelMap model, BindingResult result) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        order.setUserId((Integer)session.getAttribute("id"));
+        order.setCreatedAt(new Date());
+        order.setStatus("Undone");
+        order.setAssistantId(order.getUserId());
+        System.out.println(order);
+        //orderDao.createOrUpdate(order);
+        return "redirect:/userhome";
     }
 }
