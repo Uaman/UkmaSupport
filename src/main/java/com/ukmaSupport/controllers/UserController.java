@@ -56,6 +56,7 @@ public class UserController {
         HttpSession session = attr.getRequest().getSession();
         order.setUserId((Integer) session.getAttribute("id"));
         order.setStatus("Undone");
+        order.setCreatedAt(new Date());
         order.setAssistantId(order.getUserId());
         order.setWorkplace_id(workplaceDao.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
         orderService.createOrUpdate(order);
@@ -68,7 +69,7 @@ public class UserController {
 
         int userid = (Integer) session.getAttribute("id");
 
-        List<Order> orders =  orderService.getByUserId(userid-1);
+        List<Order> orders =  orderService.getByUserId(userid);
         model.addAttribute("userOrder", orders);
         model.addAttribute("message", "Gt");
 

@@ -58,7 +58,6 @@ public class OrderDaoImpl implements OrderDao {
                 PreparedStatement prepStat;
                 if (order.getId() == 0) {
                     prepStat = con.prepareStatement(INSERT_QUERY);
-                    prepStat.setDate(6, new java.sql.Date(new java.util.Date().getTime()));
                 } else {
                     prepStat = con.prepareStatement(UPDATE_QUERY);
                     prepStat.setInt(8, order.getId());
@@ -67,6 +66,7 @@ public class OrderDaoImpl implements OrderDao {
                 prepStat.setInt(1, order.getUserId());
                 prepStat.setInt(2, order.getAssistantId());
                 prepStat.setInt(3, order.getWorkplace_id());
+                prepStat.setDate(6, new java.sql.Date(order.getCreatedAt().getTime()));
                 prepStat.setString(4, order.getTitle());
                 prepStat.setString(5, order.getContent());
                 prepStat.setString(7, order.getStatus());
