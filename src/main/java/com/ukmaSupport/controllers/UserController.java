@@ -15,7 +15,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 import java.util.List;
 
 
@@ -67,8 +66,8 @@ public class UserController {
         HttpSession session = attr.getRequest().getSession();
 
         int userid = (Integer) session.getAttribute("id");
-
-        List<Order> orders =  orderService.getByUserId(userid-1);
+        System.out.println(userid);
+        List<Order> orders =  orderService.getByUserId(userid);
         model.addAttribute("userOrder", orders);
         model.addAttribute("message", "Gt");
 
