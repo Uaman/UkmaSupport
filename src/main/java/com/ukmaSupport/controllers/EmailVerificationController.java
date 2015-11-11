@@ -15,11 +15,13 @@ public class EmailVerificationController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/mailVerification", method = RequestMethod.GET)
+    @RequestMapping(value = "/verification", method = RequestMethod.GET)
     public String verifyEmail(@RequestParam("id") int id) {
 
-        /*User user = userService.getById(id);
-        user.setAccountStatus("active");*/
+        User user = userService.getById(id);
+        user.setAccountStatus("active");
+        userService.saveOrUpdate(user);
+
 
         return "registration/emailVerificationSuccess";
     }

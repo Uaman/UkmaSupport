@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
         if (user.getRole() == null)
             user.setRole("USER");
         if (user.getAccountStatus() == null)
-            user.setAccountStatus("active");
+            user.setAccountStatus("inactive");
         userDao.saveOrUpdate(user);
     }
 
