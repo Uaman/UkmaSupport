@@ -3,6 +3,7 @@ package com.ukmaSupport.controllers;
 import com.ukmaSupport.mailService.templates.RegistrationMail;
 import com.ukmaSupport.models.*;
 import com.ukmaSupport.services.interfaces.UserService;
+import com.ukmaSupport.utils.Constants;
 import com.ukmaSupport.utils.RegistrationValidator;
 import com.ukmaSupport.utils.PasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,7 @@ public class Registration {
 
         String email = user.getEmail();
         user = userDao.getByEmail(email);
-        registrationMail.send(email, "http://localhost:8080/verification?id=" + user.getId());
+        registrationMail.send(email, Constants.LOCAL_SERVER + Constants.VERIFICATION + user.getId());
 
         return "registration/registrationSuccess";
     }

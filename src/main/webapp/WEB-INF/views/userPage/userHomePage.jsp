@@ -58,46 +58,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr data-href="#">
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr data-href="#">
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr data-href="#">
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr data-href="#">
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr data-href="#">
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr data-href="#">
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr data-href="#">
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr data-href="#">
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            <c:forEach items="${userOrder}" var="order">
+                <tr>
+                    <td>${order.title}</td>
+                    <td>${order.workplace_access_num}</td>
+                    <td>${order.createdAt}</td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>

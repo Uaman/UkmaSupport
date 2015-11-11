@@ -2789,7 +2789,7 @@ tbody.collapse.in {
   background-color: #ffffff;
   border: 1px solid #cccccc;
   border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
+  border-radius: 7px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   -webkit-background-clip: padding-box;
@@ -3698,8 +3698,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-nav > li > .dropdown-menu {
   margin-top: 0;
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px;
 }
 .navbar-fixed-bottom .navbar-nav > li > .dropdown-menu {
   margin-bottom: 0;

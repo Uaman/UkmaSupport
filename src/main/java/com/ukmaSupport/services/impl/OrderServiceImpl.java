@@ -28,6 +28,12 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.getByStatus(status);
     }
 
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    @Override
+    public List<Order> getByUserId(int user_id) {
+        return orderDao.getByUserId(user_id);
+    }
+
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
     @Override
     public void createOrUpdate(Order order) {
