@@ -19,13 +19,14 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a class="menu-element active" href="#">Users</a></li>
+                    <li><a class="menu-element active" href="/users">Users</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#">Orders<b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a class="menu-element-li" href="#">Complited orders</a></li>
-                            <li><a class="menu-element-li" href="#">Uncomplited orders</a></li>
+                            <li><a class="menu-element-li" href="/allOrders">All orders</a></li>
+                            <li><a class="menu-element-li" href="/completedOrders">Complited orders</a></li>
+                            <li><a class="menu-element-li" href="/uncompletedOrders">Uncomplited orders</a></li>
                         </ul>
                     </li>
                     <li><a class="menu-element" href="#">Edit profile</a></li>
