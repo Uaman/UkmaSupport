@@ -22,6 +22,8 @@ public class OrderDaoImpl implements OrderDao {
 
     private static final String GET_ALL_ORDERS = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id";
 
+    private static final String GET_ALL_ORDERS_BY_USER_ID = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE user_id=?";
+
     private static final String GET_ORDER_BY_ID = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE id=?";
 
     private static final String GET_ORDERS_BY_STATUS = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE status=?";
@@ -41,6 +43,11 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public List<Order> getByStatus(String status) {
         return jdbcTemplate.query(GET_ORDERS_BY_STATUS, new Object[]{status}, rowMapper);
+    }
+
+    @Override
+    public List<Order> getByUserId(int user_id) {
+        return jdbcTemplate.query(GET_ALL_ORDERS_BY_USER_ID, new Object[]{user_id}, rowMapper);
     }
 
     @Override

@@ -97,9 +97,13 @@ public class UserController {
         return "redirect:/userhome";
     }
     @RequestMapping(value = "userhome/list" , method = RequestMethod.GET)
-    public String listUsers(ModelMap model) {
+    public String listUsersOrder(ModelMap model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
 
-        List<Order> orders = orderService.getAll();
+        int userid = (Integer) session.getAttribute("id");
+
+        List<Order> orders =  orderDao.getByUserId(userid-1);
         model.addAttribute("userOrder", orders);
         model.addAttribute("message","Gt");
         return "userPage/userOrder";
