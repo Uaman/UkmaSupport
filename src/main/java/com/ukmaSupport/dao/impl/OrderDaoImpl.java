@@ -24,6 +24,8 @@ public class OrderDaoImpl implements OrderDao {
 
     private static final String GET_ORDER_BY_ID = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE id=?";
 
+    private static final String GET_ORDERS_BY_STATUS = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE status=?";
+
     private static final String DELETE_ORDER = "DELETE FROM orders WHERE id=?";
 
     private static final String INSERT_QUERY = "INSERT INTO orders (user_id, assistant_id, workplace_id, title, content, created_at, status) VALUES(?,?,(SELECT workplace.id FROM workplace WHERE workplace.access_num=?),?,?,?,?)";
@@ -34,6 +36,11 @@ public class OrderDaoImpl implements OrderDao {
     public Order getById(int id) {
         List<Order> users = jdbcTemplate.query(GET_ORDER_BY_ID, new Object[]{id}, rowMapper);
         return users.isEmpty() ? null : users.get(0);
+    }
+
+    @Override
+    public List<Order> getByStatus(String status) {
+        return jdbcTemplate.query(GET_ORDERS_BY_STATUS, new Object[]{status}, rowMapper);
     }
 
     @Override

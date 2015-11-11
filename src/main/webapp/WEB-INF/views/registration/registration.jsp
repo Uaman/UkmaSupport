@@ -26,7 +26,7 @@
 
 
     <div id="mainRegister">
-        <form:form id="newOrder" action="register" method="post" commandName="newOrder">
+        <form:form id="userForm" action="register" method="post" commandName="userForm">
             <table border="0">
                 <tr>
                     <td class="centralWord" colspan="2" align="center">Registration</td>

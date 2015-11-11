@@ -8,6 +8,8 @@ public interface OrderService {
 
     Order getById(int id);
 
+    List<Order> getByStatus(String status);
+
     void createOrUpdate(Order order);
 
     void delete(int id);
