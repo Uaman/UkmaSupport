@@ -25,13 +25,13 @@ public class UserServices implements UserDetailsService {
         com.ukmaSupport.models.User user = userDao.getByEmail(s);
         if(user == null)
             throw new UsernameNotFoundException("user not found");
-        UserDetails u = new User(s, user.getPassword(), true, true, true, true, getAuthority());
+        UserDetails u = new User(s, user.getPassword(), true, true, true, true, getAuthority(user.getRole()));
         return u;
     }
 
-    public Collection<GrantedAuthority> getAuthority(){
+    public Collection<GrantedAuthority> getAuthority(String role){
         List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>(1);
-        authList.add(new GrantedAuthorityImpl("ROLE_USER"));
+        authList.add(new GrantedAuthorityImpl(role));
         return authList;
     }
 }
