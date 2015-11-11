@@ -15,6 +15,7 @@ public class RegistrationValidator implements Validator {
 
     private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     private static final String FIO_PATTERN = "[\\p{InCyrillic}]+";
+    private static final String PASSWORD_PATTERN = "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$";
 
     public boolean supports(Class<?> paramClass) {
         return User.class.equals(paramClass);
@@ -33,6 +34,8 @@ public class RegistrationValidator implements Validator {
             errors.rejectValue("email", "valid.duplicatedEmail", "Email is required.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "valid.password", "Password is required.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confPassword", "valid.confPassword", "Confirm password is required.");
+        if(!form.getPassword().matches(PASSWORD_PATTERN))
+            errors.rejectValue("password", "valid.password2", "Incorrect password");
         if (!form.getPassword().equals(form.getConfPassword()))
             errors.rejectValue("confPassword", "valid.confPasswordDiff", "Passwords are different.");
     }
