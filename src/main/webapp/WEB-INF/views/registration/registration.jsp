@@ -12,7 +12,6 @@
 <body>
 <div id="wrap">
     <div id="header">
-
         <div>
             <a href="/"><img id="logo" alt="brand" src="../resources/img/logo.png"/></a>
         </div>
