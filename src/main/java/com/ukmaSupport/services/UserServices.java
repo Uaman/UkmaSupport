@@ -21,8 +21,8 @@ public class UserServices implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        System.out.println("Username:"+s);
         com.ukmaSupport.models.User user = userDao.getByEmail(s);
+        System.out.println("Username:"+s+" role:"+user.getRole());
         if(user == null)
             throw new UsernameNotFoundException("user not found");
         UserDetails u = new User(s, user.getPassword(), true, true, true, true, getAuthority(user.getRole()));
@@ -31,7 +31,7 @@ public class UserServices implements UserDetailsService {
 
     public Collection<GrantedAuthority> getAuthority(String role){
         List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>(1);
-        authList.add(new GrantedAuthorityImpl(role));
+        authList.add(new GrantedAuthorityImpl("ROLE_"+role));
         return authList;
     }
 }

@@ -38,7 +38,7 @@ public class UserController {
     @RequestMapping(value = "/userhome", method = RequestMethod.POST)
     public String addStudent(@ModelAttribute("users") User users, BindingResult bindingResult, ModelMap model) {
 
-        System.out.println("error" + bindingResult.hasErrors());
+        //System.out.println("error" + bindingResult.hasErrors());
         //  model.addAttribute("title", users.getTitle());
         //  model.addAttribute("order", users.getOrder());
         //  model.addAttribute("id", users.getId());
@@ -55,12 +55,14 @@ public class UserController {
 
     }
 
+
+
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
-    public @ResponseBody String getCharNum(@RequestParam("text") String text) {
+    public @ResponseBody List<Workplace> getCharNum(@RequestParam("text") String text) {
         System.out.println(text);
         List<Workplace> workplaces = workplaceDao.getByAuditoryName(text);
 
-        return "";
+        return workplaces;
     }
 
     @RequestMapping(value = "/createOrder", method = RequestMethod.GET)
@@ -74,9 +76,7 @@ public class UserController {
 
     @RequestMapping(value = "/createOrder", method = RequestMethod.POST)
     public String createOrderPost(@ModelAttribute("newOrder") Order order, Model model, BindingResult result) {
-        List<Auditorium> auditoriums = auditoriumDao.getAll();
-        model.addAttribute("newOrder", order);
-        model.addAttribute("auditoriums",  auditoriums);
+
         return "null";
     }
 
