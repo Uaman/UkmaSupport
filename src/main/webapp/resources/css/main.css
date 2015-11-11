@@ -1,13 +1,13 @@
 @import url("reset.css");
 
 * {
-  margin: 0;
+	margin: 0;
 }
 
 html, body {
-   margin:0;
-   padding:0;
-   height:100%;
+	margin:0;
+	padding:0;
+	height:100%;
 }
 
 body{
@@ -19,7 +19,7 @@ body{
 
 #wrap{
 	min-height:100%;
-    position:relative;
+	position:relative;
 	width: 900px;
 	background-color: #fff;
 	margin: 0 auto;
@@ -32,7 +32,7 @@ body{
 }
 
 #logo{
-	padding: 15px;
+	margin-top: 15px;
 }
 
 #time{
@@ -41,26 +41,26 @@ body{
 	margin-right: 20px;
 	text-align: right;
 	margin-top: 3px;
-	font-family: Garamond; 
+	font-family: "Garamond", sans-serif;
 	font-size: 19px;
 }
 
 li {
-    list-style-type: none; 
+	list-style-type: none;
 }
- 
+
 ul {
-    margin-left: 0; /* IE  Opera */
-    padding-left: 0; /* Firefox, Safari, Chrome */
-  }
-  
-a {	
-	text-decoration: none; 
+	margin-left: 0; /* IE  Opera */
+	padding-left: 0; /* Firefox, Safari, Chrome */
+}
+
+a {
+	text-decoration: none;
 }
 
 .leftWord {
-    color: #ffffff;
-	font-family: "Century Gothic";
+	color: #ffffff;
+	font-family: "Century Gothic", sans-serif;
 	font-size: 19px;
 	padding: 15px;
 	margin-right: 20px;
@@ -69,26 +69,26 @@ a {
 }
 
 .footertext  {
-    font-size: 12px;
-	font-family: "Century Gothic";
-    color: #333366;
+	font-size: 12px;
+	font-family: "Century Gothic", sans-serif;
+	color: #333366;
 	text-align: center;
 	padding: 15px;
 }
 
 .vertalign {
-    padding-top: 100px;
+	padding-top: 100px;
 }
 .form-style {
-    border-color: #333366;
-    border-radius: 7px;
+	border-color: #333366;
+	border-radius: 7px;
 	padding: 10px;
 }
 .button-style {
-    background-color: #333366;
-    border-radius: 7px;
+	background-color: #333366;
+	border-radius: 7px;
 	margin: 15px;
-	
+
 }
 
 #login-button{
@@ -98,7 +98,7 @@ a {
 
 
 .thin, .thick{
-	margin: 0 auto; 
+	margin: 0 auto;
 	width: 900px;
 	background-color: #333366;
 }
@@ -116,15 +116,15 @@ a {
 /**** Registration *****/
 
 #mainRegister{
-	margin-left: 250px; 
-	margin-right: 250px; 
-	margin-top: 30px;	
+	margin-left: 250px;
+	margin-right: 250px;
+	margin-top: 30px;
 }
 
 .centralWord {
-	font-family: "Century Gothic";
+	font-family: "Century Gothic", sans-serif;
 	font-size: 36px;
-	padding: 40px;	
+	padding: 40px;
 	text-align: center;
 }
 
@@ -145,9 +145,63 @@ a {
 	position: absolute;
 	z-index: 999;
 	padding-left: 15px;
-	margin-top: 9px;
+	margin-top: -27px;
 }
 a img {
-    border: none; 
+	border: none;
+}
+.table-align {
+	padding: 20px 20px 0 20px;
+	border-radius: 7px;
+}
+.tbl  {
+	border-collapse: separate;
+	border: 1px solid #333366;
+	border-radius: 7px;
+}
+.tbl th, .tbl td {
+	height: 40px;
+	text-align: center;
+	vertical-align: middle;
+}
+#hello {
+	font-family: "Century Gothic", sans-serif;
+	font-size: 30px;
+	color: #333366;
+	margin: 20px 0 0 20px;
+}
+#btn-add-order {
+	background-color: #333366;
+	border-radius: 7px;
+}
+.drop-menu-element {
+	color: #ffffff;
+	font-family: "Century Gothic", sans-serif;
+	font-size: 19px;
+}
+.menu-element {
+	color: #ffffff;
+	font-family: "Century Gothic", sans-serif;
+	font-size: 19px;
+	margin-top: 25px;
+	margin-left:5px;
+	border-radius:7px;
+}
+
+.menu-element-li {
+	color: #333366;
+	font-family: "Century Gothic", sans-serif;
+	font-size: 19px;
+	margin-top: 3px;
+	border-radius:7px;
+}
+
+.active {
+	color: #333366;
+	background-color: #e7e7e7;
+	margin-left:5px;
+}
+.active:hover{
+	color: #333366;
 }
 
