@@ -42,7 +42,7 @@ public class AdminController {
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String showUsers(Model model) {
         List<User> users = userDao.getAll();
-        model.addAttribute("users", users);
-        return "";
+        //model.addAttribute("users", users);
+        return "adminPage/adminPageListUsers";
     }
 }
