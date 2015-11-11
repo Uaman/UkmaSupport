@@ -10,7 +10,6 @@ import com.ukmaSupport.services.interfaces.UserService;
 import com.ukmaSupport.services.interfaces.WorkplaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -19,13 +18,15 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import javax.xml.ws.Response;
 import java.util.Date;
 import java.util.List;
+
 
 @Controller
 public class UserController {
 
+    @Autowired
+    private OrderService orderService;
     @Autowired
     private UserService userDao;
 
@@ -95,4 +96,13 @@ public class UserController {
         //orderDao.createOrUpdate(order);
         return "redirect:/userhome";
     }
+    @RequestMapping(value = "userhome/list" , method = RequestMethod.GET)
+    public String listUsers(ModelMap model) {
+
+        List<Order> orders = orderService.getAll();
+        model.addAttribute("userOrder", orders);
+        model.addAttribute("message","Gt");
+        return "userPage/userOrder";
+    }
+
 }

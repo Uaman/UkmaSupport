@@ -32,19 +32,6 @@ public class Order {
         return assistantId;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", assistantId=" + assistantId +
-                ", workplace_access_num='" + workplace_access_num + '\'' +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", createdAt=" + createdAt +
-                ", status='" + status + '\'' +
-                '}';
-    }
 
     public void setAssistantId(int assistantId) {
         this.assistantId = assistantId;
@@ -88,5 +75,19 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", assistantId=" + assistantId +
+                ", workplace_access_num='" + workplace_access_num + '\'' +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", createdAt=" + createdAt +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

@@ -8,6 +8,7 @@
     <link rel="Shortcut Icon" href="" type="image/x-icon"/>
     <link rel="stylesheet" href="../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../resources/css/main.css" type="text/css" media="screen"/>
+
 </head>
 
 <body>
@@ -22,7 +23,8 @@
 </div>
 <h1>Form</h1>
 
-<form:form method="GET" action="createOrder">
+
+    <form:form method="GET" action="createOrder">
     <form:errors path="*" cssClass="errorblock" element="div"/>
     <tr>
         <td colspan="2">
