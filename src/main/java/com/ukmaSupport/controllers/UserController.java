@@ -58,7 +58,7 @@ public class UserController {
         order.setStatus("Undone");
         order.setAssistantId(order.getUserId());
         order.setWorkplace_id(workplaceDao.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
-        orderDao.createOrUpdate(order);
+        orderService.createOrUpdate(order);
         return "redirect:/userhome";
     }
     @RequestMapping(value = "/userhome" , method = RequestMethod.GET)
