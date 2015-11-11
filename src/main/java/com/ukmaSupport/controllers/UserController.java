@@ -79,13 +79,4 @@ public class UserController {
 
         return "null";
     }
-
-
-    @RequestMapping(value = "/downloadExcel", method = RequestMethod.GET)
-    public ModelAndView downloadExcel() {
-        // create some sample data
-        List<User> listUsers = userDao.getAll();
-        // return a view which will be resolved by an excel view resolver
-        return new ModelAndView("excelView", "listUsers", listUsers);
-    }
 }
