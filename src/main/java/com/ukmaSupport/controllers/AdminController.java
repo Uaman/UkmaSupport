@@ -90,7 +90,7 @@ public class
     public String showAuditoriums(Model model) {
         List<Auditorium> auditoriums = auditoriumDao.getAll();
         model.addAttribute("auditoriums", auditoriums);
-        return "adminPage/auditoriums";
+        return "adminPage/auditoriumsList";
     }
 
     @RequestMapping(value = "/completedOrders", method = RequestMethod.GET)
