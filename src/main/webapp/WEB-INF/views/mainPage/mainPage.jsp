@@ -84,7 +84,7 @@
             </div>
 
             <div class="col-md-offset-1">
-                <a id="forgotpassword" href="#">Forgot password?</a>
+                <a id="forgotpassword" href="/forgotPassword">Forgot password?</a>
             </div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 

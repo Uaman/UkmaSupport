@@ -5,7 +5,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv = "Content-Type" content="text/html; charset=utf-8" />
-    <title>userhome</title>
+    <title>Home</title>
     <link rel="Shortcut Icon" href="" type="image/x-icon" />
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen" />
@@ -33,8 +33,8 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"> My orders<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li class="drop-menu-element"><a class="menu-element-li" href="/complited">Complited orders</a></li>
-                            <li class="drop-menu-element"><a class="menu-element-li" href="/uncomplited">Uncomplited orders</a></li>
+                            <li class="drop-menu-element"><a class="menu-element-li" href="/completed">Completed orders</a></li>
+                            <li class="drop-menu-element"><a class="menu-element-li" href="/uncompleted">Uncompleted orders</a></li>
                         </ul>
                     </li>
                     <li><a class="menu-element" href="#">Edit profile</a></li>
@@ -49,7 +49,7 @@
     </div>
 
     <div class="table-align">
-        <table class="tbl table table-striped">
+        <table class="tbl table table-striped table-hover">
             <thead>
             <tr>
                 <th>Title</th>
