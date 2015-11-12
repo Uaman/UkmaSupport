@@ -203,4 +203,24 @@ a img {
 .active:hover{
 	color: #333366;
 }
+#content {
+	border-color: #333366;
+	border-radius: 7px;
+	padding: 10px;
+	resize: none;
+}
+#btn-create-order {
+	background-color: #333366;
+	border-radius: 7px;
+	margin-top: 15px;
+}
+.select-style {
+	border-color: #333366;
+	border-radius: 7px;
+}
+.label-style {
+	font-family: "Century Gothic", sans-serif;
+	color: #333366;
+	padding-bottom: 5px;
+}
 

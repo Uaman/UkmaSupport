@@ -49,7 +49,7 @@
     </div>
 
     <div class="table-align">
-        <table class="tbl table table-striped">
+        <table class="tbl table table-striped table-hover">
             <thead>
             <tr>
                 <th>Title</th>
