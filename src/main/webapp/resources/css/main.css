@@ -28,11 +28,11 @@ body{
 
 #header{
 	background-color: #333366;
-	height: 100px;
+	height: 85px;
 }
 
 #logo{
-	margin-top: 15px;
+	padding: 5px;
 }
 
 #time{
