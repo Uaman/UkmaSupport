@@ -31,7 +31,7 @@ public class
     private OrderService orderDao;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    @ResponseBody
+    //@ResponseBody
     public String showAllUsers(Model model) {
         List<User> users = userDao.getAll();
         model.addAttribute("users", users);
@@ -39,7 +39,7 @@ public class
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    @ResponseBody
+    //@ResponseBody
     public String showUsers(Model model) {
         List<User> users = userDao.getByRole("USER");
         model.addAttribute("users", users);
@@ -47,7 +47,7 @@ public class
     }
 
     @RequestMapping(value = "/assistants", method = RequestMethod.GET)
-    @ResponseBody
+    //@ResponseBody
     public String showAssistants(Model model) {
         List<User> users = userDao.getByRole("ASSISTANT");
         model.addAttribute("users", users);
@@ -55,7 +55,7 @@ public class
     }
 
     @RequestMapping(value = "/professors", method = RequestMethod.GET)
-    @ResponseBody
+    //@ResponseBody
     public String showProfessors(Model model) {
         List<User> users = userDao.getByRole("PROFESSOR");
         model.addAttribute("users", users);
@@ -63,7 +63,7 @@ public class
     }
 
     @RequestMapping(value = "/blocked", method = RequestMethod.GET)
-    @ResponseBody
+    //@ResponseBody
     public String showBlockedUsers(Model model) {
         List<User> users = userDao.getByStatus("blocked");
         model.addAttribute("users", users);
@@ -71,15 +71,22 @@ public class
     }
 
     @RequestMapping(value = "/allOrders", method = RequestMethod.GET)
-    @ResponseBody
+    //@ResponseBody
     public String showOrders(Model model) {
         List<Order> orders = orderDao.getAll();
         model.addAttribute("orders", orders);
         return "adminPage/orders";
     }
 
+    @RequestMapping(value = "/addAuditorium", method = RequestMethod.GET)
+    public String addAuditorium(Model model) {
+        //List<Auditorium> auditoriums = auditoriumDao.getAll();
+        //model.addAttribute("auditoriums", auditoriums);
+        return "adminPage/addAuditorium";
+    }
+
     @RequestMapping(value = "/auditoriums", method = RequestMethod.GET)
-    @ResponseBody
+    //@ResponseBody
     public String showAuditoriums(Model model) {
         List<Auditorium> auditoriums = auditoriumDao.getAll();
         model.addAttribute("auditoriums", auditoriums);
@@ -87,7 +94,7 @@ public class
     }
 
     @RequestMapping(value = "/completedOrders", method = RequestMethod.GET)
-    @ResponseBody
+    //@ResponseBody
     public String showCompletedOrders(Model model) {
         List<Order> orders = orderDao.getByStatus("done");
         model.addAttribute("orders", orders);
@@ -95,7 +102,7 @@ public class
     }
 
     @RequestMapping(value = "/uncompletedOrders", method = RequestMethod.GET)
-    @ResponseBody
+    //@ResponseBody
     public String showUncompletedOrders(Model model) {
         List<Order> orders = orderDao.getByStatus("Undone");
         model.addAttribute("orders", orders);
@@ -103,7 +110,7 @@ public class
     }
 
     @RequestMapping(value = "/downloadExcel", method = RequestMethod.POST)
-    @ResponseBody
+    //@ResponseBody
     public String downloadExcel(Model model) {
         List<User> listUsers = userDao.getAll();
         model.addAttribute("listUsers", listUsers);
