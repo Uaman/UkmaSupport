@@ -57,4 +57,16 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getAll() {
         return orderDao.getAll();
     }
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    @Override
+    public List<Order> getAllAssistOrders(int assistid) {
+        return orderDao.getAllAssistOrders(assistid);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    @Override
+    public List<Order> getByAssistAndStatus(int assistid, String status) {
+        return orderDao.getByAssistAndStatus(assistid, status);
+    }
 }

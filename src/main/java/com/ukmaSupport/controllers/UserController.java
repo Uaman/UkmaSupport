@@ -22,21 +22,23 @@ import java.util.List;
 @Controller
 public class UserController {
 
+    final static String DONE = "done";
+    final static String UNDONE = "Undone";
+
     @Autowired
     private OrderService orderService;
 
     @Autowired
-    private AuditoriumService auditoriumDao;
+    private AuditoriumService auditoriumService;
 
     @Autowired
-    private WorkplaceService workplaceDao;
-
+    private WorkplaceService workplaceService;
 
 
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
     public @ResponseBody List<Workplace> getCharNum(@RequestParam("text") String text) {
         System.out.println(text);
-        List<Workplace> workplaces = workplaceDao.getByAuditoryName(text);
+        List<Workplace> workplaces = workplaceService.getByAuditoryName(text);
 
         return workplaces;
     }
@@ -44,7 +46,7 @@ public class UserController {
     @RequestMapping(value = "/createOrder", method = RequestMethod.GET)
     public String createOrder(ModelMap model) {
         Order order = new Order();
-        List<Auditorium> auditoriums = auditoriumDao.getAll();
+        List<Auditorium> auditoriums = auditoriumService.getAll();
         model.addAttribute("newOrder", order);
         model.addAttribute("auditoriums", auditoriums);
         return "userPage/createOrderPage";
@@ -55,18 +57,17 @@ public class UserController {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
         order.setUserId((Integer) session.getAttribute("id"));
-        order.setStatus("Undone");
+        order.setStatus(UNDONE);
         order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
         order.setAssistantId(order.getUserId());
-        order.setWorkplace_id(workplaceDao.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
+        order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
         orderService.createOrUpdate(order);
         return "redirect:/userhome";
     }
    @RequestMapping(value = "/userhome" , method = RequestMethod.GET)
-    public String listUsersOrder(ModelMap model) {
+    public String listUsersOrders(ModelMap model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
-
         int userid = (Integer) session.getAttribute("id");
 
         System.out.println(userid);
@@ -76,27 +77,27 @@ public class UserController {
 
         return "userPage/userHomePage";
     }
+
     @RequestMapping(value = "/uncompleted" , method = RequestMethod.GET)
     public String uncompletedOrders(ModelMap model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
-
         int userid = (Integer) session.getAttribute("id");
-        String status="Undone";
+
         System.out.println(userid);
-        List<Order> orders =  orderService.getByUserIdStatus(userid,status);
+        List<Order> orders =  orderService.getByUserIdStatus(userid,UNDONE);
         model.addAttribute("userOrder", orders);
         return "userPage/userHomePage";
     }
+
     @RequestMapping(value = "/completed" , method = RequestMethod.GET)
     public String completedOrders(ModelMap model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
 
         int userid = (Integer) session.getAttribute("id");
-        String status="done";
         System.out.println(userid);
-        List<Order> orders =  orderService.getByUserIdStatus(userid,status);
+        List<Order> orders =  orderService.getByUserIdStatus(userid, DONE);
         model.addAttribute("userOrder", orders);
         return "userPage/userHomePage";
     }

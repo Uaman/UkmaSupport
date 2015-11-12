@@ -8,7 +8,10 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository("orderDao")
@@ -26,6 +29,10 @@ public class OrderDaoImpl implements OrderDao {
     private static final String GET_ORDER_BY_ID = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE id=?";
 
     private static final String GET_ORDERS_BY_STATUS = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE status=?";
+
+    private static final String GET_ALL_ASSIST_ORDERS = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE assistant_id=?";
+
+    private static final String GET_ALL_ORDERS_BY_ASSIST_AND_STATUS = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE assistant_id=? AND status=?";
 
     private static final String DELETE_ORDER = "DELETE FROM orders WHERE id=?";
 
@@ -86,6 +93,16 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public List<Order> getAll() {
         return jdbcTemplate.query(GET_ALL_ORDERS, rowMapper);
+    }
+
+    @Override
+    public List<Order> getAllAssistOrders(int assistid) {
+        return jdbcTemplate.query(GET_ALL_ASSIST_ORDERS, rowMapper);
+    }
+
+    @Override
+    public List<Order> getByAssistAndStatus(int assistid, String status) {
+        return jdbcTemplate.query(GET_ALL_ORDERS_BY_ASSIST_AND_STATUS, rowMapper);
     }
 
     private static final RowMapper<Order> rowMapper = new RowMapper<Order>() {

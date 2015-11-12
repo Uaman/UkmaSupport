@@ -19,4 +19,8 @@ public interface OrderService {
     void delete(int id);
 
     List<Order> getAll();
+
+    List<Order> getAllAssistOrders(int assistid);
+
+    List<Order> getByAssistAndStatus(int assistid, String status);
 }
