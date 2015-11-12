@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-public class AdminController {
+public class
+        AdminController {
 
     @Autowired
     private UserService userDao;
@@ -92,7 +93,7 @@ public class AdminController {
         return "adminPage/orders";
     }
 
-    @RequestMapping(value = "/downloadExcel", method = RequestMethod.GET)
+    @RequestMapping(value = "/downloadExcel", method = RequestMethod.POST)
     public String downloadExcel(Model model) {
         List<User> listUsers = userDao.getAll();
         model.addAttribute("listUsers", listUsers);

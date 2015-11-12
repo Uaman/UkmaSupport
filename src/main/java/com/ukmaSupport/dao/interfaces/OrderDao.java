@@ -17,4 +17,6 @@ public interface OrderDao {
     void delete(int id);
 
     List<Order> getAll();
+
+    List<Order> getByUserAndStatus(int userid, String status);
 }

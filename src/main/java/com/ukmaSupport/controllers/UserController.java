@@ -31,9 +31,7 @@ public class UserController {
     @Autowired
     private WorkplaceService workplaceDao;
 
-
-
-    @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
+    @RequestMapping(value = "/ajaxtest", method = RequestMethod.POST)
     public @ResponseBody List<Workplace> getCharNum(@RequestParam("text") String text) {
         System.out.println(text);
         List<Workplace> workplaces = workplaceDao.getByAuditoryName(text);
@@ -62,8 +60,8 @@ public class UserController {
         orderService.createOrUpdate(order);
         return "redirect:/userhome";
     }
-    @RequestMapping(value = "/userhome" , method = RequestMethod.GET)
-    public String listUsersOrder(ModelMap model) {
+    @RequestMapping(value = "/userhome" , method = RequestMethod.POST)
+    public String listUsersOrders(ModelMap model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
 
@@ -76,5 +74,43 @@ public class UserController {
 
         return "userPage/userHomePage";
     }
+
+    @RequestMapping(value = "/usersCompletedOrders" , method = RequestMethod.POST)
+    public String listUsersCompletedOrders(ModelMap model) {
+
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+
+        int userid = (Integer) session.getAttribute("id");
+
+        System.out.println(userid);
+        List<Order> orders =  orderService.getByUserAndStatus(userid, "Done");
+        model.addAttribute("completedOrders", orders);
+        model.addAttribute("message", "Gt");
+
+        return "userPage/userHomePage";
+    }
+
+    @RequestMapping(value = "/usersUncompletedOrders" , method = RequestMethod.POST)
+    public String listUsersUncompletedOrders(ModelMap model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+
+        int userid = (Integer) session.getAttribute("id");
+
+        System.out.println(userid);
+        List<Order> orders = orderService.getByUserAndStatus(userid, "Undone");
+        model.addAttribute("uncompletedOrders", orders);
+        model.addAttribute("message", "Gt");
+
+        return "userPage/userHomePage";
+    }
+
+
+    @RequestMapping(value = "/editProfile" , method = RequestMethod.POST)
+    public String editProfile(ModelMap model) {
+        return "userPage/editProfile";
+    }
+
 
 }
