@@ -90,7 +90,7 @@ public class UserController {
         System.out.println(userid);
         List<Order> orders =  orderService.getByUserAndStatus(userid, "Done");
         model.addAttribute("completedOrders", orders);
-        model.addAttribute("message", "Gt");
+      //  model.addAttribute("message", "Gt");
 
         return "userPage/userHomePage";
     }
@@ -106,7 +106,7 @@ public class UserController {
         System.out.println(userid);
         List<Order> orders = orderService.getByUserAndStatus(userid, "Undone");
         model.addAttribute("uncompletedOrders", orders);
-        model.addAttribute("message", "Gt");
+    //    model.addAttribute("message", "Gt");
 
         return "userPage/userHomePage";
     }
