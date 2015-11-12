@@ -33,7 +33,7 @@ public class UserController {
     @Autowired
     private WorkplaceService workplaceDao;
 
-    @RequestMapping(value = "/ajaxtest", method = RequestMethod.POST)
+    @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
     public @ResponseBody List<Workplace> getCharNum(@RequestParam("text") String text) {
         System.out.println(text);
         List<Workplace> workplaces = workplaceDao.getByAuditoryName(text);
@@ -42,7 +42,6 @@ public class UserController {
     }
 
     @RequestMapping(value = "/createOrder", method = RequestMethod.GET)
-    @ResponseBody
     public String createOrder(ModelMap model) {
         Order order = new Order();
         List<Auditorium> auditoriums = auditoriumDao.getAll();
@@ -52,7 +51,6 @@ public class UserController {
     }
 
     @RequestMapping(value = "/createOrder", method = RequestMethod.POST)
-    @ResponseBody
     public String createOrderPost(@ModelAttribute("newOrder") Order order,ModelMap model, BindingResult result) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
@@ -64,8 +62,7 @@ public class UserController {
         orderService.createOrUpdate(order);
         return "redirect:/userhome";
     }
-    @RequestMapping(value = "/userhome" , method = RequestMethod.POST)
-    @ResponseBody
+    @RequestMapping(value = "/userhome" , method = RequestMethod.GET)
     public String listUsersOrders(ModelMap model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
@@ -80,8 +77,7 @@ public class UserController {
         return "userPage/userHomePage";
     }
 
-    @RequestMapping(value = "/usersCompletedOrders" , method = RequestMethod.POST)
-    @ResponseBody
+    @RequestMapping(value = "/usersCompletedOrders" , method = RequestMethod.GET)
     public String listUsersCompletedOrders(ModelMap model) {
 
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
@@ -97,8 +93,7 @@ public class UserController {
         return "userPage/userHomePage";
     }
 
-    @RequestMapping(value = "/usersUncompletedOrders" , method = RequestMethod.POST)
-    @ResponseBody
+    @RequestMapping(value = "/usersUncompletedOrders" , method = RequestMethod.GET)
     public String listUsersUncompletedOrders(ModelMap model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
@@ -114,8 +109,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/editProfile" , method = RequestMethod.POST)
-    @ResponseBody
+    @RequestMapping(value = "/editProfile" , method = RequestMethod.GET)
     public String editProfile(ModelMap model) {
         return "userPage/editProfile";
     }
