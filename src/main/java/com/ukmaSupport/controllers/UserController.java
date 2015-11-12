@@ -15,7 +15,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -56,7 +56,7 @@ public class UserController {
         HttpSession session = attr.getRequest().getSession();
         order.setUserId((Integer) session.getAttribute("id"));
         order.setStatus("Undone");
-        order.setCreatedAt(new Date());
+        order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
         order.setAssistantId(order.getUserId());
         order.setWorkplace_id(workplaceDao.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
         orderService.createOrUpdate(order);

@@ -1,6 +1,6 @@
 package com.ukmaSupport.models;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class Order {
     private int id;
@@ -10,7 +10,7 @@ public class Order {
     private String workplace_access_num;
     private String title;
     private String content;
-    private Date createdAt;
+    private Timestamp createdAt;
     private String status;
 
     public int getWorkplace_id() {
@@ -70,11 +70,11 @@ public class Order {
         this.content = content;
     }
 
-    public Date getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 

@@ -8,10 +8,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 @Repository("orderDao")
@@ -96,7 +93,7 @@ public class OrderDaoImpl implements OrderDao {
             order.setWorkplace_access_num(rs.getString("access_num"));
             order.setTitle(rs.getString("title"));
             order.setContent(rs.getString("content"));
-            order.setCreatedAt(new java.util.Date(rs.getDate("created_at").getTime()));
+            order.setCreatedAt((rs.getTimestamp("created_at")));
             order.setStatus(rs.getString("status"));
             return order;
         }
