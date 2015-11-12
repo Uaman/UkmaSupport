@@ -31,30 +31,18 @@ public class AdminController {
     @Autowired
     private OrderService orderDao;
 
-    @RequestMapping(value = "/adminPage", method = RequestMethod.GET)
-    public ModelAndView admin() {
-        return new ModelAndView("adminPages/adminPage", "command", new User());
-    }
-
-    @RequestMapping(value = "/adminPage", method = RequestMethod.POST)
-    public String adminPage(@ModelAttribute("users") User users, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors())
-            return "adminPages/adminPage";
-        return "result";
-    }
-
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String showUsers(Model model) {
         List<User> users = userDao.getAll();
         model.addAttribute("users", users);
-        return "adminPage/adminPageListUsers";
+        return "adminPage/usersList";
     }
 
-    @RequestMapping(value = "/orders/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/allOrders", method = RequestMethod.GET)
     public String showOrders(Model model) {
         List<Order> orders = orderDao.getAll();
-        //model.addAttribute("orders", orders);
-        return "adminPage/allOrders";
+        model.addAttribute("orders", orders);
+        return "adminPage/orders";
     }
 
     @RequestMapping(value = "/auditoriums", method = RequestMethod.GET)
@@ -64,17 +52,17 @@ public class AdminController {
         return "adminPage/auditoriums";
     }
 
-    @RequestMapping(value = "/orders/completed", method = RequestMethod.GET)
+    @RequestMapping(value = "/completedOrders", method = RequestMethod.GET)
     public String showCompletedOrders(Model model) {
         List<Order> orders = orderDao.getByStatus("done");
-        //model.addAttribute("orders", orders);
+        model.addAttribute("orders", orders);
         return "adminPage/orders";
     }
 
-    @RequestMapping(value = "/orders/uncompleted", method = RequestMethod.GET)
+    @RequestMapping(value = "/uncompletedOrders", method = RequestMethod.GET)
     public String showUncompletedOrders(Model model) {
-        List<Order> orders = orderDao.getByStatus("undone");
-        //model.addAttribute("orders", orders);
+        List<Order> orders = orderDao.getByStatus("Undone");
+        model.addAttribute("orders", orders);
         return "adminPage/orders";
     }
 

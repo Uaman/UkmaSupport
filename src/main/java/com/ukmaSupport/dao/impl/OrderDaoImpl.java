@@ -8,10 +8,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 @Repository("orderDao")
@@ -30,7 +27,7 @@ public class OrderDaoImpl implements OrderDao {
 
     private static final String DELETE_ORDER = "DELETE FROM orders WHERE id=?";
 
-    private static final String INSERT_QUERY = "INSERT INTO orders (user_id, assistant_id, workplace_id, title, content, created_at, status) VALUES(?,?,(SELECT workplace.id FROM workplace WHERE workplace.access_num=?),?,?,?,?)";
+    private static final String INSERT_QUERY = "INSERT INTO orders (user_id, assistant_id, workplace_id, title, content, created_at, status) VALUES(?,?,?,?,?,?,?)";
 
     private static final String UPDATE_QUERY = "UPDATE orders SET user_id=?, assistant_id=?, workplace_id=(SELECT workplace.id FROM workplace WHERE workplace.access_num=?), title=?, content=?, created_at=?, status=? WHERE id=?";
 
@@ -58,15 +55,15 @@ public class OrderDaoImpl implements OrderDao {
                 PreparedStatement prepStat;
                 if (order.getId() == 0) {
                     prepStat = con.prepareStatement(INSERT_QUERY);
-                    prepStat.setDate(6, new java.sql.Date(new java.util.Date().getTime()));
+                    prepStat.setTimestamp(6, new java.sql.Timestamp(new java.util.Date().getTime()));
                 } else {
                     prepStat = con.prepareStatement(UPDATE_QUERY);
                     prepStat.setInt(8, order.getId());
-                    prepStat.setDate(6, new java.sql.Date(order.getCreatedAt().getTime()));
+                    prepStat.setTimestamp(6, new java.sql.Timestamp(order.getCreatedAt().getTime()));
                 }
                 prepStat.setInt(1, order.getUserId());
                 prepStat.setInt(2, order.getAssistantId());
-                prepStat.setString(3, order.getWorkplace_access_num());
+                prepStat.setInt(3, order.getWorkplace_id());
                 prepStat.setString(4, order.getTitle());
                 prepStat.setString(5, order.getContent());
                 prepStat.setString(7, order.getStatus());
@@ -96,7 +93,7 @@ public class OrderDaoImpl implements OrderDao {
             order.setWorkplace_access_num(rs.getString("access_num"));
             order.setTitle(rs.getString("title"));
             order.setContent(rs.getString("content"));
-            order.setCreatedAt(new java.util.Date(rs.getDate("created_at").getTime()));
+            order.setCreatedAt((rs.getTimestamp("created_at")));
             order.setStatus(rs.getString("status"));
             return order;
         }

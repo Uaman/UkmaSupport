@@ -30,6 +30,12 @@ public class WorkplaceServiceImpl implements WorkplaceService {
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
+    public Workplace getByNumber(int number) {
+        return workplaceDao.getByNumber(number);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    @Override
     public List<Workplace> getByAuditoryName(String name) {
         return workplaceDao.getByAuditoriumName(name);
     }
