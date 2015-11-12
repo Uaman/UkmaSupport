@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#">A<b
+                        <a class="dropdown-toggle menu-element active" data-toggle="dropdown" href="#">A<b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a class="menu-element-li" href="/createAuditorium">Add Auditorium</a></li>
@@ -39,7 +39,7 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle menu-element active" data-toggle="dropdown" href="#">Orders<b
+                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#">Orders<b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a class="menu-element-li" href="/allOrders">All orders</a></li>
@@ -61,19 +61,14 @@
         <table class="tbl table table-striped">
             <thead>
             <tr>
-                <th>Title</th>
-                <th>Auditorium</th>
-                <th>Date</th>
-                <th>Status</th>
+                <th>Name</th>
+                <%--<th>Assistant</th>--%>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${orders}" var="orders">
+            <c:forEach items="${auditoriums}" var="item" varStatus="count">
                 <tr data-href="#">
-                    <td>${orders.title}</td>
-                    <td>${orders.workplace_access_num}</td>
-                    <td>${orders.createdAt}</td>
-                    <td>${orders.status}</td>
+                    <td>${item.number}</td>
                 </tr>
             </c:forEach>
             </tbody>

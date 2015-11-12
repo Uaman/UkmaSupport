@@ -62,7 +62,7 @@ public class UserController {
         orderService.createOrUpdate(order);
         return "redirect:/userhome";
     }
-    @RequestMapping(value = "/userhome" , method = RequestMethod.GET)
+   @RequestMapping(value = "/userhome" , method = RequestMethod.GET)
     public String listUsersOrder(ModelMap model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
@@ -74,6 +74,30 @@ public class UserController {
         model.addAttribute("userOrder", orders);
         model.addAttribute("message", "Gt");
 
+        return "userPage/userHomePage";
+    }
+    @RequestMapping(value = "/uncomplited" , method = RequestMethod.GET)
+    public String uncomlitedOrder(ModelMap model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+
+        int userid = (Integer) session.getAttribute("id");
+        String status="Undone";
+        System.out.println(userid);
+        List<Order> orders =  orderService.getByUserIdStatus(userid,status);
+        model.addAttribute("userOrder", orders);
+        return "userPage/userHomePage";
+    }
+    @RequestMapping(value = "/complited" , method = RequestMethod.GET)
+    public String comlitedOrder(ModelMap model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+
+        int userid = (Integer) session.getAttribute("id");
+        String status="done";
+        System.out.println(userid);
+        List<Order> orders =  orderService.getByUserIdStatus(userid,status);
+        model.addAttribute("userOrder", orders);
         return "userPage/userHomePage";
     }
 
