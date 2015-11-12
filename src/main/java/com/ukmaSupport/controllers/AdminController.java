@@ -10,8 +10,7 @@ import com.ukmaSupport.services.interfaces.WorkplaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,80 +29,70 @@ public class AdminController {
     @Autowired
     private OrderService orderDao;
 
-    @RequestMapping(value = "/all", method = RequestMethod.POST)
-//    @ResponseBody
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String showAllUsers(Model model) {
         List<User> users = userDao.getAll();
         model.addAttribute("users", users);
         return "adminPage/usersList";
     }
 
-    @RequestMapping(value = "/users", method = RequestMethod.POST)
-//    @ResponseBody
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String showUsers(Model model) {
         List<User> users = userDao.getByRole("USER");
         model.addAttribute("users", users);
         return "adminPage/usersList";
     }
 
-    @RequestMapping(value = "/assistants", method = RequestMethod.POST)
- //   @ResponseBody
+    @RequestMapping(value = "/assistants", method = RequestMethod.GET)
     public String showAssistants(Model model) {
         List<User> users = userDao.getByRole("ASSISTANT");
         model.addAttribute("users", users);
         return "adminPage/usersList";
     }
 
-    @RequestMapping(value = "/professors", method = RequestMethod.POST)
-//    @ResponseBody
+    @RequestMapping(value = "/professors", method = RequestMethod.GET)
     public String showProfessors(Model model) {
         List<User> users = userDao.getByRole("PROFESSOR");
         model.addAttribute("users", users);
         return "adminPage/usersList";
     }
 
-    @RequestMapping(value = "/blocked", method = RequestMethod.POST)
- //   @ResponseBody
+    @RequestMapping(value = "/blocked", method = RequestMethod.GET)
     public String showBlockedUsers(Model model) {
         List<User> users = userDao.getByStatus("blocked");
         model.addAttribute("users", users);
         return "adminPage/usersList";
     }
 
-    @RequestMapping(value = "/allOrders", method = RequestMethod.POST)
- //   @ResponseBody
+    @RequestMapping(value = "/allOrders", method = RequestMethod.GET)
     public String showOrders(Model model) {
         List<Order> orders = orderDao.getAll();
         model.addAttribute("orders", orders);
         return "adminPage/orders";
     }
 
-    @RequestMapping(value = "/auditoriums", method = RequestMethod.POST)
- //   @ResponseBody
+    @RequestMapping(value = "/auditoriums", method = RequestMethod.GET)
     public String showAuditoriums(Model model) {
         List<Auditorium> auditoriums = auditoriumDao.getAll();
         model.addAttribute("auditoriums", auditoriums);
         return "adminPage/auditoriums";
     }
 
-    @RequestMapping(value = "/completedOrders", method = RequestMethod.POST)
- //   @ResponseBody
+    @RequestMapping(value = "/completedOrders", method = RequestMethod.GET)
     public String showCompletedOrders(Model model) {
-        List<Order> orders = orderDao.getByStatus("Done");
+        List<Order> orders = orderDao.getByStatus("done");
         model.addAttribute("orders", orders);
         return "adminPage/orders";
     }
 
-    @RequestMapping(value = "/uncompletedOrders", method = RequestMethod.POST)
-  //  @ResponseBody
+    @RequestMapping(value = "/uncompletedOrders", method = RequestMethod.GET)
     public String showUncompletedOrders(Model model) {
         List<Order> orders = orderDao.getByStatus("Undone");
         model.addAttribute("orders", orders);
         return "adminPage/orders";
     }
 
-    @RequestMapping(value = "/downloadExcel", method = RequestMethod.POST)
-  //  @ResponseBody
+    @RequestMapping(value = "/downloadExcel", method = RequestMethod.GET)
     public String downloadExcel(Model model) {
         List<User> listUsers = userDao.getAll();
         model.addAttribute("listUsers", listUsers);

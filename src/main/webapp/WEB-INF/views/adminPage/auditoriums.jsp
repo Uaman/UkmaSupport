@@ -20,15 +20,15 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#">A<b
+                        <a class="dropdown-toggle menu-element active" data-toggle="dropdown" href="#">A<b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a class="menu-element-li" href="/addAuditorium">Add Auditorium</a></li>
+                            <li><a class="menu-element-li" href="/createAuditorium">Add Auditorium</a></li>
                             <li><a class="menu-element-li" href="/auditoriums">Auditoriums</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle menu-element active" data-toggle="dropdown" href="#">Users<b
+                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#">Users<b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a class="menu-element-li" href="/all">All</a></li>
@@ -61,19 +61,14 @@
         <table class="tbl table table-striped">
             <thead>
             <tr>
-                <th>Last name</th>
-                <th>First name</th>
-                <th>Role</th>
-                <th>Status</th>
+                <th>Name</th>
+                <%--<th>Assistant</th>--%>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${users}" var="item" varStatus="count">
+            <c:forEach items="${auditoriums}" var="item" varStatus="count">
                 <tr data-href="#">
-                    <td>${item.lastName}</td>
-                    <td>${item.firstName}</td>
-                    <td>${item.role}</td>
-                    <td>${item.accountStatus}</td>
+                    <td>${item.number}</td>
                 </tr>
             </c:forEach>
             </tbody>
