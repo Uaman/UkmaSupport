@@ -4,12 +4,15 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
+    <title>createOrder</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="Shortcut Icon" href="" type="image/x-icon"/>
-    <link rel="stylesheet" href="../resources/css/bootstrap.css">
-    <link rel="stylesheet" href="../resources/css/main.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
+    <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
   <script type="text/javascript">
 
@@ -35,75 +38,79 @@
       }
 
   </script>
-    <title></title>
 
 </head>
 <body>
 
 <div id="wrap">
 
-<div id="header">
-
-    <div>
-        <a href="/"><img id="logo" alt="brand" src="../resources/img/logo.png"/></a>
-    </div>
-
-    <div class="collapse navbar-collapse">
-
-    </div>
-</div>
-
-<form:form id="newOrder" action="/createOrder" method="post" commandName="newOrder">
-    <div class="form-group">
-        <div class="col-md-offset-3 col-md-7">
-            <input type="text" class="form-control form-style" id="title" name="title" placeholder="title" path="title">
+    <nav id="header">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href=""><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"> My orders<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="drop-menu-element"><a class="menu-element-li" href="#">Complited orders</a></li>
+                            <li class="drop-menu-element"><a class="menu-element-li" href="#">Uncomplited orders</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="menu-element" href="#">Edit profile</a></li>
+                    <li><a class="menu-element" href="#">Log out</a></li>
+                </ul>
+            </div>
         </div>
+    </nav>
+
+    <div class="col-md-offset-4 col-md-4 vertalign">
+        <form:form class="form-horizontal" id="newOrder" action="/createOrder" method="post" commandName="newOrder">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="text" class="form-control form-style" id="title" name="title" placeholder="title" path="title">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <label class="label-style" for="sel1">auditorium:</label>
+                    <select name="auditorium" class="form-control select-style" id="sel1"  onchange="getWorkPlace()" >
+                        <option value="" disabled selected>auditorium</option>
+                        <c:forEach items="${auditoriums}" var="item" varStatus="count">
+                            <option value="${item.number}">${item.number}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="label-style" for="sel2">workplace:</label>
+                    <select name="workplace_access_num" class="form-control select-style" id="sel2" path="workplace_access_num">
+                        <option value="" disabled selected>workplace</option>
+                        <option value="adf">adgvadg</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <textarea class="col-md-12" rows="5"  id="content"  name="content" path="content" placeholder="description"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <button id="btn-create-order" type="submit" class="btn btn-primary btn-block">Create order</button>
+                </div>
+            </div>
+        </form:form>
     </div>
-<br>
-<br>
 
-    <div class="col-md-offset-3 col-md-3">
-        <div class="form-inline">
-            <label for="sel1">auditorium:</label>
-            <select name="auditorium" class="form-control" id="sel1"  onchange="getWorkPlace()" >
-              <option value="" disabled selected>Select auditorium</option>
-              <c:forEach items="${auditoriums}" var="item" varStatus="count">
-                    <option value="${item.number}">${item.number}</option>
-                </c:forEach>
-            </select>
-        </div>
 
-        <div class="form-inline">
-            <label for="sel2">workplace:</label>
-            <select name="workplace_access_num" class="form-control" id="sel2" path="workplace_access_num">
-              <option value="" disabled selected>Select workplace</option>
-                <option value="adf">adgvadg</option>
-            </select>
-        </div>
+    <div class="navbar-fixed-bottom">
+        <div class="thick"></div>
+        <div class="thin"></div>
+        <div><p class="footertext"> © 2015 All Rights Reserved</p></div>
     </div>
-
-<div class="form-group">
-    <div class="col-md-offset-3 col-md-7">
-    <textarea  id="content" style="resize: none" rows="4" cols="50" name="content" path="content" placeholder="description"></textarea>
-    </div>
-</div>
-
-<div class="form-group">
-    <div class="col-md-offset-4 col-md-6">
-        <button class="button" type="submit">Create order</button>
-    </div>
-</div>
-
-
-
-</div>
-</form:form>
-
-
-<div class="navbar-fixed-bottom">
-    <div class="thick"></div>
-    <div class="thin"></div>
-    <div><p class="footertext"> © 2015 All Rights Reserved</p></div>
 </div>
 </body>
 </html>
