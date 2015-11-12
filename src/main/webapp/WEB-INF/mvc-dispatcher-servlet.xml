@@ -24,7 +24,7 @@
     <context:annotation-config/>
 
 
-    <!-- error messages and validator for registration -->
+    <!-- error messages and validators for registration and password change -->
     <bean id="messageSource"
           class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basename" value="messages"/>
@@ -32,6 +32,7 @@
     </bean>
 
     <bean id="registrationValidator" class="com.ukmaSupport.utils.RegistrationValidator"/>
+    <bean id="passChangeValidator" class="com.ukmaSupport.utils.PasswordChangeValidator"/>
     <!--><-->
 
     <!-- jdbcTemplate uses dataSource -->

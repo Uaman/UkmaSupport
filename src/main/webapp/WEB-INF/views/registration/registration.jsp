@@ -70,7 +70,7 @@
             </table>
             <div class="form-group">
                 <div class="col-md-offset-7 col-md-4">
-                    <button id="register-button" type="submit" value="Register"
+                    <button id="register-button" type="submit" value="register"
                             class="btn btn-primary btn-block button-style">Register
                     </button>
                 </div>

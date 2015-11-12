@@ -5,7 +5,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv = "Content-Type" content="text/html; charset=utf-8" />
-    <title>Home</title>
+    <title>Profile edit</title>
     <link rel="Shortcut Icon" href="" type="image/x-icon" />
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen" />
@@ -26,15 +26,15 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href=""><img id="logo" alt="brand" src="../../../resources/img/logo.png" style="width: 305px; height:65px; margin-top:11px;"></a>
+                <a href=""><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"> My orders<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li class="drop-menu-element"><a class="menu-element-li" href="/complited">Complited orders</a></li>
-                            <li class="drop-menu-element"><a class="menu-element-li" href="/uncomplited">Uncomplited orders</a></li>
+                            <li class="drop-menu-element"><a class="menu-element-li" href="/complited">Completed orders</a></li>
+                            <li class="drop-menu-element"><a class="menu-element-li" href="/uncomplited">Uncompleted orders</a></li>
                         </ul>
                     </li>
                     <li><a id = "editProfile" class="menu-element" href="/editProfile">Edit profile</a></li>
@@ -45,41 +45,45 @@
     </nav>
 
     <div>
-        <p id="hello">Hello, User!</p>
+        <p id="hello">Hello, you may edit your e-mail or your password here.</p>
     </div>
 
-    <div class="table-align">
-        <table class="tbl table table-striped table-hover">
-            <thead>
-            <tr>
-                <th>Title</th>
-                <th>Auditorium</th>
-                <th>Date</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${userOrder}" var="order">
-                <tr data-href="#">
-                    <td>${order.title}</td>
-                    <td>${order.workplace_access_num}</td>
-                    <td>${order.createdAt}</td>
+    <div id="profEdit">
+        <form:form id="passChangeForm" action="editProfile" method="post" commandName="passChangeForm">
+            <table border="0">
+                <tr>
+                    <td class="centralWord" colspan="2" align="center">Password change</td>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-    </div>
 
-<form method="get" action="/createOrder">
-    <div class="col-md-offset-7">
-        <form class="form-horizontal">
+                <tr>
+                    <td><label class="labels">New password:</label></td>
+                    <td><form:input path = "password" type="password" value=""
+                                    class="form-control form-style"/></td>
+                    <td><form:errors path = "password" class="regErrors" id="password.errors"
+                                     cssStyle="color: #ff0000;"/></td>
+                </tr>
+                <tr>
+                    <td><label class="labels">Confirm new password:</label></td>
+                    <td><form:input path = "confPassword" type="password" value=""
+                                    class="form-control form-style"/></td>
+                    <td><form:errors path = "confPassword" class="regErrors" id="confPassword.errors"
+                                     cssStyle="color: #ff0000;"/></td>
+
+                </tr>
+
+            </table>
             <div class="form-group">
-                <div class="col-md-offset-7 col-md-4">
-                    <button id="btn-add-order" type="submit" class="btn btn-primary btn-block">add order</button>
+                <div class="col-md-offset-1  col-md-4">
+                    <button id="change-pass-button" type="submit" value="editProfile"
+                            class="btn btn-primary btn-block button-style">Change Password
+                    </button>
                 </div>
             </div>
-        </form>
+        </form:form>
     </div>
-</form>
+
+
+
     <div class="navbar-fixed-bottom">
         <div class="thick"></div>
         <div class="thin"></div>
