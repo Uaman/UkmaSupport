@@ -22,7 +22,11 @@ public class OrderDaoImpl implements OrderDao {
 
     private static final String GET_ALL_ORDERS_BY_USER_ID = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE user_id=?";
 
-    private static final String GET_ORDERS_BY_USER_AND_STATUS = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE id=? AND status=?";
+    private static final String GET_ORDERS_BY_USER_AND_STATUS = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE orders.user_id=? AND orders.status=?";
+
+    private static final String GET_ORDERS_BY_ASSIST_AND_STATUS = "SELECT orders.id, orders.user_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE orders.assistant_id=? AND orders.status=?";
+
+    private static final String GET_ORDERS_BY_ASSIST = "SELECT orders.id, orders.user_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE orders.assistant_id=?";
 
     private static final String GET_ORDER_BY_ID = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE id=?";
 
@@ -92,6 +96,16 @@ public class OrderDaoImpl implements OrderDao {
 
     public List<Order> getByUserAndStatus(int userid, String status){
         return jdbcTemplate.query(GET_ORDERS_BY_USER_AND_STATUS, rowMapper);
+    }
+
+    @Override
+    public List<Order> getByAssistAndStatus(int assistid, String status) {
+        return jdbcTemplate.query(GET_ORDERS_BY_ASSIST_AND_STATUS, rowMapper);
+    }
+
+    @Override
+    public List<Order> getByAssist(int assistid) {
+        return jdbcTemplate.query(GET_ORDERS_BY_ASSIST, rowMapper);
     }
 
     private static final RowMapper<Order> rowMapper = new RowMapper<Order>() {

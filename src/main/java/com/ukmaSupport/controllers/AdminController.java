@@ -3,6 +3,7 @@ package com.ukmaSupport.controllers;
 import com.ukmaSupport.models.Auditorium;
 import com.ukmaSupport.models.Order;
 import com.ukmaSupport.models.User;
+import com.ukmaSupport.services.impl.UserServiceImpl;
 import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.OrderService;
 import com.ukmaSupport.services.interfaces.UserService;
@@ -15,8 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-public class
-        AdminController {
+public class AdminController {
 
     @Autowired
     private UserService userDao;
@@ -30,7 +30,7 @@ public class
     @Autowired
     private OrderService orderDao;
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/all", method = RequestMethod.POST)
     @ResponseBody
     public String showAllUsers(Model model) {
         List<User> users = userDao.getAll();
@@ -38,7 +38,7 @@ public class
         return "adminPage/usersList";
     }
 
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
     @ResponseBody
     public String showUsers(Model model) {
         List<User> users = userDao.getByRole("USER");
@@ -46,7 +46,7 @@ public class
         return "adminPage/usersList";
     }
 
-    @RequestMapping(value = "/assistants", method = RequestMethod.GET)
+    @RequestMapping(value = "/assistants", method = RequestMethod.POST)
     @ResponseBody
     public String showAssistants(Model model) {
         List<User> users = userDao.getByRole("ASSISTANT");
@@ -54,7 +54,7 @@ public class
         return "adminPage/usersList";
     }
 
-    @RequestMapping(value = "/professors", method = RequestMethod.GET)
+    @RequestMapping(value = "/professors", method = RequestMethod.POST)
     @ResponseBody
     public String showProfessors(Model model) {
         List<User> users = userDao.getByRole("PROFESSOR");
@@ -62,7 +62,7 @@ public class
         return "adminPage/usersList";
     }
 
-    @RequestMapping(value = "/blocked", method = RequestMethod.GET)
+    @RequestMapping(value = "/blocked", method = RequestMethod.POST)
     @ResponseBody
     public String showBlockedUsers(Model model) {
         List<User> users = userDao.getByStatus("blocked");
@@ -70,7 +70,7 @@ public class
         return "adminPage/usersList";
     }
 
-    @RequestMapping(value = "/allOrders", method = RequestMethod.GET)
+    @RequestMapping(value = "/allOrders", method = RequestMethod.POST)
     @ResponseBody
     public String showOrders(Model model) {
         List<Order> orders = orderDao.getAll();
@@ -78,7 +78,7 @@ public class
         return "adminPage/orders";
     }
 
-    @RequestMapping(value = "/auditoriums", method = RequestMethod.GET)
+    @RequestMapping(value = "/auditoriums", method = RequestMethod.POST)
     @ResponseBody
     public String showAuditoriums(Model model) {
         List<Auditorium> auditoriums = auditoriumDao.getAll();
@@ -86,15 +86,15 @@ public class
         return "adminPage/auditoriums";
     }
 
-    @RequestMapping(value = "/completedOrders", method = RequestMethod.GET)
+    @RequestMapping(value = "/completedOrders", method = RequestMethod.POST)
     @ResponseBody
     public String showCompletedOrders(Model model) {
-        List<Order> orders = orderDao.getByStatus("done");
+        List<Order> orders = orderDao.getByStatus("Done");
         model.addAttribute("orders", orders);
         return "adminPage/orders";
     }
 
-    @RequestMapping(value = "/uncompletedOrders", method = RequestMethod.GET)
+    @RequestMapping(value = "/uncompletedOrders", method = RequestMethod.POST)
     @ResponseBody
     public String showUncompletedOrders(Model model) {
         List<Order> orders = orderDao.getByStatus("Undone");
