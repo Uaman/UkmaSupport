@@ -180,9 +180,9 @@ a img {
 }
 .menu-element {
 	color: #ffffff;
-	font-family: "Century Gothic", sans-serif;
-	font-size: 19px;
-	margin-top: 25px;
+	font-family: "Century Gothic";
+	font-size: 18px;
+	margin-top: 20px;
 	margin-left:5px;
 	border-radius:7px;
 }
@@ -190,7 +190,7 @@ a img {
 .menu-element-li {
 	color: #333366;
 	font-family: "Century Gothic", sans-serif;
-	font-size: 19px;
+	font-size: 18px;
 	margin-top: 3px;
 	border-radius:7px;
 }
