@@ -17,6 +17,7 @@
 
     <dependencies>
 
+
         <!-- Spring Security -->
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -138,6 +139,7 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
         </dependency>
+
 
 
     </dependencies>

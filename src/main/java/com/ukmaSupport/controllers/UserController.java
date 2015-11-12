@@ -35,6 +35,7 @@ public class UserController {
     private WorkplaceService workplaceService;
 
 
+
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
     public @ResponseBody List<Workplace> getCharNum(@RequestParam("text") String text) {
         System.out.println(text);
@@ -65,7 +66,7 @@ public class UserController {
         return "redirect:/userhome";
     }
    @RequestMapping(value = "/userhome" , method = RequestMethod.GET)
-    public String listUsersOrders(ModelMap model) {
+    public String listUsersOrder(ModelMap model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
         int userid = (Integer) session.getAttribute("id");
@@ -73,13 +74,11 @@ public class UserController {
         System.out.println(userid);
         List<Order> orders =  orderService.getByUserId(userid);
         model.addAttribute("userOrder", orders);
-        model.addAttribute("message", "Gt");
-
         return "userPage/userHomePage";
     }
 
-    @RequestMapping(value = "/uncompleted" , method = RequestMethod.GET)
-    public String uncompletedOrders(ModelMap model) {
+    @RequestMapping(value = "/uncomplited" , method = RequestMethod.GET)
+    public String uncomlitedOrder(ModelMap model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
         int userid = (Integer) session.getAttribute("id");
@@ -90,8 +89,8 @@ public class UserController {
         return "userPage/userHomePage";
     }
 
-    @RequestMapping(value = "/completed" , method = RequestMethod.GET)
-    public String completedOrders(ModelMap model) {
+    @RequestMapping(value = "/complited" , method = RequestMethod.GET)
+    public String comlitedOrder(ModelMap model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
 

@@ -28,6 +28,14 @@
                         </ul>
                     </li>
                     <li class="dropdown">
+                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#">A<b
+                                class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="menu-element-li" href="/createAuditorium">Add Auditorium</a></li>
+                            <li><a class="menu-element-li" href="/auditoriums">Auditoriums</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
                         <a class="dropdown-toggle menu-element active" data-toggle="dropdown" href="#">Users<b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -47,7 +55,7 @@
                             <li><a class="menu-element-li" href="/uncompletedOrders">Uncomplited orders</a></li>
                         </ul>
                     </li>
-                    <li><a class="menu-element" href="#">Edit profile</a></li>
+                    <li><a id = "editProfile" class="menu-element" href="/editProfile">Edit profile</a></li>
                     <li><a class="menu-element" href="#">Log out</a></li>
                 </ul>
             </div>

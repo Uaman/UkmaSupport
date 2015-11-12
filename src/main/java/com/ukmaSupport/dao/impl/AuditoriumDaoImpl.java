@@ -1,8 +1,8 @@
 package com.ukmaSupport.dao.impl;
 
-import com.ukmaSupport.dao.interfaces.AuditoriumDao;
-import com.ukmaSupport.dao.mapper.AuditoriumMapper;
 import com.ukmaSupport.models.Auditorium;
+import com.ukmaSupport.dao.mapper.AuditoriumMapper;
+import com.ukmaSupport.dao.interfaces.AuditoriumDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
