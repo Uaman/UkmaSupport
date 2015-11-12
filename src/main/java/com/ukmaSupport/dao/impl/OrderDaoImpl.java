@@ -51,6 +51,11 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
+    public List<Order> getUserStatus(int user_id, String status) {
+        return null;
+    }
+
+    @Override
     public void createOrUpdate(final Order order) {
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
