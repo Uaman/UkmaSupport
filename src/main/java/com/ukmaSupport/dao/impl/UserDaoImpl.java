@@ -22,6 +22,10 @@ public class UserDaoImpl implements UserDao {
 
     private static final String GET_ALL_USERS = "SELECT users.id_user, user_roles.role, users.first_name, users.last_name, users.email, users.data_entry, users.password, users.status_account FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid";
 
+    private static final String GET_ALL_USERS_BY_ROLE = "SELECT users.id_user, user_roles.role, users.first_name, users.last_name, users.email, users.data_entry, users.password, users.status_account FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid WHERE user_roles.role = ?";
+
+    private static final String GET_ALL_USERS_BY_STATUS = "SELECT users.id_user, user_roles.role, users.first_name, users.last_name, users.email, users.data_entry, users.password, users.status_account FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid WHERE users.status_account = ?";
+
     private static final String GET_USER_BY_ID = "SELECT users.id_user, user_roles.role, users.first_name, users.last_name, users.email, users.data_entry, users.password, users.status_account FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid WHERE id_user = ? ";
 
     private static final String GET_USER_BY_EMAIL = "SELECT users.id_user, user_roles.role, users.first_name, users.last_name, users.email, users.data_entry, users.password, users.status_account FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid WHERE email = ? ";
@@ -77,6 +81,16 @@ public class UserDaoImpl implements UserDao {
     public User getByEmail(String email) {
         List<User> users = jdbcTemplate.query(GET_USER_BY_EMAIL, new Object[]{email}, rowMapper);
         return users.isEmpty() ? null : users.get(0);
+    }
+
+    @Override
+    public List<User> getByRole(String role) {
+        return jdbcTemplate.query(GET_ALL_USERS_BY_ROLE, new Object[]{role}, rowMapper);
+    }
+
+    @Override
+    public List<User> getByStatus(String status) {
+        return jdbcTemplate.query(GET_ALL_USERS_BY_STATUS, new Object[]{status}, rowMapper);
     }
 
     private static final RowMapper<User> rowMapper = new RowMapper<User>() {

@@ -19,7 +19,17 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a class="menu-element active" href="/users">Users</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle menu-element active" data-toggle="dropdown" href="#">Users<b
+                                class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="menu-element-li" href="/all">All</a></li>
+                            <li><a class="menu-element-li" href="/users">Users</a></li>
+                            <li><a class="menu-element-li" href="/assistants">Assistants</a></li>
+                            <li><a class="menu-element-li" href="/professors">Professors</a></li>
+                            <li><a class="menu-element-li" href="/blocked">Blocked users</a></li>
+                        </ul>
+                    </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#">Orders<b
                                 class="caret"></b></a>
