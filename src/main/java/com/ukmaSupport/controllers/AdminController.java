@@ -10,9 +10,7 @@ import com.ukmaSupport.services.interfaces.WorkplaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -31,9 +29,37 @@ public class AdminController {
     @Autowired
     private OrderService orderDao;
 
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public String showAllUsers(Model model) {
+        List<User> users = userDao.getAll();
+        model.addAttribute("users", users);
+        return "adminPage/usersList";
+    }
+
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String showUsers(Model model) {
-        List<User> users = userDao.getAll();
+        List<User> users = userDao.getByRole("USER");
+        model.addAttribute("users", users);
+        return "adminPage/usersList";
+    }
+
+    @RequestMapping(value = "/assistants", method = RequestMethod.GET)
+    public String showAssistants(Model model) {
+        List<User> users = userDao.getByRole("ASSISTANT");
+        model.addAttribute("users", users);
+        return "adminPage/usersList";
+    }
+
+    @RequestMapping(value = "/professors", method = RequestMethod.GET)
+    public String showProfessors(Model model) {
+        List<User> users = userDao.getByRole("PROFESSOR");
+        model.addAttribute("users", users);
+        return "adminPage/usersList";
+    }
+
+    @RequestMapping(value = "/blocked", method = RequestMethod.GET)
+    public String showBlockedUsers(Model model) {
+        List<User> users = userDao.getByStatus("blocked");
         model.addAttribute("users", users);
         return "adminPage/usersList";
     }
@@ -48,7 +74,7 @@ public class AdminController {
     @RequestMapping(value = "/auditoriums", method = RequestMethod.GET)
     public String showAuditoriums(Model model) {
         List<Auditorium> auditoriums = auditoriumDao.getAll();
-        //model.addAttribute("auditoriums", auditoriums);
+        model.addAttribute("auditoriums", auditoriums);
         return "adminPage/auditoriums";
     }
 

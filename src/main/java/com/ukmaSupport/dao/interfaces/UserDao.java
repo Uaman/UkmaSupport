@@ -15,4 +15,8 @@ public interface UserDao {
     List<User> getAll();
 
     User getByEmail(String email);
+
+    List<User> getByRole(String role);
+
+    List<User> getByStatus(String status);
 }
