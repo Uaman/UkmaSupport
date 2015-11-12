@@ -32,7 +32,7 @@ public class LabAssistController {
 
 
     @RequestMapping(value = "/allAssistOrders", method = RequestMethod.POST)
-    @ResponseBody
+ //   @ResponseBody
     public String showAllAssistOrders(Model model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
@@ -44,7 +44,7 @@ public class LabAssistController {
     }
 
     @RequestMapping(value = "/assistCompletedOrders", method = RequestMethod.POST)
-    @ResponseBody
+  //  @ResponseBody
     public String showAsistCompletedOrders(Model model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
@@ -56,7 +56,7 @@ public class LabAssistController {
     }
 
     @RequestMapping(value = "/assistUncompletedOrders", method = RequestMethod.POST)
-    @ResponseBody
+  //  @ResponseBody
     public String showAssistUncompletedOrders(Model model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
@@ -68,19 +68,19 @@ public class LabAssistController {
     }
 
     @RequestMapping(value = "/editAssistProfile" , method = RequestMethod.POST)
-    @ResponseBody
+   // @ResponseBody
     public String editProfile(ModelMap model) {
        return userController.editProfile(model);
     }
 
     @RequestMapping(value = "/createAssistOrder" , method = RequestMethod.GET)
-    @ResponseBody
+//    @ResponseBody
     public String createAssistOrder(ModelMap model) {
         return userController.createOrder(model);
     }
 
     @RequestMapping(value = "/createAssistOrder" , method = RequestMethod.POST)
-    @ResponseBody
+ //   @ResponseBody
     public String createAssistOrderPost(Order order,ModelMap model, BindingResult result) {
         return userController.createOrderPost(order, model, result);
     }
