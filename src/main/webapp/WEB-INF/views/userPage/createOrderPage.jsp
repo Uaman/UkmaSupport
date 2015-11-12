@@ -58,7 +58,7 @@
                             <li class="drop-menu-element"><a class="menu-element-li" href="#">Uncomplited orders</a></li>
                         </ul>
                     </li>
-                    <li><a class="menu-element" href="#">Edit profile</a></li>
+                    <li><a id = "editProfile" class="menu-element" href="/editProfile">Edit profile</a></li>
                     <li><a class="menu-element" href="#">Log out</a></li>
                 </ul>
             </div>
