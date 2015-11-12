@@ -26,8 +26,7 @@ public class LabAssistController {
     private UserController userController;
 
 
-    @RequestMapping(value = "/allAssistOrders", method = RequestMethod.POST)
- //   @ResponseBody
+    @RequestMapping(value = "/allAssistOrders", method = RequestMethod.GET)
     public String showAllAssistOrders(Model model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
@@ -38,8 +37,7 @@ public class LabAssistController {
         return "assistPage/assistHomePage";
     }
 
-    @RequestMapping(value = "/assistCompletedOrders", method = RequestMethod.POST)
-  //  @ResponseBody
+    @RequestMapping(value = "/assistCompletedOrders", method = RequestMethod.GET)
     public String showAsistCompletedOrders(Model model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
@@ -50,8 +48,7 @@ public class LabAssistController {
         return "assistPage/assistHomePage";
     }
 
-    @RequestMapping(value = "/assistUncompletedOrders", method = RequestMethod.POST)
-  //  @ResponseBody
+    @RequestMapping(value = "/assistUncompletedOrders", method = RequestMethod.GET)
     public String showAssistUncompletedOrders(Model model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
@@ -62,20 +59,17 @@ public class LabAssistController {
         return "assistPage/assistHomePage";
     }
 
-    @RequestMapping(value = "/editAssistProfile" , method = RequestMethod.POST)
-   // @ResponseBody
+    @RequestMapping(value = "/editAssistProfile" , method = RequestMethod.GET)
     public String editProfile(ModelMap model) {
        return userController.editProfile(model);
     }
 
     @RequestMapping(value = "/createAssistOrder" , method = RequestMethod.GET)
-//    @ResponseBody
     public String createAssistOrder(ModelMap model) {
         return userController.createOrder(model);
     }
 
     @RequestMapping(value = "/createAssistOrder" , method = RequestMethod.POST)
- //   @ResponseBody
     public String createAssistOrderPost(Order order,ModelMap model, BindingResult result) {
         return userController.createOrderPost(order, model, result);
     }
