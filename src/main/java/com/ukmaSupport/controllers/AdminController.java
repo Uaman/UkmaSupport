@@ -32,13 +32,13 @@ public class AdminController {
     @Autowired
     private OrderService orderService;
 
-    final static String USER = "USER";
-    final static String ASSISTANT = "ASSISTANT";
-    final static String PROFESSOR = "PROFESSOR";
+    private final static String USER = "USER";
+    private final static String ASSISTANT = "ASSISTANT";
+    private final static String PROFESSOR = "PROFESSOR";
 
-    final static String BLOCKED = "blocked";
-    final static String DONE = "done";
-    final static String UNDONE = "Undone";
+    private final static String BLOCKED = "blocked";
+    private final static String DONE = "done";
+    private final static String UNDONE = "Undone";
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String showAllUsers(Model model) {
@@ -95,9 +95,6 @@ public class AdminController {
         model.addAttribute("orders", orders);
         return "adminPage/orders";
     }
-
-
-
 
     @RequestMapping(value = "/auditoriums", method = RequestMethod.GET)
     public String showAuditoriums(Model model) {
