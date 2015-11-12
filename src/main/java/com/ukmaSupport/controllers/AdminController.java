@@ -102,22 +102,7 @@ public class AdminController {
         model.addAttribute("listUsers", listUsers);
         return "excelView";
     }
-    @RequestMapping(value = "/createAuditorium", method = RequestMethod.GET)
-    public String createOrder(ModelMap model) {
-        Auditorium order = new Auditorium();
-        List<User> users = userDao.getByRole("ASSISTANT");
-        model.addAttribute("newAuditorium", order);
-        model.addAttribute("assistants", users);
-        return "adminPage/addAuditorium";
-    }
 
-    @RequestMapping(value = "/createAuditorium", method = RequestMethod.POST)
-    public String createOrderPost(@ModelAttribute("newAuditorium") Auditorium auditorium,ModelMap model, BindingResult result) {
-        model.addAttribute("number", auditorium.getNumber());
-
-        auditoriumDao.save(auditorium);
-        return "redirect:/all";
-    }
     @RequestMapping(value = "/createAuditorium", method = RequestMethod.GET)
        public String createAuditorium(ModelMap model) {
         Auditorium order = new Auditorium();
@@ -128,7 +113,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/createAuditorium", method = RequestMethod.POST)
-    public String createAuditoriumPost(@ModelAttribute("newAuditorium") Auditorium auditorium,ModelMap model, BindingResult result) {
+    public String saveAuditorium(@ModelAttribute("newAuditorium") Auditorium auditorium,ModelMap model, BindingResult result) {
         model.addAttribute("number", auditorium.getNumber());
 
         auditoriumDao.save(auditorium);
