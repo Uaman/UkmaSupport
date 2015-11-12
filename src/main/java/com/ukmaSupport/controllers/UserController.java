@@ -86,8 +86,6 @@ public class UserController {
         System.out.println(userid);
         List<Order> orders =  orderService.getByUserIdStatus(userid,status);
         model.addAttribute("userOrder", orders);
-        model.addAttribute("message", "Gt");
-
         return "userPage/userHomePage";
     }
     @RequestMapping(value = "/complited" , method = RequestMethod.GET)
@@ -100,8 +98,6 @@ public class UserController {
         System.out.println(userid);
         List<Order> orders =  orderService.getByUserIdStatus(userid,status);
         model.addAttribute("userOrder", orders);
-        model.addAttribute("message", "Gt");
-
         return "userPage/userHomePage";
     }
 
