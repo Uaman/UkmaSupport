@@ -20,14 +20,6 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#">A<b
-                                class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a class="menu-element-li" href="/createAuditorium">Add Auditorium</a></li>
-                            <li><a class="menu-element-li" href="/auditoriums">Auditoriums</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
                         <a class="dropdown-toggle menu-element active" data-toggle="dropdown" href="#">Users<b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">

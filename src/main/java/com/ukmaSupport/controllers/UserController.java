@@ -32,7 +32,6 @@ public class UserController {
     private WorkplaceService workplaceDao;
 
 
-
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
     public @ResponseBody List<Workplace> getCharNum(@RequestParam("text") String text) {
         System.out.println(text);
@@ -63,7 +62,7 @@ public class UserController {
         return "redirect:/userhome";
     }
    @RequestMapping(value = "/userhome" , method = RequestMethod.GET)
-    public String listUsersOrder(ModelMap model) {
+    public String listUsersOrders(ModelMap model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
 
@@ -76,8 +75,8 @@ public class UserController {
 
         return "userPage/userHomePage";
     }
-    @RequestMapping(value = "/uncomplited" , method = RequestMethod.GET)
-    public String uncomlitedOrder(ModelMap model) {
+    @RequestMapping(value = "/uncompleted" , method = RequestMethod.GET)
+    public String uncompletedOrders(ModelMap model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
 
@@ -86,10 +85,12 @@ public class UserController {
         System.out.println(userid);
         List<Order> orders =  orderService.getByUserIdStatus(userid,status);
         model.addAttribute("userOrder", orders);
+        model.addAttribute("message", "Gt");
+
         return "userPage/userHomePage";
     }
-    @RequestMapping(value = "/complited" , method = RequestMethod.GET)
-    public String comlitedOrder(ModelMap model) {
+    @RequestMapping(value = "/completed" , method = RequestMethod.GET)
+    public String completedOrders(ModelMap model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
 
@@ -101,4 +102,8 @@ public class UserController {
         return "userPage/userHomePage";
     }
 
+    @RequestMapping(value = "/editProfile" , method = RequestMethod.GET)
+    public String editProfile(ModelMap model) {
+        return "userPage/editProfile";
+    }
 }
