@@ -76,8 +76,8 @@ public class UserController {
 
         return "userPage/userHomePage";
     }
-    @RequestMapping(value = "/uncomplited" , method = RequestMethod.GET)
-    public String uncomlitedOrder(ModelMap model) {
+    @RequestMapping(value = "/uncompleted" , method = RequestMethod.GET)
+    public String uncompletedOrders(ModelMap model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
 
@@ -88,8 +88,8 @@ public class UserController {
         model.addAttribute("userOrder", orders);
         return "userPage/userHomePage";
     }
-    @RequestMapping(value = "/complited" , method = RequestMethod.GET)
-    public String comlitedOrder(ModelMap model) {
+    @RequestMapping(value = "/completed" , method = RequestMethod.GET)
+    public String completedOrders(ModelMap model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
 
