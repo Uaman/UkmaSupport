@@ -18,8 +18,8 @@ import java.util.List;
 @Controller
 public class AssistController {
 
-    final static String DONE = "done";
-    final static String UNDONE = "Undone";
+    private final static String DONE = "done";
+    private final static String UNDONE = "Undone";
 
     @Autowired
     UserController userController;

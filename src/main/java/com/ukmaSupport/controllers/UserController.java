@@ -22,8 +22,8 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    final static String DONE = "done";
-    final static String UNDONE = "Undone";
+    private final static String DONE = "done";
+    private final static String UNDONE = "Undone";
 
     @Autowired
     private OrderService orderService;
