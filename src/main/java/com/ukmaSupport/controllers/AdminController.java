@@ -36,35 +36,35 @@ public class AdminController {
     public String showAllUsers(Model model) {
         List<User> users = userDao.getAll();
         model.addAttribute("users", users);
-        return "adminPage/usersList";
+        return "adminPage/users";
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String showUsers(Model model) {
         List<User> users = userDao.getByRole("USER");
         model.addAttribute("users", users);
-        return "adminPage/usersList";
+        return "adminPage/users";
     }
 
     @RequestMapping(value = "/assistants", method = RequestMethod.GET)
     public String showAssistants(Model model) {
         List<User> users = userDao.getByRole("ASSISTANT");
         model.addAttribute("users", users);
-        return "adminPage/usersList";
+        return "adminPage/users";
     }
 
     @RequestMapping(value = "/professors", method = RequestMethod.GET)
     public String showProfessors(Model model) {
         List<User> users = userDao.getByRole("PROFESSOR");
         model.addAttribute("users", users);
-        return "adminPage/usersList";
+        return "adminPage/users";
     }
 
     @RequestMapping(value = "/blocked", method = RequestMethod.GET)
     public String showBlockedUsers(Model model) {
         List<User> users = userDao.getByStatus("blocked");
         model.addAttribute("users", users);
-        return "adminPage/usersList";
+        return "adminPage/users";
     }
 
     @RequestMapping(value = "/allOrders", method = RequestMethod.GET)
