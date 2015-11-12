@@ -12,6 +12,8 @@ public interface OrderService {
 
     List<Order> getByUserId(int user_id);
 
+    List<Order> getByUserIdStatus(int user_id,String status);
+
     void createOrUpdate(Order order);
 
     void delete(int id);

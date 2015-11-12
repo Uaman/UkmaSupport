@@ -12,6 +12,8 @@ public interface OrderDao {
 
     List<Order> getByUserId(int user_id);
 
+    List<Order> getUserStatus(int user_id,String status);
+
     void createOrUpdate(Order order);
 
     void delete(int id);
