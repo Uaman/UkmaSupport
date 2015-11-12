@@ -40,7 +40,6 @@ public class UserController {
     public @ResponseBody List<Workplace> getCharNum(@RequestParam("text") String text) {
         System.out.println(text);
         List<Workplace> workplaces = workplaceService.getByAuditoryName(text);
-
         return workplaces;
     }
 
@@ -61,7 +60,8 @@ public class UserController {
         order.setStatus(UNDONE);
         order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
         order.setAssistantId(order.getUserId());
-        order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
+        //order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
+        System.out.println(order.getWorkplace().getAccessNumber());
         orderService.createOrUpdate(order);
         return "redirect:/userhome";
     }

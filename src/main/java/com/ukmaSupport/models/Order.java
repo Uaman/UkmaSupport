@@ -6,20 +6,29 @@ public class Order {
     private int id;
     private int userId;
     private int assistantId;
-    private int workplace_id;
-    private String workplace_access_num;
+    private Workplace workplace;
+//    private int workplace_id;
+//    private String workplace_access_num;
     private String title;
     private String content;
     private Timestamp createdAt;
     private String status;
 
-    public int getWorkplace_id() {
-        return workplace_id;
+    public Workplace getWorkplace() {
+        return workplace;
     }
 
-    public void setWorkplace_id(int workplace_id) {
-        this.workplace_id = workplace_id;
+    public void setWorkplace(Workplace workplace) {
+        this.workplace = workplace;
     }
+
+    //    public int getWorkplace_id() {
+//        return workplace_id;
+//    }
+//
+//    public void setWorkplace_id(int workplace_id) {
+//        this.workplace_id = workplace_id;
+//    }
 
     public int getId() {
         return id;
@@ -46,13 +55,13 @@ public class Order {
         this.assistantId = assistantId;
     }
 
-    public String getWorkplace_access_num() {
-        return workplace_access_num;
-    }
-
-    public void setWorkplace_access_num(String workplace_access_num) {
-        this.workplace_access_num = workplace_access_num;
-    }
+//    public String getWorkplace_access_num() {
+//        return workplace_access_num;
+//    }
+//
+//    public void setWorkplace_access_num(String workplace_access_num) {
+//        this.workplace_access_num = workplace_access_num;
+//    }
 
     public String getTitle() {
         return title;
@@ -92,7 +101,7 @@ public class Order {
                 "id=" + id +
                 ", userId=" + userId +
                 ", assistantId=" + assistantId +
-                ", workplace_access_num='" + workplace_access_num + '\'' +
+               // ", workplace_access_num='" + workplace_access_num + '\'' +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", createdAt=" + createdAt +

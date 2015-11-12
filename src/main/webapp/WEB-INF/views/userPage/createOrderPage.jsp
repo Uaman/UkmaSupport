@@ -84,7 +84,7 @@
                 </div>
                 <div class="col-md-6">
                     <label class="label-style" for="sel2">workplace:</label>
-                    <select name="workplace_access_num" class="form-control select-style" id="sel2" path="workplace_access_num">
+                    <select name="workplace_access_num" class="form-control select-style" id="sel2" path="workplace.accessNumber">
                         <option value="" disabled selected>workplace</option>
                         <option value="adf">adgvadg</option>
                     </select>
