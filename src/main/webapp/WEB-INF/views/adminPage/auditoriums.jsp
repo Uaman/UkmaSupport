@@ -23,7 +23,7 @@
                         <a class="dropdown-toggle menu-element active" data-toggle="dropdown" href="#">A<b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a class="menu-element-li" href="/addAuditorium">Add Auditorium</a></li>
+                            <li><a class="menu-element-li" href="/createAuditorium">Add Auditorium</a></li>
                             <li><a class="menu-element-li" href="/auditoriums">Auditoriums</a></li>
                         </ul>
                     </li>

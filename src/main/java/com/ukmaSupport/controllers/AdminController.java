@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -75,13 +74,6 @@ public class AdminController {
         return "adminPage/orders";
     }
 
-    @RequestMapping(value = "/auditoriums", method = RequestMethod.GET)
-    public String showAuditoriums(Model model) {
-        List<Auditorium> auditoriums = auditoriumDao.getAll();
-        model.addAttribute("auditoriums", auditoriums);
-        return "adminPage/auditoriums";
-    }
-
     @RequestMapping(value = "/completedOrders", method = RequestMethod.GET)
     public String showCompletedOrders(Model model) {
         List<Order> orders = orderDao.getByStatus("done");
@@ -96,15 +88,15 @@ public class AdminController {
         return "adminPage/orders";
     }
 
-    @RequestMapping(value = "/downloadExcel", method = RequestMethod.GET)
-    public String downloadExcel(Model model) {
-        List<User> listUsers = userDao.getAll();
-        model.addAttribute("listUsers", listUsers);
-        return "excelView";
+    @RequestMapping(value = "/auditoriums", method = RequestMethod.GET)
+    public String showAuditoriums(Model model) {
+        List<Auditorium> auditoriums = auditoriumDao.getAll();
+        model.addAttribute("auditoriums", auditoriums);
+        return "adminPage/auditoriums";
     }
 
     @RequestMapping(value = "/createAuditorium", method = RequestMethod.GET)
-       public String createAuditorium(ModelMap model) {
+    public String createAuditorium(ModelMap model) {
         Auditorium order = new Auditorium();
         List<User> users = userDao.getByRole("ASSISTANT");
         model.addAttribute("newAuditorium", order);
@@ -113,10 +105,16 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/createAuditorium", method = RequestMethod.POST)
-    public String saveAuditorium(@ModelAttribute("newAuditorium") Auditorium auditorium,ModelMap model, BindingResult result) {
+    public String saveAuditorium(@ModelAttribute("newAuditorium") Auditorium auditorium, ModelMap model) {
         model.addAttribute("number", auditorium.getNumber());
-
         auditoriumDao.save(auditorium);
         return "redirect:/all";
+    }
+
+    @RequestMapping(value = "/downloadExcel", method = RequestMethod.GET)
+    public String downloadExcel(Model model) {
+        List<User> listUsers = userDao.getAll();
+        model.addAttribute("listUsers", listUsers);
+        return "excelView";
     }
 }
