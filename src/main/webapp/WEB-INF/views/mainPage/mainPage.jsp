@@ -39,7 +39,7 @@
     <div id = "header">
 
         <div>
-            <a href="/"><img id="logo" alt="brand" src="../resources/img/logo.png" /></a>
+            <a href="/"><img id="logo" alt="brand" src="../resources/img/logo.png" style="width: 305px; height:65px; margin-top:11px;"/></a>
         </div>
 
         <div class="collapse navbar-collapse">
@@ -84,7 +84,7 @@
             </div>
 
             <div class="col-md-offset-1">
-                <a id="forgotpassword" href="#">Forgot password?</a>
+                <a id="forgotpassword" href="/forgotPassword">Forgot password?</a>
             </div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 

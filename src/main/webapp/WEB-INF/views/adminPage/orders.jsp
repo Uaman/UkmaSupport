@@ -15,10 +15,18 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href=""><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                <a href=""><img id="logo" alt="brand" src="../../../resources/img/logo.png" style="width: 305px; height:65px; margin-top:11px;"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#">Auditoriums<b
+                                class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="menu-element-li" href="/createAuditorium">Add Auditorium</a></li>
+                            <li><a class="menu-element-li" href="/auditoriums">Auditoriums</a></li>
+                        </ul>
+                    </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#">Users<b
                                 class="caret"></b></a>

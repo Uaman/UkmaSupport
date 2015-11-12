@@ -5,7 +5,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv = "Content-Type" content="text/html; charset=utf-8" />
-    <title>userhome</title>
+    <title>Home</title>
     <link rel="Shortcut Icon" href="" type="image/x-icon" />
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen" />
@@ -26,7 +26,7 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href=""><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                <a href=""><img id="logo" alt="brand" src="../../../resources/img/logo.png" style="width: 305px; height:65px; margin-top:11px;"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -49,7 +49,7 @@
     </div>
 
     <div class="table-align">
-        <table class="tbl table table-striped">
+        <table class="tbl table table-striped table-hover">
             <thead>
             <tr>
                 <th>Title</th>

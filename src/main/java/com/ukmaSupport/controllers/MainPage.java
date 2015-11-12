@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 public class MainPage {
 
     @Autowired
-    private UserService userDao;
+    private UserService userService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
@@ -42,7 +42,7 @@ public class MainPage {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
-        session.setAttribute("id", userDao.getByEmail(auth.getName()).getId());
+        session.setAttribute("id", userService.getByEmail(auth.getName()).getId());
         return "redirect:/userhome";
     }
 }

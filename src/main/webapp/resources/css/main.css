@@ -28,11 +28,11 @@ body{
 
 #header{
 	background-color: #333366;
-	height: 100px;
+	height: 85px;
 }
 
 #logo{
-	margin-top: 15px;
+	padding: 5px;
 }
 
 #time{
@@ -180,9 +180,9 @@ a img {
 }
 .menu-element {
 	color: #ffffff;
-	font-family: "Century Gothic", sans-serif;
-	font-size: 19px;
-	margin-top: 25px;
+	font-family: "Century Gothic";
+	font-size: 18px;
+	margin-top: 20px;
 	margin-left:5px;
 	border-radius:7px;
 }
@@ -190,7 +190,7 @@ a img {
 .menu-element-li {
 	color: #333366;
 	font-family: "Century Gothic", sans-serif;
-	font-size: 19px;
+	font-size: 18px;
 	margin-top: 3px;
 	border-radius:7px;
 }
@@ -202,5 +202,25 @@ a img {
 }
 .active:hover{
 	color: #333366;
+}
+#content {
+	border-color: #333366;
+	border-radius: 7px;
+	padding: 10px;
+	resize: none;
+}
+#btn-create-order {
+	background-color: #333366;
+	border-radius: 7px;
+	margin-top: 15px;
+}
+.select-style {
+	border-color: #333366;
+	border-radius: 7px;
+}
+.label-style {
+	font-family: "Century Gothic", sans-serif;
+	color: #333366;
+	padding-bottom: 5px;
 }
 

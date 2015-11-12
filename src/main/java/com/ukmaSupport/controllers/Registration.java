@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/register")
 public class Registration {
     @Autowired
-    private UserService userDao;
+    private UserService userService;
 
     @Autowired
     private RegistrationMail registrationMail;
@@ -43,10 +43,10 @@ public class Registration {
         if (result.hasErrors())
             return "registration/registration";
         user = PasswordEncryptor.encodeUser(user);
-        userDao.saveOrUpdate(user);
+        userService.saveOrUpdate(user);
 
         String email = user.getEmail();
-        user = userDao.getByEmail(email);
+        user = userService.getByEmail(email);
         registrationMail.send(email, Constants.LOCAL_SERVER + Constants.VERIFICATION + user.getId());
 
         return "registration/registrationSuccess";

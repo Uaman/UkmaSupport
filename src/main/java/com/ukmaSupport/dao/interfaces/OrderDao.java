@@ -5,7 +5,6 @@ import com.ukmaSupport.models.Order;
 import java.util.List;
 
 public interface OrderDao {
-    /**/
 
     Order getById(int id);
 
@@ -21,9 +20,8 @@ public interface OrderDao {
 
     List<Order> getAll();
 
-    List<Order> getByUserAndStatus(int userid, String status);
+    List<Order> getAllAssistOrders(int assistid);
 
     List<Order> getByAssistAndStatus(int assistid, String status);
 
-    List<Order> getByAssist(int assistid);
 }
