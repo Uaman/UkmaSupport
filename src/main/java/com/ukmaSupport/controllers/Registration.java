@@ -1,11 +1,11 @@
 package com.ukmaSupport.controllers;
 
 import com.ukmaSupport.mailService.templates.RegistrationMail;
-import com.ukmaSupport.models.*;
+import com.ukmaSupport.models.User;
 import com.ukmaSupport.services.interfaces.UserService;
 import com.ukmaSupport.utils.Constants;
-import com.ukmaSupport.utils.RegistrationValidator;
 import com.ukmaSupport.utils.PasswordEncryptor;
+import com.ukmaSupport.utils.RegistrationValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;

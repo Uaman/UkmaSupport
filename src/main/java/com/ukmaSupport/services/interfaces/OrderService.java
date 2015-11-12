@@ -19,4 +19,10 @@ public interface OrderService {
     void delete(int id);
 
     List<Order> getAll();
+
+    List<Order> getByUserAndStatus(int userid, String status);
+
+    List<Order> getByAssistAndStatus(int assistid, String status);
+
+    List<Order> getByAssist(int assistid);
 }

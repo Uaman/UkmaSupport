@@ -5,6 +5,7 @@ import com.ukmaSupport.models.Order;
 import java.util.List;
 
 public interface OrderDao {
+    /**/
 
     Order getById(int id);
 
@@ -19,4 +20,10 @@ public interface OrderDao {
     void delete(int id);
 
     List<Order> getAll();
+
+    List<Order> getByUserAndStatus(int userid, String status);
+
+    List<Order> getByAssistAndStatus(int assistid, String status);
+
+    List<Order> getByAssist(int assistid);
 }

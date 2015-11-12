@@ -12,9 +12,10 @@ import java.util.List;
 
 @Service("orderService")
 public class OrderServiceImpl implements OrderService {
+    /**/
 
     @Autowired
-    private OrderDao orderDao;
+    private static OrderDao orderDao;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
@@ -56,5 +57,20 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getAll() {
         return orderDao.getAll();
+    }
+
+    @Override
+    public List<Order> getByUserAndStatus(int userid, String status) {
+        return orderDao.getByUserAndStatus(userid, status);
+    }
+
+    @Override
+    public List<Order> getByAssistAndStatus(int assistid, String status) {
+        return orderDao.getByAssistAndStatus(assistid, status);
+    }
+
+    @Override
+    public List<Order> getByAssist(int assistid) {
+        return orderDao.getByAssist(assistid);
     }
 }
