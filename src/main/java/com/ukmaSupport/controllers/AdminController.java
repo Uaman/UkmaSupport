@@ -42,7 +42,7 @@ public class AdminController {
     public String showOrders(Model model) {
         List<Order> orders = orderDao.getAll();
         model.addAttribute("orders", orders);
-        return "adminPage/allOrders";
+        return "adminPage/orders";
     }
 
     @RequestMapping(value = "/auditoriums", method = RequestMethod.GET)

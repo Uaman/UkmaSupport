@@ -46,6 +46,7 @@
                 <th>Title</th>
                 <th>Auditorium</th>
                 <th>Date</th>
+                <th>Status</th>
             </tr>
             </thead>
             <tbody>
@@ -54,6 +55,7 @@
                     <td>${orders.title}</td>
                     <td>${orders.workplace_access_num}</td>
                     <td>${orders.createdAt}</td>
+                    <td>${orders.status}</td>
                 </tr>
             </c:forEach>
             </tbody>
