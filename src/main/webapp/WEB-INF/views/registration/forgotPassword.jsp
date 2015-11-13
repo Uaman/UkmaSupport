@@ -14,7 +14,7 @@
 
   <form method="POST" name="forgotPassword" action="/forgotPassword">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-    Email: <input name="email" value="${email}" type="text" />
+    Email: <input name="email" type="email" value="${email}"  />
 
     <br />
     <input value="Send email" type="submit" />

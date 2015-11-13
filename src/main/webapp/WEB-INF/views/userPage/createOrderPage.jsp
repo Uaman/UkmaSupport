@@ -58,7 +58,7 @@
                             <li class="drop-menu-element"><a class="menu-element-li" href="#">Uncomplited orders</a></li>
                         </ul>
                     </li>
-                    <li><a class="menu-element" href="#">Edit profile</a></li>
+                    <li><a id = "editProfile" class="menu-element" href="/editProfile">Edit profile</a></li>
                     <li><a class="menu-element" href="#">Log out</a></li>
                 </ul>
             </div>
@@ -84,9 +84,8 @@
                 </div>
                 <div class="col-md-6">
                     <label class="label-style" for="sel2">workplace:</label>
-                    <select name="workplace_access_num" class="form-control select-style" id="sel2" path="workplace_access_num">
+                    <select name="workplace_access_num" class="form-control select-style" id="sel2" path="workplace.accessNumber">
                         <option value="" disabled selected>workplace</option>
-                        <option value="adf">adgvadg</option>
                     </select>
                 </div>
             </div>
