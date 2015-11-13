@@ -11,7 +11,33 @@
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen" />
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="jquery.tablesort.js"></script>
+
     <script>
+        function formatDate(date, fmt) {
+            function pad(value) {
+                return (value.toString().length < 2) ? '0' + value : value;
+            }
+            return fmt.replace(/%([a-zA-Z])/g, function (_, fmtCode) {
+                switch (fmtCode) {
+                    case 'Y':
+                        return date.getUTCFullYear();
+                    case 'M':
+                        return pad(date.getUTCMonth() + 1);
+                    case 'd':
+                        return pad(date.getUTCDate());
+                    case 'H':
+                        return pad(date.getUTCHours());
+                    case 'm':
+                        return pad(date.getUTCMinutes());
+                    case 's':
+                        return pad(date.getUTCSeconds());
+                    default:
+                        throw new Error('Unsupported format code: ' + fmtCode);
+                }
+            });
+        }
         jQuery( function($) {
             $('tbody tr[data-href]').addClass('clickable').click( function() {
                 window.location = $(this).attr('data-href');
@@ -25,11 +51,24 @@
                 text : $("#sel2").val()
             },
             success: function (response) {
-                var trHTML = '';
-                $.each(response, function (i, order) {
-                    trHTML +=' <tbody>'+'<tr><td>' + order.title + '</td><td>' + order.workplace+'</td><td>' + new Date(order.createdAt*1000)+'<tbody>' ;
+                var sorted = response.sort(function (a, b) {
+                    if (a.createdAt < b.createdAt) {
+                        return 1;
+                    }
+                    if (a.createdAt > b.createdAt) {
+                        return -1;
+                    }
+
+                    return 0;
                 });
-                $('#records_table').empty();
+                var trHTML = '';
+                $.each( sorted, function (i, order) {
+                    trHTML +=' <tbody>'+'<tr><td>' + order.title + '</td><td>' + order.workplace_access_num+'</td><td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+'<tbody>' ;
+                });
+                $('#records_table tbody').empty();
+                $('#records_table th.title').data('sortBy', function(th, td, tablesort) {
+                    return App.People.get(td.text());
+                });
                 $('#records_table').append(trHTML);
             }
         });
@@ -45,9 +84,9 @@
             success: function (response) {
                 var trHTML = '';
                 $.each(response, function (i, order) {
-                    trHTML +=' <tbody>'+'<tr><td>' + order.title + '</td><td>' + order.workplace+'</td><td>' + new Date(order.createdAt*1000)+'<tbody>' ;
+                    trHTML +=' <tbody>'+'<tr><td>' + order.title + '</td><td>' + order.workplace_access_num+'</td><td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+'<tbody>' ;
                 });
-                $('#records_table').empty();
+                $('#records_table tbody').empty();
                 $('#records_table').append(trHTML);
             }
         });
@@ -62,10 +101,11 @@
                 },
                 success: function (response) {
                     var trHTML = '';
+
                     $.each(response, function (i, order) {
-                        trHTML +=' <tbody>'+'<tr><td>' + order.title + '</td><td>' + order.workplace+'</td><td>' + new Date(order.createdAt*1000)+'</tbody>' ;
+                        trHTML +=' <tbody>'+'<tr><td>' + order.title + '</td><td>' + order.workplace_access_num+'</td><td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+'<tbody>' ;
                     });
-                    $('#records_table').empty();
+                    $('#records_table tbody').empty();
                     $('#records_table').append(trHTML);
                 }
             });
@@ -109,7 +149,7 @@
             <tr>
                 <th>Title</th>
                 <th>Auditorium</th>
-                <th>Date</th>
+                <th href="">Date</th>
             </tr>
             </thead>
         </table>
