@@ -20,7 +20,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class EditProfile {
 
     @Autowired
-    private UserService userDao;
+    private UserService userService;
 
     @Autowired
     @Qualifier("passChangeValidator")
@@ -28,26 +28,29 @@ public class EditProfile {
 
     @RequestMapping(method = RequestMethod.GET)
     public String viewRegistration(Model model) {
-       PasswordTrio passwordTrio = new PasswordTrio();
-        model.addAttribute("passChangeForm", passwordTrio);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        User user = userService.getByEmail(name);
+        EditForm editForm = new EditForm();
+        editForm.setFirstName(user.getFirstName());
+        editForm.setLastName(user.getLastName());
+        editForm.setEmail(user.getEmail());
+        model.addAttribute("passChangeForm", editForm);
         return "userPage/editProfile";
     }
 
 
-   @RequestMapping(method = RequestMethod.POST)
-    public String passChange(@ModelAttribute("passChangeForm") PasswordTrio passwordTrio, Model model, BindingResult result) {
-       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-       String name = auth.getName();
-       User user = userDao.getByEmail(name);
-       validator.validate(passwordTrio.getOldPassword(), passwordTrio.getPassword(), passwordTrio.getConfPassword(), name, result);
+    @RequestMapping(method = RequestMethod.POST)
+    public String passChange(@ModelAttribute("passChangeForm") EditForm editForm, BindingResult result) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        User user = userService.getByEmail(name);
+        validator.validate(editForm, result);
         if (result.hasErrors())
             return "userPage/editProfile";
-
-        String pass = PasswordEncryptor.encode(passwordTrio.getPassword());
+        String pass = PasswordEncryptor.encode(editForm.getPassword());
         user.setPassword(pass);
-        userDao.saveOrUpdate(user);
-
-
+        userService.saveOrUpdate(user);
         return "userPage/passwordChangeSuccess";
     }
 }

@@ -37,18 +37,15 @@ public class Registration {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String processRegistration(@ModelAttribute("userForm") User user, Model model, BindingResult result) {
-        model.addAttribute("userForm", user);
+    public String processRegistration(@ModelAttribute("userForm") User user, BindingResult result) {
         validator.validate(user, result);
         if (result.hasErrors())
             return "registration/registration";
         user = PasswordEncryptor.encodeUser(user);
         userService.saveOrUpdate(user);
-
         String email = user.getEmail();
         user = userService.getByEmail(email);
         registrationMail.send(email, Constants.LOCAL_SERVER + Constants.VERIFICATION + user.getId());
-
         return "registration/registrationSuccess";
     }
 }

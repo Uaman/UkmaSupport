@@ -65,15 +65,31 @@
         </div>
     </nav>
 
-    <div>
-        <p id="hello">Hello, you may edit your profile.</p>
-    </div>
-
     <div id="profEdit">
         <form:form id="passChangeForm" action="editAdminProfile" method="post" commandName="passChangeForm">
             <table border="0">
                 <tr>
                     <td class="centralWord" colspan="2" align="center">Password change</td>
+                </tr>
+                <tr>
+                    <td><label class="labels">First Name:</label></td>
+                    <td><form:input id="firstName" path="firstName" name="firstName" type="text" value=""
+                                    class="form-control form-style"/></td>
+                    <td><form:errors path="firstName" class="regErrors" id="firstName.errors"
+                                     cssStyle="color: #ff0000;"/></td>
+                </tr>
+                <tr>
+                    <td><label class="labels">Last Name:</label></td>
+                    <td><form:input id="lastName" path="lastName" name="lastName" type="text" value=""
+                                    class="form-control form-style"/></td>
+                    <td><form:errors path="lastName" class="regErrors" id="lastName.errors"
+                                     cssStyle="color: #ff0000;"/></td>
+                </tr>
+                <tr>
+                    <td><label class="labels">E-mail:</label></td>
+                    <td><form:input id="email" path="email" name="email" type="text" value=""
+                                    class="form-control form-style"/></td>
+                    <td><form:errors path="email" class="regErrors" id="email.errors" cssStyle="color: #ff0000;"/></td>
                 </tr>
                 <tr>
                     <td><label class="labels">Old password:</label></td>

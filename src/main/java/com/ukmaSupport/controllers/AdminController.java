@@ -2,7 +2,7 @@ package com.ukmaSupport.controllers;
 
 import com.ukmaSupport.models.Auditorium;
 import com.ukmaSupport.models.Order;
-import com.ukmaSupport.models.PasswordTrio;
+import com.ukmaSupport.models.EditForm;
 import com.ukmaSupport.models.User;
 import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.OrderService;
@@ -12,7 +12,6 @@ import com.ukmaSupport.utils.PasswordChangeValidator;
 import com.ukmaSupport.utils.PasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -140,26 +139,28 @@ public class AdminController {
 
     @RequestMapping(value = "/editAdminProfile", method = RequestMethod.GET)
     public String viewRegistration(Model model) {
-        PasswordTrio passwordTrio = new PasswordTrio();
-        model.addAttribute("passChangeForm", passwordTrio);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        User user = userService.getByEmail(name);
+        EditForm editForm = new EditForm();
+        editForm.setFirstName(user.getFirstName());
+        editForm.setLastName(user.getLastName());
+        editForm.setEmail(user.getEmail());
+        model.addAttribute("passChangeForm", editForm);
         return "adminPage/editAdminProfile";
     }
 
     @RequestMapping(value = "/editAdminProfile", method = RequestMethod.POST)
-    public String passChange(@ModelAttribute("passChangeForm") PasswordTrio passwordTrio, Model model, BindingResult result) {
+    public String passChange(@ModelAttribute("passChangeForm") EditForm editForm, BindingResult result) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         User user = userService.getByEmail(name);
-        validator.validate(passwordTrio.getOldPassword(), passwordTrio.getPassword(), passwordTrio.getConfPassword(), name, result);
+        validator.validate(editForm, result);
         if (result.hasErrors())
             return "adminPage/editAdminProfile";
-
-        String pass = PasswordEncryptor.encode(passwordTrio.getPassword());
-
+        String pass = PasswordEncryptor.encode(editForm.getPassword());
         user.setPassword(pass);
         userService.saveOrUpdate(user);
-
-
         return "userPage/passwordChangeSuccess";
     }
 }
