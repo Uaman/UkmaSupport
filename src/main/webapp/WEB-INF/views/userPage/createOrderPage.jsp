@@ -47,15 +47,15 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href=""><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                <a href="/"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"> My orders<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li class="drop-menu-element"><a class="menu-element-li" href="#">Complited orders</a></li>
-                            <li class="drop-menu-element"><a class="menu-element-li" href="#">Uncomplited orders</a></li>
+                            <li class="drop-menu-element"><a class="menu-element-li" href="/complited">Complited orders</a></li>
+                            <li class="drop-menu-element"><a class="menu-element-li" href="/uncomplited">Uncomplited orders</a></li>
                         </ul>
                     </li>
                     <li><a id = "editProfile" class="menu-element" href="/editProfile">Edit profile</a></li>
@@ -84,7 +84,7 @@
                 </div>
                 <div class="col-md-6">
                     <label class="label-style" for="sel2">workplace:</label>
-                    <select name="workplace_access_num" class="form-control select-style" id="sel2" path="workplace.accessNumber">
+                    <select name="workplace_access_num" class="form-control select-style" id="sel2" path="workplace_access_num">
                         <option value="" disabled selected>workplace</option>
                     </select>
                 </div>

@@ -73,7 +73,7 @@ public class OrderDaoImpl implements OrderDao {
                 }
                 prepStat.setInt(1, order.getUserId());
                 prepStat.setInt(2, order.getAssistantId());
-                prepStat.setInt(3, order.getWorkplace().getId());
+                prepStat.setInt(3, order.getWorkplace_id());
                 prepStat.setString(4, order.getTitle());
                 prepStat.setString(5, order.getContent());
                 prepStat.setString(7, order.getStatus());
@@ -110,7 +110,7 @@ public class OrderDaoImpl implements OrderDao {
             order.setId(rs.getInt("id"));
             order.setUserId(rs.getInt("user_id"));
             order.setAssistantId(rs.getInt("assistant_id"));
-            //order.setWorkplace_access_num(rs.getString("access_num"));
+            order.setWorkplace_access_num(rs.getString("access_num"));
             order.setTitle(rs.getString("title"));
             order.setContent(rs.getString("content"));
             order.setCreatedAt((rs.getTimestamp("created_at")));
