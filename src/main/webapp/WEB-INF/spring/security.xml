@@ -18,14 +18,14 @@
         <beans:property name="dataSource" ref="dataSource"/>
     </beans:bean>
 
-    <beans:bean id="myUserDetailsService" class="com.ukmaSupport.services.UserServices" />
+    <beans:bean id="myUserDetailsService" class="com.ukmaSupport.services.UserServices"/>
     <beans:bean id="encoder" class="com.ukmaSupport.services.SpringSecurityEncoder"/>
 
 
     <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <beans:property name="driverClassName" value="org.postgresql.Driver"/>
         <beans:property name="url"
-                  value="jdbc:postgresql://ec2-54-217-208-102.eu-west-1.compute.amazonaws.com/d3n5tjmb82o7ko?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
+                        value="jdbc:postgresql://ec2-54-217-208-102.eu-west-1.compute.amazonaws.com/d3n5tjmb82o7ko?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
         <beans:property name="username" value="xihegrjcahwwvo"/>
         <beans:property name="password" value="DPdsJaB3QJPy2Rztl8YuJ5futy"/>
     </beans:bean>
@@ -52,19 +52,14 @@
         <intercept-url pattern="/" access="permitAll"/>
         <intercept-url pattern="/userhome**" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/editProfile**" access="hasRole('ROLE_USER')"/>
-        <intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/editAdminProfile**" access="hasRole('ROLE_ADMIN')"/>
 
     </http>
 
     <authentication-manager>
         <security:authentication-provider user-service-ref="myUserDetailsService">
-            <password-encoder ref="encoder" />
+            <password-encoder ref="encoder"/>
         </security:authentication-provider>
     </authentication-manager>
-
-
-
-
-
 
 </beans:beans>

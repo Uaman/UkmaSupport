@@ -2,15 +2,22 @@ package com.ukmaSupport.controllers;
 
 import com.ukmaSupport.models.Auditorium;
 import com.ukmaSupport.models.Order;
+import com.ukmaSupport.models.PasswordPair;
 import com.ukmaSupport.models.User;
 import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.OrderService;
 import com.ukmaSupport.services.interfaces.UserService;
 import com.ukmaSupport.services.interfaces.WorkplaceService;
+import com.ukmaSupport.utils.PasswordChangeValidator;
+import com.ukmaSupport.utils.PasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +26,10 @@ import java.util.List;
 
 @Controller
 public class AdminController {
+
+    @Autowired
+    @Qualifier("passChangeValidator")
+    private PasswordChangeValidator validator;
 
     @Autowired
     private UserService userService;
@@ -124,5 +135,26 @@ public class AdminController {
         List<User> listUsers = userService.getAll();
         model.addAttribute("listUsers", listUsers);
         return "excelView";
+    }
+
+    @RequestMapping(value = "/editAdminProfile", method = RequestMethod.GET)
+    public String viewRegistration(Model model) {
+        PasswordPair passwordPair = new PasswordPair();
+        model.addAttribute("passChangeForm", passwordPair);
+        return "adminPage/editAdminProfile";
+    }
+
+    @RequestMapping(value = "/editAdminProfile", method = RequestMethod.POST)
+    public String passChange(@ModelAttribute("passChangeForm") PasswordPair passwordPair, Model model, BindingResult result) {
+        validator.validate(passwordPair.getPassword(), passwordPair.getConfPassword(), result);
+        if (result.hasErrors())
+            return "adminPage/editAdminProfile";
+        String pass = PasswordEncryptor.encode(passwordPair.getPassword());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        User user = userService.getByEmail(name);
+        user.setPassword(pass);
+        userService.saveOrUpdate(user);
+        return "userPage/passwordChangeSuccess";
     }
 }
