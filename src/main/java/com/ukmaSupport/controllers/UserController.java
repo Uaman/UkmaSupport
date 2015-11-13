@@ -61,14 +61,14 @@ public class UserController {
     public String createOrderPost(@ModelAttribute("newOrder") Order order,@RequestParam("workplace_access_num") int workplaceNum,ModelMap model, BindingResult result) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
-        order.setWorkspaceNumber(workplaceNum);
+        //order.setWorkspaceNumber(workplaceNum);
         order.setUserId((Integer) session.getAttribute("id"));
         order.setStatus(UNDONE);
         order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
         order.setAssistantId(order.getUserId());
-        validator.validate(order,result);
+        //validator.validate(order,result);
 
-        //order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
+        order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
         orderService.createOrUpdate(order);
         return "redirect:/userhome";
     }
