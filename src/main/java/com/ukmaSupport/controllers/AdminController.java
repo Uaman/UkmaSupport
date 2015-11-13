@@ -96,9 +96,6 @@ public class AdminController {
         return "adminPage/orders";
     }
 
-
-
-
     @RequestMapping(value = "/auditoriums", method = RequestMethod.GET)
     public String showAuditoriums(Model model) {
         List<Auditorium> auditoriums = auditoriumService.getAll();

@@ -10,6 +10,8 @@ public class Constants {
 
     public static final String VERIFICATION = "/verification?id=";
 
+    public static final String CHANGE_PASSWORD = "/changePassword?id=";
+
 
 
 }
