@@ -2,7 +2,7 @@ package com.ukmaSupport.controllers;
 
 import com.ukmaSupport.models.Auditorium;
 import com.ukmaSupport.models.Order;
-import com.ukmaSupport.models.PasswordPair;
+import com.ukmaSupport.models.PasswordTrio;
 import com.ukmaSupport.models.User;
 import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.OrderService;
@@ -140,22 +140,26 @@ public class AdminController {
 
     @RequestMapping(value = "/editAdminProfile", method = RequestMethod.GET)
     public String viewRegistration(Model model) {
-        PasswordPair passwordPair = new PasswordPair();
-        model.addAttribute("passChangeForm", passwordPair);
+        PasswordTrio passwordTrio = new PasswordTrio();
+        model.addAttribute("passChangeForm", passwordTrio);
         return "adminPage/editAdminProfile";
     }
 
     @RequestMapping(value = "/editAdminProfile", method = RequestMethod.POST)
-    public String passChange(@ModelAttribute("passChangeForm") PasswordPair passwordPair, Model model, BindingResult result) {
-        validator.validate(passwordPair.getPassword(), passwordPair.getConfPassword(), result);
-        if (result.hasErrors())
-            return "adminPage/editAdminProfile";
-        String pass = PasswordEncryptor.encode(passwordPair.getPassword());
+    public String passChange(@ModelAttribute("passChangeForm") PasswordTrio passwordTrio, Model model, BindingResult result) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         User user = userService.getByEmail(name);
+        validator.validate(passwordTrio.getOldPassword(), passwordTrio.getPassword(), passwordTrio.getConfPassword(), name, result);
+        if (result.hasErrors())
+            return "adminPage/editAdminProfile";
+
+        String pass = PasswordEncryptor.encode(passwordTrio.getPassword());
+
         user.setPassword(pass);
         userService.saveOrUpdate(user);
+
+
         return "userPage/passwordChangeSuccess";
     }
 }

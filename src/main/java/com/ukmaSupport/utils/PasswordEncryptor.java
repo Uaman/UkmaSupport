@@ -69,6 +69,51 @@ public class PasswordEncryptor {
         }
     }
 
+    public static boolean matches(CharSequence charSequence, String storedPassword) {
+        String[] parts = storedPassword.split(":");
+        int iterations = Integer.parseInt(parts[0]);
+        byte[] salt = null;
+        try {
+            salt = fromHex(parts[1]);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        byte[] hash = null;
+        try {
+            hash = fromHex(parts[2]);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        PBEKeySpec spec = new PBEKeySpec((charSequence.toString()).toCharArray(), salt, iterations, hash.length * 8);
+        SecretKeyFactory skf = null;
+        try {
+            skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        byte[] testHash = null;
+        try {
+            testHash = skf.generateSecret(spec).getEncoded();
+        } catch (InvalidKeySpecException e) {
+            e.printStackTrace();
+        }
+
+        int diff = hash.length ^ testHash.length;
+        for (int i = 0; i < hash.length && i < testHash.length; i++) {
+            diff |= hash[i] ^ testHash[i];
+        }
+        return diff == 0;
+    }
+
+    private static byte[] fromHex (String hex)throws NoSuchAlgorithmException
+    {
+        byte[] bytes = new byte[hex.length() / 2];
+        for (int i = 0; i < bytes.length; i++) {
+            bytes[i] = (byte) Integer.parseInt(hex.substring(2 * i, 2 * i + 2), 16);
+        }
+        return bytes;
+    }
 
 
 

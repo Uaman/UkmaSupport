@@ -28,23 +28,22 @@ public class EditProfile {
 
     @RequestMapping(method = RequestMethod.GET)
     public String viewRegistration(Model model) {
-       PasswordPair passwordPair = new PasswordPair();
-        model.addAttribute("passChangeForm", passwordPair);
+       PasswordTrio passwordTrio = new PasswordTrio();
+        model.addAttribute("passChangeForm", passwordTrio);
         return "userPage/editProfile";
     }
 
 
    @RequestMapping(method = RequestMethod.POST)
-    public String passChange(@ModelAttribute("passChangeForm") PasswordPair passwordPair, Model model, BindingResult result) {
-
-
-        validator.validate(passwordPair.getPassword(), passwordPair.getConfPassword(), result);
+    public String passChange(@ModelAttribute("passChangeForm") PasswordTrio passwordTrio, Model model, BindingResult result) {
+       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+       String name = auth.getName();
+       User user = userDao.getByEmail(name);
+       validator.validate(passwordTrio.getOldPassword(), passwordTrio.getPassword(), passwordTrio.getConfPassword(), name, result);
         if (result.hasErrors())
             return "userPage/editProfile";
-        String pass = PasswordEncryptor.encode(passwordPair.getPassword());
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
-        User user = userDao.getByEmail(name);
+
+        String pass = PasswordEncryptor.encode(passwordTrio.getPassword());
         user.setPassword(pass);
         userDao.saveOrUpdate(user);
 

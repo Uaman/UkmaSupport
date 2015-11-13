@@ -120,6 +120,12 @@ a {
 	margin-top: 30px;
 }
 
+#profEdit{
+	margin-left: 250px;
+	margin-right: 250px;
+	margin-top: 30px;
+}
+
 .centralWord {
 	font-family: "Century Gothic", sans-serif;
 	font-size: 36px;
@@ -144,7 +150,7 @@ a {
 	position: absolute;
 	z-index: 999;
 	padding-left: 15px;
-	margin-top: -27px;
+	margin-top: 10px;
 }
 a img {
 	border: none;

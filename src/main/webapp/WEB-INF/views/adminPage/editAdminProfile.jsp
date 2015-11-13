@@ -75,7 +75,13 @@
                 <tr>
                     <td class="centralWord" colspan="2" align="center">Password change</td>
                 </tr>
-
+                <tr>
+                    <td><label class="labels">Old password:</label></td>
+                    <td><form:input path = "oldPassword" type="password" value=""
+                                    class="form-control form-style"/></td>
+                    <td><form:errors path = "oldPassword" class="regErrors" id="oldPassword.errors"
+                                     cssStyle="color: #ff0000;"/></td>
+                </tr>
                 <tr>
                     <td><label class="labels">New password:</label></td>
                     <td><form:input path="password" type="password" value=""
@@ -92,9 +98,9 @@
                 </tr>
             </table>
             <div class="form-group">
-                <div class="col-md-offset-1  col-md-4">
+                <div class="col-md-offset-7  col-md-4">
                     <button id="change-pass-button" type="submit" value="editAdminProfile"
-                            class="btn btn-primary btn-block button-style">Change Password
+                            class="btn btn-primary btn-block button-style">Submit
                     </button>
                 </div>
             </div>
