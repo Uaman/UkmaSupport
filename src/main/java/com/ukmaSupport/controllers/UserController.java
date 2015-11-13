@@ -77,28 +77,39 @@ public class UserController {
         return "userPage/userHomePage";
     }
 
-    @RequestMapping(value = "/uncomplited" , method = RequestMethod.GET)
-    public String uncomlitedOrder(ModelMap model) {
+    @RequestMapping(value = "/unComplited" , method = RequestMethod.GET)
+    public @ResponseBody List<Order> uncomlitedOrder() {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
         int userid = (Integer) session.getAttribute("id");
 
         System.out.println(userid);
         List<Order> orders =  orderService.getByUserIdStatus(userid,UNDONE);
-        model.addAttribute("userOrder", orders);
-        return "userPage/userHomePage";
+        return orders;
     }
 
-    @RequestMapping(value = "/complited" , method = RequestMethod.GET)
-    public String comlitedOrder(ModelMap model) {
+    @RequestMapping(value = "/allUserOrders", method = RequestMethod.GET)
+    public @ResponseBody List<Order> getOrders() {
+
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+
+        int userid = (Integer) session.getAttribute("id");
+        System.out.println(userid);
+        List<Order> orders =  orderService.getByUserId(userid);
+        return orders;
+    }
+    @RequestMapping(value = "/allComplited", method = RequestMethod.GET)
+    public @ResponseBody List<Order> getComplited() {
+
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
 
         int userid = (Integer) session.getAttribute("id");
         System.out.println(userid);
         List<Order> orders =  orderService.getByUserIdStatus(userid, DONE);
-        model.addAttribute("userOrder", orders);
-        return "userPage/userHomePage";
+        return orders;
     }
+
 
 }
