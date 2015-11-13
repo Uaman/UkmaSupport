@@ -6,7 +6,9 @@ import com.ukmaSupport.models.Workplace;
 import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.OrderService;
 import com.ukmaSupport.services.interfaces.WorkplaceService;
+import com.ukmaSupport.utils.OrderValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -34,11 +36,14 @@ public class UserController {
     @Autowired
     private WorkplaceService workplaceService;
 
+    @Autowired
+    @Qualifier("orderValidator")
+    private OrderValidator validator;
+
 
 
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
     public @ResponseBody List<Workplace> getCharNum(@RequestParam("text") String text) {
-        System.out.println(text);
         List<Workplace> workplaces = workplaceService.getByAuditoryName(text);
         return workplaces;
     }
@@ -53,15 +58,17 @@ public class UserController {
     }
 
     @RequestMapping(value = "/createOrder", method = RequestMethod.POST)
-    public String createOrderPost(@ModelAttribute("newOrder") Order order,ModelMap model, BindingResult result) {
+    public String createOrderPost(@ModelAttribute("newOrder") Order order,@RequestParam("workplace_access_num") int workplaceNum,ModelMap model, BindingResult result) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
+        order.setWorkspaceNumber(workplaceNum);
         order.setUserId((Integer) session.getAttribute("id"));
         order.setStatus(UNDONE);
         order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
         order.setAssistantId(order.getUserId());
+        validator.validate(order,result);
+
         //order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
-        System.out.println(order.getWorkplace().getAccessNumber());
         orderService.createOrUpdate(order);
         return "redirect:/userhome";
     }

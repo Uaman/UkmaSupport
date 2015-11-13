@@ -110,7 +110,7 @@ public class OrderDaoImpl implements OrderDao {
             order.setId(rs.getInt("id"));
             order.setUserId(rs.getInt("user_id"));
             order.setAssistantId(rs.getInt("assistant_id"));
-            //order.setWorkplace_access_num(rs.getString("access_num"));
+            order.setWorkplace_access_num(rs.getString("access_num"));
             order.setTitle(rs.getString("title"));
             order.setContent(rs.getString("content"));
             order.setCreatedAt((rs.getTimestamp("created_at")));
