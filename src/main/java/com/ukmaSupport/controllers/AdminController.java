@@ -12,6 +12,7 @@ import com.ukmaSupport.utils.PasswordChangeValidator;
 import com.ukmaSupport.utils.PasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -51,6 +52,7 @@ public class AdminController {
     private final static String DONE = "done";
     private final static String UNDONE = "Undone";
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String showAllUsers(Model model) {
         List<User> users = userService.getAll();
@@ -58,6 +60,7 @@ public class AdminController {
         return "adminPage/users";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String showUsers(Model model) {
         List<User> users = userService.getByRole(USER);
@@ -65,6 +68,7 @@ public class AdminController {
         return "adminPage/users";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/assistants", method = RequestMethod.GET)
     public String showAssistants(Model model) {
         List<User> users = userService.getByRole(ASSISTANT);
@@ -72,6 +76,7 @@ public class AdminController {
         return "adminPage/users";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/professors", method = RequestMethod.GET)
     public String showProfessors(Model model) {
         List<User> users = userService.getByRole(PROFESSOR);
@@ -79,6 +84,7 @@ public class AdminController {
         return "adminPage/users";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/blocked", method = RequestMethod.GET)
     public String showBlockedUsers(Model model) {
         List<User> users = userService.getByStatus(BLOCKED);
@@ -86,6 +92,7 @@ public class AdminController {
         return "adminPage/users";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/allOrders", method = RequestMethod.GET)
     public String showOrders(Model model) {
         List<Order> orders = orderService.getAll();
@@ -93,6 +100,7 @@ public class AdminController {
         return "adminPage/orders";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/completedOrders", method = RequestMethod.GET)
     public String showCompletedOrders(Model model) {
         List<Order> orders = orderService.getByStatus(DONE);
@@ -100,6 +108,7 @@ public class AdminController {
         return "adminPage/orders";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/uncompletedOrders", method = RequestMethod.GET)
     public String showUncompletedOrders(Model model) {
         List<Order> orders = orderService.getByStatus(UNDONE);
@@ -107,6 +116,7 @@ public class AdminController {
         return "adminPage/orders";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/auditoriums", method = RequestMethod.GET)
     public String showAuditoriums(Model model) {
         List<Auditorium> auditoriums = auditoriumService.getAll();
@@ -114,6 +124,7 @@ public class AdminController {
         return "adminPage/auditoriums";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/createAuditorium", method = RequestMethod.GET)
     public String createAuditorium(ModelMap model) {
         Auditorium order = new Auditorium();
@@ -123,6 +134,7 @@ public class AdminController {
         return "adminPage/addAuditorium";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/createAuditorium", method = RequestMethod.POST)
     public String saveAuditorium(@ModelAttribute("newAuditorium") Auditorium auditorium, ModelMap model) {
         model.addAttribute("number", auditorium.getNumber());
@@ -130,6 +142,7 @@ public class AdminController {
         return "redirect:/all";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/downloadExcel", method = RequestMethod.GET)
     public String downloadExcel(Model model) {
         List<User> listUsers = userService.getAll();
@@ -137,6 +150,7 @@ public class AdminController {
         return "excelView";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/editAdminProfile", method = RequestMethod.GET)
     public String editProfile(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -150,6 +164,7 @@ public class AdminController {
         return "adminPage/editAdminProfile";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/editAdminProfile", method = RequestMethod.POST)
     public String profileEdited(@ModelAttribute("passChangeForm") EditForm editForm, BindingResult result) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
