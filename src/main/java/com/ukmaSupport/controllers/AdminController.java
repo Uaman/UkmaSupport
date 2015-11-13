@@ -138,7 +138,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/editAdminProfile", method = RequestMethod.GET)
-    public String viewRegistration(Model model) {
+    public String editProfile(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         User user = userService.getByEmail(name);
@@ -151,7 +151,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/editAdminProfile", method = RequestMethod.POST)
-    public String passChange(@ModelAttribute("passChangeForm") EditForm editForm, BindingResult result) {
+    public String profileEdited(@ModelAttribute("passChangeForm") EditForm editForm, BindingResult result) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         User user = userService.getByEmail(name);
