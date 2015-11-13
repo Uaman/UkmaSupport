@@ -43,6 +43,8 @@ public class MainPage {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
         session.setAttribute("id", userService.getByEmail(auth.getName()).getId());
+        if(userService.getByEmail(auth.getName()).getRole().equals("ADMIN"))
+            return "adminPage/users";
         return "redirect:/userhome";
     }
 }

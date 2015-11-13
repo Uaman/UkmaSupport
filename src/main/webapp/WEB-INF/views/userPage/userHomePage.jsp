@@ -17,7 +17,62 @@
                 window.location = $(this).attr('data-href');
             });
         });
+
+        $.ajax({
+            url: 'allUserOrders',
+            type: 'GET',
+            data:{
+                text : $("#sel2").val()
+            },
+            success: function (response) {
+                var trHTML = '';
+                $.each(response, function (i, order) {
+                    trHTML +=' <tbody>'+'<tr><td>' + order.title + '</td><td>' + order.workplace+'</td><td>' + new Date(order.createdAt*1000)+'<tbody>' ;
+                });
+                $('#records_table').empty();
+                $('#records_table').append(trHTML);
+            }
+        });
+
+        function getUncoplited()
+        {
+            $.ajax({
+            url: 'unComplited',
+                    type: 'GET',
+                data:{
+            text : $("#sel2").val()
+        },
+            success: function (response) {
+                var trHTML = '';
+                $.each(response, function (i, order) {
+                    trHTML +=' <tbody>'+'<tr><td>' + order.title + '</td><td>' + order.workplace+'</td><td>' + new Date(order.createdAt*1000)+'<tbody>' ;
+                });
+                $('#records_table').empty();
+                $('#records_table').append(trHTML);
+            }
+        });
+        }
+        function getCoplited()
+        {
+            $.ajax({
+                url: 'allComplited',
+                type: 'GET',
+                data:{
+                    text : $("#sel2").val()
+                },
+                success: function (response) {
+                    var trHTML = '';
+                    $.each(response, function (i, order) {
+                        trHTML +=' <tbody>'+'<tr><td>' + order.title + '</td><td>' + order.workplace+'</td><td>' + new Date(order.createdAt*1000)+'</tbody>' ;
+                    });
+                    $('#records_table').empty();
+                    $('#records_table').append(trHTML);
+                }
+            });
+        }
+
     </script>
+
 </head>
 
 <body>
@@ -33,8 +88,8 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"> My orders<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li class="drop-menu-element"><a class="menu-element-li" href="/complited">Complited orders</a></li>
-                            <li class="drop-menu-element"><a class="menu-element-li" href="/uncomplited">Uncomplited orders</a></li>
+                            <li class="drop-menu-element"><a class="menu-element-li" href="javascript:getCoplited();" >Complited orders</a></li>
+                            <li class="drop-menu-element"><a class="menu-element-li" href="javascript:getUncoplited();">Uncomplited orders</a></li>
                         </ul>
                     </li>
                     <li><a id = "editProfile" class="menu-element" href="/editProfile">Edit profile</a></li>
@@ -49,7 +104,7 @@
     </div>
 
     <div class="table-align">
-        <table class="tbl table table-striped table-hover">
+        <table id="records_table" class="tbl table table-striped table-hover">
             <thead>
             <tr>
                 <th>Title</th>
@@ -57,15 +112,6 @@
                 <th>Date</th>
             </tr>
             </thead>
-            <tbody>
-            <c:forEach items="${userOrder}" var="order">
-                <tr data-href="#">
-                    <td>${order.title}</td>
-                    <td>${order.workplace_access_num}</td>
-                    <td>${order.createdAt}</td>
-                </tr>
-            </c:forEach>
-            </tbody>
         </table>
     </div>
 
