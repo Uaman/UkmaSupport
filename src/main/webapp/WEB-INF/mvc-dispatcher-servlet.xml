@@ -34,6 +34,8 @@
     <bean id="registrationValidator" class="com.ukmaSupport.utils.RegistrationValidator"/>
     <bean id="passChangeValidator" class="com.ukmaSupport.utils.PasswordChangeValidator"/>
     <bean id="orderValidator" class="com.ukmaSupport.utils.OrderValidator"/>
+    <bean id="audiroriumValidator" class="com.ukmaSupport.utils.AudiroriumValidator"/>
+
     <!--><-->
 
     <!-- jdbcTemplate uses dataSource -->

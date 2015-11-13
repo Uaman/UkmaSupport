@@ -14,6 +14,7 @@ public interface AuditoriumService {
     //Update
     void update(Auditorium auditorium);
 
+    Auditorium getByNumber(String number);
     //Delete
     void delete(int id);
 

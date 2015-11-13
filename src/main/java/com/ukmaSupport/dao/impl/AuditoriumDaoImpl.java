@@ -41,6 +41,12 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
     }
 
     @Override
+    public Auditorium getByNumber(String number) {
+        String sql = "SELECT id,user_id,number FROM auditorium WHERE number=?";
+      return this.template.queryForObject(sql, new Object[]{number}, new AuditoriumMapper());
+    }
+
+    @Override
     public void delete(int id) {
         this.template.update("DELETE FROM auditorium WHERE id=?", id);
     }

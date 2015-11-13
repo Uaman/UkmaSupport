@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html lang="en">
 <head>
@@ -54,29 +55,26 @@
             </div>
         </div>
     </nav>
+    <div>
+        <p id="hello">Hello, Admin!</p>
+    </div>
 
     <form:form id="newAuditorium" action="/createAuditorium" method="post" commandName="newAuditorium">
-        <div class="form-group">
-            <div class="col-md-offset-3 col-md-7">
-                <input type="text" class="form-control form-style" id="number" name="number" placeholder="number"
-                       path="number">
-            </div>
-        </div>
+    <table border="0">
 
-        <div class="col-md-offset-3 col-md-3">
-            <div class="form-inline">
-                <label for="sel1">assistant:</label>
-                <select name="assistants" class="form-control" id="sel1">
-                    <option value="" disabled selected>Select assistant</option>
-                    <c:forEach items="${assistants}" var="item" varStatus="count">
-                        <option value="${count.index}">${item.email}</option>
-                    </c:forEach>
-                </select>
-            </div>
-        </div>
+        <tr>
+            <td><label class="labels">Add Auditorium:</label></td>
+            <td><form:input id="number" path="number" name="number" type="text" value=""
+                            class="form-control form-style"/></td>
+            <td><form:errors path="number" class="regErrors" id="number.errors"
+                             cssStyle="color: #ff0000;"/></td>
+        </tr>
+    </table>
         <div class="form-group">
-            <div class="col-md-offset-4 col-md-6">
-                <button class="button" type="submit">Create Auditorium</button>
+            <div class="col-md-offset-7  col-md-4">
+                <button id="add-auditory-button" type="submit" value="addAuditorium"
+                        class="btn btn-primary btn-block button-style">Submit
+                </button>
             </div>
         </div>
     </form:form>

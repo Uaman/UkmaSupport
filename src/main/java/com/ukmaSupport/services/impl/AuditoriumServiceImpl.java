@@ -34,6 +34,12 @@ public class AuditoriumServiceImpl implements AuditoriumService {
         auditoriumDao.update(auditorium);
     }
 
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    @Override
+    public Auditorium getByNumber(String number) {
+        return auditoriumDao.getByNumber(number);
+    }
+
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     @Override
     public void delete(int id) {
