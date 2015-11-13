@@ -88,7 +88,7 @@
                 <tr>
                     <td><label class="labels">E-mail:</label></td>
                     <td><form:input id="email" path="email" name="email" type="text" value=""
-                                    class="form-control form-style"/></td>
+                                    class="form-control form-style" READONLY="true"/></td>
                     <td><form:errors path="email" class="regErrors" id="email.errors" cssStyle="color: #ff0000;"/></td>
                 </tr>
                 <tr>
