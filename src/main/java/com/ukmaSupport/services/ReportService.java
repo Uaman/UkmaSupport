@@ -14,6 +14,7 @@ import org.springframework.web.servlet.view.document.AbstractExcelView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -56,6 +57,7 @@ public class ReportService extends AbstractExcelView {
         header.getCell(3).setCellStyle(style);
 
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
 
         // create data rows
         int rowCount = 1;
@@ -65,7 +67,7 @@ public class ReportService extends AbstractExcelView {
             aRow.createCell(0).setCellValue(aUser.getId());
             aRow.createCell(1).setCellValue(aUser.getEmail());
             aRow.createCell(2).setCellValue(aUser.getAccountStatus());
-            aRow.createCell(3).setCellValue(aUser.getDateOfEntry());
+            aRow.createCell(3).setCellValue(sdf.format(aUser.getDateOfEntry()));
 
         }
     }

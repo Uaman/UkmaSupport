@@ -8,7 +8,10 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository("orderDao")
@@ -93,13 +96,13 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public List<Order> getAllAssistOrders(int assistid) {
-        return jdbcTemplate.query(GET_ALL_ASSIST_ORDERS, rowMapper);
+    public List<Order> getAllAssistOrders(int assistant_id) {
+        return jdbcTemplate.query(GET_ALL_ASSIST_ORDERS, new Object[]{assistant_id}, rowMapper);
     }
 
     @Override
-    public List<Order> getByAssistAndStatus(int assistid, String status) {
-        return jdbcTemplate.query(GET_ALL_ORDERS_BY_ASSIST_AND_STATUS, rowMapper);
+    public List<Order> getByAssistAndStatus(int assistant_id, String status) {
+        return jdbcTemplate.query(GET_ALL_ORDERS_BY_ASSIST_AND_STATUS, new Object[]{assistant_id, status}, rowMapper);
     }
 
     private static final RowMapper<Order> rowMapper = new RowMapper<Order>() {

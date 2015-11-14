@@ -1,13 +1,14 @@
 package com.ukmaSupport.controllers;
 
 import com.ukmaSupport.models.Auditorium;
-import com.ukmaSupport.models.Order;
 import com.ukmaSupport.models.EditForm;
+import com.ukmaSupport.models.Order;
 import com.ukmaSupport.models.User;
 import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.OrderService;
 import com.ukmaSupport.services.interfaces.UserService;
 import com.ukmaSupport.services.interfaces.WorkplaceService;
+import com.ukmaSupport.utils.AudiroriumValidator;
 import com.ukmaSupport.utils.PasswordChangeValidator;
 import com.ukmaSupport.utils.PasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,10 @@ public class AdminController {
     @Autowired
     @Qualifier("passChangeValidator")
     private PasswordChangeValidator validator;
+
+    @Autowired
+    @Qualifier("audiroriumValidator")
+    private AudiroriumValidator audiroriumValidator;
 
     @Autowired
     private UserService userService;
@@ -136,10 +141,14 @@ public class AdminController {
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/createAuditorium", method = RequestMethod.POST)
-    public String saveAuditorium(@ModelAttribute("newAuditorium") Auditorium auditorium, ModelMap model) {
+    public String saveAuditorium(@ModelAttribute("newAuditorium") Auditorium auditorium, ModelMap model,BindingResult bindingResult) {
         model.addAttribute("number", auditorium.getNumber());
+        audiroriumValidator.validate(auditorium,bindingResult);
+        if(bindingResult.hasErrors())
+            return "adminPage/addAuditorium";
+
         auditoriumService.save(auditorium);
-        return "redirect:/all";
+        return "redirect:/auditoriums";
     }
 
     @Secured("ROLE_ADMIN")

@@ -50,13 +50,24 @@ public class UserController {
     @Qualifier("orderValidator")
     private OrderValidator validator;
 
-
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
     public
     @ResponseBody
     List<Workplace> getCharNum(@RequestParam("text") String text) {
         List<Workplace> workplaces = workplaceService.getByAuditoryName(text);
         return workplaces;
+    }
+
+    @RequestMapping(value = "/userhome", method = RequestMethod.GET)
+    public String listUserOrders(ModelMap model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        int userId = (Integer) session.getAttribute("id");
+
+        System.out.println(userId);
+        List<Order> orders = orderService.getByUserId(userId);
+        model.addAttribute("userOrder", orders);
+        return "userPage/userHomePage";
     }
 
     @RequestMapping(value = "/createOrder", method = RequestMethod.GET)
@@ -89,31 +100,10 @@ public class UserController {
         return "redirect:/userhome";
     }
 
-    @RequestMapping(value = "/userhome", method = RequestMethod.GET)
-    public String listUsersOrder(ModelMap model) {
-        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        HttpSession session = attr.getRequest().getSession();
-        int userid = (Integer) session.getAttribute("id");
-
-        System.out.println(userid);
-        List<Order> orders = orderService.getByUserId(userid);
-        model.addAttribute("userOrder", orders);
-        return "userPage/userHomePage";
-    }
-
-    @RequestMapping(value = "/unComplited", method = RequestMethod.GET)
-    public @ResponseBody List<Order> uncompletedOrder() {
-        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        HttpSession session = attr.getRequest().getSession();
-        int userId = (Integer) session.getAttribute("id");
-
-        System.out.println(userId);
-        List<Order> orders = orderService.getByUserIdStatus(userId, UNDONE);
-        return orders;
-    }
-
     @RequestMapping(value = "/allUserOrders", method = RequestMethod.GET)
-    public @ResponseBody List<Order> getOrders() {
+    public
+    @ResponseBody
+    List<Order> allUserOrders() {
 
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
@@ -124,15 +114,29 @@ public class UserController {
         return orders;
     }
 
-    @RequestMapping(value = "/allComplited", method = RequestMethod.GET)
-    public @ResponseBody List<Order> getCompleted() {
-
+    @RequestMapping(value = "/allCompleted", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Order> getUserComplOrders() {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
 
         int userId = (Integer) session.getAttribute("id");
         System.out.println(userId);
         List<Order> orders = orderService.getByUserIdStatus(userId, DONE);
+        return orders;
+    }
+
+    @RequestMapping(value = "/allUncompleted", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Order> getUserUncomplOrders() {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        int userId = (Integer) session.getAttribute("id");
+
+        System.out.println(userId);
+        List<Order> orders = orderService.getByUserIdStatus(userId, UNDONE);
         return orders;
     }
 

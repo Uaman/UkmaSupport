@@ -1,7 +1,6 @@
 package com.ukmaSupport.controllers;
 
 import com.ukmaSupport.mailService.templates.ForgotPasswordMail;
-import com.ukmaSupport.mailService.templates.OrderIsDoneMail;
 import com.ukmaSupport.models.User;
 import com.ukmaSupport.services.interfaces.UserService;
 import com.ukmaSupport.utils.Constants;

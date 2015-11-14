@@ -14,6 +14,7 @@ public interface AuditoriumDao {
     //Update
     void update(Auditorium auditorium);
 
+    Auditorium getByNumber(String number);
     //Delete
     void delete(int id);
 
