@@ -8,6 +8,8 @@ public interface UserService {
 
     User getById(int id);
 
+    User getResponsibleAssistant(String auditorium);
+
     void delete(int id);
 
     void saveOrUpdate(User user);

@@ -77,7 +77,7 @@
             <div class="form-group">
                 <div class="col-md-6">
                     <label class="label-style" for="sel1">auditorium:</label>
-                    <select name="auditorium" class="form-control select-style" id="sel1"  onchange="getWorkPlace()" >
+                    <select name="auditorium" class="form-control select-style" id="sel1" path="auditorium" onchange="getWorkPlace()" >
                         <option value="" disabled selected>auditorium</option>
                         <c:forEach items="${auditoriums}" var="item" varStatus="count">
                             <option value="${item.number}">${item.number}</option>
@@ -89,7 +89,10 @@
                     <select name="workplace_access_num" class="form-control select-style" id="sel2" path="workplace_access_num">
                         <option value="" disabled selected>workplace</option>
                     </select>
+                    <form:errors path="workplace_access_num" class="regErrors" id="workplace_access_num.errors"
+                                 cssStyle="color: #ff0000;"/>
                 </div>
+
             </div>
 
             <div class="form-group">

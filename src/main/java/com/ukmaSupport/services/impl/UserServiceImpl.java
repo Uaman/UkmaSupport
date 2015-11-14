@@ -28,6 +28,18 @@ public class UserServiceImpl implements UserService {
         userDao.delete(id);
     }
 
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    @Override
+    public User getResponsibleAssistant(String auditorium) {
+        User user = null;
+        try {
+            user = userDao.getResponsibleAssistant(auditorium);
+        }catch (Exception e){
+            user = null;
+        }
+        return user;
+    }
+
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
     @Override
     public void saveOrUpdate(User user) {
