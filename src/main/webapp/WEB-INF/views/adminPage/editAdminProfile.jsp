@@ -81,7 +81,8 @@
         <form:form id="passChangeForm" action="editAdminProfile" method="post" commandName="passChangeForm">
             <table border="0">
                 <tr>
-                    <td class="centralWord" colspan="2" align="center">Password change</td>
+                    <td class="centralWord" colspan="2" align="center"><spring:message
+                            code="admin.hello"/></td>
                 </tr>
                 <tr>
                     <td><label class="labels"><spring:message code="registration.firstName"/></label></td>
