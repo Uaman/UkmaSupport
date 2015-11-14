@@ -47,13 +47,6 @@
         <property name="cookieName" value="lang"/>
     </bean>
 
-    <bean id="handlerMapping"
-          class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
-        <property name="interceptors">
-            <ref bean="localeChangeInterceptor"/>
-        </property>
-    </bean>
-
     <bean id="registrationValidator" class="com.ukmaSupport.utils.RegistrationValidator"/>
     <bean id="passChangeValidator" class="com.ukmaSupport.utils.PasswordChangeValidator"/>
     <bean id="orderValidator" class="com.ukmaSupport.utils.OrderValidator"/>
