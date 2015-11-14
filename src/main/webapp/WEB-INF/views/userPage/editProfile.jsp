@@ -12,10 +12,9 @@
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script>
-        jQuery( function($) {
-            $('tbody tr[data-href]').addClass('clickable').click( function() {
-                window.location = $(this).attr('data-href');
-            });
+
+        jQuery.ajax(url,{
+            complete:function() { location='/userhome';}
         });
     </script>
 </head>
@@ -30,7 +29,13 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a id = "userHome " class="menu-element" href="/userhome">User Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="/userhome"> My orders<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="drop-menu-element"><a class="menu-element-li" href="/complited">Complited orders</a></li>
+                            <li class="drop-menu-element"><a class="menu-element-li" href="/uncomplited">Uncomplited orders</a></li>
+                        </ul>
+                    </li>
                     <li><a id = "editProfile" class="menu-element" href="/editProfile">Edit profile</a></li>
                     <li><a class="menu-element" href="#">Log out</a></li>
                 </ul>

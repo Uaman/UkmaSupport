@@ -11,10 +11,13 @@
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen" />
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="jquery.tablesort.js"></script>
-
+    <script src="../../../resources/js/tsort.js"></script>
     <script>
+
+       /* $(document).ready(function() {
+            $('#records_table').tableSort();
+        });*/
+
         function formatDate(date, fmt) {
             function pad(value) {
                 return (value.toString().length < 2) ? '0' + value : value;
@@ -38,11 +41,13 @@
                 }
             });
         }
+
         jQuery( function($) {
             $('tbody tr[data-href]').addClass('clickable').click( function() {
                 window.location = $(this).attr('data-href');
             });
         });
+
         $.ajax({
             url: 'allUserOrders',
             type: 'GET',
@@ -64,11 +69,11 @@
                     trHTML +=' <tbody>'+'<tr><td>' + order.title + '</td><td>' + order.workplace_access_num+'</td><td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+'<tbody>' ;
                 });
                 $('#records_table tbody').empty();
-                $('#records_table th.title').data('sortBy', function(th, td, tablesort) {
-                    return App.People.get(td.text());
-                });
+
                 $('#records_table').append(trHTML);
+
             }
+
         });
         function getUncomplOrders()
         {
@@ -85,6 +90,7 @@
                     });
                     $('#records_table tbody').empty();
                     $('#records_table').append(trHTML);
+
                 }
             });
         }
@@ -103,9 +109,11 @@
                     });
                     $('#records_table tbody').empty();
                     $('#records_table').append(trHTML);
+
                 }
             });
         }
+
     </script>
 
 </head>
@@ -143,12 +151,12 @@
     </div>
 
     <div class="table-align">
-        <table id="records_table" class="tbl table table-striped table-hover">
+        <table  id="records_table"  class="tbl table table-striped table-hover" >
             <thead>
             <tr>
-                <th>Title</th>
+                <th >Title</th>
                 <th>Auditorium</th>
-                <th href="">Date</th>
+                <th >Date</th>
             </tr>
             </thead>
         </table>

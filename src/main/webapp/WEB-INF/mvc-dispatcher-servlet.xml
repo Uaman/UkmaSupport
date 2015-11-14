@@ -30,22 +30,27 @@
 
     <!-- error messages and validators for registration and password change -->
     <bean id="messageSource"
-          class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basename" value="messages"/>
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="classpath:messages"/>
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
-    <bean id="localeChangeInterceptor"
-          class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-        <property name="paramName" value="lang"/>
+    <mvc:interceptors>
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="lang" />
+        </bean>
+    </mvc:interceptors>
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="en" />
     </bean>
 
-    <bean id="localeResolver"
-          class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
-        <property name="defaultLocale" value="en"/>
-        <property name="cookieMaxAge" value="1209600"/>
-        <property name="cookieName" value="lang"/>
-    </bean>
+    <!--<bean id="localeResolver"-->
+          <!--class="org.springframework.web.servlet.i18n.CookieLocaleResolver">-->
+        <!--<property name="defaultLocale" value="en"/>-->
+        <!--<property name="cookieMaxAge" value="1209600"/>-->
+        <!--<property name="cookieName" value="lang"/>-->
+    <!--</bean>-->
 
     <bean id="registrationValidator" class="com.ukmaSupport.utils.RegistrationValidator"/>
     <bean id="passChangeValidator" class="com.ukmaSupport.utils.PasswordChangeValidator"/>

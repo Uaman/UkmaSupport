@@ -52,14 +52,10 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"> My orders<b class="caret"></b></a>
+                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="/userhome"> My orders<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <!-------------->
-                            <li class="drop-menu-element"><a class="menu-element-li" href="/userhome">Completed
-                                orders</a></li>
-                            <li class="drop-menu-element"><a class="menu-element-li" href="/userhome">Uncompleted
-                                orders</a></li>
-                            <!-------------->
+                            <li class="drop-menu-element"><a class="menu-element-li" href="/complited">Completed orders</a></li>
+                            <li class="drop-menu-element"><a class="menu-element-li" href="/uncomplited">Uncompleted orders</a></li>
                         </ul>
                     </li>
                     <li><a id = "editProfile" class="menu-element" href="/editProfile">Edit profile</a></li>
@@ -72,8 +68,10 @@
     <div class="col-md-offset-4 col-md-4 vertalign">
         <form:form class="form-horizontal" id="newOrder" action="/createOrder" method="post" commandName="newOrder">
             <div class="form-group">
-                <div class="col-md-12">
+                <div class="col-md-12" display="inline-block">
                     <input type="text" class="form-control form-style" id="title" name="title" placeholder="title" path="title">
+                        <form:errors path="title" class="regErrors" id="title.errors"
+                                     cssStyle="color: #ff0000;"/>
                 </div>
             </div>
             <div class="form-group">
@@ -97,6 +95,8 @@
             <div class="form-group">
                 <div class="col-md-12">
                     <textarea class="col-md-12" rows="5"  id="content"  name="content" path="content" placeholder="description"></textarea>
+                    <form:errors path="content" class="regErrors" id="content.errors"
+                                 cssStyle="color: #ff0000;"/>
                 </div>
             </div>
 
