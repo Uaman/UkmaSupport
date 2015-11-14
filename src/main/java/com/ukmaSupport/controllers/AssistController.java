@@ -148,7 +148,7 @@ public class AssistController {
     // @Secured("ROLE_ASSISTANT")
     @RequestMapping(value = "/createAssistOrder", method = RequestMethod.POST)
     public String createOrderPost(@ModelAttribute("newOrder") Order order, @RequestParam("workplace_access_num") int workplaceNum, ModelMap model, BindingResult result) {
-        return userController.createOrderPost(order, workplaceNum, model, result);
+        return "";//userController.createOrderPost(order, workplaceNum, model, result);
     }
 
 

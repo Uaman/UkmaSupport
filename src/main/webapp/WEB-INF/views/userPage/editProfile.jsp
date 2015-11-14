@@ -30,7 +30,13 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a id = "userHome " class="menu-element" href="/userhome">User Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="/userhome"> My orders<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="drop-menu-element"><a class="menu-element-li" href="/complited">Complited orders</a></li>
+                            <li class="drop-menu-element"><a class="menu-element-li" href="/uncomplited">Uncomplited orders</a></li>
+                        </ul>
+                    </li>
                     <li><a id = "editProfile" class="menu-element" href="/editProfile">Edit profile</a></li>
                     <li><a class="menu-element" href="#">Log out</a></li>
                 </ul>

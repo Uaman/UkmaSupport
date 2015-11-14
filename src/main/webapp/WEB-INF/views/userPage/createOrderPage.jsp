@@ -52,7 +52,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"> My orders<b class="caret"></b></a>
+                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="/userhome"> My orders<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="drop-menu-element"><a class="menu-element-li" href="/complited">Complited orders</a></li>
                             <li class="drop-menu-element"><a class="menu-element-li" href="/uncomplited">Uncomplited orders</a></li>
