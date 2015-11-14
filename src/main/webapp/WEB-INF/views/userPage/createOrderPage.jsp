@@ -68,8 +68,10 @@
     <div class="col-md-offset-4 col-md-4 vertalign">
         <form:form class="form-horizontal" id="newOrder" action="/createOrder" method="post" commandName="newOrder">
             <div class="form-group">
-                <div class="col-md-12">
+                <div class="col-md-12" display="inline-block">
                     <input type="text" class="form-control form-style" id="title" name="title" placeholder="title" path="title">
+                        <form:errors path="title" class="regErrors" id="title.errors"
+                                     cssStyle="color: #ff0000;"/>
                 </div>
             </div>
             <div class="form-group">
@@ -93,6 +95,8 @@
             <div class="form-group">
                 <div class="col-md-12">
                     <textarea class="col-md-12" rows="5"  id="content"  name="content" path="content" placeholder="description"></textarea>
+                    <form:errors path="content" class="regErrors" id="content.errors"
+                                 cssStyle="color: #ff0000;"/>
                 </div>
             </div>
 

@@ -69,12 +69,17 @@ public class UserController {
     }
 
     @RequestMapping(value = "/createOrder", method = RequestMethod.POST)
-    public String createOrderPost(@ModelAttribute("newOrder") Order order, @RequestParam("workplace_access_num") int workplaceNum, ModelMap model, BindingResult result) {
+    public String createOrderPost(@ModelAttribute("newOrder") Order order, ModelMap model, BindingResult result) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
+        validator.validate(order,result);
+        if(result.hasErrors()){
+            return "userPage/createOrderPage";
+        }
+
         //order.setWorkspaceNumber(workplaceNum);
         order.setUserId((Integer) session.getAttribute("id"));
-        order.setStatus(UNDONE);
+        //order.setStatus(UNDONE);
         order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
         order.setAssistantId(order.getUserId());
         //validator.validate(order,result);
