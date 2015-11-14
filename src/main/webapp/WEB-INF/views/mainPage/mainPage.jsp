@@ -7,8 +7,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><spring:message code="login.title"/></title>
     <link rel="Shortcut Icon" href="" type="image/x-icon"/>
-    <link rel="stylesheet" href="../resources/css/bootstrap.css">
-    <link rel="stylesheet" href="../resources/css/main.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
+    <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
 
     <script type="text/javascript">
         function startTime() {
@@ -36,7 +36,7 @@
     <div id="header">
 
         <div>
-            <a href="/"><img id="logo" alt="brand" src="../resources/img/logo.png"
+            <a href="/"><img id="logo" alt="brand" src="../../../resources/img/logo.png"
                              style="width: 305px; height:65px; margin-top:11px;"/></a>
         </div>
 
@@ -65,27 +65,30 @@
                 <div class="form-group">
                     <div class="col-md-offset-1 col-md-10">
                         <input type="email" class="form-control form-style" id="email" name="j_username"
-                               placeholder="Введіть email">
+                               placeholder="<spring:message
+                        code="login.email"/>">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-offset-1 col-md-10">
                         <input type="password" class="form-control form-style" id="password" name="j_password"
-                               placeholder="Пароль">
+                               placeholder="<spring:message
+                        code="login.password"/>">
                     </div>
                 </div>
 
 
                 <div class="form-group">
                     <div class="col-md-offset-7 col-md-4">
-                        <button id="login-button" type="submit" class="btn btn-primary btn-block button-style">log in
+                        <button id="login-button" type="submit" class="btn btn-primary btn-block button-style">
+                            <spring:message code="login.login"/>
                         </button>
                     </div>
                 </div>
 
                 <div class="col-md-offset-1">
-                    <a id="forgotpassword" href="/forgotPassword">Forgot password?</a>
+                    <a id="forgotpassword" href="/forgotPassword"><spring:message code="login.forgotPassword"/></a>
                 </div>
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
@@ -96,7 +99,7 @@
     <div class="navbar-fixed-bottom">
         <div class="thick"></div>
         <div class="thin"></div>
-        <div><p class="footertext" style="padding-bottom: 10px;"> © 2015 All Rights Reserved</p></div>
+        <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
 
         <div class="text-center">
             <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
