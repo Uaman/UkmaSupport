@@ -78,7 +78,6 @@
                     </div>
                 </div>
 
-
                 <div class="form-group">
                     <div class="col-md-offset-7 col-md-4">
                         <button id="login-button" type="submit" class="btn btn-primary btn-block button-style">
@@ -91,7 +90,6 @@
                     <a id="forgotpassword" href="/forgotPassword"><spring:message code="login.forgotPassword"/></a>
                 </div>
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
             </form>
         </div>
     </form>
