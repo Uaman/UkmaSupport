@@ -93,25 +93,15 @@
         </div>
     </form>
 
-
-    <div class="text-center">
-        <a class="language" data-language="en"><spring:message code="language.en"/></a>
-        <a class="language" data-language="ua"><spring:message code="language.ua"/></a>
-        <script>
-            $(document).ready(function () {
-                $('.language').on('click', function (elem) {
-                    console.log();
-                    document.cookie = "lang=" + this.dataset["language"];
-                    location.reload();
-                })
-            });
-        </script>
-    </div>
-
     <div class="navbar-fixed-bottom">
         <div class="thick"></div>
         <div class="thin"></div>
-        <div><p class="footertext"> © 2015 All Rights Reserved</p></div>
+        <div><p class="footertext" style="padding-bottom: 10px;"> © 2015 All Rights Reserved</p></div>
+
+        <div class="text-center">
+            <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
+            <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
+        </div>
     </div>
 
 </div>
