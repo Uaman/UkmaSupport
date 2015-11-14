@@ -148,7 +148,7 @@ public class AdminController {
             return "adminPage/addAuditorium";
 
         auditoriumService.save(auditorium);
-        return "redirect:/all";
+        return "redirect:/auditoriums";
     }
 
     @Secured("ROLE_ADMIN")
