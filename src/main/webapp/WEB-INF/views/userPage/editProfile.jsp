@@ -12,10 +12,9 @@
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script>
-        jQuery( function($) {
-            $('tbody tr[data-href]').addClass('clickable').click( function() {
-                window.location = $(this).attr('data-href');
-            });
+
+        jQuery.ajax(url,{
+            complete:function() { location='/userhome';}
         });
     </script>
 </head>

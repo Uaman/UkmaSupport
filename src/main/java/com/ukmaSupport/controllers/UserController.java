@@ -60,13 +60,6 @@ public class UserController {
 
     @RequestMapping(value = "/userhome", method = RequestMethod.GET)
     public String listUserOrders(ModelMap model) {
-        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        HttpSession session = attr.getRequest().getSession();
-        int userId = (Integer) session.getAttribute("id");
-
-        System.out.println(userId);
-        List<Order> orders = orderService.getByUserId(userId);
-        model.addAttribute("userOrder", orders);
         return "userPage/userHomePage";
     }
 
