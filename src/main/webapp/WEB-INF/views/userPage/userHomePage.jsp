@@ -43,7 +43,6 @@
                 window.location = $(this).attr('data-href');
             });
         });
-
         $.ajax({
             url: 'allUserOrders',
             type: 'GET',
@@ -58,7 +57,6 @@
                     if (a.createdAt > b.createdAt) {
                         return -1;
                     }
-
                     return 0;
                 });
                 var trHTML = '';
@@ -72,36 +70,34 @@
                 $('#records_table').append(trHTML);
             }
         });
-
-        function getUncoplited()
+        function getUncomplOrders()
         {
             $.ajax({
-            url: 'unComplited',
-                    type: 'GET',
+                url: 'allUncompleted',
+                type: 'GET',
                 data:{
-            text : $("#sel2").val()
-        },
-            success: function (response) {
-                var trHTML = '';
-                $.each(response, function (i, order) {
-                    trHTML +=' <tbody>'+'<tr><td>' + order.title + '</td><td>' + order.workplace_access_num+'</td><td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+'<tbody>' ;
-                });
-                $('#records_table tbody').empty();
-                $('#records_table').append(trHTML);
-            }
-        });
+                    text: $("#sel2").val()
+                },
+                success: function (response) {
+                    var trHTML = '';
+                    $.each(response, function (i, order) {
+                        trHTML += ' <tbody>' + '<tr><td>' + order.title + '</td><td>' + order.workplace_access_num + '</td><td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + '<tbody>';
+                    });
+                    $('#records_table tbody').empty();
+                    $('#records_table').append(trHTML);
+                }
+            });
         }
-        function getCoplited()
+        function getComplOrders()
         {
             $.ajax({
-                url: 'allComplited',
+                url: 'allCompleted',
                 type: 'GET',
                 data:{
                     text : $("#sel2").val()
                 },
                 success: function (response) {
                     var trHTML = '';
-
                     $.each(response, function (i, order) {
                         trHTML +=' <tbody>'+'<tr><td>' + order.title + '</td><td>' + order.workplace_access_num+'</td><td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+'<tbody>' ;
                     });
@@ -110,7 +106,6 @@
                 }
             });
         }
-
     </script>
 
 </head>
@@ -128,8 +123,12 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"> My orders<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li class="drop-menu-element"><a class="menu-element-li" href="javascript:getCoplited();" >Complited orders</a></li>
-                            <li class="drop-menu-element"><a class="menu-element-li" href="javascript:getUncoplited();">Uncomplited orders</a></li>
+                            <li class="drop-menu-element"><a class="menu-element-li"
+                                                             href="javascript:getComplOrders();">Completed orders</a>
+                            </li>
+                            <li class="drop-menu-element"><a class="menu-element-li"
+                                                             href="javascript:getUncomplOrders();">Uncompleted
+                                orders</a></li>
                         </ul>
                     </li>
                     <li><a id = "editProfile" class="menu-element" href="/editProfile">Edit profile</a></li>
@@ -155,17 +154,17 @@
         </table>
     </div>
 
-<form method="get" action="/createOrder">
-    <div class="col-md-offset-7">
-        <form class="form-horizontal">
-            <div class="form-group">
-                <div class="col-md-offset-7 col-md-4">
-                    <button id="btn-add-order" type="submit" class="btn btn-primary btn-block">add order</button>
+    <form method="get" action="/createOrder">
+        <div class="col-md-offset-7">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-md-offset-7 col-md-4">
+                        <button id="btn-add-order" type="submit" class="btn btn-primary btn-block">add order</button>
+                    </div>
                 </div>
-            </div>
-        </form>
-    </div>
-</form>
+            </form>
+        </div>
+    </form>
     <div class="navbar-fixed-bottom">
         <div class="thick"></div>
         <div class="thin"></div>
