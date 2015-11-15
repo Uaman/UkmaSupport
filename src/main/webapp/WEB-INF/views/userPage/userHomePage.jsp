@@ -154,7 +154,7 @@
     </nav>
 
     <div>
-        <p id="hello">Hello, User!</p>
+        <p id="hello" class="top-block">Hello, User!</p>
     </div>
 
     <div class="table-align">
@@ -170,9 +170,9 @@
         </table>
     </div>
 
-    <form method="get" action="/createOrder">
-        <div class="col-md-offset-7">
-            <form class="form-horizontal">
+
+        <div class="col-md-offset-7 bottom-block">
+            <form class="form-horizontal" method="get" action="/createOrder">
                 <div class="form-group">
                     <div class="col-md-offset-7 col-md-4">
                         <button id="btn-add-order" type="submit" class="btn btn-primary btn-block">add order</button>
@@ -180,8 +180,8 @@
                 </div>
             </form>
         </div>
-    </form>
-    <div class="navbar-fixed-bottom">
+
+    <div class="footer">
         <div class="thick"></div>
         <div class="thin"></div>
         <div><p class="footertext"> © 2015 All Rights Reserved</p></div>
