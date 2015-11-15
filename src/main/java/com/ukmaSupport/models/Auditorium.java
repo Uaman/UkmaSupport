@@ -7,6 +7,15 @@ public class Auditorium implements Serializable {
     private int id;
     private int userId;
     private String number;
+    private String assistantName;
+
+    public String getAssistantName() {
+        return assistantName;
+    }
+
+    public void setAssistantName(String assistantName) {
+        this.assistantName = assistantName;
+    }
 
     public String getNumber() {
         return number;

@@ -69,16 +69,18 @@
     </nav>
 
     <div class="table-align bottom-block top-table">
-        <table class="tbl table table-striped">
+        <table class="tbl table table_auditorium table-striped">
             <thead>
             <tr>
                 <th><spring:message code="admin.auditoriums.number"/></th>
+                <th><spring:message code="admin.auditoriums.assistantName"/></th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${auditoriums}" var="item" varStatus="count">
                 <tr data-href="#">
                     <td>${item.number}</td>
+                    <td>${item.assistantName}</td>
                 </tr>
             </c:forEach>
             </tbody>
