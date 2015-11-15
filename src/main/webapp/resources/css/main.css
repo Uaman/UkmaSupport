@@ -33,6 +33,9 @@ body{
 
 #logo{
 	padding: 5px;
+	width: 305px;
+	height: 65px;
+	margin-top: 11px;
 }
 
 #time{
@@ -228,5 +231,10 @@ a img {
 	font-family: "Century Gothic", sans-serif;
 	color: #333366;
 	padding-bottom: 5px;
+}
+
+#change-pass-button {
+	width: 178px;
+	margin-left: -35px;
 }
 
