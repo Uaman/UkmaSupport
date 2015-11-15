@@ -45,6 +45,8 @@ public class MainPage {
         session.setAttribute("id", userService.getByEmail(auth.getName()).getId());
         if(userService.getByEmail(auth.getName()).getRole().equals("ADMIN"))
             return "redirect:/users";
+        if (userService.getByEmail(auth.getName()).getRole().equals("ASSISTANT"))
+            return "redirect:/assistHome";
         return "redirect:/userhome";
     }
 }
