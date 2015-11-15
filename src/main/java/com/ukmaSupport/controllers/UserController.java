@@ -76,6 +76,8 @@ public class UserController {
         HttpSession session = attr.getRequest().getSession();
         validator.validate(order, result);
         if(result.hasErrors()){
+            List<Auditorium> auditoriums = auditoriumService.getAll();
+            model.addAttribute("auditoriums", auditoriums);
             return "userPage/createOrderPage";
         }
 

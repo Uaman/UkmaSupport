@@ -69,9 +69,8 @@
         <form:form class="form-horizontal" id="newOrder" action="/createOrder" method="post" commandName="newOrder">
             <div class="form-group">
                 <div class="col-md-12" display="inline-block">
-                    <input type="text" class="form-control form-style" id="title" name="title" placeholder="title" path="title">
-                        <form:errors path="title" class="regErrors" id="title.errors"
-                                     cssStyle="color: #ff0000;"/>
+                    <span><input type="text" class="form-control form-style" id="title" name="title" placeholder="title" path="title"></span>
+                        <span><form:errors path="title" class="" id="title.errors"/></span>
                 </div>
             </div>
             <div class="form-group">
@@ -89,8 +88,7 @@
                     <select name="workplace_access_num" class="form-control select-style" id="sel2" path="workplace_access_num">
                         <option value="" disabled selected>workplace</option>
                     </select>
-                    <form:errors path="workplace_access_num" class="regErrors" id="workplace_access_num.errors"
-                                 cssStyle="color: #ff0000;"/>
+                    <form:errors path="workplace_access_num" class="" id="workplace_access_num.errors"/>
                 </div>
 
             </div>
@@ -98,8 +96,7 @@
             <div class="form-group">
                 <div class="col-md-12">
                     <textarea class="col-md-12" rows="5"  id="content"  name="content" path="content" placeholder="description"></textarea>
-                    <form:errors path="content" class="regErrors" id="content.errors"
-                                 cssStyle="color: #ff0000;"/>
+                    <form:errors path="content" class="" id="content.errors"/>
                 </div>
             </div>
 
