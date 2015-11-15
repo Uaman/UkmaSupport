@@ -75,7 +75,9 @@
                 <th><spring:message code="registration.lastName"/></th>
                 <th><spring:message code="registration.firstName"/></th>
                 <th style="width:120px;"><spring:message code="admin.users.role"/></th>
+                <th width="25px;"></th>
                 <th style="width:150px;"><spring:message code="admin.users.status"/></th>
+                <th width="25px;"></th>
             </tr>
             </thead>
             <tbody>
@@ -83,8 +85,10 @@
                 <tr data-href="#">
                     <td>${item.lastName}</td>
                     <td>${item.firstName}</td>
-                    <td>${item.role}<input type="image" src="../../../resources/img/edit.jpg" data-toggle="modal" data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;"></td>
-                    <td>${item.accountStatus}<input type="image" src="../../../resources/img/edit.jpg" data-toggle="modal" data-target="#myModalStatus" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;"></td>
+                    <td>${item.role}</td>
+                    <td><input type="image" src="../../../resources/img/edit.jpg" data-toggle="modal" data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;"></td>
+                    <td>${item.accountStatus}</td>
+                    <td><input type="image" src="../../../resources/img/edit.jpg" data-toggle="modal" data-target="#myModalStatus" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;"></td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -110,6 +114,7 @@
             <div class="modal-body">
                 <input type="radio" name="browser" value="ie"> Assistant<Br>
                 <input type="radio" name="browser" value="opera"> User<Br>
+                <input type="radio" name="browser" value="opera"> Admin<Br>
                 <input type="radio" name="browser" value="firefox"> Professor<Br>
             </div>
             <div class="modal-footer">
