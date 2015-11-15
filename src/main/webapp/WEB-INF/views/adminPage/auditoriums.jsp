@@ -68,7 +68,7 @@
         </div>
     </nav>
 
-    <div class="table-align bottom-block top-block">
+    <div class="table-align bottom-block top-table">
         <table class="tbl table table-striped">
             <thead>
             <tr>
