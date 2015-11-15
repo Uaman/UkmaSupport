@@ -75,8 +75,8 @@
             <tr>
                 <th><spring:message code="registration.lastName"/></th>
                 <th><spring:message code="registration.firstName"/></th>
-                <th><spring:message code="admin.users.role"/></th>
-                <th><spring:message code="admin.users.status"/></th>
+                <th style="width:120px;"><spring:message code="admin.users.role"/></th>
+                <th style="width:150px;"><spring:message code="admin.users.status"/></th>
             </tr>
             </thead>
             <tbody>
@@ -84,8 +84,8 @@
                 <tr data-href="#">
                     <td>${item.lastName}</td>
                     <td>${item.firstName}</td>
-                    <td>${item.role}</td>
-                    <td>${item.accountStatus}</td>
+                    <td>${item.role}<input type="image" src="../../../resources/img/edit.jpg" data-toggle="modal" data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;"></td>
+                    <td>${item.accountStatus}<input type="image" src="../../../resources/img/edit.jpg" data-toggle="modal" data-target="#myModalStatus" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;"></td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -102,5 +102,42 @@
         <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
     </div>
 </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:300px;" >
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <center><h4 class="modal-title" id="myModalLabel">Edit Role</h4></center>
+            </div>
+            <div class="modal-body">
+                <input type="radio" name="browser" value="ie"> Assistant<Br>
+                <input type="radio" name="browser" value="opera"> User<Br>
+                <input type="radio" name="browser" value="firefox"> Professor<Br>
+            </div>
+            <div class="modal-footer">
+                <center>  <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button></center>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModalStatus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:300px;" >
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <center><h4 class="modal-title" id="myModalLabelStatus">Edit Status</h4></center>
+            </div>
+            <div class="modal-body">
+                <input type="radio" name="browser" value="ie"> Active<Br>
+                <input type="radio" name="browser" value="opera"> Blocked<Br>
+            </div>
+            <div class="modal-footer">
+                <center>  <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button></center>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
