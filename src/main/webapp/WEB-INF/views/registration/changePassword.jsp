@@ -1,8 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
   <title>Change password</title>
+  <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
 </head>
 <body>
 <c:if test="${not empty error}">
@@ -14,8 +16,8 @@
 
 <form method="POST" name="changePassword" action="/changePassword">
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-
-  ${user_id}: <input name="newPassword" value="${newPassword}" type="password"  />
+  <form:input path = "user_id" name="user_id" value="${user_id}" type="text" cssClass="invisible" cssStyle="position: absolute" />
+  ${user_id}: <form:input path = "newPassword" name="newPassword" value="${newPassword}" type="password"  />
 
   <br />
   <input value="Change password" type="submit" />

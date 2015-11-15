@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.ukmaSupport.utils.PasswordEncryptor;
 
 @Controller
 @RequestMapping
@@ -51,25 +52,26 @@ public class ForgotPasswordController {
     }
 
     @RequestMapping(value = "/changePassword", method = RequestMethod.GET)
-    public String viewChangePassword(@RequestParam("id") int id, Model model) {
+    public String viewChangePassword(@RequestParam("id") int id,  Model model) {
 
         model.addAttribute("user_id", id);
+        model.addAttribute("newPassword", "");
 
         return "registration/changePassword";
     }
 
     @RequestMapping(value = "/changePassword", method = RequestMethod.POST)
-    public String changePassword(@ModelAttribute("user_id") int id, @ModelAttribute("newPassword") String newPassword, Model model) {
+    public String changePassword(@ModelAttribute("user_id") int id, @ModelAttribute("newPassword") String newPassword,  Model model) {
 
-        //model.addAttribute("user_id", id);
-        model.addAttribute("newPassword", newPassword);
+        model.addAttribute("user_id", id);
+        model.addAttribute("newPassword", "");
 
         if(newPassword == null || newPassword.trim().isEmpty())
             model.addAttribute("error", "Item Password is required!");
         else{
 
             User user = userService.getById(id);
-            user.setPassword(newPassword);
+            user.setPassword(PasswordEncryptor.encode(newPassword));
 
             userService.saveOrUpdate(user);
             model.addAttribute("success", "Success!");
