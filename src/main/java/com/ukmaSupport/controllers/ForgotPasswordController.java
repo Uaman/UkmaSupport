@@ -56,18 +56,24 @@ public class ForgotPasswordController {
 
         model.addAttribute("user_id", id);
         model.addAttribute("newPassword", "");
+        model.addAttribute("newPasswordConfirm", "");
 
         return "registration/changePassword";
     }
 
     @RequestMapping(value = "/changePassword", method = RequestMethod.POST)
-    public String changePassword(@ModelAttribute("user_id") int id, @ModelAttribute("newPassword") String newPassword,  Model model) {
+    public String changePassword(@ModelAttribute("user_id") int id, @ModelAttribute("newPassword") String newPassword,
+                                 @ModelAttribute("newPasswordConfirm") String newPasswordConfirm, Model model) {
 
         model.addAttribute("user_id", id);
         model.addAttribute("newPassword", "");
+        model.addAttribute("newPasswordConfirm", "");
 
-        if(newPassword == null || newPassword.trim().isEmpty())
-            model.addAttribute("error", "Item Password is required!");
+        if(newPassword == null || newPassword.trim().isEmpty() || newPasswordConfirm == null || newPasswordConfirm.isEmpty())
+            model.addAttribute("error", "Item New password and Confirm new password are required!");
+        else if(!newPassword.equals(newPasswordConfirm)){
+            model.addAttribute("notEqual", "Passwords are not equal");
+        }
         else{
 
             User user = userService.getById(id);
@@ -76,6 +82,7 @@ public class ForgotPasswordController {
             userService.saveOrUpdate(user);
             model.addAttribute("success", "Success!");
         }
+
 
         return "registration/changePassword";
     }
