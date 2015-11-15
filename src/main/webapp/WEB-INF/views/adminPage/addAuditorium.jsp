@@ -71,10 +71,13 @@
     </nav>
 
 
- <div class="bottom-block top-block">
+ <div id="profEdit" class="top-block bottom-block">
     <form:form id="newAuditorium" action="/createAuditorium" method="post" commandName="newAuditorium">
         <table border="0">
-
+            <tr>
+                <td class="centralWord" colspan="2" align="center"><spring:message
+                        code="admin.addAuditorium.title"/></td>
+            </tr>
             <tr>
                 <td><label class="labels"><spring:message code="admin.addAuditorium.add"/></label></td>
                 <td><form:input id="number" path="number" name="number" type="text" value=""

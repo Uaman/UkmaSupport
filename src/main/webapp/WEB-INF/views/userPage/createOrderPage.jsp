@@ -51,15 +51,11 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="/userhome"> My orders<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li class="drop-menu-element"><a class="menu-element-li" href="/complited">Completed orders</a></li>
-                            <li class="drop-menu-element"><a class="menu-element-li" href="/uncomplited">Uncompleted orders</a></li>
-                        </ul>
-                    </li>
-                    <li><a id = "editProfile" class="menu-element" href="/editProfile">Edit profile</a></li>
-                    <li><a class="menu-element" href="#">Log out</a></li>
+                    <li><a class="menu-element"  href="/userhome"> <spring:message
+                            code="admin.orders"/></a></li>
+                    <li><a id = "editProfile" class="menu-element" href="/editProfile"><spring:message
+                            code="admin.edit"/></a></li>
+                    <li><a class="menu-element" href="/"><spring:message code="admin.logout"/></a></li>
                 </ul>
             </div>
         </div>
@@ -69,24 +65,29 @@
         <form:form class="form-horizontal" id="newOrder" action="/createOrder" method="post" commandName="newOrder">
             <div class="form-group">
                 <div class="col-md-12" display="inline-block">
-                    <span><input type="text" class="form-control form-style" id="title" name="title" placeholder="title" path="title"></span>
+                    <span><input type="text" class="form-control form-style" id="title" name="title" placeholder="<spring:message
+                            code="user.title"/>" path="title"></span>
                         <span><form:errors path="title" class="" id="title.errors"/></span>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-6">
-                    <label class="label-style" for="sel1">auditorium:</label>
+                    <label class="label-style" for="sel1"><spring:message
+                            code="user.auditoriums.title"/>:</label>
                     <select name="auditorium" class="form-control select-style" id="sel1" path="auditorium" onchange="getWorkPlace()" >
-                        <option value="" disabled selected>auditorium</option>
+                        <option value="" disabled selected><spring:message
+                                code="user.auditoriums.title"/></option>
                         <c:forEach items="${auditoriums}" var="item" varStatus="count">
                             <option value="${item.number}">${item.number}</option>
                         </c:forEach>
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <label class="label-style" for="sel2">workplace:</label>
+                    <label class="label-style" for="sel2"><spring:message
+                            code="user.workplace.number"/>:</label>
                     <select name="workplace_access_num" class="form-control select-style" id="sel2" path="workplace_access_num">
-                        <option value="" disabled selected>workplace</option>
+                        <option value="" disabled selected><spring:message
+                                code="user.workplace.number"/></option>
                     </select>
                     <form:errors path="workplace_access_num" class="" id="workplace_access_num.errors"/>
                 </div>
@@ -95,14 +96,16 @@
 
             <div class="form-group">
                 <div class="col-md-12">
-                    <textarea class="col-md-12" rows="5"  id="content"  name="content" path="content" placeholder="description"></textarea>
+                    <textarea class="col-md-12" rows="5"  id="content"  name="content" path="content" placeholder="<spring:message
+                            code="user.description"/>"></textarea>
                     <form:errors path="content" class="" id="content.errors"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-12">
-                    <button id="btn-create-order" type="submit" class="btn btn-primary btn-block">Create order</button>
+                    <button id="btn-create-order" type="submit" class="btn btn-primary btn-block"><spring:message
+                            code="user.order.add"/></button>
                 </div>
             </div>
         </form:form>
@@ -112,7 +115,12 @@
     <div class="footer">
         <div class="thick"></div>
         <div class="thin"></div>
-        <div><p class="footertext"> © 2015 All Rights Reserved</p></div>
+        <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
+
+        <div class="text-center">
+            <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
+            <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
+        </div>
     </div>
 </div>
 </body>

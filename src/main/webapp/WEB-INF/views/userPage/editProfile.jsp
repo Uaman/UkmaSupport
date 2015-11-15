@@ -29,15 +29,11 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="/userhome"> My orders<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li class="drop-menu-element"><a class="menu-element-li" href="/complited">Complited orders</a></li>
-                            <li class="drop-menu-element"><a class="menu-element-li" href="/uncomplited">Uncomplited orders</a></li>
-                        </ul>
-                    </li>
-                    <li><a id = "editProfile" class="menu-element" href="/editProfile">Edit profile</a></li>
-                    <li><a class="menu-element" href="#">Log out</a></li>
+                    <li><a class="menu-element"  href="/userhome"><spring:message
+                            code="admin.orders"/></a></li>
+                    <li><a id = "editProfile" class="menu-element" href="/editProfile"><spring:message
+                            code="admin.edit"/></a></li>
+                    <li><a class="menu-element" href="/"><spring:message code="admin.logout"/></a></li>
                 </ul>
             </div>
         </div>
@@ -51,44 +47,45 @@
         <form:form id="passChangeForm" action="editProfile" method="post" commandName="passChangeForm">
             <table border="0">
                 <tr>
-                    <td class="centralWord" colspan="2" align="center">Password change</td>
+                    <td class="centralWord" colspan="2" align="center"><spring:message
+                            code="admin.hello"/></td>
                 </tr>
                 <tr>
-                    <td><label class="labels">First Name:</label></td>
+                    <td><label class="labels"><spring:message code="registration.firstName"/></label></td>
                     <td><form:input id="firstName" path="firstName" name="firstName" type="text" value=""
                                     class="form-control form-style" READONLY="true"/></td>
                     <td><form:errors path="firstName" class="regErrors" id="firstName.errors"
                                      cssStyle="color: #ff0000;"/></td>
                 </tr>
                 <tr>
-                    <td><label class="labels">Last Name:</label></td>
+                    <td><label class="labels"><spring:message code="registration.lastName"/></label></td>
                     <td><form:input id="lastName" path="lastName" name="lastName" type="text" value=""
                                     class="form-control form-style" READONLY="true"/></td>
                     <td><form:errors path="lastName" class="regErrors" id="lastName.errors"
                                      cssStyle="color: #ff0000;"/></td>
                 </tr>
                 <tr>
-                    <td><label class="labels">E-mail:</label></td>
+                    <td><label class="labels"><spring:message code="registration.email"/></label></td>
                     <td><form:input id="email" path="email" name="email" type="text" value=""
                                     class="form-control form-style" READONLY="true"/></td>
                     <td><form:errors path="email" class="regErrors" id="email.errors" cssStyle="color: #ff0000;"/></td>
                 </tr>
                 <tr>
-                    <td><label class="labels">Old password:</label></td>
+                    <td><label class="labels"><spring:message code="admin.oldPassword"/></label></td>
                     <td><form:input path = "oldPassword" type="password" value=""
                                     class="form-control form-style"/></td>
                     <td><form:errors path = "oldPassword" class="regErrors" id="oldPassword.errors"
                                      cssStyle="color: #ff0000;"/></td>
                 </tr>
                 <tr>
-                    <td><label class="labels">New password:</label></td>
+                    <td><label class="labels"><spring:message code="admin.newPassword"/></label></td>
                     <td><form:input path = "password" type="password" value=""
                                     class="form-control form-style"/></td>
                     <td><form:errors path = "password" class="regErrors" id="password.errors"
                                      cssStyle="color: #ff0000;"/></td>
                 </tr>
                 <tr>
-                    <td><label class="labels">Confirm new password:</label></td>
+                    <td><label class="labels"><spring:message code="registration.confPassword"/></label></td>
                     <td><form:input path = "confPassword" type="password" value=""
                                     class="form-control form-style"/></td>
                     <td><form:errors path = "confPassword" class="regErrors" id="confPassword.errors"
@@ -98,21 +95,21 @@
             <div class="form-group">
                 <div class="col-md-offset-7  col-md-4">
                     <button id="change-pass-button" type="submit" value="editProfile"
-                            class="btn btn-primary btn-block button-style">Submit
+                            class="btn btn-primary btn-block button-style"><spring:message code="admin.confirm"/>
                     </button>
                 </div>
             </div>
         </form:form>
     </div>
+    <div class="thick"></div>
+    <div class="thin"></div>
+    <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
 
-
-
-    <div class="footer">
-        <div class="thick"></div>
-        <div class="thin"></div>
-        <div><p class="footertext"> © 2015 All Rights Reserved</p></div>
+    <div class="text-center">
+        <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
+        <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
     </div>
-
+</div>
 </div>
 </body>
 </html>
