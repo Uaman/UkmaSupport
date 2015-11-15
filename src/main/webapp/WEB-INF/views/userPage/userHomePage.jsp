@@ -139,11 +139,11 @@
                         <ul class="dropdown-menu">
                             <li class="drop-menu-element"><a class="menu-element-li"
                                                              href="javascript:getComplOrders();"><spring:message
-                                    code="admin.uncompletedOrders"/></a>
+                                    code="admin.completedOrders"/></a>
                             </li>
                             <li class="drop-menu-element"><a class="menu-element-li"
                                                              href="javascript:getUncomplOrders();"><spring:message
-                                    code="admin.completedOrders"/></a></li>
+                                    code="admin.uncompletedOrders"/></a></li>
                         </ul>
                     </li>
                     <li><a id = "editProfile" class="menu-element" href="/editProfile"><spring:message
