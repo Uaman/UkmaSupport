@@ -37,7 +37,7 @@
 
         <div>
             <a href="/"><img id="logo" alt="brand" src="../../../resources/img/logo.png"
-                             style="width: 305px; height:65px; margin-top:11px;"/></a>
+                             style="margin-left: 15px"/></a>
         </div>
 
         <div class="collapse navbar-collapse">
