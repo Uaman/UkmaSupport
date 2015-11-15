@@ -257,3 +257,15 @@ a img {
 .top-table {
 	padding-top: 120px;
 }
+#title-error {
+	color: #ff0000;
+	margin-top: 8px;
+}
+#workplace-error {
+	color: #ff0000;
+	margin-top: 21px;
+}
+#content-error {
+	color: #ff0000;
+	margin-top: 42px;
+}

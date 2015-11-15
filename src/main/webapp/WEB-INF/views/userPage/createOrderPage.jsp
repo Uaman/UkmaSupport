@@ -14,30 +14,30 @@
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
 
-  <script type="text/javascript">
+    <script type="text/javascript">
 
-      function  getWorkPlace() {
-        $.ajax({
-          url : 'ajaxtest',
-          type : 'GET',
-          data:{
-            text : $("#sel1").val()
-          },
-          success : function(data) {
-              $('#sel2').html('');// to clear the previous option
-              $('#res').html(data);
+        function  getWorkPlace() {
+            $.ajax({
+                url : 'ajaxtest',
+                type : 'GET',
+                data:{
+                    text : $("#sel1").val()
+                },
+                success : function(data) {
+                    $('#sel2').html('');// to clear the previous option
+                    $('#res').html(data);
 
 
 
-              $.each(data, function(i, workplace) {
-                  $('#sel2').append($('<option>').text(workplace.accessNumber).attr('value', workplace.accessNumber));
-              });
+                    $.each(data, function(i, workplace) {
+                        $('#sel2').append($('<option>').text(workplace.accessNumber).attr('value', workplace.accessNumber));
+                    });
 
-          }
-        });
-      }
+                }
+            });
+        }
 
-  </script>
+    </script>
 
 </head>
 <body>
@@ -61,17 +61,17 @@
         </div>
     </nav>
 
-    <div class="col-md-offset-4 col-md-4 vertalign without-top bottom-block">
+    <div class="col-md-offset-4 col-md-8 vertalign bottom-block">
         <form:form class="form-horizontal" id="newOrder" action="/createOrder" method="post" commandName="newOrder">
             <div class="form-group">
-                <div class="col-md-12" display="inline-block">
-                    <span><input type="text" class="form-control form-style" id="title" name="title" placeholder="<spring:message
-                            code="user.title"/>" path="title"></span>
-                        <span><form:errors path="title" class="" id="title.errors"/></span>
+                <div class="col-md-6" display="inline-block">
+                    <input type="text" class="form-control form-style" id="title" name="title" placeholder="<spring:message
+                            code="user.title"/>" path="title">
                 </div>
+                <div id="title-error"><form:errors path="title" class="" id="title.errors"/></div>
             </div>
             <div class="form-group">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <label class="label-style" for="sel1"><spring:message
                             code="user.auditoriums.title"/>:</label>
                     <select name="auditorium" class="form-control select-style" id="sel1" path="auditorium" onchange="getWorkPlace()" >
@@ -82,28 +82,28 @@
                         </c:forEach>
                     </select>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <label class="label-style" for="sel2"><spring:message
                             code="user.workplace.number"/>:</label>
                     <select name="workplace_access_num" class="form-control select-style" id="sel2" path="workplace_access_num">
                         <option value="" disabled selected><spring:message
                                 code="user.workplace.number"/></option>
                     </select>
-                    <form:errors path="workplace_access_num" class="" id="workplace_access_num.errors"/>
                 </div>
+                <div id="workplace-error"><form:errors path="workplace_access_num" class="" id="workplace_access_num.errors"/></div>
 
             </div>
 
             <div class="form-group">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <textarea class="col-md-12" rows="5"  id="content"  name="content" path="content" placeholder="<spring:message
                             code="user.description"/>"></textarea>
-                    <form:errors path="content" class="" id="content.errors"/>
                 </div>
+                <div id="content-error"><form:errors path="content" class="" id="content.errors"/></div>
             </div>
 
             <div class="form-group">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <button id="btn-create-order" type="submit" class="btn btn-primary btn-block"><spring:message
                             code="user.order.add"/></button>
                 </div>
@@ -125,3 +125,4 @@
 </div>
 </body>
 </html>
+
