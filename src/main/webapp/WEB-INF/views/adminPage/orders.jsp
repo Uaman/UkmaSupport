@@ -8,6 +8,8 @@
     <link rel="Shortcut Icon" href="" type="image/x-icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
+    <script src="../../../resources/js/jquery-1.11.3.js"></script>
+    <script src="../../../resources/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -100,7 +102,5 @@
         <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
     </div>
 </div>
-<script src="../../../resources/js/jquery-1.11.3.js"></script>
-<script src="../../../resources/js/bootstrap.min.js"></script>
 </body>
 </html>
