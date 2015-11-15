@@ -14,9 +14,11 @@
     <script src="../../../resources/js/tsort.js"></script>
     <script>
 
-       /* $(document).ready(function() {
-            $('#records_table').tableSort();
-        });*/
+        $(document).ready(function() {
+
+            $("#records_table").tablesort();
+
+        });
 
         function formatDate(date, fmt) {
             function pad(value) {
@@ -38,6 +40,48 @@
                         return pad(date.getUTCSeconds());
                     default:
                         throw new Error('Unsupported format code: ' + fmtCode);
+                }
+            });
+        }
+        function getUncomplOrders()
+        {
+            $.ajax({
+                url: 'allUncompleted',
+                type: 'GET',
+                data:{
+                    text: $("#sel2").val()
+                },
+                success: function (response) {
+                    var trHTML = '';
+                    $.each(response, function (i, order) {
+                        trHTML +=  "<tr><td>"+ order.title + "</td>" +
+                                '   <td>' + order.workplace_access_num + "</td>" +
+                                '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+"</td></tr>";
+                    });
+                     $('#records_table tbody').empty();
+                    $('#records_table').append(trHTML);
+
+                }
+            });
+        }
+        function getComplOrders()
+        {
+            $.ajax({
+                url: 'allCompleted',
+                type: 'GET',
+                data:{
+                    text : $("#sel2").val()
+                },
+                success: function (response) {
+                    var trHTML = '';
+                    $.each(response, function (i, order) {
+                        trHTML +=  "<tr><td>"+ order.title + "</td>" +
+                                '   <td>' + order.workplace_access_num + "</td>" +
+                                '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+"</td></tr>";
+                    });
+                    $('#records_table tbody').empty();
+                    $('#records_table').append(trHTML);
+
                 }
             });
         }
@@ -65,54 +109,17 @@
                     return 0;
                 });
                 var trHTML = '';
-                $.each( sorted, function (i, order) {
-                    trHTML +=' <tbody>'+'<tr><td>' + order.title + '</td><td>' + order.workplace_access_num+'</td><td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+'<tbody>' ;
+                $.each(response, function (i, order) {
+                    trHTML +=  "<tr><td>"+ order.title + "</td>" +
+                            '   <td>' + order.workplace_access_num + "</td>" +
+                            '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+"</td></tr>";
                 });
                 $('#records_table tbody').empty();
-
                 $('#records_table').append(trHTML);
 
             }
 
         });
-        function getUncomplOrders()
-        {
-            $.ajax({
-                url: 'allUncompleted',
-                type: 'GET',
-                data:{
-                    text: $("#sel2").val()
-                },
-                success: function (response) {
-                    var trHTML = '';
-                    $.each(response, function (i, order) {
-                        trHTML += ' <tbody>' + '<tr><td>' + order.title + '</td><td>' + order.workplace_access_num + '</td><td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + '<tbody>';
-                    });
-                    $('#records_table tbody').empty();
-                    $('#records_table').append(trHTML);
-
-                }
-            });
-        }
-        function getComplOrders()
-        {
-            $.ajax({
-                url: 'allCompleted',
-                type: 'GET',
-                data:{
-                    text : $("#sel2").val()
-                },
-                success: function (response) {
-                    var trHTML = '';
-                    $.each(response, function (i, order) {
-                        trHTML +=' <tbody>'+'<tr><td>' + order.title + '</td><td>' + order.workplace_access_num+'</td><td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+'<tbody>' ;
-                    });
-                    $('#records_table tbody').empty();
-                    $('#records_table').append(trHTML);
-
-                }
-            });
-        }
 
     </script>
 
@@ -151,14 +158,15 @@
     </div>
 
     <div class="table-align">
-        <table  id="records_table"  class="tbl table table-striped table-hover" >
+        <table id="records_table"    class="tbl table table-striped table-hover " >
             <thead>
             <tr>
-                <th >Title</th>
-                <th>Auditorium</th>
+                <th class="no-sort">Title</th>
+                <th class="no-sort">Auditorium</th>
                 <th >Date</th>
             </tr>
             </thead>
+
         </table>
     </div>
 
