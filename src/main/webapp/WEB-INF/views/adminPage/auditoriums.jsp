@@ -18,8 +18,7 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header" style="width: 290px;">
-                <a href=""><img id="logo" alt="brand" src="../../../resources/img/logo.png"
-                                style="width: 305px; height:65px; margin-top:11px;"></a>
+                <a href=""><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -69,7 +68,7 @@
         </div>
     </nav>
 
-    <div class="table-align">
+    <div class="table-align bottom-block top-block">
         <table class="tbl table table-striped">
             <thead>
             <tr>
@@ -85,8 +84,7 @@
             </tbody>
         </table>
     </div>
-</div>
-<div class="navbar-fixed-bottom">
+<div class="footer">
     <div class="thick"></div>
     <div class="thin"></div>
     <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
@@ -95,6 +93,7 @@
         <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
         <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
     </div>
+</div>
 </div>
 </body>
 </html>

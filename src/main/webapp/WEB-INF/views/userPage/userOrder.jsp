@@ -7,8 +7,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <link rel="Shortcut Icon" href="" type="image/x-icon"/>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="../resources/css/bootstrap.css">
-  <link rel="stylesheet" href="../resources/css/main.css" type="text/css" media="screen"/>
+  <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
+  <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
@@ -37,7 +37,7 @@
 
   <div id="header">
     <div>
-      <a href="/"><img id="logo" alt="brand" src="../resources/img/logo.png" style="width: 305px; height:65px; margin-top:11px;"/></a>
+      <a href="/"><img id="logo" alt="brand" src="../../../resources/img/logo.png"/></a>
     </div>
     <div class="collapse navbar-collapse">
     </div>

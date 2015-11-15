@@ -4,6 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <head>
+    <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><spring:message code="admin.addAuditorium.title"/></title>
     <link rel="Shortcut Icon" href="" type="image/x-icon"/>
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 
@@ -18,9 +20,8 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header" style="width: 290px;">
-                <a href=""><img id="logo" alt="brand" src="../../../resources/img/logo.png"
-                                style="width: 305px; height:65px; margin-top:11px;"></a>
-            </div>
+                <a href=""><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
+        </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
@@ -69,6 +70,8 @@
         </div>
     </nav>
 
+
+ <div class="bottom-block top-block">
     <form:form id="newAuditorium" action="/createAuditorium" method="post" commandName="newAuditorium">
         <table border="0">
 
@@ -90,7 +93,7 @@
     </form:form>
 </div>
 
-<div class="navbar-fixed-bottom">
+<div class="footer">
     <div class="thick"></div>
     <div class="thin"></div>
     <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
@@ -99,6 +102,7 @@
         <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
         <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
     </div>
+</div>
 </div>
 </body>
 </html>

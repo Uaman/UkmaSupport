@@ -124,7 +124,7 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="/"><img id="logo" alt="brand" src="../../../resources/img/logo.png" style="width: 305px; height:65px; margin-top:11px;"></a>
+                <a href="/"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -146,7 +146,7 @@
         </div>
     </nav>
 
-    <div>
+    <div class="top-block">
         <p id="hello">Hello, User!</p>
     </div>
 
@@ -159,21 +159,35 @@
                 <th >Date</th>
             </tr>
             </thead>
+            <tbody>
+            <tr data-href="#">
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr data-href="#">
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
         </table>
     </div>
-
-    <form method="get" action="/createOrder">
-        <div class="col-md-offset-7">
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <div class="col-md-offset-7 col-md-4">
-                        <button id="btn-add-order" type="submit" class="btn btn-primary btn-block">add order</button>
-                    </div>
+<div class="bottom-block">
+<form method="get" action="/createOrder">
+    <div class="col-md-offset-7">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-offset-7 col-md-4">
+                    <button id="btn-add-order" type="submit" class="btn btn-primary btn-block">add order</button>
                 </div>
-            </form>
-        </div>
-    </form>
-    <div class="navbar-fixed-bottom">
+            </div>
+        </form>
+    </div>
+</form>
+</div>
+
+    <div class="footer">
         <div class="thick"></div>
         <div class="thin"></div>
         <div><p class="footertext"> © 2015 All Rights Reserved</p></div>
