@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="js/jquery-1.11.3.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../../../resources/js/jquery-1.11.3.js"></script>
+    <script src="../../../resources/js/bootstrap.min.js"></script>
 
   <script type="text/javascript">
 
@@ -65,7 +65,7 @@
         </div>
     </nav>
 
-    <div class="col-md-offset-4 col-md-4 vertalign">
+    <div class="col-md-offset-4 col-md-4 vertalign without-top bottom-block">
         <form:form class="form-horizontal" id="newOrder" action="/createOrder" method="post" commandName="newOrder">
             <div class="form-group">
                 <div class="col-md-12" display="inline-block">
@@ -77,7 +77,7 @@
             <div class="form-group">
                 <div class="col-md-6">
                     <label class="label-style" for="sel1">auditorium:</label>
-                    <select name="auditorium" class="form-control select-style" id="sel1"  onchange="getWorkPlace()" >
+                    <select name="auditorium" class="form-control select-style" id="sel1" path="auditorium" onchange="getWorkPlace()" >
                         <option value="" disabled selected>auditorium</option>
                         <c:forEach items="${auditoriums}" var="item" varStatus="count">
                             <option value="${item.number}">${item.number}</option>
@@ -89,7 +89,10 @@
                     <select name="workplace_access_num" class="form-control select-style" id="sel2" path="workplace_access_num">
                         <option value="" disabled selected>workplace</option>
                     </select>
+                    <form:errors path="workplace_access_num" class="regErrors" id="workplace_access_num.errors"
+                                 cssStyle="color: #ff0000;"/>
                 </div>
+
             </div>
 
             <div class="form-group">
@@ -109,7 +112,7 @@
     </div>
 
 
-    <div class="navbar-fixed-bottom">
+    <div class="footer">
         <div class="thick"></div>
         <div class="thin"></div>
         <div><p class="footertext"> © 2015 All Rights Reserved</p></div>

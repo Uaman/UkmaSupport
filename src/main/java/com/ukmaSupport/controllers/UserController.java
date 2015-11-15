@@ -51,9 +51,7 @@ public class UserController {
     private OrderValidator validator;
 
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    List<Workplace> getCharNum(@RequestParam("text") String text) {
+    public @ResponseBody List<Workplace> getCharNum(@RequestParam("text") String text) {
         List<Workplace> workplaces = workplaceService.getByAuditoryName(text);
         return workplaces;
     }
@@ -76,27 +74,26 @@ public class UserController {
     public String createOrderPost(@ModelAttribute("newOrder") Order order, ModelMap model, BindingResult result) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
-        validator.validate(order,result);
+        validator.validate(order, result);
         if(result.hasErrors()){
             return "userPage/createOrderPage";
         }
 
-        //order.setWorkspaceNumber(workplaceNum);
         order.setUserId((Integer) session.getAttribute("id"));
-        //order.setStatus(UNDONE);
+        order.setStatus(UNDONE);
         order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
-        order.setAssistantId(order.getUserId());
-        //validator.validate(order,result);
-
+        User assistant = userService.getResponsibleAssistant(order.getAuditorium());
+        int assistantId = 0;
+        if(assistant != null) assistantId = assistant.getId();
+        order.setAssistantId(assistantId);
         order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
+
         orderService.createOrUpdate(order);
         return "redirect:/userhome";
     }
 
     @RequestMapping(value = "/allUserOrders", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    List<Order> allUserOrders() {
+    public @ResponseBody List<Order> allUserOrders() {
 
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
@@ -108,9 +105,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/allCompleted", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    List<Order> getUserComplOrders() {
+    public @ResponseBody List<Order> getUserComplOrders() {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
 
@@ -121,9 +116,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/allUncompleted", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    List<Order> getUserUncomplOrders() {
+    public @ResponseBody List<Order> getUserUncomplOrders() {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
         int userId = (Integer) session.getAttribute("id");

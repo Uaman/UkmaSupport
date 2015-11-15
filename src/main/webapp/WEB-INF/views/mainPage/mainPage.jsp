@@ -4,12 +4,15 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
+    <title>Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><spring:message code="login.title"/></title>
     <link rel="Shortcut Icon" href="" type="image/x-icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
 
+    <script src="../../../resources/js/jquery-1.11.3.js"></script>
+    <script src="../../../resources/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         function startTime() {
             var tm = new Date();
@@ -34,10 +37,8 @@
 
 <div id="wrap">
     <div id="header">
-
         <div>
-            <a href="/"><img id="logo" alt="brand" src="../../../resources/img/logo.png"
-                             style="width: 305px; height:65px; margin-top:11px;"/></a>
+            <a href="/"><img id="logo" alt="brand" src="../../../resources/img/logo.png"/></a>
         </div>
 
         <div class="collapse navbar-collapse">
@@ -57,10 +58,9 @@
         <span id="txt"></span>
     </div>
     <spring:url var="authUrl" value="/static/j_spring_security_check"/>
-    <form method="post" action="${authUrl}">
-        <div class="col-md-offset-4 col-md-4 vertalign">
+        <div class="col-md-offset-4 col-md-4 vertalign bottom-block" id="auth-block">
 
-            <form class="form-horizontal">
+            <form class="form-horizontal" method="post" action="${authUrl}">
 
                 <div class="form-group">
                     <div class="col-md-offset-1 col-md-10">
@@ -85,16 +85,14 @@
                         </button>
                     </div>
                 </div>
-
                 <div class="col-md-offset-1">
                     <a id="forgotpassword" href="/forgotPassword"><spring:message code="login.forgotPassword"/></a>
                 </div>
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
         </div>
-    </form>
 
-    <div class="navbar-fixed-bottom">
+    <div class="footer">
         <div class="thick"></div>
         <div class="thin"></div>
         <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
@@ -104,7 +102,6 @@
             <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
         </div>
     </div>
-
 </div>
 </body>
 </html>

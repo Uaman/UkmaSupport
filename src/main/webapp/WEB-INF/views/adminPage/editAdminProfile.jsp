@@ -26,8 +26,7 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header" style="width: 290px;">
-                <a href=""><img id="logo" alt="brand" src="../../../resources/img/logo.png"
-                                style="width: 305px; height:65px; margin-top:11px;"></a>
+                <a href=""><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -77,11 +76,12 @@
         </div>
     </nav>
 
-    <div id="profEdit">
+    <div id="profEdit" class="top-block bottom-block">
         <form:form id="passChangeForm" action="editAdminProfile" method="post" commandName="passChangeForm">
             <table border="0">
                 <tr>
-                    <td class="centralWord" colspan="2" align="center">Password change</td>
+                    <td class="centralWord" colspan="2" align="center"><spring:message
+                            code="admin.hello"/></td>
                 </tr>
                 <tr>
                     <td><label class="labels"><spring:message code="registration.firstName"/></label></td>
@@ -135,7 +135,7 @@
         </form:form>
     </div>
 
-    <div class="navbar-fixed-bottom">
+    <div class="footer">
         <div class="thick"></div>
         <div class="thin"></div>
         <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>

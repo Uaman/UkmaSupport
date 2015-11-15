@@ -8,6 +8,8 @@
     <link rel="Shortcut Icon" href="" type="image/x-icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
+    <script src="../../../resources/js/jquery-1.11.3.js"></script>
+    <script src="../../../resources/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -16,8 +18,7 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header" style="width: 290px;">
-                <a href=""><img id="logo" alt="brand" src="../../../resources/img/logo.png"
-                                style="width: 305px; height:65px; margin-top:11px;"></a>
+                <a href=""><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -67,7 +68,7 @@
         </div>
     </nav>
 
-    <div class="table-align">
+    <div class="table-align bottom-block top-table">
         <table class="tbl table table-striped">
             <thead>
             <tr>
@@ -89,8 +90,7 @@
             </tbody>
         </table>
     </div>
-</div>
-<div class="navbar-fixed-bottom">
+<div class="footer">
     <div class="thick"></div>
     <div class="thin"></div>
     <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
@@ -100,7 +100,6 @@
         <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
     </div>
 </div>
-<script src="../../../resources/js/jquery-1.11.3.js"></script>
-<script src="../../../resources/js/bootstrap.min.js"></script>
+</div>
 </body>
 </html>

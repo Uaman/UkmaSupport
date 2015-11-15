@@ -8,11 +8,20 @@ public class Order {
     private int assistantId;
     private Workplace workplace;
     private int workplace_id;
+    private String auditorium;
     private String workplace_access_num;
     private String title;
     private String content;
     private Timestamp createdAt;
     private String status;
+
+    public String getAuditorium() {
+        return auditorium;
+    }
+
+    public void setAuditorium(String auditorium) {
+        this.auditorium = auditorium;
+    }
 
     public Workplace getWorkplace() {
         return workplace;

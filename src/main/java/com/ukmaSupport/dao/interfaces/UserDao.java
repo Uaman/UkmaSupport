@@ -12,6 +12,8 @@ public interface UserDao {
 
     void saveOrUpdate(User user);
 
+    User getResponsibleAssistant(String auditorium);
+
     List<User> getAll();
 
     User getByEmail(String email);

@@ -47,7 +47,7 @@
         <%--<p id="hello">Hello, you may edit your e-mail or your password here.</p>--%>
     <%--</div>--%>
 
-    <div id="profEdit">
+    <div id="profEdit" class="bottom-block top-block">
         <form:form id="passChangeForm" action="editProfile" method="post" commandName="passChangeForm">
             <table border="0">
                 <tr>
@@ -107,7 +107,7 @@
 
 
 
-    <div class="navbar-fixed-bottom">
+    <div class="footer">
         <div class="thick"></div>
         <div class="thin"></div>
         <div><p class="footertext"> © 2015 All Rights Reserved</p></div>

@@ -12,20 +12,21 @@
 
 <body>
 <div id="wrap">
-    <div id="header">
-        <div>
-            <a href="/"><img id="logo" alt="brand" src="../../../resources/img/logo.png"
-                             style="width: 305px; height:65px; margin-top:11px;"/></a>
+    <nav id="header">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href=""><img id="logo"  alt="brand" src="../../../resources/img/logo.png"></a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a id="login" class="leftWord" href="/"><spring:message code="registration.login"/></a></li>
+                </ul>
+            </div>
         </div>
+    </nav>
 
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a id="login" class="leftWord" href="/"><spring:message code="registration.login"/></a></li>
-            </ul>
-        </div>
-    </div>
 
-    <div id="mainRegister">
+    <div id="mainRegister" class="bottom-block top-block">
         <form:form id="userForm" action="register" method="post" commandName="userForm">
             <table border="0">
                 <tr>
@@ -79,7 +80,7 @@
         </form:form>
     </div>
 
-    <div class="navbar-fixed-bottom">
+    <div  class="footer">
         <div class="thick"></div>
         <div class="thin"></div>
         <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>

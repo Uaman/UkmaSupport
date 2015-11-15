@@ -22,6 +22,8 @@ public class UserDaoImpl implements UserDao {
 
     private static final String GET_ALL_USERS = "SELECT users.id_user, user_roles.role, users.first_name, users.last_name, users.email, users.data_entry, users.password, users.status_account FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid";
 
+    private static final String GET_RESPONSIBLE_ASSISTANT = "SELECT users.id_user, user_roles.role, users.first_name, users.last_name, users.email, users.data_entry, users.password, users.status_account FROM user_roles INNER JOIN users ON users.user_roleid=user_roles.id INNER JOIN auditorium ON users.id_user=auditorium.user_id WHERE auditorium.number=?";
+
     private static final String GET_ALL_USERS_BY_ROLE = "SELECT users.id_user, user_roles.role, users.first_name, users.last_name, users.email, users.data_entry, users.password, users.status_account FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid WHERE user_roles.role = ?";
 
     private static final String GET_ALL_USERS_BY_STATUS = "SELECT users.id_user, user_roles.role, users.first_name, users.last_name, users.email, users.data_entry, users.password, users.status_account FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid WHERE users.status_account = ?";
@@ -70,6 +72,11 @@ public class UserDaoImpl implements UserDao {
                 return prepStat;
             }
         });
+    }
+
+    @Override
+    public User getResponsibleAssistant(String auditorium) {
+        return jdbcTemplate.queryForObject(GET_RESPONSIBLE_ASSISTANT, new Object[]{auditorium}, rowMapper);
     }
 
     @Override
