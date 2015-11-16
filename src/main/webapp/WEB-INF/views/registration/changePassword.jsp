@@ -4,9 +4,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-  <title>Login</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title><spring:message code="login.title"/></title>
+  <title>Change password</title>
   <link rel="Shortcut Icon" href="" type="image/x-icon"/>
   <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
   <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
