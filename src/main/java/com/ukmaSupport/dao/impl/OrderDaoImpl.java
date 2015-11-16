@@ -26,7 +26,7 @@ public class OrderDaoImpl implements OrderDao {
 
     private static final String GET_ALL_ORDERS_BY_USER_ID_STATUS ="SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE user_id=? AND status=?";
 
-    private static final String GET_ORDER_BY_ID = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE id=?";
+    private static final String GET_ORDER_BY_ID = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE orders.id=?";
 
     private static final String GET_ORDERS_BY_STATUS = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE status=?";
 
@@ -39,6 +39,8 @@ public class OrderDaoImpl implements OrderDao {
     private static final String INSERT_QUERY = "INSERT INTO orders (user_id, assistant_id, workplace_id, title, content, created_at, status) VALUES(?,?,?,?,?,?,?)";
 
     private static final String UPDATE_QUERY = "UPDATE orders SET user_id=?, assistant_id=?, workplace_id=(SELECT workplace.id FROM workplace WHERE workplace.access_num=?), title=?, content=?, created_at=?, status=? WHERE id=?";
+
+    private static final String UPDATE = "UPDATE orders SET title=?, content=?, created_at=? WHERE id=?";
 
     @Override
     public Order getById(int id) {
@@ -85,6 +87,9 @@ public class OrderDaoImpl implements OrderDao {
         });
     }
 
+    public void update(Order order) {
+        jdbcTemplate.update(UPDATE,order.getTitle(),order.getContent(),order.getCreatedAt(),order.getId());
+    }
     @Override
     public void delete(int id) {
         jdbcTemplate.update(DELETE_ORDER, id);
