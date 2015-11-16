@@ -7,7 +7,7 @@ public class Comment {
 
     User author;
 
-    Order order;
+    int orderId;
 
     String content;
 
@@ -29,12 +29,12 @@ public class Comment {
         this.author = author;
     }
 
-    public Order getOrder() {
-        return order;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public String getContent() {
