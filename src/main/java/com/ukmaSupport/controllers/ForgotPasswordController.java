@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.ukmaSupport.utils.PasswordEncryptor;
 
+import java.util.List;
+
 @Controller
 @RequestMapping
 public class ForgotPasswordController {
@@ -38,12 +40,27 @@ public class ForgotPasswordController {
         if(email == null || email.trim().isEmpty())
             modelMap.addAttribute("error", "Item Email is required!");
         else{
-            User user = userService.getByEmail(email);
+            //User user = userService.getByEmail(email);
 
-            if(!userService.getByEmail(email).equals(null)){
+            List<User> users = userService.getAll();
+
+            for(User item : users){
+                if(email.equals(item.getEmail())){
+                    forgotPasswordMail.send(email, Constants.LOCAL_SERVER + Constants.CHANGE_PASSWORD + item.getId());
+                    modelMap.addAttribute("success", "Success!");
+                }
+                else{
+                    modelMap.addAttribute("noSuchUser", "User with this email does not exist");
+                }
+            }
+
+           /* if(userSer){
                 forgotPasswordMail.send(email, Constants.LOCAL_SERVER + Constants.CHANGE_PASSWORD + user.getId());
                 modelMap.addAttribute("success", "Success!");
             }
+            else{
+                modelMap.addAttribute("noSuchUser", "User with this email does not exist");
+            }*/
 
         }
 
@@ -55,8 +72,6 @@ public class ForgotPasswordController {
     public String viewChangePassword(@RequestParam("id") int id,  Model model) {
 
         model.addAttribute("user_id", id);
-        model.addAttribute("newPassword", "");
-        model.addAttribute("newPasswordConfirm", "");
 
         return "registration/changePassword";
     }
@@ -66,8 +81,6 @@ public class ForgotPasswordController {
                                  @ModelAttribute("newPasswordConfirm") String newPasswordConfirm, Model model) {
 
         model.addAttribute("user_id", id);
-        model.addAttribute("newPassword", "");
-        model.addAttribute("newPasswordConfirm", "");
 
         if(newPassword == null || newPassword.trim().isEmpty() || newPasswordConfirm == null || newPasswordConfirm.isEmpty())
             model.addAttribute("error", "Item New password and Confirm new password are required!");

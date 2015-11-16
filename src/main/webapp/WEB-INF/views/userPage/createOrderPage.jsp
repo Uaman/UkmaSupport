@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <title>createOrder</title>
+    <title>Create Order</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="Shortcut Icon" href="" type="image/x-icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
@@ -15,7 +15,6 @@
     <script src="../../../resources/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-
         function  getWorkPlace() {
             $.ajax({
                 url : 'ajaxtest',
@@ -26,17 +25,12 @@
                 success : function(data) {
                     $('#sel2').html('');// to clear the previous option
                     $('#res').html(data);
-
-
-
                     $.each(data, function(i, workplace) {
                         $('#sel2').append($('<option>').text(workplace.accessNumber).attr('value', workplace.accessNumber));
                     });
-
                 }
             });
         }
-
     </script>
 
 </head>
@@ -47,7 +41,7 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="/"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                <a href="/userhome"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -55,7 +49,7 @@
                             code="admin.orders"/></a></li>
                     <li><a id = "editProfile" class="menu-element" href="/editProfile"><spring:message
                             code="admin.edit"/></a></li>
-                    <li><a class="menu-element" href="/"><spring:message code="admin.logout"/></a></li>
+                    <li><a class="menu-element" href="/logout"><spring:message code="admin.logout"/></a></li>
                 </ul>
             </div>
         </div>
@@ -65,7 +59,7 @@
         <form:form class="form-horizontal" id="newOrder" action="/createOrder" method="post" commandName="newOrder">
             <div class="form-group">
                 <div class="col-md-6" display="inline-block">
-                    <input type="text" class="form-control form-style" id="title" name="title" placeholder="<spring:message
+                    <input type="text" class="form-control form-style" id="title" value="${newOrder.title}" name="title" placeholder="<spring:message
                             code="user.title"/>" path="title">
                 </div>
                 <div id="title-error"><form:errors path="title" class="" id="title.errors"/></div>
@@ -97,7 +91,7 @@
             <div class="form-group">
                 <div class="col-md-6">
                     <textarea class="col-md-12" rows="5"  id="content"  name="content" path="content" placeholder="<spring:message
-                            code="user.description"/>"></textarea>
+                            code="user.description"/>">${newOrder.content}</textarea>
                 </div>
                 <div id="content-error"><form:errors path="content" class="" id="content.errors"/></div>
             </div>
@@ -125,4 +119,3 @@
 </div>
 </body>
 </html>
-

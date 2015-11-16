@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Home</title>
+    <title>Uncompleted user-orders</title>
     <link rel="Shortcut Icon" href="" type="image/x-icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
@@ -14,15 +14,14 @@
     <script src="../../../resources/js/tsort.js"></script>
     <script>
         $(document).ready(function () {
-
             $("#records_table").tablesort();
-
         });
 
         function formatDate(date, fmt) {
             function pad(value) {
                 return (value.toString().length < 2) ? '0' + value : value;
             }
+
             return fmt.replace(/%([a-zA-Z])/g, function (_, fmtCode) {
                 switch (fmtCode) {
                     case 'Y':
@@ -50,7 +49,7 @@
         });
 
         $.ajax({
-            url: 'all_my_orders',
+            url: 'uncompl_orders',
             type: 'GET',
             data: {
                 text: $("#sel2").val()
@@ -75,7 +74,6 @@
                 $('#records_table').append(trHTML);
 
             }
-
         });
     </script>
 </head>
@@ -113,18 +111,12 @@
     </nav>
 
     <div>
-        <p id="hello" class="top-block">Hello, Assist!</p>
+        <p id="hello" class="top-block">My Uncompleted user-orders</p>
     </div>
 
     <div>
-        <form class="form-horizontal" method="get" action="/myComplOrders">
-            <button id="assist_Compl" class="btn btn-primary btn-block">Completed orders</button>
-        </form>
-    </div>
-
-    <div>
-        <form class="form-horizontal" method="get" action="/myUncomplOrders">
-            <button id="assist_Uncompl" class="btn btn-primary btn-block">Uncompleted orders</button>
+        <form class="form-horizontal" method="get" action="/ComplOrders">
+            <button id="assist_user_Compl_1" class="btn btn-primary btn-block">Completed user-orders</button>
         </form>
     </div>
 

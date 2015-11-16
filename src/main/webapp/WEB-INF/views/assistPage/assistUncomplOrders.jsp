@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Home</title>
+    <title>Uncompleted orders</title>
     <link rel="Shortcut Icon" href="" type="image/x-icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
@@ -23,6 +23,7 @@
             function pad(value) {
                 return (value.toString().length < 2) ? '0' + value : value;
             }
+
             return fmt.replace(/%([a-zA-Z])/g, function (_, fmtCode) {
                 switch (fmtCode) {
                     case 'Y':
@@ -50,7 +51,7 @@
         });
 
         $.ajax({
-            url: 'all_my_orders',
+            url: 'my_uncompl_orders',
             type: 'GET',
             data: {
                 text: $("#sel2").val()
@@ -83,7 +84,6 @@
 <body>
 <div id="wrap">
     <nav id="header">
-
         <div class="container-fluid">
 
             <div class="navbar-header">
@@ -113,18 +113,12 @@
     </nav>
 
     <div>
-        <p id="hello" class="top-block">Hello, Assist!</p>
+        <p id="hello" class="top-block">My Uncompleted orders</p>
     </div>
 
     <div>
         <form class="form-horizontal" method="get" action="/myComplOrders">
-            <button id="assist_Compl" class="btn btn-primary btn-block">Completed orders</button>
-        </form>
-    </div>
-
-    <div>
-        <form class="form-horizontal" method="get" action="/myUncomplOrders">
-            <button id="assist_Uncompl" class="btn btn-primary btn-block">Uncompleted orders</button>
+            <button id="assist_Compl_1" class="btn btn-primary btn-block">My completed orders</button>
         </form>
     </div>
 
@@ -139,6 +133,7 @@
             </thead>
         </table>
     </div>
+
 
     <div class="footer">
         <div class="thick"></div>
