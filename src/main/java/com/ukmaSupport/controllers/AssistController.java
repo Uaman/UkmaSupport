@@ -31,10 +31,6 @@ public class AssistController {
     private final static String UNDONE = "Undone";
 
     @Autowired
-    @Qualifier("passChangeValidator")
-    private PasswordChangeValidator validatorPassword;
-
-    @Autowired
     private OrderService orderService;
 
     @Autowired
@@ -44,15 +40,16 @@ public class AssistController {
     private UserService userService;
 
     @Autowired
+    private AuditoriumService auditoriumService;
+
+    @Autowired
     @Qualifier("passChangeValidator")
-    private PasswordChangeValidator passwordValidator;
+    private PasswordChangeValidator validatorPassword;
 
     @Autowired
     @Qualifier("orderValidator")
     private OrderValidator validatorOrder;
 
-    @Autowired
-    private AuditoriumService auditoriumService;
 
     //@Secured("ROLE_ASSIST")
     @RequestMapping(value = "/assistHome", method = RequestMethod.GET)
@@ -69,8 +66,7 @@ public class AssistController {
         HttpSession session = attr.getRequest().getSession();
         int assistId = (Integer) session.getAttribute("id");
         System.out.println(assistId);
-        List<Order> orders = orderService.getAllAssistOrders(assistId);
-        return orders;
+        return orderService.getAllAssistOrders(assistId);
     }
 
     // @Secured("ROLE_ASSIST")
@@ -82,8 +78,7 @@ public class AssistController {
         HttpSession session = attr.getRequest().getSession();
         int assistId = (Integer) session.getAttribute("id");
         System.out.println(assistId);
-        List<Order> orders = orderService.getByAssistAndStatus(assistId, DONE);
-        return orders;
+        return orderService.getByAssistAndStatus(assistId, DONE);
     }
 
     // @Secured("ROLE_ASSIST")
@@ -95,8 +90,7 @@ public class AssistController {
         HttpSession session = attr.getRequest().getSession();
         int assistId = (Integer) session.getAttribute("id");
         System.out.println(assistId);
-        List<Order> orders = orderService.getByAssistAndStatus(assistId, UNDONE);
-        return orders;
+        return orderService.getByAssistAndStatus(assistId, UNDONE);
     }
 
     // @Secured("ROLE_ASSIST")
@@ -108,8 +102,7 @@ public class AssistController {
         HttpSession session = attr.getRequest().getSession();
         int userId = (Integer) session.getAttribute("id");
         System.out.println(userId);
-        List<Order> orders = orderService.getByUserId(userId);
-        return orders;
+        return orderService.getByUserId(userId);
     }
 
     // @Secured("ROLE_ASSIST")
@@ -121,8 +114,7 @@ public class AssistController {
         HttpSession session = attr.getRequest().getSession();
         int userId = (Integer) session.getAttribute("id");
         System.out.println(userId);
-        List<Order> orders = orderService.getByUserIdStatus(userId, DONE);
-        return orders;
+        return orderService.getByUserIdStatus(userId, DONE);
     }
 
     // @Secured("ROLE_ASSIST")
@@ -134,8 +126,7 @@ public class AssistController {
         HttpSession session = attr.getRequest().getSession();
         int userId = (Integer) session.getAttribute("id");
         System.out.println(userId);
-        List<Order> orders = orderService.getByUserIdStatus(userId, UNDONE);
-        return orders;
+        return orderService.getByUserIdStatus(userId, UNDONE);
     }
 
     //@Secured("ROLE_ASSIST")
