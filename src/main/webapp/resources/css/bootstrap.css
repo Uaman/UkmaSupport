@@ -1760,7 +1760,7 @@ output {
 }
 .form-control {
   display: block;
-  width: 100%;
+  width: 220px;
   height: 34px;
   padding: 6px 12px;
   font-size: 14px;
@@ -1797,6 +1797,7 @@ output {
 fieldset[disabled] .form-control {
   background-color: #eeeeee;
   opacity: 1;
+
 }
 .form-control[disabled],
 fieldset[disabled] .form-control {

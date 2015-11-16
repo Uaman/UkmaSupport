@@ -32,6 +32,7 @@ body{
 	position: fixed;
 	top: 0;
 	width: 900px;
+	z-index: 999;
 }
 
 #logo{
@@ -97,8 +98,8 @@ a {
 }
 
 #login-button{
-	width: 196px;
-	margin-left: -138px;
+	width: 220px;
+	margin-left: -150px;
 }
 
 
@@ -112,7 +113,7 @@ a {
 
 
 #forgotpassword{
-	margin-left: 15px;
+	margin-left: 7px;
 }
 
 /**** Registration *****/
@@ -137,23 +138,24 @@ a {
 }
 
 .labels{
-	width: 200px;
+	width: 210px;
 	font-size: 16px;
 	padding: 10px;
+	padding-top: 30px;
 }
 
 #register-button{
-	width: 169px;
-	margin-left: -50px;
+	width: 220px;
+	margin-left: -76px;
 }
 
 .regErrors{
 	color: #ff0000;
-	width: 250px;
+	width: 220px;
 	position: absolute;
 	z-index: 999;
 	padding-left: 15px;
-	margin-top: 10px;
+	margin-top: 18px;
 }
 a img {
 	border: none;
@@ -179,8 +181,12 @@ a img {
 	margin: 20px 0 0 20px;
 }
 #btn-add-order {
+	position: fixed;
 	background-color: #333366;
 	border-radius: 7px;
+	width: 150px;
+	margin-left: 730px;
+	margin-top: 103px;
 }
 .drop-menu-element {
 	color: #ffffff;
@@ -249,23 +255,34 @@ a img {
 	padding-top: 100px;
 }
 
-
 #change-pass-button {
-	width: 178px;
-	margin-left: -35px;
+	width: 220px;
+	margin-left: -38px;
 }
 .top-table {
 	padding-top: 120px;
 }
-#title-error {
-	color: #ff0000;
-	margin-top: 8px;
+
+#sel1 {
+	width: 138px;
 }
-#workplace-error {
-	color: #ff0000;
-	margin-top: 21px;
+
+#sel2 {
+	width: 120px;
 }
-#content-error {
+
+#title {
+	width: 270px;
+}
+
+#title_errors {
 	color: #ff0000;
-	margin-top: 42px;
+}
+
+#content_errors {
+	color: #ff0000;
+}
+
+#workplace_access_num_errors {
+	color: #ff0000;
 }
