@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Home</title>
+    <title>My Uncompleted</title>
     <link rel="Shortcut Icon" href="" type="image/x-icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
@@ -23,6 +23,7 @@
             function pad(value) {
                 return (value.toString().length < 2) ? '0' + value : value;
             }
+
             return fmt.replace(/%([a-zA-Z])/g, function (_, fmtCode) {
                 switch (fmtCode) {
                     case 'Y':
@@ -50,7 +51,7 @@
         });
 
         $.ajax({
-            url: 'all_my_orders',
+            url: 'my_uncompl_orders',
             type: 'GET',
             data: {
                 text: $("#sel2").val()
@@ -77,78 +78,6 @@
             }
 
         });
-
-        function getAssistComplOrders() {
-            $.ajax({
-                url: 'my_compl_orders',
-                type: 'GET',
-                data: {
-                    text: $("#sel2").val()
-                },
-                success: function (response) {
-                    var trHTML = '';
-                    $.each(response, function (i, order) {
-                        trHTML += ' <tbody>' + '<tr><td>' + order.title + '</td><td>' + order.workplace_access_num + '</td><td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + '<tbody>';
-                    });
-                    $('#records_table tbody').empty();
-                    $('#records_table').append(trHTML);
-                }
-            });
-        }
-
-        function getAssistUncomplOrders() {
-            $.ajax({
-                url: 'my_uncompl_orders',
-                type: 'GET',
-                data: {
-                    text: $("#sel2").val()
-                },
-                success: function (response) {
-                    var trHTML = '';
-                    $.each(response, function (i, order) {
-                        trHTML += ' <tbody>' + '<tr><td>' + order.title + '</td><td>' + order.workplace_access_num + '</td><td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + '<tbody>';
-                    });
-                    $('#records_table tbody').empty();
-                    $('#records_table').append(trHTML);
-                }
-            });
-        }
-
-        function getAssistUserComplOrders() {
-            $.ajax({
-                url: 'compl_orders',
-                type: 'GET',
-                data: {
-                    text: $("#sel2").val()
-                },
-                success: function (response) {
-                    var trHTML = '';
-                    $.each(response, function (i, order) {
-                        trHTML += ' <tbody>' + '<tr><td>' + order.title + '</td><td>' + order.workplace_access_num + '</td><td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + '<tbody>';
-                    });
-                    $('#records_table tbody').empty();
-                    $('#records_table').append(trHTML);
-                }
-            });
-        }
-
-        function getAssistUserUncomplOrders() {
-            $.ajax({
-                url: 'uncompl_orders',
-                type: 'GET',
-                data: {
-                    text: $("#sel2").val()
-                },
-                success: function (response) {
-                    var trHTML = '';
-                    $.each(response, function (i, order) {
-                        trHTML += ' <tbody>' + '<tr><td>' + order.title + '</td><td>' + order.workplace_access_num + '</td><td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + '<tbody>';
-                    });
-                    $('#records_table tbody').empty();
-                    $('#records_table').append(trHTML);
-                }
-            });
-        }
     </script>
 </head>
 
@@ -160,7 +89,6 @@
                 <button id="btn-add-order" type="submit" class="btn btn-primary btn-block">add order</button>
             </form>
         </div>
-
 
         <div class="container-fluid">
 
@@ -175,21 +103,17 @@
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="javascript:getAssistComplOrders();">My Completed
-                                orders</a></li>
+                                                             href="/assistHome">All my orders</a></li>
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="javascript:getAssistUncomplOrders();">My Uncompleted
-                                orders</a></li>
+                                                             href="/myComplOrders">My Completed orders</a></li>
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="javascript:getAssistUserComplOrders();">User
-                                Completed orders</a></li>
+                                                             href="/ComplOrders">User-Completed orders</a></li>
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="javascript:getAssistUserUncomplOrders();">User
-                                Uncompleted orders</a></li>
+                                                             href="/UncomplOrders">User-Uncompleted orders</a></li>
                         </ul>
                     </li>
 
-                    <li><a id="editProfile" class="menu-element" href="/editAssistProfile">Edit profile</a></li>
+                    <li><a id="editAssistProfile" class="menu-element" href="/editAssistProfile">Edit profile</a></li>
                     <li><a class="menu-element" href="#">Log out</a></li>
                 </ul>
             </div>
@@ -197,7 +121,7 @@
     </nav>
 
     <div>
-        <p id="hello" class="top-block">Hello, Assist!</p>
+        <p id="hello" class="top-block">My Uncompleted orders</p>
     </div>
 
     <div class="table-align">
@@ -211,6 +135,7 @@
             </thead>
         </table>
     </div>
+
 
     <div class="footer">
         <div class="thick"></div>
