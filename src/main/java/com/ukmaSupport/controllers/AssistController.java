@@ -210,4 +210,11 @@ public class AssistController {
     public String listAssistUserUncomplOrders(ModelMap model) {
         return "assistPage/userUncomplOrders";
     }
+
+
+    @RequestMapping(value = "/assistUserhome", method = RequestMethod.GET)
+    public String listAssistUserAllOrders(ModelMap model) {
+        return "assistPage/assistUserhome";
+    }
+
 }
