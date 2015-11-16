@@ -59,7 +59,7 @@
         <form:form class="form-horizontal" id="newOrder" action="/createOrder" method="post" commandName="newOrder">
             <div class="form-group">
                 <div class="col-md-6" display="inline-block">
-                    <input type="text" class="form-control form-style" id="title" name="title" placeholder="<spring:message
+                    <input type="text" class="form-control form-style" id="title" value="${newOrder.title}" name="title" placeholder="<spring:message
                             code="user.title"/>" path="title">
                 </div>
                 <div id="title-error"><form:errors path="title" class="" id="title.errors"/></div>
@@ -91,7 +91,7 @@
             <div class="form-group">
                 <div class="col-md-6">
                     <textarea class="col-md-12" rows="5"  id="content"  name="content" path="content" placeholder="<spring:message
-                            code="user.description"/>"></textarea>
+                            code="user.description"/>">${newOrder.content}</textarea>
                 </div>
                 <div id="content-error"><form:errors path="content" class="" id="content.errors"/></div>
             </div>

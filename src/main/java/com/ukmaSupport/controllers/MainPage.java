@@ -37,6 +37,12 @@ public class MainPage {
         return "mainPage/failedLogin";
     }
 
+
+    @RequestMapping(value = "/logout",method = RequestMethod.GET)
+    public String logout(){
+        return "";
+    }
+
     @RequestMapping({"/succesfullRegistration"})
     public String authorizationSuccesfull() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

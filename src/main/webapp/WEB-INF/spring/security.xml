@@ -41,7 +41,9 @@
                     username-parameter="j_username"
                     password-parameter="j_password"
                     authentication-failure-url="/login?error"/>
-        <logout logout-success-url="/login?logout"/>
+        <logout logout-success-url="/"
+                logout-url="/logout"
+                />
 
         <!--login-page="/login"-->
         <!--username-parameter="email"-->

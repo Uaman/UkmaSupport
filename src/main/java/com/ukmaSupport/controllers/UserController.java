@@ -78,6 +78,7 @@ public class UserController {
         if(result.hasErrors()){
             List<Auditorium> auditoriums = auditoriumService.getAll();
             model.addAttribute("auditoriums", auditoriums);
+            model.addAttribute("newOrder", order);
             return "userPage/createOrderPage";
         }
 
