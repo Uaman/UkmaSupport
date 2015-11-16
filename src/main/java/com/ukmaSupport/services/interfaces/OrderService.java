@@ -18,6 +18,8 @@ public interface OrderService {
 
     void delete(int id);
 
+    void update(Order order);
+
     List<Order> getAll();
 
     List<Order> getAllAssistOrders(int assistid);

@@ -13,8 +13,11 @@
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script src="../../../resources/js/tsort.js"></script>
     <script>
+
         $(document).ready(function() {
+
             $("#records_table").tablesort();
+            var deleteLink = $("a:contains('Delete')");
         });
         function formatDate(date, fmt) {
             function pad(value) {
@@ -39,6 +42,7 @@
                 }
             });
         }
+
         function getUncomplOrders()
         {
             $.ajax({
@@ -51,11 +55,14 @@
                     var trHTML = '';
                     $.each(response, function (i, order) {
                         trHTML +=  "<tr><td>"+ order.title + "</td>" +
-                        '   <td>' + order.workplace_access_num + "</td>" +
-                        '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + "</td></tr>";
+                                '   <td>' + order.workplace_access_num + "</td>" +
+                                '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+"</td>"+
+                                '   <td>' +  '<a href="${pageContext.request.contextPath}/editOrder/'+order.id+'">Edit</a>'+"</td>"+
+                                '   <td>' +  '<a href="${pageContext.request.contextPath}/delete/'+order.id+'">Delete</a>'+"</td></tr>";
                     });
-                    $('#records_table tbody').empty();
+                     $('#records_table tbody').empty();
                     $('#records_table').append(trHTML);
+
                 }
             });
         }
@@ -71,19 +78,22 @@
                     var trHTML = '';
                     $.each(response, function (i, order) {
                         trHTML +=  "<tr><td>"+ order.title + "</td>" +
-                        '   <td>' + order.workplace_access_num + "</td>" +
-                        '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + "</td></tr>";
+                                '   <td>' + order.workplace_access_num + "</td>" +
+                                '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+"</td></tr>";
                     });
                     $('#records_table tbody').empty();
                     $('#records_table').append(trHTML);
+
                 }
             });
         }
+
         jQuery( function($) {
             $('tbody tr[data-href]').addClass('clickable').click( function() {
                 window.location = $(this).attr('data-href');
             });
         });
+
         $.ajax({
             url: 'allUserOrders',
             type: 'GET',
@@ -103,13 +113,17 @@
                 var trHTML = '';
                 $.each(response, function (i, order) {
                     trHTML +=  "<tr><td>"+ order.title + "</td>" +
-                    '   <td>' + order.workplace_access_num + "</td>" +
-                    '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + "</td></tr>";
+                            '   <td>' + order.workplace_access_num + "</td>" +
+                            '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+"</td></tr>";
+
                 });
                 $('#records_table tbody').empty();
                 $('#records_table').append(trHTML);
+
             }
+
         });
+
     </script>
 
 </head>
@@ -118,15 +132,9 @@
 
 <div id="wrap">
     <nav id="header">
-        <div>
-            <form class="form-horizontal" method="get" action="/createOrder">
-                <button id="btn-add-order" type="submit" class="btn btn-primary btn-block">add order</button>
-            </form>
-        </div>
-
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="/userhome"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                <a href="/"><img id="logo" alt="brand" src="../../../resources/img/logo.png" style="width: 305px; height:65px; margin-top:11px;"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -145,13 +153,14 @@
                     </li>
                     <li><a id = "editProfile" class="menu-element" href="/editProfile"><spring:message
                             code="admin.edit"/></a></li>
-                    <li><a class="menu-element" href="/logout"><spring:message code="admin.logout"/></a></li>
+                    <li><a class="menu-element" href="/"><spring:message code="admin.logout"/></a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <div>
-        <p id="hello" class="top-block"><spring:message code="user.hello"/></p>
+        <p id="hello" class="top-block"><spring:message
+                code="user.hello"/></p>
     </div>
 
     <div class="table-align">
@@ -160,12 +169,26 @@
             <tr>
                 <th class="no-sort"><spring:message code="admin.orders.title"/></th>
                 <th class="no-sort"><spring:message code="admin.orders.auditorium"/></th>
-                <th ><spring:message code="admin.orders.date"/></th>
+                <th><spring:message code="admin.orders.date"/></th>
+                <th>         </th>
+                <th>         </th>
             </tr>
             </thead>
 
         </table>
     </div>
+
+
+        <div class="col-md-offset-7 bottom-block">
+            <form class="form-horizontal" method="get" action="/createOrder">
+                <div class="form-group">
+                    <div class="col-md-offset-7 col-md-4">
+                        <button id="btn-add-order" type="submit" class="btn btn-primary btn-block"><spring:message
+                                code="user.order"/></button>
+                    </div>
+                </div>
+            </form>
+        </div>
 
     <div class="footer">
         <div class="thick"></div>

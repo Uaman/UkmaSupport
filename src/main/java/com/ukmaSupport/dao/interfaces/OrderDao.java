@@ -16,6 +16,8 @@ public interface OrderDao {
 
     void createOrUpdate(Order order);
 
+    void update(Order order);
+
     void delete(int id);
 
     List<Order> getAll();
