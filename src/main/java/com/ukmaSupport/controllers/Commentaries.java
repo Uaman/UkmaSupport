@@ -16,6 +16,6 @@ public class Commentaries {
 
     @RequestMapping(value = "/{odereId}", method = RequestMethod.GET)
     public String infoBook(@PathVariable("ordereId")int bookId, Model model,Locale locale, HttpServletRequest request){
-        return "";
+        return "userPage/comentariesPage";
     }
 }
