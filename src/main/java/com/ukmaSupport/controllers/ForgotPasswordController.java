@@ -55,8 +55,6 @@ public class ForgotPasswordController {
     public String viewChangePassword(@RequestParam("id") int id,  Model model) {
 
         model.addAttribute("user_id", id);
-        model.addAttribute("newPassword", "");
-        model.addAttribute("newPasswordConfirm", "");
 
         return "registration/changePassword";
     }
@@ -66,8 +64,6 @@ public class ForgotPasswordController {
                                  @ModelAttribute("newPasswordConfirm") String newPasswordConfirm, Model model) {
 
         model.addAttribute("user_id", id);
-        model.addAttribute("newPassword", "");
-        model.addAttribute("newPasswordConfirm", "");
 
         if(newPassword == null || newPassword.trim().isEmpty() || newPasswordConfirm == null || newPasswordConfirm.isEmpty())
             model.addAttribute("error", "Item New password and Confirm new password are required!");
