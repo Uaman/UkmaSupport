@@ -25,7 +25,6 @@
 <div id="wrap">
     <nav id="header">
         <div class="container-fluid">
-
             <div class="navbar-header">
                 <a href="/assistHome"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
@@ -33,18 +32,15 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="/assistHome"> My orders<b
+                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="/assistHome"> Orders<b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
-
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/myComplOrders">My Completed orders</a></li>
+                                                             href="/assistHome">Assigned to me</a></li>
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/myUncomplOrders">My Uncompleted orders</a></li>
+                                                             href="/assistUserhome">My user-orders</a></li>
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/ComplOrders">User Completed orders</a></li>
-                            <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/UncomplOrders">User Uncompleted orders</a></li>
+                                                             href="/createAssistOrder">Add Order</a></li>
                         </ul>
                     </li>
                     <li><a id="editProfile" class="menu-element" href="/editAssistProfile">Edit profile</a></li>

@@ -286,3 +286,38 @@ a img {
 #workplace_access_num_errors {
 	color: #ff0000;
 }
+
+#assist_Compl {
+	width: 860px;
+	background-color: #333366;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+#assist_Uncompl {
+	width: 860px;
+	margin-left: 20px;
+	margin-top: 3px;
+	background-color: #333366;
+}
+
+#assist_user_Compl {
+	width: 860px;
+	background-color: #333366;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+#assist_user_Uncompl {
+	width: 860px;
+	margin-left: 20px;
+	margin-top: 3px;
+	background-color: #333366;
+}
+
+#assist_user_Compl_1, #assist_user_Uncompl_1, #assist_Uncompl_1, #assist_Compl_1 {
+	width: 860px;
+	background-color: #333366;
+	margin-left: 20px;
+	margin-top: 20px;
+}

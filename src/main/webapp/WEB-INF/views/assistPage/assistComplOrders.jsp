@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>My Completed</title>
+    <title>Completed orders</title>
     <link rel="Shortcut Icon" href="" type="image/x-icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
@@ -81,11 +81,6 @@
 <body>
 <div id="wrap">
     <nav id="header">
-        <div>
-            <form class="form-horizontal" method="get" action="/createAssistOrder">
-                <button id="btn-add-order" type="submit" class="btn btn-primary btn-block">add order</button>
-            </form>
-        </div>
 
         <div class="container-fluid">
 
@@ -96,17 +91,15 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"> My orders<b
+                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"> Orders<b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/assistHome">All my orders</a></li>
+                                                             href="/assistHome">Assigned to me</a></li>
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/myUncomplOrders">My Uncompleted orders</a></li>
+                                                             href="/assistUserhome">My user-orders</a></li>
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/ComplOrders">User-Completed orders</a></li>
-                            <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/UncomplOrders">User-Uncompleted orders</a></li>
+                                                             href="/createAssistOrder">Add Order</a></li>
                         </ul>
                     </li>
 
@@ -119,6 +112,12 @@
 
     <div>
         <p id="hello" class="top-block">My Completed orders</p>
+    </div>
+
+    <div>
+        <form class="form-horizontal" method="get" action="/myUncomplOrders">
+            <button id="assist_Uncompl_1" class="btn btn-primary btn-block">My uncompleted orders</button>
+        </form>
     </div>
 
     <div class="table-align">

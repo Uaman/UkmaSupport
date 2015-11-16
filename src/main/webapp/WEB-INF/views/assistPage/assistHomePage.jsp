@@ -77,90 +77,12 @@
             }
 
         });
-
-        function getAssistComplOrders() {
-            $.ajax({
-                url: 'my_compl_orders',
-                type: 'GET',
-                data: {
-                    text: $("#sel2").val()
-                },
-                success: function (response) {
-                    var trHTML = '';
-                    $.each(response, function (i, order) {
-                        trHTML += ' <tbody>' + '<tr><td>' + order.title + '</td><td>' + order.workplace_access_num + '</td><td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + '<tbody>';
-                    });
-                    $('#records_table tbody').empty();
-                    $('#records_table').append(trHTML);
-                }
-            });
-        }
-
-        function getAssistUncomplOrders() {
-            $.ajax({
-                url: 'my_uncompl_orders',
-                type: 'GET',
-                data: {
-                    text: $("#sel2").val()
-                },
-                success: function (response) {
-                    var trHTML = '';
-                    $.each(response, function (i, order) {
-                        trHTML += ' <tbody>' + '<tr><td>' + order.title + '</td><td>' + order.workplace_access_num + '</td><td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + '<tbody>';
-                    });
-                    $('#records_table tbody').empty();
-                    $('#records_table').append(trHTML);
-                }
-            });
-        }
-
-        function getAssistUserComplOrders() {
-            $.ajax({
-                url: 'compl_orders',
-                type: 'GET',
-                data: {
-                    text: $("#sel2").val()
-                },
-                success: function (response) {
-                    var trHTML = '';
-                    $.each(response, function (i, order) {
-                        trHTML += ' <tbody>' + '<tr><td>' + order.title + '</td><td>' + order.workplace_access_num + '</td><td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + '<tbody>';
-                    });
-                    $('#records_table tbody').empty();
-                    $('#records_table').append(trHTML);
-                }
-            });
-        }
-
-        function getAssistUserUncomplOrders() {
-            $.ajax({
-                url: 'uncompl_orders',
-                type: 'GET',
-                data: {
-                    text: $("#sel2").val()
-                },
-                success: function (response) {
-                    var trHTML = '';
-                    $.each(response, function (i, order) {
-                        trHTML += ' <tbody>' + '<tr><td>' + order.title + '</td><td>' + order.workplace_access_num + '</td><td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + '<tbody>';
-                    });
-                    $('#records_table tbody').empty();
-                    $('#records_table').append(trHTML);
-                }
-            });
-        }
     </script>
 </head>
 
 <body>
 <div id="wrap">
     <nav id="header">
-        <div>
-            <form class="form-horizontal" method="get" action="/createAssistOrder">
-                <button id="btn-add-order" type="submit" class="btn btn-primary btn-block">add order</button>
-            </form>
-        </div>
-
 
         <div class="container-fluid">
 
@@ -171,25 +93,19 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"> My orders<b
+                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"> Orders<b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="javascript:getAssistComplOrders();">My Completed
-                                orders</a></li>
+                                                             href="/assistHome">Assigned to me</a></li>
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="javascript:getAssistUncomplOrders();">My Uncompleted
-                                orders</a></li>
+                                                             href="/assistUserhome">My user-orders</a></li>
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="javascript:getAssistUserComplOrders();">User
-                                Completed orders</a></li>
-                            <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="javascript:getAssistUserUncomplOrders();">User
-                                Uncompleted orders</a></li>
+                                                             href="/createAssistOrder">Add Order</a></li>
                         </ul>
                     </li>
 
-                    <li><a id="editProfile" class="menu-element" href="/editAssistProfile">Edit profile</a></li>
+                    <li><a id="editAssistProfile" class="menu-element" href="/editAssistProfile">Edit profile</a></li>
                     <li><a class="menu-element" href="#">Log out</a></li>
                 </ul>
             </div>
@@ -198,6 +114,18 @@
 
     <div>
         <p id="hello" class="top-block">Hello, Assist!</p>
+    </div>
+
+    <div>
+        <form class="form-horizontal" method="get" action="/myComplOrders">
+            <button id="assist_Compl" class="btn btn-primary btn-block">Completed orders</button>
+        </form>
+    </div>
+
+    <div>
+        <form class="form-horizontal" method="get" action="/myUncomplOrders">
+            <button id="assist_Uncompl" class="btn btn-primary btn-block">Uncompleted orders</button>
+        </form>
     </div>
 
     <div class="table-align">
