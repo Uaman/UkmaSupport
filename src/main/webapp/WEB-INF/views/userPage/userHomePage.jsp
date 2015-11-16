@@ -170,8 +170,7 @@
                 <th class="no-sort"><spring:message code="admin.orders.title"/></th>
                 <th class="no-sort"><spring:message code="admin.orders.auditorium"/></th>
                 <th><spring:message code="admin.orders.date"/></th>
-                <th>         </th>
-                <th>         </th>
+
             </tr>
             </thead>
 
