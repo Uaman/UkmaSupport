@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <title>createOrder</title>
+    <title>Create Order</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="Shortcut Icon" href="" type="image/x-icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
@@ -15,7 +15,6 @@
     <script src="../../../resources/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-
         function  getWorkPlace() {
             $.ajax({
                 url : 'ajaxtest',
@@ -26,17 +25,12 @@
                 success : function(data) {
                     $('#sel2').html('');// to clear the previous option
                     $('#res').html(data);
-
-
-
                     $.each(data, function(i, workplace) {
                         $('#sel2').append($('<option>').text(workplace.accessNumber).attr('value', workplace.accessNumber));
                     });
-
                 }
             });
         }
-
     </script>
 
 </head>
@@ -47,7 +41,7 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="/"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                <a href="/userhome"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -125,4 +119,3 @@
 </div>
 </body>
 </html>
-

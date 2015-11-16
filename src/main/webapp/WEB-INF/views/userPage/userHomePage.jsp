@@ -13,9 +13,7 @@
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script src="../../../resources/js/tsort.js"></script>
     <script>
-
         $(document).ready(function() {
-
             $("#records_table").tablesort();
         });
         function formatDate(date, fmt) {
@@ -53,12 +51,11 @@
                     var trHTML = '';
                     $.each(response, function (i, order) {
                         trHTML +=  "<tr><td>"+ order.title + "</td>" +
-                                '   <td>' + order.workplace_access_num + "</td>" +
-                                '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+"</td></tr>";
+                        '   <td>' + order.workplace_access_num + "</td>" +
+                        '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + "</td></tr>";
                     });
-                     $('#records_table tbody').empty();
+                    $('#records_table tbody').empty();
                     $('#records_table').append(trHTML);
-
                 }
             });
         }
@@ -74,22 +71,19 @@
                     var trHTML = '';
                     $.each(response, function (i, order) {
                         trHTML +=  "<tr><td>"+ order.title + "</td>" +
-                                '   <td>' + order.workplace_access_num + "</td>" +
-                                '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+"</td></tr>";
+                        '   <td>' + order.workplace_access_num + "</td>" +
+                        '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + "</td></tr>";
                     });
                     $('#records_table tbody').empty();
                     $('#records_table').append(trHTML);
-
                 }
             });
         }
-
         jQuery( function($) {
             $('tbody tr[data-href]').addClass('clickable').click( function() {
                 window.location = $(this).attr('data-href');
             });
         });
-
         $.ajax({
             url: 'allUserOrders',
             type: 'GET',
@@ -109,16 +103,13 @@
                 var trHTML = '';
                 $.each(response, function (i, order) {
                     trHTML +=  "<tr><td>"+ order.title + "</td>" +
-                            '   <td>' + order.workplace_access_num + "</td>" +
-                            '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+"</td></tr>";
+                    '   <td>' + order.workplace_access_num + "</td>" +
+                    '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + "</td></tr>";
                 });
                 $('#records_table tbody').empty();
                 $('#records_table').append(trHTML);
-
             }
-
         });
-
     </script>
 
 </head>
@@ -127,9 +118,15 @@
 
 <div id="wrap">
     <nav id="header">
+        <div>
+            <form class="form-horizontal" method="get" action="/createOrder">
+                <button id="btn-add-order" type="submit" class="btn btn-primary btn-block">add order</button>
+            </form>
+        </div>
+
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="/"><img id="logo" alt="brand" src="../../../resources/img/logo.png" style="width: 305px; height:65px; margin-top:11px;"></a>
+                <a href="/userhome"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -170,18 +167,6 @@
 
         </table>
     </div>
-
-
-        <div class="col-md-offset-7 bottom-block">
-            <form class="form-horizontal" method="get" action="/createOrder">
-                <div class="form-group">
-                    <div class="col-md-offset-7 col-md-4">
-                        <button id="btn-add-order" type="submit" class="btn btn-primary btn-block"><spring:message
-                                code="user.order"/></button>
-                    </div>
-                </div>
-            </form>
-        </div>
 
     <div class="footer">
         <div class="thick"></div>
