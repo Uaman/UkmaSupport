@@ -1,5 +1,6 @@
 package com.ukmaSupport.controllers;
 
+import com.ukmaSupport.mailService.templates.NewOrderMail;
 import com.ukmaSupport.models.*;
 import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.OrderService;
@@ -32,6 +33,9 @@ public class UserController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private NewOrderMail newOrderMail;
 
     @Autowired
     private AuditoriumService auditoriumService;
@@ -92,6 +96,8 @@ public class UserController {
         order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
 
         orderService.createOrUpdate(order);
+
+        newOrderMail.send(assistant.getEmail());
         return "redirect:/userhome";
     }
 
