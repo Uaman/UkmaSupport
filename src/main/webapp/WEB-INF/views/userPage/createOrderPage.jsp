@@ -49,7 +49,7 @@
                             code="admin.orders"/></a></li>
                     <li><a id = "editProfile" class="menu-element" href="/editProfile"><spring:message
                             code="admin.edit"/></a></li>
-                    <li><a class="menu-element" href="/"><spring:message code="admin.logout"/></a></li>
+                    <li><a class="menu-element" href="/logout"><spring:message code="admin.logout"/></a></li>
                 </ul>
             </div>
         </div>

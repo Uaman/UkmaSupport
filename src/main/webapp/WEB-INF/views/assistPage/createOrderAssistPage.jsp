@@ -59,7 +59,7 @@
                         </ul>
                     </li>
                     <li><a id="editProfile" class="menu-element" href="/editAssistProfile">Edit profile</a></li>
-                    <li><a class="menu-element" href="#">Log out</a></li>
+                    <li><a class="menu-element" href="/logout">Log out</a></li>
                 </ul>
             </div>
         </div>
