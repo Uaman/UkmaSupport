@@ -94,12 +94,10 @@ a {
 .button-style {
 	background-color: #333366;
 	border-radius: 7px;
-	margin: 15px;
 }
 
 #login-button{
 	width: 220px;
-	margin-left: -150px;
 }
 
 

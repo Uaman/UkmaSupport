@@ -13,27 +13,9 @@
 
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-        function startTime() {
-            var tm = new Date();
-            var h = tm.getHours();
-            var m = tm.getMinutes();
-            var s = tm.getSeconds();
-            m = checkTime(m);
-            s = checkTime(s);
-            document.getElementById('txt').innerHTML = h + ":" + m + ":" + s;
-            t = setTimeout('startTime()', 500);
-        }
-        function checkTime(i) {
-            if (i < 10) {
-                i = "0" + i;
-            }
-            return i;
-        }
-    </script>
 </head>
 
-<body onload="startTime()">
+<body>
 
 <div id="wrap">
     <div id="header">
@@ -50,48 +32,40 @@
         </div>
     </div>
 
-    <div id="time">
-					<span id="date">
-					<script type="text/javascript">
-                        var ld = new Date();
-                        document.write(ld.toDateString());
-                    </script></span>
-        <span id="txt"></span>
-    </div>
     <spring:url var="authUrl" value="/static/j_spring_security_check"/>
-        <div class="col-md-offset-4 col-md-4 vertalign bottom-block" id="auth-block">
+    <div class="col-md-offset-4 col-md-4 vertalign bottom-block" id="auth-block">
 
-            <form class="form-horizontal" method="post" action="${authUrl}">
+        <form class="form-horizontal" style="margin-top: 130px;" method="post" action="${authUrl}">
 
-                <div class="form-group">
-                    <div class="col-md-offset-1 col-md-10">
-                        <input type="email" class="form-control form-style" id="email" name="j_username"
-                               placeholder="<spring:message
+            <div class="form-group">
+                <div class="col-md-offset-1 col-md-10">
+                    <input type="email" class="form-control form-style" id="email" name="j_username"
+                           placeholder="<spring:message
                         code="login.email"/>">
-                    </div>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <div class="col-md-offset-1 col-md-10">
-                        <input type="password" class="form-control form-style" id="password" name="j_password"
-                               placeholder="<spring:message
+            <div class="form-group">
+                <div class="col-md-offset-1 col-md-10">
+                    <input type="password" class="form-control form-style" id="password" name="j_password"
+                           placeholder="<spring:message
                         code="login.password"/>">
-                    </div>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <div class="col-md-offset-7 col-md-4">
-                        <button id="login-button" type="submit" class="btn btn-primary btn-block button-style">
-                            <spring:message code="login.login"/>
-                        </button>
-                    </div>
+            <div class="form-group">
+                <div class="col-md-offset-1 col-md-10">
+                    <button id="login-button" type="submit" class="btn btn-primary btn-block button-style">
+                        <spring:message code="login.login"/>
+                    </button>
                 </div>
-                <div class="col-md-offset-1">
-                    <a id="forgotpassword" href="/forgotPassword"><spring:message code="login.forgotPassword"/></a>
-                </div>
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            </form>
-        </div>
+            </div>
+            <div class="col-md-offset-1">
+                <a id="forgotpassword" href="/forgotPassword"><spring:message code="login.forgotPassword"/></a>
+            </div>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
+    </div>
 
     <div class="footer">
         <div class="thick"></div>
