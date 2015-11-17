@@ -54,7 +54,7 @@
             </div>
 
             <div class="form-group">
-                <div class="col-md-offset-7 col-md-4">
+                <div class="col-md-offset-1 col-md-10">
                     <button id="login-button" type="submit" class="btn btn-primary btn-block button-style">
                         <spring:message code="login.login"/>
                     </button>
