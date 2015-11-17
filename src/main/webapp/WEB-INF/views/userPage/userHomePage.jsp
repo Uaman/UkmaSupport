@@ -57,8 +57,8 @@
                         trHTML +=  "<tr><td>"+ order.title + "</td>" +
                                 '   <td>' + order.workplace_access_num + "</td>" +
                                 '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+"</td>"+
-                                '   <td>' +  '<a href="${pageContext.request.contextPath}/editOrder/'+order.id+'">Edit</a>'+"</td>"+
-                                '   <td>' +  '<a href="${pageContext.request.contextPath}/delete/'+order.id+'">Delete</a>'+"</td></tr>";
+                                '   <td>' +  '<form action="${pageContext.request.contextPath}/editOrder/'+order.id+'"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></form>'+"</td>"+
+                                '   <td>' +  '<form action="${pageContext.request.contextPath}/delete/'+order.id+'"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>'+"</td></tr>";
                     });
                      $('#records_table tbody').empty();
                     $('#records_table').append(trHTML);
@@ -170,10 +170,8 @@
                 <th class="no-sort"><spring:message code="admin.orders.title"/></th>
                 <th class="no-sort"><spring:message code="admin.orders.auditorium"/></th>
                 <th><spring:message code="admin.orders.date"/></th>
-
             </tr>
             </thead>
-
         </table>
     </div>
 

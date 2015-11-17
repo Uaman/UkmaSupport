@@ -319,3 +319,14 @@ background-color: #333366;
 	margin-left: 20px;
 	margin-top: 20px;
 }
+.icon {
+	right: 4px;
+	bottom: 13px;
+	color: #ffffff;
+	padding-bottom: 2px;
+}
+.icon-btn {
+	border-radius: 7px;
+	background-color: #333366;
+	width: 30px;
+}
