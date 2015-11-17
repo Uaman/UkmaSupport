@@ -56,7 +56,7 @@
     <bean id="passChangeValidator" class="com.ukmaSupport.utils.PasswordChangeValidator"/>
     <bean id="orderValidator" class="com.ukmaSupport.utils.OrderValidator"/>
     <bean id="audiroriumValidator" class="com.ukmaSupport.utils.AudiroriumValidator"/>
-
+    <bean id="editOrderValidator" class="com.ukmaSupport.utils.EditOrderValidator"/>
     <!--><-->
 
     <!-- jdbcTemplate uses dataSource -->

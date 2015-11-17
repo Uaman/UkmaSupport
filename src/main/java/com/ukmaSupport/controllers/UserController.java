@@ -6,6 +6,7 @@ import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.OrderService;
 import com.ukmaSupport.services.interfaces.UserService;
 import com.ukmaSupport.services.interfaces.WorkplaceService;
+import com.ukmaSupport.utils.EditOrderValidator;
 import com.ukmaSupport.utils.OrderValidator;
 import com.ukmaSupport.utils.PasswordChangeValidator;
 import com.ukmaSupport.utils.PasswordEncryptor;
@@ -53,6 +54,9 @@ public class UserController {
     @Autowired
     @Qualifier("orderValidator")
     private OrderValidator validator;
+    @Autowired
+    @Qualifier("editOrderValidator")
+    private EditOrderValidator editOrderValidator;
 
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
     public @ResponseBody List<Workplace> getCharNum(@RequestParam("text") String text) {
@@ -143,19 +147,29 @@ public class UserController {
     @RequestMapping(value = "/editOrder/{id}", method = RequestMethod.GET)
     public String editOrder(@PathVariable("id") int id,Model model) {
         Order order=orderService.getById(id);
+        System.out.println(""+model.addAttribute("workplace",order.getWorkplace()).toString());
         model.addAttribute("title",order.getTitle());
         model.addAttribute("workplace",order.getWorkplace());
         model.addAttribute("auditorium",order.getAuditorium());
         model.addAttribute("content",order.getContent());
         model.addAttribute("id",order.getId());
         model.addAttribute("editOrder", order);
-        System.out.println("aud"+  model.addAttribute("auditorium",order.getAuditorium()));
+       // System.out.println("aud"+  model.addAttribute("auditorium",order.getAuditorium()));
         return "userPage/editOrder";
     }
     @RequestMapping(value = "editOrder/save/{id}", method = RequestMethod.POST)
     public String orderEdited(@PathVariable("id") int id,@ModelAttribute("editOrder") Order order, ModelMap model,BindingResult result) {
-        validator.validate(order, result);
+        editOrderValidator.validate(order, result);
 
+        if(result.hasErrors()){
+            model.addAttribute("title",order.getTitle());
+            model.addAttribute("workplace",order.getWorkplace());
+            model.addAttribute("auditorium",order.getAuditorium());
+            model.addAttribute("content",order.getContent());
+            model.addAttribute("id",order.getId());
+            model.addAttribute("editOrder", order);
+            return "userPage/editOrder";
+        }
         order.setId(id);
         order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
         orderService.update(order);
