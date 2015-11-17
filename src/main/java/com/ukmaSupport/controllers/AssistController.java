@@ -19,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import com.ukmaSupport.dao.interfaces.OrderDao;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
@@ -32,6 +33,9 @@ public class AssistController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private OrderDao orderDao;
 
     @Autowired
     private WorkplaceService workplaceService;
@@ -215,6 +219,18 @@ public class AssistController {
     @RequestMapping(value = "/assistUserhome", method = RequestMethod.GET)
     public String listAssistUserAllOrders(ModelMap model) {
         return "assistPage/assistUserhome";
+    }
+
+    @RequestMapping(value = "/myUncomplOrdersDone", method = RequestMethod.GET)
+    public String setToDone(@RequestParam("orderid") int id,  Model model) {
+
+        Order order = orderService.getById(id);
+        order.setStatus(DONE);
+        orderService.createOrUpdate(order);
+
+
+
+        return "assistPage/assistUncomplOrders";
     }
 
 }
