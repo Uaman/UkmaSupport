@@ -5,14 +5,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv = "Content-Type" content="text/html; charset=utf-8" />
-    <title>Profile edit</title>
+    <title><spring:message code="assist.editProfile"/></title>
     <link rel="Shortcut Icon" href="" type="image/x-icon" />
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen" />
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script>
-
         jQuery.ajax(url,{
             complete:function() { location='/userhome';}
         });
@@ -40,7 +39,7 @@
     </nav>
 
     <%--<div>--%>
-        <%--<p id="hello">Hello, you may edit your e-mail or your password here.</p>--%>
+    <%--<p id="hello">Hello, you may edit your e-mail or your password here.</p>--%>
     <%--</div>--%>
 
     <div id="profEdit" class="bottom-block top-block">
