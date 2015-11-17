@@ -34,8 +34,8 @@ public class RegistrationValidator implements Validator {
             errors.rejectValue("email", "valid.duplicatedEmail", "Email is required.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "valid.password", "Password is required.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confPassword", "valid.confPassword", "Confirm password is required.");
-//        if(!form.getPassword().matches(PASSWORD_PATTERN))
-//            errors.rejectValue("password", "valid.password2", "Incorrect password");
+        if(!form.getPassword().matches(PASSWORD_PATTERN))
+            errors.rejectValue("password", "valid.password2", "Incorrect password");
         if (!form.getPassword().equals(form.getConfPassword()))
             errors.rejectValue("confPassword", "valid.confPasswordDiff", "Passwords are different.");
     }

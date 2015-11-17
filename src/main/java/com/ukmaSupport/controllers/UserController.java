@@ -1,6 +1,7 @@
 package com.ukmaSupport.controllers;
 
 import com.ukmaSupport.mailService.templates.NewOrderMail;
+import com.ukmaSupport.mailService.templates.OrderIsAcceptedMail;
 import com.ukmaSupport.models.*;
 import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.OrderService;
@@ -37,6 +38,9 @@ public class UserController {
 
     @Autowired
     private NewOrderMail newOrderMail;
+
+    @Autowired
+    private OrderIsAcceptedMail acceptionMail;
 
     @Autowired
     private AuditoriumService auditoriumService;
@@ -82,6 +86,7 @@ public class UserController {
     public String createOrderPost(@ModelAttribute("newOrder") Order order, ModelMap model, BindingResult result) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
+        int userId = (Integer) session.getAttribute("id");
         validator.validate(order, result);
         if(result.hasErrors()){
             List<Auditorium> auditoriums = auditoriumService.getAll();
@@ -89,8 +94,7 @@ public class UserController {
             model.addAttribute("newOrder", order);
             return "userPage/createOrderPage";
         }
-
-        order.setUserId((Integer) session.getAttribute("id"));
+        order.setUserId(userId);
         order.setStatus(UNDONE);
         order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
         User assistant = userService.getResponsibleAssistant(order.getAuditorium());
@@ -100,6 +104,8 @@ public class UserController {
         order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
 
         orderService.createOrUpdate(order);
+        acceptionMail.send(userService.getById(userId).getEmail());
+
 
 
         return "redirect:/userhome";
