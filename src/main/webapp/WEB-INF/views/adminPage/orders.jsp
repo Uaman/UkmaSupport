@@ -47,19 +47,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle menu-element active" data-toggle="dropdown" href="#"><spring:message
-                                code="admin.orders"/><b
-                                class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a class="menu-element-li" href="/allOrders"><spring:message
-                                    code="admin.allOrders"/></a></li>
-                            <li><a class="menu-element-li" href="/completedOrders"><spring:message
-                                    code="admin.completedOrders"/></a></li>
-                            <li><a class="menu-element-li" href="/uncompletedOrders"><spring:message
-                                    code="admin.uncompletedOrders"/></a></li>
-                        </ul>
-                    </li>
+                    <li><a id="orders" class="menu-element active" href="/allOrders"><spring:message
+                            code="admin.orders"/></a></li>
                     <li><a id="editProfile" class="menu-element" href="/editAdminProfile"><spring:message
                             code="admin.edit"/></a></li>
                     <li><a class="menu-element" href="/logout"><spring:message code="admin.logout"/></a></li>
@@ -90,16 +79,16 @@
             </tbody>
         </table>
     </div>
-<div class="footer">
-    <div class="thick"></div>
-    <div class="thin"></div>
-    <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
+    <div class="footer">
+        <div class="thick"></div>
+        <div class="thin"></div>
+        <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
 
-    <div class="text-center">
-        <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
-        <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
+        <div class="text-center">
+            <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
+            <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
+        </div>
     </div>
-</div>
 </div>
 </body>
 </html>
