@@ -117,8 +117,8 @@ a {
 /**** Registration *****/
 
 #mainRegister{
-	margin-left: 250px;
-	margin-right: 250px;
+	margin-left: 180px;
+	margin-right: 180px;
 	margin-top: 30px;
 }
 
@@ -131,7 +131,7 @@ a {
 .centralWord {
 	font-family: "Century Gothic", sans-serif;
 	font-size: 36px;
-	padding: 40px;
+	padding: 20px;
 	text-align: center;
 }
 
@@ -144,7 +144,6 @@ a {
 
 #register-button{
 	width: 220px;
-	margin-left: -38px;
 }
 
 .regErrors{
@@ -152,8 +151,6 @@ a {
 	width: 220px;
 	position: absolute;
 	z-index: 999;
-	padding-left: 15px;
-	margin-top: 18px;
 }
 a img {
 	border: none;
