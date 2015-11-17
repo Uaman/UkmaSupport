@@ -1,7 +1,6 @@
 package com.ukmaSupport.controllers;
 
 import com.ukmaSupport.mailService.templates.NewOrderMail;
-import com.ukmaSupport.mailService.templates.OrderIsAcceptedMail;
 import com.ukmaSupport.models.*;
 import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.OrderService;
@@ -148,20 +147,29 @@ public class UserController {
         return "redirect:/userhome";
     }
     @RequestMapping(value = "/editOrder/{id}", method = RequestMethod.GET)
-    public String editOrder(@PathVariable("id") int id,Model model) {
+    public String editOrder(@PathVariable("id") Integer id,Model model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        int userId = (Integer) session.getAttribute("id");
         Order order=orderService.getById(id);
-        System.out.println(""+model.addAttribute("workplace",order.getWorkplace()).toString());
-        model.addAttribute("title",order.getTitle());
-        model.addAttribute("workplace",order.getWorkplace());
-        model.addAttribute("auditorium",order.getAuditorium());
-        model.addAttribute("content",order.getContent());
-        model.addAttribute("id",order.getId());
-        model.addAttribute("editOrder", order);
+        List<Order> orderList = orderService.getByUserId(userId);
+        for(Order order1:orderList){
+           if(order1.getId()!=id){
+         return "redirect:/userhome";
+                              }
+                            }
+            model.addAttribute("title", order.getTitle());
+            model.addAttribute("workplace", order.getWorkplace());
+            model.addAttribute("auditorium", order.getAuditorium());
+            model.addAttribute("content", order.getContent());
+            model.addAttribute("id", order.getId());
+            model.addAttribute("editOrder", order);
+
        // System.out.println("aud"+  model.addAttribute("auditorium",order.getAuditorium()));
         return "userPage/editOrder";
     }
-    @RequestMapping(value = "editOrder/save/{id}", method = RequestMethod.POST)
-    public String orderEdited(@PathVariable("id") int id,@ModelAttribute("editOrder") Order order, ModelMap model,BindingResult result) {
+    @RequestMapping(value = "editOrder/save", method = RequestMethod.POST)
+    public String orderEdited(@ModelAttribute("id") Integer id,@ModelAttribute("editOrder") Order order, ModelMap model,BindingResult result) {
         editOrderValidator.validate(order, result);
 
         if(result.hasErrors()){
