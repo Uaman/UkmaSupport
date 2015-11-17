@@ -52,6 +52,12 @@ public class OrderServiceImpl implements OrderService {
         orderDao.delete(id);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
+    @Override
+    public void update(Order order) {
+        orderDao.update(order);
+    }
+
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
     public List<Order> getAll() {

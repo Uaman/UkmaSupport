@@ -97,7 +97,7 @@ public class UserController {
 
         orderService.createOrUpdate(order);
 
-        newOrderMail.send(assistant.getEmail());
+
         return "redirect:/userhome";
     }
 
@@ -135,6 +135,33 @@ public class UserController {
         return orders;
     }
 
+    @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
+    public String deleteOrderById(Model model,@PathVariable("id") int id) {
+        orderService.delete(id);
+        return "redirect:/userhome";
+    }
+    @RequestMapping(value = "/editOrder/{id}", method = RequestMethod.GET)
+    public String editOrder(@PathVariable("id") int id,Model model) {
+        Order order=orderService.getById(id);
+        model.addAttribute("title",order.getTitle());
+        model.addAttribute("workplace",order.getWorkplace());
+        model.addAttribute("auditorium",order.getAuditorium());
+        model.addAttribute("content",order.getContent());
+        model.addAttribute("id",order.getId());
+        model.addAttribute("editOrder", order);
+        System.out.println("aud"+  model.addAttribute("auditorium",order.getAuditorium()));
+        return "userPage/editOrder";
+    }
+    @RequestMapping(value = "editOrder/save/{id}", method = RequestMethod.POST)
+    public String orderEdited(@PathVariable("id") int id,@ModelAttribute("editOrder") Order order, ModelMap model,BindingResult result) {
+        validator.validate(order, result);
+
+        order.setId(id);
+        order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
+        orderService.update(order);
+
+        return "redirect:/userhome";
+    }
     @RequestMapping(value = "/editProfile", method = RequestMethod.GET)
     public String editProfile(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

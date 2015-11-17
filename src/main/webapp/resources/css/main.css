@@ -180,14 +180,12 @@ a img {
 	color: #333366;
 	margin: 20px 0 0 20px;
 }
+
 #btn-add-order {
-	position: fixed;
-	background-color: #333366;
+background-color: #333366;
 	border-radius: 7px;
-	width: 150px;
-	margin-left: 730px;
-	margin-top: 103px;
 }
+
 .drop-menu-element {
 	color: #ffffff;
 	font-family: "Century Gothic", sans-serif;
