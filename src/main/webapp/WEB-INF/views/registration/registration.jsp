@@ -15,11 +15,11 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href=""><img id="logo"  alt="brand" src="../../../resources/img/logo.png"></a>
+                <a href="/"><img id="logo"  alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a id="login" class="leftWord" href="/"><spring:message code="registration.login"/></a></li>
+                    <li><a id="login" class="menu-element" href="/"><spring:message code="registration.login"/></a></li>
                 </ul>
             </div>
         </div>
