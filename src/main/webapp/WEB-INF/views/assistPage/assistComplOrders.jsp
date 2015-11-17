@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Completed orders</title>
+    <title><spring:message code="assist.CompletedOrders"/></title>
     <link rel="Shortcut Icon" href="" type="image/x-icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
@@ -91,32 +91,38 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"> Orders<b
+                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"> <spring:message
+                                code="assist.menuOrders"/><b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/assistHome">Assigned to me</a></li>
+                                                             href="/assistHome"><spring:message
+                                    code="assist.menuAssigned"/></a></li>
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/assistUserhome">My user-orders</a></li>
+                                                             href="/assistUserhome"><spring:message
+                                    code="assist.menuUserOrders"/></a></li>
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/createAssistOrder">Add Order</a></li>
+                                                             href="/createAssistOrder"><spring:message
+                                    code="assist.menuAddOrder"/></a></li>
                         </ul>
                     </li>
 
-                    <li><a id="editAssistProfile" class="menu-element" href="/editAssistProfile">Edit profile</a></li>
-                    <li><a class="menu-element" href="/logout">Log out</a></li>
+                    <li><a id="editAssistProfile" class="menu-element" href="/editAssistProfile"><spring:message
+                            code="assist.editProfile"/></a></li>
+                    <li><a class="menu-element" href="/logout"><spring:message code="assist.logOut"/></a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <div>
-        <p id="hello" class="top-block">My Completed orders</p>
+        <p id="hello" class="top-block"><spring:message code="assist.My.ComplOrders"/></p>
     </div>
 
     <div>
         <form class="form-horizontal" method="get" action="/myUncomplOrders">
-            <button id="assist_Uncompl_1" class="btn btn-primary btn-block">My uncompleted orders</button>
+            <button id="assist_Uncompl_1" class="btn btn-primary btn-block"><spring:message
+                    code="assist.My.uncompleted.orders"/></button>
         </form>
     </div>
 
@@ -124,9 +130,9 @@
         <table id="records_table" class="tbl table table-striped table-hover ">
             <thead>
             <tr>
-                <th class="no-sort">Title</th>
-                <th class="no-sort">Auditorium</th>
-                <th>Date</th>
+                <th class="no-sort"><spring:message code="assist.orders.title"/></th>
+                <th class="no-sort"><spring:message code="assist.orders.auditorium"/></th>
+                <th><spring:message code="assist.orders.date"/></th>
             </tr>
             </thead>
         </table>
@@ -136,7 +142,7 @@
     <div class="footer">
         <div class="thick"></div>
         <div class="thin"></div>
-        <div><p class="footertext"> © 2015 All Rights Reserved</p></div>
+        <div><p class="footertext"><spring:message code="login.footer"/></p></div>
     </div>
 </div>
 </body>

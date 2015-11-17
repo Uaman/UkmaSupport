@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <title>Create Order</title>
+    <title><spring:message code="assist.CreateOrder"/></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="Shortcut Icon" href="" type="image/x-icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
@@ -23,12 +23,9 @@
                 success: function (data) {
                     $('#sel2').html('');// to clear the previous option
                     $('#res').html(data);
-
-
                     $.each(data, function (i, workplace) {
                         $('#sel2').append($('<option>').text(workplace.accessNumber).attr('value', workplace.accessNumber));
                     });
-
                 }
             });
         }
@@ -47,19 +44,24 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="/assistHome"> Orders<b
+                        <a class="dropdown-toggle menu-element" data-toggle="dropdown"
+                           href="/assistHome"><spring:message code="assist.menuOrders"/><b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/assistHome">Assigned to me</a></li>
+                                                             href="/assistHome"><spring:message
+                                    code="assist.menuAssigned"/></a></li>
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/assistUserhome">My user-orders</a></li>
+                                                             href="/assistUserhome"><spring:message
+                                    code="assist.menuUserOrders"/></a></li>
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/createAssistOrder">Add Order</a></li>
+                                                             href="/createAssistOrder"><spring:message
+                                    code="assist.menuAddOrder"/></a></li>
                         </ul>
                     </li>
-                    <li><a id="editProfile" class="menu-element" href="/editAssistProfile">Edit profile</a></li>
-                    <li><a class="menu-element" href="/logout">Log out</a></li>
+                    <li><a id="editProfile" class="menu-element" href="/editAssistProfile"><spring:message
+                            code="assist.editProfile"/></a></li>
+                    <li><a class="menu-element" href="/logout"><spring:message code="assist.logOut"/></a></li>
                 </ul>
             </div>
         </div>
@@ -70,27 +72,28 @@
                    commandName="newOrder">
             <div class="form-group">
                 <div class="col-md-12" display="inline-block">
-                    <span><input type="text" class="form-control form-style" id="title" name="title" placeholder="title"
+                    <span><input type="text" class="form-control form-style" id="title" name="title"
+                                 placeholder="<spring:message code="user.title"/>"
                                  path="title"></span>
                     <span><form:errors path="title" id="title_errors"/></span>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-6">
-                    <label class="label-style" for="sel1">auditorium:</label>
+                    <label class="label-style" for="sel1"><spring:message code="assist.order.auditorium"/>:</label>
                     <select name="auditorium" class="form-control select-style" id="sel1" path="auditorium"
                             onchange="getWorkPlace()">
-                        <option value="" disabled selected>auditorium</option>
+                        <option value="" disabled selected><spring:message code="assist.order.auditorium"/></option>
                         <c:forEach items="${auditoriums}" var="item" varStatus="count">
                             <option value="${item.number}">${item.number}</option>
                         </c:forEach>
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <label class="label-style" for="sel2">workplace:</label>
+                    <label class="label-style" for="sel2"><spring:message code="assist.order.auditorium"/>:</label>
                     <select name="workplace_access_num" class="form-control select-style" id="sel2"
                             path="workplace_access_num">
-                        <option value="" disabled selected>workplace</option>
+                        <option value="" disabled selected><spring:message code="assist.order.workplace"/></option>
                     </select>
                     <form:errors path="workplace_access_num" id="workplace_access_num_errors"/>
                 </div>
@@ -100,14 +103,15 @@
             <div class="form-group">
                 <div class="col-md-12">
                     <textarea class="col-md-12" rows="5" id="content" name="content" path="content"
-                              placeholder="description"></textarea>
+                              placeholder="<spring:message code="user.description"/>"></textarea>
                     <form:errors path="content" id="content_errors"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-12">
-                    <button id="btn-create-order" type="submit" class="btn btn-primary btn-block">Create order</button>
+                    <button id="btn-create-order" type="submit" class="btn btn-primary btn-block"><spring:message
+                            code="assist.CreateOrder"/></button>
                 </div>
             </div>
         </form:form>
@@ -117,7 +121,7 @@
     <div class="footer">
         <div class="thick"></div>
         <div class="thin"></div>
-        <div><p class="footertext"> © 2015 All Rights Reserved</p></div>
+        <div><p class="footertext"><spring:message code="login.footer"/></p></div>
     </div>
 </div>
 </body>

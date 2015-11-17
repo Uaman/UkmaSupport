@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Edit Profile</title>
+    <title><spring:message code="assist.editProfile"/></title>
     <link rel="Shortcut Icon" href="" type="image/x-icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
@@ -32,19 +32,24 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="/assistHome"> Orders<b
+                        <a class="dropdown-toggle menu-element" data-toggle="dropdown"
+                           href="/assistHome"><spring:message code="assist.menuOrders"/><b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/assistHome">Assigned to me</a></li>
+                                                             href="/assistHome"><spring:message
+                                    code="assist.menuAssigned"/></a></li>
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/assistUserhome">My user-orders</a></li>
+                                                             href="/assistUserhome"><spring:message
+                                    code="assist.menuUserOrders"/></a></li>
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/createAssistOrder">Add Order</a></li>
+                                                             href="/createAssistOrder"><spring:message
+                                    code="assist.menuAddOrder"/></a></li>
                         </ul>
                     </li>
-                    <li><a id="editProfile" class="menu-element" href="/editAssistProfile">Edit profile</a></li>
-                    <li><a class="menu-element" href="/logout">Log out</a></li>
+                    <li><a id="editProfile" class="menu-element" href="/editAssistProfile"><spring:message
+                            code="assist.editProfile"/></a></li>
+                    <li><a class="menu-element" href="/logout"><spring:message code="assist.logOut"/></a></li>
                 </ul>
             </div>
         </div>
@@ -55,44 +60,45 @@
         <form:form id="passChangeForm" action="editAssistProfile" method="post" commandName="passChangeForm">
             <table border="0">
                 <tr>
-                    <td class="centralWord" colspan="2" align="center">Password change</td>
+                    <td class="centralWord" colspan="2" align="center"><spring:message
+                            code="assist.PasswordChange"/></td>
                 </tr>
                 <tr>
-                    <td><label class="labels">First Name:</label></td>
+                    <td><label class="labels"><spring:message code="registration.firstName"/>:</label></td>
                     <td><form:input id="firstName" path="firstName" name="firstName" type="text" value=""
                                     class="form-control form-style" READONLY="true"/></td>
                     <td><form:errors path="firstName" class="regErrors" id="firstName.errors"
                                      cssStyle="color: #ff0000;"/></td>
                 </tr>
                 <tr>
-                    <td><label class="labels">Last Name:</label></td>
+                    <td><label class="labels"><spring:message code="registration.lastName"/>:</label></td>
                     <td><form:input id="lastName" path="lastName" name="lastName" type="text" value=""
                                     class="form-control form-style" READONLY="true"/></td>
                     <td><form:errors path="lastName" class="regErrors" id="lastName.errors"
                                      cssStyle="color: #ff0000;"/></td>
                 </tr>
                 <tr>
-                    <td><label class="labels">E-mail:</label></td>
+                    <td><label class="labels"><spring:message code="registration.email"/>:</label></td>
                     <td><form:input id="email" path="email" name="email" type="text" value=""
                                     class="form-control form-style" READONLY="true"/></td>
                     <td><form:errors path="email" class="regErrors" id="email.errors" cssStyle="color: #ff0000;"/></td>
                 </tr>
                 <tr>
-                    <td><label class="labels">Old password:</label></td>
+                    <td><label class="labels"><spring:message code="assist.OldPassword"/>:</label></td>
                     <td><form:input path="oldPassword" type="password" value=""
                                     class="form-control form-style"/></td>
                     <td><form:errors path="oldPassword" class="regErrors" id="oldPassword.errors"
                                      cssStyle="color: #ff0000;"/></td>
                 </tr>
                 <tr>
-                    <td><label class="labels">New password:</label></td>
+                    <td><label class="labels"><spring:message code="assist.NewPassword"/>:</label></td>
                     <td><form:input path="password" type="password" value=""
                                     class="form-control form-style"/></td>
                     <td><form:errors path="password" class="regErrors" id="password.errors"
                                      cssStyle="color: #ff0000;"/></td>
                 </tr>
                 <tr>
-                    <td><label class="labels">Confirm new password:</label></td>
+                    <td><label class="labels"><spring:message code="assist.ConfirmNewPassword"/>:</label></td>
                     <td><form:input path="confPassword" type="password" value=""
                                     class="form-control form-style"/></td>
                     <td><form:errors path="confPassword" class="regErrors" id="confPassword.errors"
@@ -102,7 +108,8 @@
             <div class="form-group">
                 <div class="col-md-offset-7  col-md-4">
                     <button id="change-pass-button" type="submit" value="editAssistProfile"
-                            class="btn btn-primary btn-block button-style">Submit
+                            class="btn btn-primary btn-block button-style">
+                        <spring:message code="assist.Submit"/>
                     </button>
                 </div>
             </div>
@@ -112,7 +119,7 @@
     <div class="footer">
         <div class="thick"></div>
         <div class="thin"></div>
-        <div><p class="footertext"> © 2015 All Rights Reserved</p></div>
+        <div><p class="footertext"><spring:message code="login.footer"/></p></div>
     </div>
 </div>
 </body>
