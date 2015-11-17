@@ -40,9 +40,6 @@ public class UserController {
     private NewOrderMail newOrderMail;
 
     @Autowired
-    private OrderIsAcceptedMail acceptionMail;
-
-    @Autowired
     private AuditoriumService auditoriumService;
 
     @Autowired
@@ -104,7 +101,7 @@ public class UserController {
         order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
 
         orderService.createOrUpdate(order);
-        acceptionMail.send(userService.getById(userId).getEmail());
+        newOrderMail.send(assistant.getEmail());
 
 
 
