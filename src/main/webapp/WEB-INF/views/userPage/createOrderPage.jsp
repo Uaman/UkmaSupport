@@ -58,11 +58,16 @@
     <div class="col-md-offset-4 col-md-8 vertalign bottom-block">
         <form:form class="form-horizontal" id="newOrder" action="/createOrder" method="post" commandName="newOrder">
             <div class="form-group">
+                <div class="col-md-6">
+                    <div id="form-error"><form:errors class="" path="auditorium" id="auditorium.errors" cssStyle="color: #ff0000;"/></div>
+                </div>
+            </div>
+            <div class="form-group">
                 <div class="col-md-6" display="inline-block">
                     <input type="text" class="form-control form-style" id="title" value="${newOrder.title}" name="title" placeholder="<spring:message
                             code="user.title"/>" path="title">
                 </div>
-                <div id="title-error"><form:errors path="title" class="" id="title.errors"/></div>
+                <div id="title-error"><form:errors path="title" class="" id="title.errors" cssStyle="color: #ff0000;"/></div>
             </div>
             <div class="form-group">
                 <div class="col-md-3">
@@ -84,7 +89,7 @@
                                 code="user.workplace.number"/></option>
                     </select>
                 </div>
-                <div id="workplace-error"><form:errors path="workplace_access_num" class="" id="workplace_access_num.errors"/></div>
+                <div id="workplace-error"><form:errors path="workplace_access_num" class="" id="workplace_access_num.errors" cssStyle="color: #ff0000;"/></div>
 
             </div>
 
@@ -93,7 +98,7 @@
                     <textarea class="col-md-12" rows="5"  id="content"  name="content" path="content" placeholder="<spring:message
                             code="user.description"/>">${newOrder.content}</textarea>
                 </div>
-                <div id="content-error"><form:errors path="content" class="" id="content.errors"/></div>
+                <div id="content-error"><form:errors path="content" class="" id="content.errors" cssStyle="color: #ff0000;"/></div>
             </div>
 
             <div class="form-group">
