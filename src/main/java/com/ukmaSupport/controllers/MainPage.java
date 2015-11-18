@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/")
 public class MainPage {
-
+    /**/
     @Autowired
     private UserService userService;
 

@@ -19,10 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import com.ukmaSupport.dao.interfaces.OrderDao;
@@ -199,16 +196,12 @@ public class AssistController {
         return "redirect:/assist/home";
     }
 
-    @RequestMapping(value = "/myUncomplOrdersDone", method = RequestMethod.GET)
+    @RequestMapping(value = "assist/mark_done", method = RequestMethod.GET)
     public String setToDone(@RequestParam("orderid") int id,  Model model) {
-
         Order order = orderService.getById(id);
         order.setStatus(DONE);
         orderService.createOrUpdate(order);
-
-
-
-        return "assistPage/assistUncomplOrders";
+        return "assistPage/assistOrdersAssigned";
     }
 
 }
