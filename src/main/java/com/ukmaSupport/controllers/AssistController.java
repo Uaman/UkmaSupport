@@ -1,6 +1,9 @@
 package com.ukmaSupport.controllers;
 
-import com.ukmaSupport.models.*;
+import com.ukmaSupport.models.Auditorium;
+import com.ukmaSupport.models.EditForm;
+import com.ukmaSupport.models.Order;
+import com.ukmaSupport.models.User;
 import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.OrderService;
 import com.ukmaSupport.services.interfaces.UserService;
@@ -19,6 +22,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import com.ukmaSupport.dao.interfaces.OrderDao;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
@@ -32,6 +36,9 @@ public class AssistController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private OrderDao orderDao;
 
     @Autowired
     private WorkplaceService workplaceService;
@@ -50,18 +57,20 @@ public class AssistController {
     @Qualifier("orderValidator")
     private OrderValidator validatorOrder;
 
-
-    //@Secured("ROLE_ASSIST")
-    @RequestMapping(value = "/assistHome", method = RequestMethod.GET)
-    public String listAssistOrders(ModelMap model) {
-        return "assistPage/assistHomePage";
+    @RequestMapping(value = "/assist/home", method = RequestMethod.GET)
+    public String assistHome(ModelMap model) {
+        return "assistPage/assistHome";
     }
 
-    // @Secured("ROLE_ASSIST")
-    @RequestMapping(value = "/all_my_orders", method = RequestMethod.GET)
+    @RequestMapping(value = "/assist/assigned_orders", method = RequestMethod.GET)
+    public String allAssistOrders(Model model) {
+        return "assistPage/assistOrdersAssigned";
+    }
+
+    @RequestMapping(value = "/assist/get_all_assigned_orders", method = RequestMethod.GET)
     public
     @ResponseBody
-    List<Order> allAssistOrders() {
+    List<Order> getAllAssistOrders() {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
         int assistId = (Integer) session.getAttribute("id");
@@ -69,8 +78,23 @@ public class AssistController {
         return orderService.getAllAssistOrders(assistId);
     }
 
-    // @Secured("ROLE_ASSIST")
-    @RequestMapping(value = "/my_compl_orders", method = RequestMethod.GET)
+    @RequestMapping(value = "/assist/created_orders", method = RequestMethod.GET)
+    public String allAssistUserOrders(Model model) {
+        return "assistPage/assistOrdersCreated";
+    }
+
+    @RequestMapping(value = "/assist/get_all_created_orders", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Order> getAllAssistUserOrders() {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        int userId = (Integer) session.getAttribute("id");
+        System.out.println(userId);
+        return orderService.getByUserId(userId);
+    }
+
+    @RequestMapping(value = "/assist/get_assigned_compl", method = RequestMethod.GET)
     public
     @ResponseBody
     List<Order> getAssistComplOrders() {
@@ -81,8 +105,7 @@ public class AssistController {
         return orderService.getByAssistAndStatus(assistId, DONE);
     }
 
-    // @Secured("ROLE_ASSIST")
-    @RequestMapping(value = "/my_uncompl_orders", method = RequestMethod.GET)
+    @RequestMapping(value = "/assist/get_assigned_uncompl", method = RequestMethod.GET)
     public
     @ResponseBody
     List<Order> getAssistUncomplOrders() {
@@ -93,20 +116,7 @@ public class AssistController {
         return orderService.getByAssistAndStatus(assistId, UNDONE);
     }
 
-    // @Secured("ROLE_ASSIST")
-    @RequestMapping(value = "/all_user_orders", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    List<Order> getAssistUserAllOrders() {
-        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        HttpSession session = attr.getRequest().getSession();
-        int userId = (Integer) session.getAttribute("id");
-        System.out.println(userId);
-        return orderService.getByUserId(userId);
-    }
-
-    // @Secured("ROLE_ASSIST")
-    @RequestMapping(value = "/compl_orders", method = RequestMethod.GET)
+    @RequestMapping(value = "/assist/get_created_compl", method = RequestMethod.GET)
     public
     @ResponseBody
     List<Order> getAssistUserComplOrders() {
@@ -117,8 +127,7 @@ public class AssistController {
         return orderService.getByUserIdStatus(userId, DONE);
     }
 
-    // @Secured("ROLE_ASSIST")
-    @RequestMapping(value = "/uncompl_orders", method = RequestMethod.GET)
+    @RequestMapping(value = "assist/get_created_uncompl", method = RequestMethod.GET)
     public
     @ResponseBody
     List<Order> getAssistUserUncomplOrders() {
@@ -129,8 +138,7 @@ public class AssistController {
         return orderService.getByUserIdStatus(userId, UNDONE);
     }
 
-    //@Secured("ROLE_ASSIST")
-    @RequestMapping(value = "/editAssistProfile", method = RequestMethod.GET)
+    @RequestMapping(value = "/assist/edit_profile", method = RequestMethod.GET)
     public String editAssistProfile(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
@@ -140,36 +148,33 @@ public class AssistController {
         editForm.setLastName(assist.getLastName());
         editForm.setEmail(assist.getEmail());
         model.addAttribute("passChangeForm", editForm);
-        return "assistPage/editAssistProfile";
+        return "assistPage/assistEditProfile";
     }
 
-    // @Secured("ROLE_ASSIST")
-    @RequestMapping(value = "/editAssistProfile", method = RequestMethod.POST)
+    @RequestMapping(value = "/assist/edit_profile", method = RequestMethod.POST)
     public String profileEdited(@ModelAttribute("passChangeForm") EditForm editForm, BindingResult result) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         User assist = userService.getByEmail(name);
         validatorPassword.validate(editForm, result);
         if (result.hasErrors())
-            return "assistPage/editAssistProfile";
+            return "assistPage/assistEditProfile";
         String pass = PasswordEncryptor.encode(editForm.getPassword());
         assist.setPassword(pass);
         userService.saveOrUpdate(assist);
-        return "userPage/passwordChangeSuccess";
+        return "assistPage/passwordChangeSuccess";
     }
 
-    // @Secured("ROLE_ASSIST")
-    @RequestMapping(value = "/createAssistOrder", method = RequestMethod.GET)
+    @RequestMapping(value = "/assist/create_order", method = RequestMethod.GET)
     public String createOrder(ModelMap model) {
         Order order = new Order();
         List<Auditorium> auditoriums = auditoriumService.getAll();
         model.addAttribute("newOrder", order);
         model.addAttribute("auditoriums", auditoriums);
-        return "assistPage/createOrderAssistPage";
+        return "assistPage/assistCreateOrder";
     }
 
-    // @Secured("ROLE_ASSIST")
-    @RequestMapping(value = "/createAssistOrder", method = RequestMethod.POST)
+    @RequestMapping(value = "assist/create_order", method = RequestMethod.POST)
     public String createOrderPost(@ModelAttribute("newOrder") Order order, ModelMap model, BindingResult result) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
@@ -177,7 +182,7 @@ public class AssistController {
         if (result.hasErrors()) {
             List<Auditorium> auditoriums = auditoriumService.getAll();
             model.addAttribute("auditoriums", auditoriums);
-            return "assistPage/createOrderAssistPage";
+            return "assistPage/assistCreateOrder";
         }
         order.setUserId((Integer) session.getAttribute("id"));
         order.setStatus(UNDONE);
@@ -188,33 +193,15 @@ public class AssistController {
         order.setAssistantId(assistantId);
         order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
         orderService.createOrUpdate(order);
-        return "redirect:/assistHome";
+        return "redirect:/assist/home";
     }
 
-    @RequestMapping(value = "/myComplOrders", method = RequestMethod.GET)
-    public String listAssistComplOrders(ModelMap model) {
-        return "assistPage/assistComplOrders";
-    }
-
-    @RequestMapping(value = "/myUncomplOrders", method = RequestMethod.GET)
-    public String listAssistUncomplOrders(ModelMap model) {
-        return "assistPage/assistUncomplOrders";
-    }
-
-    @RequestMapping(value = "/ComplOrders", method = RequestMethod.GET)
-    public String listAssistUserComplOrders(ModelMap model) {
-        return "assistPage/userComplOrders";
-    }
-
-    @RequestMapping(value = "/UncomplOrders", method = RequestMethod.GET)
-    public String listAssistUserUncomplOrders(ModelMap model) {
-        return "assistPage/userUncomplOrders";
-    }
-
-
-    @RequestMapping(value = "/assistUserhome", method = RequestMethod.GET)
-    public String listAssistUserAllOrders(ModelMap model) {
-        return "assistPage/assistUserhome";
+    @RequestMapping(value = "assist/mark_done", method = RequestMethod.GET)
+    public String setToDone(@RequestParam("orderid") int id,  Model model) {
+        Order order = orderService.getById(id);
+        order.setStatus(DONE);
+        orderService.createOrUpdate(order);
+        return "assistPage/assistOrdersAssigned";
     }
 
 }

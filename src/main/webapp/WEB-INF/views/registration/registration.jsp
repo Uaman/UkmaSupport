@@ -15,7 +15,7 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="/"><img id="logo"  alt="brand" src="../../../resources/img/logo.png"></a>
+                <a href="/"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -27,50 +27,76 @@
 
 
     <div id="mainRegister" class="bottom-block top-block">
-        <form:form id="userForm" action="register" method="post" commandName="userForm">
-            <table border="0">
-                <tr>
-                    <td class="centralWord" colspan="2" align="center"><spring:message code="registration.hello"/></td>
-                </tr>
+        <form:form id="userForm" class="form-horizontal" action="register" method="post" commandName="userForm">
+            <div class="centralWord row col-md-offset-2" colspan="2" align="center"><spring:message
+                    code="registration.hello"/></div>
+            <div class="form-group row">
+                <label class="col-md-4 control-label" for="firstName"><spring:message
+                        code="registration.firstName"/></label>
 
-                <tr>
-                    <td><label class="labels"><spring:message code="registration.firstName"/></label></td>
-                    <td><form:input id="firstName" path="firstName" name="firstName" type="text" value=""
-                                    class="form-control form-style"/></td>
-                    <td><form:errors path="firstName" class="regErrors" id="firstName.errors"
-                                     cssStyle="color: #ff0000;"/></td>
-                </tr>
-                <tr>
-                    <td><label class="labels"><spring:message code="registration.lastName"/></label></td>
-                    <td><form:input id="lastName" path="lastName" name="lastName" type="text" value=""
-                                    class="form-control form-style"/></td>
-                    <td><form:errors path="lastName" class="regErrors" id="lastName.errors"
-                                     cssStyle="color: #ff0000;"/></td>
-                </tr>
-                <tr>
-                    <td><label class="labels"><spring:message code="registration.email"/></label></td>
-                    <td><form:input id="email" path="email" name="email" type="text" value=""
-                                    class="form-control form-style"/></td>
-                    <td><form:errors path="email" class="regErrors" id="email.errors" cssStyle="color: #ff0000;"/></td>
-                </tr>
-                <tr>
-                    <td><label class="labels"><spring:message code="registration.password"/></label></td>
-                    <td><form:input id="password" path="password" name="password" type="password" value=""
-                                    class="form-control form-style"/></td>
-                    <td><form:errors path="password" class="regErrors" id="password.errors"
-                                     cssStyle="color: #ff0000;"/></td>
-                </tr>
-                <tr>
-                    <td><label class="labels"><spring:message code="registration.confPassword"/></label></td>
-                    <td><form:input id="confPassword" path="confPassword" name="confPassword" type="password" value=""
-                                    class="form-control form-style"/></td>
-                    <td><form:errors path="confPassword" class="regErrors" id="confPassword.errors"
-                                     cssStyle="color: #ff0000;"/></td>
-                </tr>
+                <div class="col-md-4">
+                    <form:input id="firstName" path="firstName" name="firstName" type="text" value=""
+                                class="form-control form-style"/>
+                </div>
+                <div class="col-md-offset-9">
+                    <form:errors path="firstName" class="regErrors" id="firstName.errors"
+                                 cssStyle="color: #ff0000;"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 control-label" for="lastName"><spring:message
+                        code="registration.lastName"/></label>
 
-            </table>
-            <div class="form-group">
-                <div class="col-md-offset-7 col-md-4">
+                <div class="col-md-4">
+                    <form:input id="lastName" path="lastName" name="lastName" type="text" value=""
+                                class="form-control form-style"/>
+                </div>
+                <div class="col-md-offset-9">
+                    <form:errors path="lastName" class="regErrors" id="lastName.errors"
+                                 cssStyle="color: #ff0000;"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 control-label" for="email"><spring:message
+                        code="registration.email"/></label>
+
+                <div class="col-md-4">
+                    <form:input id="email" path="email" name="email" type="text" value=""
+                                class="form-control form-style"/>
+                </div>
+                <div class="col-md-offset-9">
+                    <form:errors path="email" class="regErrors" id="email.errors"
+                                 cssStyle="color: #ff0000;"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 control-label" for="password"><spring:message
+                        code="registration.password"/></label>
+
+                <div class="col-md-4">
+                    <form:input id="password" path="password" name="password" type="text" value=""
+                                class="form-control form-style"/>
+                </div>
+                <div class="col-md-offset-9">
+                    <form:errors path="password" class="regErrors" id="password.errors"
+                                 cssStyle="color: #ff0000;"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 control-label" for="confPassword"><spring:message
+                        code="registration.confPassword"/></label>
+
+                <div class="col-md-4">
+                    <form:input id="confPassword" path="confPassword" name="confPassword" type="text" value=""
+                                class="form-control form-style"/>
+                </div>
+                <div class="col-md-offset-9">
+                    <form:errors path="confPassword" class="regErrors" id="confPassword.errors"
+                                 cssStyle="color: #ff0000;"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-offset-4 col-md-4">
                     <button id="register-button" type="submit" value="register"
                             class="btn btn-primary btn-block button-style"><spring:message
                             code="registration.register"/>
@@ -80,7 +106,7 @@
         </form:form>
     </div>
 
-    <div  class="footer">
+    <div class="footer">
         <div class="thick"></div>
         <div class="thin"></div>
         <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>

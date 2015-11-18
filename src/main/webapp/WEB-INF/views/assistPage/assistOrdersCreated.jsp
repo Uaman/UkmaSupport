@@ -5,8 +5,8 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title><spring:message code="assist.UncompletedOrders"/></title>
-    <link rel="Shortcut Icon" href="" type="image/x-icon"/>
+    <title><spring:message code="assist.title.CreatedOrders"/></title>
+    <link href="../../../resources/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
@@ -21,7 +21,6 @@
             function pad(value) {
                 return (value.toString().length < 2) ? '0' + value : value;
             }
-
             return fmt.replace(/%([a-zA-Z])/g, function (_, fmtCode) {
                 switch (fmtCode) {
                     case 'Y':
@@ -49,7 +48,7 @@
         });
 
         $.ajax({
-            url: 'my_uncompl_orders',
+            url: 'assist/get_all_created_orders',
             type: 'GET',
             data: {
                 text: $("#sel2").val()
@@ -68,13 +67,13 @@
                 $.each(response, function (i, order) {
                     trHTML += "<tr><td>" + order.title + "</td>" +
                     '   <td>' + order.workplace_access_num + "</td>" +
-                    '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + "</td>" +
-                            '<td><a class="menu-element-li" href = "/myUncomplOrdersDone?orderid='+order.id+'" >Mark as Done</a></td></tr>';
+                    '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + "</td></tr>";
                 });
                 $('#records_table tbody').empty();
                 $('#records_table').append(trHTML);
 
             }
+
         });
     </script>
 </head>
@@ -82,48 +81,46 @@
 <body>
 <div id="wrap">
     <nav id="header">
+
         <div class="container-fluid">
 
             <div class="navbar-header">
-                <a href="/assistHome"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                <a href="/assist/home"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
 
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"> <spring:message
-                                code="assist.menuOrders"/><b
+                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#">
+                            <spring:message code="assist.menu.Orders"/><b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/assistHome"><spring:message
-                                    code="assist.menuAssigned"/></a></li>
+                                                             href="/assist/assigned_orders">
+                                <spring:message code="assist.menu.Assigned"/></a></li>
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/assistUserhome"><spring:message
-                                    code="assist.menuUserOrders"/></a></li>
-                            <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/createAssistOrder"><spring:message
-                                    code="assist.menuAddOrder"/></a></li>
+                                                             href="/assist/created_orders">
+                                <spring:message code="assist.menu.Created"/></a></li>
                         </ul>
                     </li>
 
-                    <li><a id="editAssistProfile" class="menu-element" href="/editAssistProfile"><spring:message
-                            code="assist.editProfile"/></a></li>
-                    <li><a class="menu-element" href="/logout"><spring:message code="assist.logOut"/></a></li>
+                    <li><a id="editAssistProfile" class="menu-element" href="/assist/edit_profile">
+                        <spring:message code="assist.menu.Profile"/></a></li>
+
+                    <li><a class="menu-element" href="/assist/logout"><spring:message code="assist.menu.LogOut"/></a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div>
-        <p id="hello" class="top-block"><spring:message code="assist.My.UncomplOrders"/></p>
+    <div id="local">
+        <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
+        <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
     </div>
 
     <div>
-        <form class="form-horizontal" method="get" action="/myComplOrders">
-            <button id="assist_Compl_1" class="btn btn-primary btn-block"><spring:message
-                    code="assist.My.completed.orders"/></button>
-        </form>
+        <p id="helloAssist" class="top-block"><spring:message code="assist.hello"/>!</p>
     </div>
 
     <div class="table-align">
@@ -133,12 +130,17 @@
                 <th class="no-sort"><spring:message code="assist.orders.title"/></th>
                 <th class="no-sort"><spring:message code="assist.orders.auditorium"/></th>
                 <th><spring:message code="assist.orders.date"/></th>
-                <th></th>
             </tr>
             </thead>
         </table>
     </div>
 
+    <div>
+        <form class="form-horizontal" method="get" action="/assist/create_order">
+            <button id="assist_add_order_button" class="btn btn-primary btn-block">
+                <spring:message code="assist.AddOrder"/></button>
+        </form>
+    </div>
 
     <div class="footer">
         <div class="thick"></div>

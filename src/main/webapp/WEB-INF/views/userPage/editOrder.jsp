@@ -37,13 +37,14 @@
   </nav>
 
   <div class="col-md-offset-4 col-md-8 vertalign bottom-block">
-    <form:form class="form-horizontal" id="edit" action='${pageContext.request.contextPath}/editOrder/save/${id}' method="post" commandName="editOrder">
+    <form:form class="form-horizontal" id="edit" action='${pageContext.request.contextPath}/editOrder/save' method="post" commandName="editOrder">
       <div class="form-group">
         <div class="col-md-6" display="inline-block">
           <input type="text" class="form-control form-style" id="title" name="title" value="${title}" path="title">
         </div>
         <div id="title-error"><form:errors path="title" class="" id="title.errors"/></div>
       </div>
+
       <div class="form-group">
         <div class="col-md-3">
           <label class="label-style" ><spring:message
@@ -51,6 +52,7 @@
           <form:input id="workplace_access_num" path="workplace_access_num" name="workplace_access_num" type="text" value=""
                       class="form-control select-style" READONLY="true"/>
         </div>
+
         <div class="col-md-3">
           <label class="label-style" ><spring:message
                   code="user.auditoriums.title"/>:</label>
@@ -68,7 +70,7 @@
         </div>
         <div id="content-error"><form:errors path="content" class="" id="content.errors"/></div>
       </div>
-
+      <input type="hidden" name="id" value="${id}"/>
       <div class="form-group">
         <div class="col-md-6">
           <button id="btn-create-order" type="submit" class="btn btn-primary btn-block"><spring:message

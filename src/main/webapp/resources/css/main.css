@@ -89,7 +89,7 @@ a {
 .form-style {
 	border-color: #333366;
 	border-radius: 7px;
-	padding: 10px;
+	padding-left: 10px;
 }
 .button-style {
 	background-color: #333366;
@@ -244,7 +244,7 @@ background-color: #333366;
 	height: 50px;
 }
 .top-block {
-	padding-top: 85px;
+	margin-top: 85px;
 }
 .bottom-block {
 	padding-bottom: 60px;
@@ -285,37 +285,51 @@ background-color: #333366;
 	color: #ff0000;
 }
 
-#assist_Compl {
-	width: 860px;
+#assist_add_order_button {
+	width: 220px;
+	margin-left: 660px;
 	background-color: #333366;
-	margin-left: 20px;
-	margin-top: 20px;
 }
 
-#assist_Uncompl {
-	width: 860px;
-	margin-left: 20px;
+#local {
+	font-family: "Garamond", sans-serif;
+	color: #333366;
+	padding: 100px 0px 0px 0px;
+	margin-right: 30px;
+	text-align: right;
 	margin-top: 3px;
-	background-color: #333366;
+	font-size: 20px;
 }
 
-#assist_user_Compl {
-	width: 860px;
-	background-color: #333366;
-	margin-left: 20px;
-	margin-top: 20px;
+#local a {
+	color: #333366;
 }
 
-#assist_user_Uncompl {
-	width: 860px;
-	margin-left: 20px;
-	margin-top: 3px;
-	background-color: #333366;
+#local a:hover {
+	text-decoration: none;
 }
 
-#assist_user_Compl_1, #assist_user_Uncompl_1, #assist_Uncompl_1, #assist_Compl_1 {
-	width: 860px;
-	background-color: #333366;
-	margin-left: 20px;
-	margin-top: 20px;
+#local a:active {
+	font-weight: bold;
 }
+
+#helloAssist {
+	margin-top: -10px;
+	font-family: "Century Gothic", sans-serif;
+	font-size: 30px;
+	color: #333366;
+	margin-left: 30px;
+}
+
+#assistProfileBlock {
+	font-family: "Century Gothic", sans-serif;
+	font-size: 36px;
+	text-align: center;
+	padding-bottom: 15px;
+}
+
+#assistCreateOrderBlock {
+	padding-top: 90px;
+	padding-bottom: 20px;
+}
+
