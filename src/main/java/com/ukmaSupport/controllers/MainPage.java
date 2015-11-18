@@ -59,7 +59,7 @@ public class MainPage {
         if(userService.getByEmail(auth.getName()).getRole().equals("ADMIN"))
             return "redirect:/users";
         if (userService.getByEmail(auth.getName()).getRole().equals("ASSISTANT"))
-            return "redirect:/assistHome";
+            return "redirect:/assist/home";
         return "redirect:/userhome";
     }
 }
