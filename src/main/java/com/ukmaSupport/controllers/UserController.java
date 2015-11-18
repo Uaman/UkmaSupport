@@ -66,6 +66,10 @@ public class UserController {
 
     @RequestMapping(value = "/userhome", method = RequestMethod.GET)
     public String listUserOrders(ModelMap model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        User currentUser = userService.getById((Integer)session.getAttribute("id"));
+        model.addAttribute("currentUser",currentUser);
         return "userPage/userHomePage";
     }
 
@@ -159,7 +163,7 @@ public class UserController {
 
         int userId = (Integer) session.getAttribute("id");
 
-            Order order=orderService.getByUserIdAndId(userId,id);
+            Order order=orderService.getByUserIdAndId(userId, id);
            System.out.println(order.getAuditorium());
            Auditorium auditorium=auditoriumService.getById(Integer.parseInt(order.getAuditorium()));
             if(order==null){

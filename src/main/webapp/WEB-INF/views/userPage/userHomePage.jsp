@@ -66,7 +66,7 @@
                 var trHTML = '';
                 $.each(response, function (i, order) {
                     if(order.status=="Undone"){
-                    trHTML +=  "<tr><td>"+ order.title + "</td>" +
+                    trHTML +=  "<tr><td>"+ '<a href="/addComment/'+ order.id +'">'+order.title+ '</a>' + "</td>" +
                             '   <td>' + order.auditorium + "</td>" +
                             '   <td>' + order.workplace_access_num + "</td>" +
                             '   <td>' + order.status+"</td>"+
@@ -74,7 +74,7 @@
                             '   <td>' +  '<form action="${pageContext.request.contextPath}/editOrder/'+order.id+'"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></form>'+"</td>"+
                             '   <td>' +  '<form action="${pageContext.request.contextPath}/delete/'+order.id+'"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>'+"</td></tr>";
                     }else{
-                        trHTML +=  "<tr><td>"+ order.title + "</td>" +
+                        trHTML +=  "<tr><td>"+ '<a href="/addComment/'+ order.id +'">'+order.title+ '</a>' + "</td>" +
                                 '   <td>' + order.workplace_id + "</td>" +
                                 '   <td>' + order.workplace_access_num + "</td>" +
                                 '   <td>' + order.status+"</td>"+
@@ -115,7 +115,7 @@
     </nav>
     <div>
         <p id="hello" class="top-block"><spring:message
-                code="user.hello"/></p>
+                code="user.hello"/> ${currentUser.firstName}</p>
     </div>
 
     <div class="table-align">

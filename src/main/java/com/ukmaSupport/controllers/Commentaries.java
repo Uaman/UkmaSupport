@@ -11,9 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Locale;
 
 @Controller
+@RequestMapping("/addComment")
 public class Commentaries {
 
-    @RequestMapping(value = "/addComment/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String infoBook(@PathVariable("id")int ordereId, Model model, HttpServletRequest request){
         return "userPage/comentariesPage";
     }
