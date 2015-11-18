@@ -58,7 +58,7 @@
     </nav>
 
     <div id="profEdit" class="top-block bottom-block">
-        <form:form id="passChangeForm" class="form-horizontal" action="editAdminProfile" method="post"
+        <form:form id="passChangeForm" class="form-horizontal" action="editProfile" method="post"
                    commandName="passChangeForm">
             <div class="centralWord row col-md-offset-1" colspan="2" align="center"><spring:message
                     code="admin.hello"/></div>
