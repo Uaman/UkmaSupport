@@ -26,15 +26,15 @@ public class OrderDaoImpl implements OrderDao {
 
     private static final String GET_ALL_ORDERS_BY_USER_ID_AND_ID = "SELECT orders.id,orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id,workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE orders.id=? AND orders.user_id=?";
 
-    private static final String GET_ALL_ORDERS_BY_USER_ID_STATUS ="SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE user_id=? AND status=?";
+    private static final String GET_ALL_ORDERS_BY_USER_ID_STATUS ="SELECT orders.id, orders.user_id, orders.assistant_id,workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE user_id=? AND status=?";
 
-    private static final String GET_ORDER_BY_ID = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE orders.id=?";
+    private static final String GET_ORDER_BY_ID = "SELECT orders.id, orders.user_id, orders.assistant_id,workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE orders.id=?";
 
-    private static final String GET_ORDERS_BY_STATUS = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE status=?";
+    private static final String GET_ORDERS_BY_STATUS = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.auditorium_id,workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE status=?";
 
-    private static final String GET_ALL_ASSIST_ORDERS = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE assistant_id=?";
+    private static final String GET_ALL_ASSIST_ORDERS = "SELECT orders.id, orders.user_id, orders.assistant_id,  workplace.auditorium_id,workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE assistant_id=?";
 
-    private static final String GET_ALL_ORDERS_BY_ASSIST_AND_STATUS = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE assistant_id=? AND status=?";
+    private static final String GET_ALL_ORDERS_BY_ASSIST_AND_STATUS = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE assistant_id=? AND status=?";
 
     private static final String DELETE_ORDER = "DELETE FROM orders WHERE id=?";
 

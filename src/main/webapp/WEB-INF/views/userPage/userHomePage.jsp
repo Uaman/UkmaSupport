@@ -123,8 +123,8 @@
             <thead>
             <tr>
                 <th class="no-sort"><spring:message code="admin.orders.title"/></th>
-                <th class="no-sort"><spring:message code="admin.orders.auditorium"/></th>
-                <th class="no-sort"><spring:message code="assist.order.workplace"/></th>
+                <th><spring:message code="admin.orders.auditorium"/></th>
+                <th ><spring:message code="assist.order.workplace"/></th>
                 <th><spring:message code="admin.orders.status"/></th>
                 <th><spring:message code="admin.orders.date"/></th>
             </tr>
