@@ -14,10 +14,10 @@
     <script src="../../../resources/js/tsort.js"></script>
     <script>
 
-       /* $(document).ready(function() {
+        $(document).ready(function() {
             $("#records_table").tablesort();
-            var deleteLink = $("a:contains('Delete')");
-        });*/
+
+        });
         function formatDate(date, fmt) {
             function pad(value) {
                 return (value.toString().length < 2) ? '0' + value : value;
