@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -63,6 +64,9 @@
             <tr>
                 <th><spring:message code="admin.orders.title"/></th>
                 <th><spring:message code="admin.orders.auditorium"/></th>
+                <th><spring:message code="admin.orders.workplace"/></th>
+                <th><spring:message code="admin.orders.user"/></th>
+                <th><spring:message code="admin.orders.assistant"/></th>
                 <th><spring:message code="admin.orders.date"/></th>
                 <th><spring:message code="admin.orders.status"/></th>
             </tr>
@@ -71,7 +75,10 @@
             <c:forEach items="${orders}" var="orders">
                 <tr data-href="#">
                     <td>${orders.title}</td>
+                    <td>${orders.auditorium}</td>
                     <td>${orders.workplace_access_num}</td>
+                    <td>${orders.userId}</td>
+                    <td>${orders.assistantId}</td>
                     <td>${orders.createdAt}</td>
                     <td>${orders.status}</td>
                 </tr>
