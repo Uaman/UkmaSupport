@@ -67,7 +67,7 @@
             <tbody>
             <c:forEach items="${auditoriums}" var="item" varStatus="count">
                 <tr data-href="#">
-                    <td>${item.number}</td>
+                    <td><a href="/admin/auditoriums/${item.number}">${item.number}</a></td>
                     <td>${item.assistantName}</td>
                 </tr>
             </c:forEach>

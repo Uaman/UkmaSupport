@@ -1,9 +1,6 @@
 package com.ukmaSupport.controllers;
 
-import com.ukmaSupport.models.Auditorium;
-import com.ukmaSupport.models.EditForm;
-import com.ukmaSupport.models.Order;
-import com.ukmaSupport.models.User;
+import com.ukmaSupport.models.*;
 import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.OrderService;
 import com.ukmaSupport.services.interfaces.UserService;
@@ -19,9 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -113,6 +108,23 @@ public class AdminController {
         }
         model.addAttribute("auditoriums", auditoriums);
         return "adminPage/auditoriums";
+    }
+
+    @RequestMapping(value = "/admin/auditoriums/{name}", method = RequestMethod.GET)
+    public String showWorkplaces(@PathVariable("name") String name, Model model) {
+
+        model.addAttribute("name", name);
+        List<Auditorium> auditoriums = auditoriumService.getAll();
+
+        for(Auditorium auditorium:auditoriums){
+            if(auditorium.getNumber().equals(name)){
+                List<Workplace> workplaces = workplaceService.getByAuditoryName(name);
+                model.addAttribute("workplaces", workplaces);
+                return "adminPage/workplaces";
+            }
+        }
+
+        return "/404";
     }
 
     @RequestMapping(value = "/admin/createAuditorium", method = RequestMethod.GET)
