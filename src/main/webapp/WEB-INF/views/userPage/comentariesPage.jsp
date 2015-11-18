@@ -35,10 +35,31 @@
         </div>
     </nav>
 
+    <div class="col-md-offset-4 col-md-8 vertalign bottom-block">
+        <form:form class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-6">
+                        <textarea class="col-md-12" rows="3"  id="content"  name="content" path="content" placeholder="Text"/></textarea>
+            </div>
+            <div id="content-error"><form:errors path="content" class="" id="content.errors" cssStyle="color: #ff0000;"/></div>
+        </div>
+        <br>
+        <br> <br> <br> <br>
 
+
+        <div class="form-group">
+            <div class="col-md-6">
+                <button id="btn-create-order" type="submit" class="btn-info">Add comment</button>
+            </div>
+        </div>
+
+        </form:form>
+    </div>
 
 
 </div>
+
+
 
     <div class="footer">
         <div class="thick"></div>
