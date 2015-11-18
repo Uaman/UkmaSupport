@@ -120,9 +120,11 @@ public class UserController {
         System.out.println(userId);
         List<Order> orders = orderService.getByUserId(userId);
         List<Auditorium> auditoriums=auditoriumService.getAll();
-        for(Order order:orders){
+        //Slow
+       for(Order order:orders){
             for(Auditorium auditorium:auditoriums) {
-                if(auditorium.getId()==(Integer.parseInt(order.getAuditorium())))
+                System.out.println(order.getAuditorium());
+                if(auditorium.getId()==(order.getAuditoriumId()))
                 order.setAuditorium(auditorium.getNumber());
             }
         }
@@ -166,7 +168,7 @@ public class UserController {
 
             Order order=orderService.getByUserIdAndId(userId, id);
            System.out.println(order.getAuditorium());
-           Auditorium auditorium=auditoriumService.getById(Integer.parseInt(order.getAuditorium()));
+           Auditorium auditorium=auditoriumService.getById(order.getAuditoriumId());
             if(order==null){
                 return "redirect:/userhome";
                            }

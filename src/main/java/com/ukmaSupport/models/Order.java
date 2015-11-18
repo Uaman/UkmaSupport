@@ -9,6 +9,16 @@ public class Order {
     private Workplace workplace;
     private int workplace_id;
     private String auditorium;
+
+    public int getAuditoriumId() {
+        return auditoriumId;
+    }
+
+    public void setAuditoriumId(int auditoriumId) {
+        this.auditoriumId = auditoriumId;
+    }
+
+    private int auditoriumId;
     private String workplace_access_num;
     private String title;
     private String content;

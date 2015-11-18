@@ -14,10 +14,10 @@
     <script src="../../../resources/js/tsort.js"></script>
     <script>
 
-        $(document).ready(function() {
+       /* $(document).ready(function() {
             $("#records_table").tablesort();
             var deleteLink = $("a:contains('Delete')");
-        });
+        });*/
         function formatDate(date, fmt) {
             function pad(value) {
                 return (value.toString().length < 2) ? '0' + value : value;
@@ -50,37 +50,38 @@
         $.ajax({
             url: 'allUserOrders',
             type: 'GET',
-            data:{
-                text : $("#sel2").val()
-            },
             success: function (response) {
-                var sorted = response.sort(function (a, b) {
-                    if (a.createdAt < b.createdAt) {
+               /* var sorted = response.sort(function (a, b) {
+                    if (a.status < b.status) {
                         return 1;
                     }
-                    if (a.createdAt > b.createdAt) {
+                    if (a.status > b.status) {
                         return -1;
                     }
                     return 0;
-                });
+                });*/
                 var trHTML = '';
                 $.each(response, function (i, order) {
                     if(order.status=="Undone"){
-                    trHTML +=  "<tr><td>"+ '<a href="/addComment/'+ order.id +'">'+order.title+ '</a>' + "</td>" +
-                            '   <td>' + order.auditorium + "</td>" +
-                            '   <td>' + order.workplace_access_num + "</td>" +
-                            '   <td>' + order.status+"</td>"+
-                            '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m')+"</td>"+
-                            '   <td>' +  '<form action="${pageContext.request.contextPath}/editOrder/'+order.id+'"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></form>'+"</td>"+
-                            '   <td>' +  '<form action="${pageContext.request.contextPath}/delete/'+order.id+'"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>'+"</td></tr>";
+                    trHTML +=  "<tr>"
+                              +"<td>"+ '<a href="/addComment/'+ order.id +'">'+order.title+ '</a>' + "</td>" +
+                             "<td>" + order.auditorium + "</td>" +
+                            "<td>"  + order.workplace_access_num + "</td>" +
+                            "<td>"  + order.status+"</td>"+
+                            "<td>"  + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m')+"</td>"+
+                            "<td>"  +  '<form action="${pageContext.request.contextPath}/editOrder/'+order.id+'"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></form>'+"</td>"+
+                            "<td>"  +  '<form action="${pageContext.request.contextPath}/delete/'+order.id+'"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>'+"</td>" +
+                            "</tr>";
                     }else{
-                        trHTML +=  "<tr><td>"+ '<a href="/addComment/'+ order.id +'">'+order.title+ '</a>' + "</td>" +
-                                '   <td>' + order.workplace_id + "</td>" +
-                                '   <td>' + order.workplace_access_num + "</td>" +
-                                '   <td>' + order.status+"</td>"+
-                                '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m')+"</td>"+
-                                '   <td>' +""+"</td>"+
-                        '   <td>' +  '<form action="${pageContext.request.contextPath}/delete/'+order.id+'"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>'+"</td></tr>";
+                        trHTML +=  "<tr>" +
+                                "<td>"+ '<a href="/addComment/'+ order.id +'">'+order.title+ '</a>' + "</td>" +
+                                "<td>" + order.workplace_id + "</td>" +
+                                "<td>" + order.workplace_access_num + "</td>" +
+                                "<td>" + order.status+"</td>"+
+                                "<td>" + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m')+"</td>"+
+                                "<td>" +"  "+"</td>"+
+                                "<td>" +  '<form action="${pageContext.request.contextPath}/delete/'+order.id+'"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>'+"</td>" +
+                                "</tr>";
                     }
                 });
                 $('#records_table tbody').empty();

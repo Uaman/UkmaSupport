@@ -11,6 +11,27 @@
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
+    <script>
+
+    function changeStatus() {
+    $("#myModalStatus").validate({
+    submitHandler: function (form) {
+    $(form).ajax({
+    type: "POST",
+    url: tgtUrl,
+    data: formdata,
+    success: function() {
+    alert("success");
+    },
+    error: function(e) {
+   // **//NOT INVOKED**
+    alert("Error"+e);
+    }
+    });
+    }
+    });
+    }
+    </script>
 </head>
 
 <body>

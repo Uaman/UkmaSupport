@@ -128,6 +128,7 @@ public class OrderDaoImpl implements OrderDao {
             order.setWorkplace_id(rs.getInt("workplace_id"));
             order.setWorkplace_access_num(rs.getString("access_num"));
             order.setAuditorium(rs.getString("auditorium_id"));
+            order.setAuditoriumId(rs.getInt("auditorium_id"));
             order.setTitle(rs.getString("title"));
             order.setContent(rs.getString("content"));
             order.setCreatedAt((rs.getTimestamp("created_at")));
