@@ -33,9 +33,9 @@
         <!--><-->
 
         <!--<dependency>-->
-            <!--<groupId>opensymphony</groupId>-->
-            <!--<artifactId>sitemesh</artifactId>-->
-            <!--<version>${sitemesh.version}</version>-->
+        <!--<groupId>opensymphony</groupId>-->
+        <!--<artifactId>sitemesh</artifactId>-->
+        <!--<version>${sitemesh.version}</version>-->
         <!--</dependency>-->
 
         <!--> Dependencies for sending emails <-->
@@ -140,12 +140,6 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-
 
 
     </dependencies>
