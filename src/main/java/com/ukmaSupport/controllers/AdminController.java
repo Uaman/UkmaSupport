@@ -106,22 +106,6 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/completedOrders", method = RequestMethod.GET)
-    public String showCompletedOrders(Model model) {
-        List<Order> orders = orderService.getByStatus(DONE);
-        model.addAttribute("orders", orders);
-        return "adminPage/orders";
-    }
-
-    @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/uncompletedOrders", method = RequestMethod.GET)
-    public String showUncompletedOrders(Model model) {
-        List<Order> orders = orderService.getByStatus(UNDONE);
-        model.addAttribute("orders", orders);
-        return "adminPage/orders";
-    }
-
-    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/auditoriums", method = RequestMethod.GET)
     public String showAuditoriums(Model model) {
         List<User> users = userService.getByRole(ASSISTANT);

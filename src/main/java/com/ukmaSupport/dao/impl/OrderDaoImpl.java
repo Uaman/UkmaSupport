@@ -38,7 +38,7 @@ public class OrderDaoImpl implements OrderDao {
 
     private static final String INSERT_QUERY = "INSERT INTO orders (user_id, assistant_id, workplace_id, title, content, created_at, status) VALUES(?,?,?,?,?,?,?)";
 
-    private static final String UPDATE_QUERY = "UPDATE orders SET user_id=?, assistant_id=?, workplace_id=(SELECT workplace.id FROM workplace WHERE workplace.access_num=?), title=?, content=?, created_at=?, status=? WHERE id=?";
+    private static final String UPDATE_QUERY = "UPDATE orders SET user_id=?, assistant_id=?, workplace_id=?, title=?, content=?, created_at=?, status=? WHERE id=?";
 
     private static final String UPDATE = "UPDATE orders SET title=?, content=?, created_at=? WHERE id=?";
 

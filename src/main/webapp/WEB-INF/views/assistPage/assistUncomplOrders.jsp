@@ -68,7 +68,8 @@
                 $.each(response, function (i, order) {
                     trHTML += "<tr><td>" + order.title + "</td>" +
                     '   <td>' + order.workplace_access_num + "</td>" +
-                    '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + "</td></tr>";
+                    '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + "</td>" +
+                            '<td><a class="menu-element-li" href = "/myUncomplOrdersDone?orderid='+order.id+'" >Mark as Done</a></td></tr>';
                 });
                 $('#records_table tbody').empty();
                 $('#records_table').append(trHTML);
@@ -132,6 +133,7 @@
                 <th class="no-sort"><spring:message code="assist.orders.title"/></th>
                 <th class="no-sort"><spring:message code="assist.orders.auditorium"/></th>
                 <th><spring:message code="assist.orders.date"/></th>
+                <th></th>
             </tr>
             </thead>
         </table>

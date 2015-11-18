@@ -6,6 +6,7 @@ import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.OrderService;
 import com.ukmaSupport.services.interfaces.UserService;
 import com.ukmaSupport.services.interfaces.WorkplaceService;
+import com.ukmaSupport.utils.EditOrderValidator;
 import com.ukmaSupport.utils.OrderValidator;
 import com.ukmaSupport.utils.PasswordChangeValidator;
 import com.ukmaSupport.utils.PasswordEncryptor;
@@ -53,6 +54,9 @@ public class UserController {
     @Autowired
     @Qualifier("orderValidator")
     private OrderValidator validator;
+    @Autowired
+    @Qualifier("editOrderValidator")
+    private EditOrderValidator editOrderValidator;
 
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
     public @ResponseBody List<Workplace> getCharNum(@RequestParam("text") String text) {
@@ -78,6 +82,7 @@ public class UserController {
     public String createOrderPost(@ModelAttribute("newOrder") Order order, ModelMap model, BindingResult result) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
+        int userId = (Integer) session.getAttribute("id");
         validator.validate(order, result);
         if(result.hasErrors()){
             List<Auditorium> auditoriums = auditoriumService.getAll();
@@ -85,8 +90,7 @@ public class UserController {
             model.addAttribute("newOrder", order);
             return "userPage/createOrderPage";
         }
-
-        order.setUserId((Integer) session.getAttribute("id"));
+        order.setUserId(userId);
         order.setStatus(UNDONE);
         order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
         User assistant = userService.getResponsibleAssistant(order.getAuditorium());
@@ -96,6 +100,8 @@ public class UserController {
         order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
 
         orderService.createOrUpdate(order);
+        newOrderMail.send(assistant.getEmail());
+
 
 
         return "redirect:/userhome";
@@ -141,21 +147,40 @@ public class UserController {
         return "redirect:/userhome";
     }
     @RequestMapping(value = "/editOrder/{id}", method = RequestMethod.GET)
-    public String editOrder(@PathVariable("id") int id,Model model) {
+    public String editOrder(@PathVariable("id") Integer id,Model model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        int userId = (Integer) session.getAttribute("id");
         Order order=orderService.getById(id);
-        model.addAttribute("title",order.getTitle());
-        model.addAttribute("workplace",order.getWorkplace());
-        model.addAttribute("auditorium",order.getAuditorium());
-        model.addAttribute("content",order.getContent());
-        model.addAttribute("id",order.getId());
-        model.addAttribute("editOrder", order);
-        System.out.println("aud"+  model.addAttribute("auditorium",order.getAuditorium()));
+        List<Order> orderList = orderService.getByUserId(userId);
+        for(Order order1:orderList){
+           if(order1.getId()!=id){
+         return "redirect:/userhome";
+                              }
+                            }
+            model.addAttribute("title", order.getTitle());
+            model.addAttribute("workplace", order.getWorkplace());
+            model.addAttribute("auditorium", order.getAuditorium());
+            model.addAttribute("content", order.getContent());
+            model.addAttribute("id", order.getId());
+            model.addAttribute("editOrder", order);
+
+       // System.out.println("aud"+  model.addAttribute("auditorium",order.getAuditorium()));
         return "userPage/editOrder";
     }
-    @RequestMapping(value = "editOrder/save/{id}", method = RequestMethod.POST)
-    public String orderEdited(@PathVariable("id") int id,@ModelAttribute("editOrder") Order order, ModelMap model,BindingResult result) {
-        validator.validate(order, result);
+    @RequestMapping(value = "editOrder/save", method = RequestMethod.POST)
+    public String orderEdited(@ModelAttribute("id") Integer id,@ModelAttribute("editOrder") Order order, ModelMap model,BindingResult result) {
+        editOrderValidator.validate(order, result);
 
+        if(result.hasErrors()){
+            model.addAttribute("title",order.getTitle());
+            model.addAttribute("workplace",order.getWorkplace());
+            model.addAttribute("auditorium",order.getAuditorium());
+            model.addAttribute("content",order.getContent());
+            model.addAttribute("id",order.getId());
+            model.addAttribute("editOrder", order);
+            return "userPage/editOrder";
+        }
         order.setId(id);
         order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
         orderService.update(order);

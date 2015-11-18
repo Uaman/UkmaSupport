@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import com.ukmaSupport.dao.interfaces.OrderDao;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
@@ -38,6 +39,9 @@ public class AssistController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private OrderDao orderDao;
 
     @Autowired
     private WorkplaceService workplaceService;
@@ -193,6 +197,18 @@ public class AssistController {
         order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
         orderService.createOrUpdate(order);
         return "redirect:/assist/home";
+    }
+
+    @RequestMapping(value = "/myUncomplOrdersDone", method = RequestMethod.GET)
+    public String setToDone(@RequestParam("orderid") int id,  Model model) {
+
+        Order order = orderService.getById(id);
+        order.setStatus(DONE);
+        orderService.createOrUpdate(order);
+
+
+
+        return "assistPage/assistUncomplOrders";
     }
 
 }
