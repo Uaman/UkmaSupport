@@ -15,8 +15,8 @@
     <script>
         $(document).ready(function () {
             $("#records_table").tablesort();
+            var deleteLink = $("a:contains('Delete')");
         });
-
         function formatDate(date, fmt) {
             function pad(value) {
                 return (value.toString().length < 2) ? '0' + value : value;
@@ -30,7 +30,7 @@
                     case 'd':
                         return pad(date.getUTCDate());
                     case 'H':
-                        return pad(date.getUTCHours());
+                        return pad(date.getUTCHours() + 2);
                     case 'm':
                         return pad(date.getUTCMinutes());
                     case 's':
@@ -40,15 +40,13 @@
                 }
             });
         }
-
         jQuery(function ($) {
             $('tbody tr[data-href]').addClass('clickable').click(function () {
                 window.location = $(this).attr('data-href');
             });
         });
-
         $.ajax({
-            url: 'assist/get_all_created_orders',
+            url: '/assist/get_all_created_orders',
             type: 'GET',
             data: {
                 text: $("#sel2").val()
@@ -65,21 +63,34 @@
                 });
                 var trHTML = '';
                 $.each(response, function (i, order) {
-                    trHTML += "<tr><td>" + order.title + "</td>" +
-                    '   <td>' + order.workplace_access_num + "</td>" +
-                    '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s') + "</td></tr>";
+                    if (order.status == "Undone") {
+                        trHTML += "<tr><td>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
+                        '   <td>' + order.auditorium + "</td>" +
+                        '   <td>' + order.workplace_access_num + "</td>" +
+                        '   <td>' + order.status + "</td>" +
+                        '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
+                        '   <td>' + '<form action="${pageContext.request.contextPath}/assist/edit_order/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                        '   <td>' + '<form action="${pageContext.request.contextPath}/assist/delete_order/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td></tr>";
+                    } else {
+                        trHTML += "<tr><td>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
+                        '   <td>' + order.workplace_id + "</td>" +
+                        '   <td>' + order.workplace_access_num + "</td>" +
+                        '   <td>' + order.status + "</td>" +
+                        '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
+                        '   <td>' + "" + "</td>" +
+                        '   <td>' + '<form action="${pageContext.request.contextPath}/assist/delete_order/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td></tr>";
+                    }
                 });
                 $('#records_table tbody').empty();
                 $('#records_table').append(trHTML);
-
             }
-
         });
     </script>
 </head>
 
 <body>
 <div id="wrap">
+    <div id="assistContent">
     <nav id="header">
 
         <div class="container-fluid">
@@ -96,7 +107,7 @@
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/assist/assigned_orders">
+                                                             href="/assist/home">
                                 <spring:message code="assist.menu.Assigned"/></a></li>
                             <li class="drop-menu-element"><a class="menu-element-li"
                                                              href="/assist/created_orders">
@@ -107,7 +118,7 @@
                     <li><a id="editAssistProfile" class="menu-element" href="/assist/edit_profile">
                         <spring:message code="assist.menu.Profile"/></a></li>
 
-                    <li><a class="menu-element" href="/assist/logout"><spring:message code="assist.menu.LogOut"/></a>
+                    <li><a class="menu-element" href="/logout"><spring:message code="assist.menu.LogOut"/></a>
                     </li>
                 </ul>
             </div>
@@ -128,8 +139,10 @@
             <thead>
             <tr>
                 <th class="no-sort"><spring:message code="assist.orders.title"/></th>
-                <th class="no-sort"><spring:message code="assist.orders.auditorium"/></th>
-                <th><spring:message code="assist.orders.date"/></th>
+                <th><spring:message code="assist.orders.auditorium"/></th>
+                <th><spring:message code="assist.orders.workplace"/></th>
+                <th><spring:message code="admin.orders.status"/></th>
+                <th><spring:message code="admin.orders.date"/></th>
             </tr>
             </thead>
         </table>
@@ -140,6 +153,8 @@
             <button id="assist_add_order_button" class="btn btn-primary btn-block">
                 <spring:message code="assist.AddOrder"/></button>
         </form>
+    </div>
+
     </div>
 
     <div class="footer">
