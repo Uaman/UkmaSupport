@@ -66,56 +66,90 @@
     </nav>
 
     <div id="profEdit" class="top-block bottom-block">
-        <form:form id="passChangeForm" action="editAdminProfile" method="post" commandName="passChangeForm">
-            <table border="0">
-                <tr>
-                    <td class="centralWord" colspan="2" align="center"><spring:message
-                            code="admin.hello"/></td>
-                </tr>
-                <tr>
-                    <td><label class="labels"><spring:message code="registration.firstName"/></label></td>
-                    <td><form:input id="firstName" path="firstName" name="firstName" type="text" value=""
-                                    class="form-control form-style"/></td>
-                    <td><form:errors path="firstName" class="regErrors" id="firstName.errors"
-                                     cssStyle="color: #ff0000;"/></td>
-                </tr>
-                <tr>
-                    <td><label class="labels"><spring:message code="registration.lastName"/></label></td>
-                    <td><form:input id="lastName" path="lastName" name="lastName" type="text" value=""
-                                    class="form-control form-style"/></td>
-                    <td><form:errors path="lastName" class="regErrors" id="lastName.errors"
-                                     cssStyle="color: #ff0000;"/></td>
-                </tr>
-                <tr>
-                    <td><label class="labels"><spring:message code="registration.email"/></label></td>
-                    <td><form:input id="email" path="email" name="email" type="text" value=""
-                                    class="form-control form-style" READONLY="true"/></td>
-                    <td><form:errors path="email" class="regErrors" id="email.errors" cssStyle="color: #ff0000;"/></td>
-                </tr>
-                <tr>
-                    <td><label class="labels"><spring:message code="admin.oldPassword"/></label></td>
-                    <td><form:input path="oldPassword" type="password" value=""
-                                    class="form-control form-style"/></td>
-                    <td><form:errors path="oldPassword" class="regErrors" id="oldPassword.errors"
-                                     cssStyle="color: #ff0000;"/></td>
-                </tr>
-                <tr>
-                    <td><label class="labels"><spring:message code="admin.newPassword"/></label></td>
-                    <td><form:input path="password" type="password" value=""
-                                    class="form-control form-style"/></td>
-                    <td><form:errors path="password" class="regErrors" id="password.errors"
-                                     cssStyle="color: #ff0000;"/></td>
-                </tr>
-                <tr>
-                    <td><label class="labels"><spring:message code="registration.confPassword"/></label></td>
-                    <td><form:input path="confPassword" type="password" value=""
-                                    class="form-control form-style"/></td>
-                    <td><form:errors path="confPassword" class="regErrors" id="confPassword.errors"
-                                     cssStyle="color: #ff0000;"/></td>
-                </tr>
-            </table>
+        <form:form id="passChangeForm" class="form-horizontal" action="editAdminProfile" method="post"
+                   commandName="passChangeForm">
+            <div class="centralWord row col-md-offset-2" colspan="2" align="center"><spring:message
+                    code="admin.hello"/></div>
+            <div class="form-group row">
+                <label class="col-md-4 control-label" for="firstName"><spring:message
+                        code="registration.firstName"/></label>
+
+                <div class="col-md-4">
+                    <form:input id="firstName" path="firstName" name="firstName" type="text" value=""
+                                class="form-control form-style"/>
+                </div>
+                <div class="col-md-offset-9">
+                    <form:errors path="firstName" class="regErrors" id="firstName.errors"
+                                 cssStyle="color: #ff0000;"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 control-label" for="lastName"><spring:message
+                        code="registration.lastName"/></label>
+
+                <div class="col-md-4">
+                    <form:input id="lastName" path="lastName" name="lastName" type="text" value=""
+                                class="form-control form-style"/>
+                </div>
+                <div class="col-md-offset-9">
+                    <form:errors path="lastName" class="regErrors" id="lastName.errors"
+                                 cssStyle="color: #ff0000;"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 control-label" for="email"><spring:message
+                        code="registration.email"/></label>
+
+                <div class="col-md-4">
+                    <form:input id="email" path="email" name="email" type="text" value=""
+                                class="form-control form-style" READONLY="true"/>
+                </div>
+                <div class="col-md-offset-9">
+                    <form:errors path="email" class="regErrors" id="email.errors"
+                                 cssStyle="color: #ff0000;"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 control-label" for="oldPassword"><spring:message
+                        code="admin.oldPassword"/></label>
+
+                <div class="col-md-4">
+                    <form:input id="oldPassword" path="oldPassword" name="oldPassword" type="text" value=""
+                                class="form-control form-style"/>
+                </div>
+                <div class="col-md-offset-9">
+                    <form:errors path="oldPassword" class="regErrors" id="oldPassword.errors"
+                                 cssStyle="color: #ff0000;"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 control-label" for="password"><spring:message
+                        code="admin.newPassword"/></label>
+
+                <div class="col-md-4">
+                    <form:input id="password" path="password" name="password" type="text" value=""
+                                class="form-control form-style"/>
+                </div>
+                <div class="col-md-offset-9">
+                    <form:errors path="password" class="regErrors" id="password.errors"
+                                 cssStyle="color: #ff0000;"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4 control-label" for="confPassword"><spring:message
+                        code="registration.confPassword"/></label>
+
+                <div class="col-md-4">
+                    <form:input id="confPassword" path="confPassword" name="confPassword" type="text" value=""
+                                class="form-control form-style"/>
+                </div>
+                <div class="col-md-offset-9">
+                    <form:errors path="confPassword" class="regErrors" id="confPassword.errors"
+                                 cssStyle="color: #ff0000;"/>
+                </div>
+            </div>
             <div class="form-group">
-                <div class="col-md-offset-7  col-md-4">
+                <div class="col-md-offset-5  col-md-4">
                     <button id="change-pass-button" type="submit" value="editAdminProfile"
                             class="btn btn-primary btn-block button-style"><spring:message code="admin.confirm"/>
                     </button>
