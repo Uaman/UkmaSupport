@@ -68,7 +68,7 @@
     <div id="profEdit" class="top-block bottom-block">
         <form:form id="passChangeForm" class="form-horizontal" action="editAdminProfile" method="post"
                    commandName="passChangeForm">
-            <div class="centralWord row col-md-offset-2" colspan="2" align="center"><spring:message
+            <div class="centralWord row col-md-offset-1" colspan="2" align="center"><spring:message
                     code="admin.hello"/></div>
             <div class="form-group row">
                 <label class="col-md-4 control-label" for="firstName"><spring:message
@@ -149,7 +149,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-offset-5  col-md-4">
+                <div class="col-md-offset-4  col-md-4">
                     <button id="change-pass-button" type="submit" value="editAdminProfile"
                             class="btn btn-primary btn-block button-style"><spring:message code="admin.confirm"/>
                     </button>
