@@ -16,6 +16,8 @@ import java.util.List;
 @Service
 public class UserServices implements UserDetailsService {
 
+    private final String ACTIVE_STATUS = "active";
+
     @Autowired
     private UserService userDao;
 
@@ -25,7 +27,10 @@ public class UserServices implements UserDetailsService {
         System.out.println("Username:"+s+" role:"+user.getRole());
         if(user == null)
             throw new UsernameNotFoundException("user not found");
-        UserDetails u = new User(s, user.getPassword(), true, true, true, true, getAuthority(user.getRole()));
+        boolean isActive = true;
+        if(!user.getAccountStatus().equals(ACTIVE_STATUS)) isActive = false;
+        UserDetails u = new User(s, user.getPassword(), true, true, true, isActive, getAuthority(user.getRole()));
+
         return u;
     }
 
