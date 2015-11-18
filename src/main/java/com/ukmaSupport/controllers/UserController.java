@@ -115,10 +115,17 @@ public class UserController {
         int userId = (Integer) session.getAttribute("id");
         System.out.println(userId);
         List<Order> orders = orderService.getByUserId(userId);
+        List<Auditorium> auditoriums=auditoriumService.getAll();
+        for(Order order:orders){
+            for(Auditorium auditorium:auditoriums) {
+                if(auditorium.getId()==(Integer.parseInt(order.getAuditorium())))
+                order.setAuditorium(auditorium.getNumber());
+            }
+        }
         return orders;
     }
 
-    @RequestMapping(value = "/allCompleted", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/allCompleted", method = RequestMethod.GET)
     public @ResponseBody List<Order> getUserComplOrders() {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
@@ -138,7 +145,7 @@ public class UserController {
         System.out.println(userId);
         List<Order> orders = orderService.getByUserIdStatus(userId, UNDONE);
         return orders;
-    }
+    }*/
 
     @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
     public String deleteOrderById(Model model,@PathVariable("id") int id) {
@@ -149,22 +156,22 @@ public class UserController {
     public String editOrder(@PathVariable("id") Integer id,Model model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
+
         int userId = (Integer) session.getAttribute("id");
-        Order order=orderService.getById(id);
-        List<Order> orderList = orderService.getByUserId(userId);
-        for(Order order1:orderList){
-           if(order1.getId()!=id){
-         return "redirect:/userhome";
-                              }
-                            }
+
+            Order order=orderService.getByUserIdAndId(userId,id);
+           System.out.println(order.getAuditorium());
+           Auditorium auditorium=auditoriumService.getById(Integer.parseInt(order.getAuditorium()));
+            if(order==null){
+            return "redirect:/userhome";
+                           }
             model.addAttribute("title", order.getTitle());
             model.addAttribute("workplace", order.getWorkplace());
-            model.addAttribute("auditorium", order.getAuditorium());
+            model.addAttribute("auditorium", auditorium.getNumber());
             model.addAttribute("content", order.getContent());
             model.addAttribute("id", order.getId());
             model.addAttribute("editOrder", order);
 
-       // System.out.println("aud"+  model.addAttribute("auditorium",order.getAuditorium()));
         return "userPage/editOrder";
     }
     @RequestMapping(value = "editOrder/save", method = RequestMethod.POST)

@@ -18,6 +18,8 @@ public interface OrderDao {
 
     void update(Order order);
 
+    Order getByUserIdAndId(int user_id,int id);
+
     void delete(int id);
 
     List<Order> getAll();

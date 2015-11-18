@@ -20,6 +20,8 @@ public interface OrderService {
 
     void update(Order order);
 
+    Order getByUserIdAndId(int user_id,int id);
+
     List<Order> getAll();
 
     List<Order> getAllAssistOrders(int assistid);

@@ -15,7 +15,6 @@
     <script>
 
         $(document).ready(function() {
-
             $("#records_table").tablesort();
             var deleteLink = $("a:contains('Delete')");
         });
@@ -32,7 +31,7 @@
                     case 'd':
                         return pad(date.getUTCDate());
                     case 'H':
-                        return pad(date.getUTCHours());
+                        return pad(date.getUTCHours()+2);
                     case 'm':
                         return pad(date.getUTCMinutes());
                     case 's':
@@ -42,52 +41,6 @@
                 }
             });
         }
-
-        function getUncomplOrders()
-        {
-            $.ajax({
-                url: 'allUncompleted',
-                type: 'GET',
-                data:{
-                    text: $("#sel2").val()
-                },
-                success: function (response) {
-                    var trHTML = '';
-                    $.each(response, function (i, order) {
-                        trHTML +=  "<tr><td>"+'<a href="/addComment/'+order.id+'">order.title</a>' +"</td>" +
-                                '   <td>' + order.workplace_access_num + "</td>" +
-                                '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+"</td>"+
-                                '   <td>' +  '<form action="${pageContext.request.contextPath}/editOrder/'+order.id+'"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></form>'+"</td>"+
-                                '   <td>' +  '<form action="${pageContext.request.contextPath}/delete/'+order.id+'"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>'+"</td></tr>";
-                    });
-                     $('#records_table tbody').empty();
-                    $('#records_table').append(trHTML);
-
-                }
-            });
-        }
-        function getComplOrders()
-        {
-            $.ajax({
-                url: 'allCompleted',
-                type: 'GET',
-                data:{
-                    text : $("#sel2").val()
-                },
-                success: function (response) {
-                    var trHTML = '';
-                    $.each(response, function (i, order) {
-                        trHTML +=  "<tr><td>"+ order.title + "</td>" +
-                                '   <td>' + order.workplace_access_num + "</td>" +
-                                '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+"</td></tr>";
-                    });
-                    $('#records_table tbody').empty();
-                    $('#records_table').append(trHTML);
-
-                }
-            });
-        }
-
         jQuery( function($) {
             $('tbody tr[data-href]').addClass('clickable').click( function() {
                 window.location = $(this).attr('data-href');
@@ -112,10 +65,23 @@
                 });
                 var trHTML = '';
                 $.each(response, function (i, order) {
+                    if(order.status=="Undone"){
                     trHTML +=  "<tr><td>"+ order.title + "</td>" +
+                            '   <td>' + order.auditorium + "</td>" +
                             '   <td>' + order.workplace_access_num + "</td>" +
-                            '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+"</td></tr>";
-
+                            '   <td>' + order.status+"</td>"+
+                            '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m')+"</td>"+
+                            '   <td>' +  '<form action="${pageContext.request.contextPath}/editOrder/'+order.id+'"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></form>'+"</td>"+
+                            '   <td>' +  '<form action="${pageContext.request.contextPath}/delete/'+order.id+'"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>'+"</td></tr>";
+                    }else{
+                        trHTML +=  "<tr><td>"+ order.title + "</td>" +
+                                '   <td>' + order.workplace_id + "</td>" +
+                                '   <td>' + order.workplace_access_num + "</td>" +
+                                '   <td>' + order.status+"</td>"+
+                                '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m')+"</td>"+
+                                '   <td>' +""+"</td>"+
+                        '   <td>' +  '<form action="${pageContext.request.contextPath}/delete/'+order.id+'"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>'+"</td></tr>";
+                    }
                 });
                 $('#records_table tbody').empty();
                 $('#records_table').append(trHTML);
@@ -138,22 +104,11 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"><spring:message
-                                code="admin.orders"/><b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="javascript:getComplOrders();"><spring:message
-                                    code="admin.completedOrders"/></a>
-                            </li>
-                            <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="javascript:getUncomplOrders();"><spring:message
-                                    code="admin.uncompletedOrders"/></a></li>
-                        </ul>
-                    </li>
+                    <li><a class="menu-element"  href="/userhome"><spring:message
+                            code="admin.orders"/></a></li>
                     <li><a id = "editProfile" class="menu-element" href="/editProfile"><spring:message
                             code="admin.edit"/></a></li>
-                    <li><a class="menu-element" href="/"><spring:message code="admin.logout"/></a></li>
+                    <li><a class="menu-element" href="/logout"><spring:message code="admin.logout"/></a></li>
                 </ul>
             </div>
         </div>
@@ -169,6 +124,8 @@
             <tr>
                 <th class="no-sort"><spring:message code="admin.orders.title"/></th>
                 <th class="no-sort"><spring:message code="admin.orders.auditorium"/></th>
+                <th class="no-sort"><spring:message code="assist.order.workplace"/></th>
+                <th><spring:message code="admin.orders.status"/></th>
                 <th><spring:message code="admin.orders.date"/></th>
             </tr>
             </thead>

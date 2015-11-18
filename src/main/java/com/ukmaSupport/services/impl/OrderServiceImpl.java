@@ -57,6 +57,11 @@ public class OrderServiceImpl implements OrderService {
     public void update(Order order) {
         orderDao.update(order);
     }
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    @Override
+    public Order getByUserIdAndId(int user_id,int id){
+       return orderDao.getByUserIdAndId(user_id,id);
+    }
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
