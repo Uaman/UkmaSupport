@@ -1,13 +1,11 @@
 package com.ukmaSupport.controllers;
 
-import com.ukmaSupport.models.Auditorium;
-import com.ukmaSupport.models.EditForm;
-import com.ukmaSupport.models.Order;
-import com.ukmaSupport.models.User;
+import com.ukmaSupport.models.*;
 import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.OrderService;
 import com.ukmaSupport.services.interfaces.UserService;
 import com.ukmaSupport.services.interfaces.WorkplaceService;
+import com.ukmaSupport.utils.EditOrderValidator;
 import com.ukmaSupport.utils.OrderValidator;
 import com.ukmaSupport.utils.PasswordChangeValidator;
 import com.ukmaSupport.utils.PasswordEncryptor;
@@ -57,12 +55,11 @@ public class AssistController {
     @Qualifier("orderValidator")
     private OrderValidator validatorOrder;
 
-    @RequestMapping(value = "/assist/home", method = RequestMethod.GET)
-    public String assistHome(ModelMap model) {
-        return "assistPage/assistHome";
-    }
+    @Autowired
+    @Qualifier("editOrderValidator")
+    private EditOrderValidator editOrderValidator;
 
-    @RequestMapping(value = "/assist/assigned_orders", method = RequestMethod.GET)
+    @RequestMapping(value = "/assist/home", method = RequestMethod.GET)
     public String allAssistOrders(Model model) {
         return "assistPage/assistOrdersAssigned";
     }
@@ -174,6 +171,14 @@ public class AssistController {
         return "assistPage/assistCreateOrder";
     }
 
+    @RequestMapping(value = "/ajaxAuditoriums", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Workplace> getCharNum(@RequestParam("text") String text) {
+        List<Workplace> workplaces = workplaceService.getByAuditoryName(text);
+        return workplaces;
+    }
+
     @RequestMapping(value = "assist/create_order", method = RequestMethod.POST)
     public String createOrderPost(@ModelAttribute("newOrder") Order order, ModelMap model, BindingResult result) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
@@ -193,15 +198,67 @@ public class AssistController {
         order.setAssistantId(assistantId);
         order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
         orderService.createOrUpdate(order);
-        return "redirect:/assist/home";
+        return "redirect:/assist/created_orders";
     }
 
-    @RequestMapping(value = "assist/mark_done", method = RequestMethod.GET)
-    public String setToDone(@RequestParam("orderid") int id,  Model model) {
+    /**
+     * ***************************************************************************
+     */
+    @RequestMapping(value = "/assist/mark_done/{id}", method = RequestMethod.GET)
+    public String setToDone(@RequestParam("orderid") Integer id, Model model) {
         Order order = orderService.getById(id);
         order.setStatus(DONE);
         orderService.createOrUpdate(order);
-        return "assistPage/assistOrdersAssigned";
+        return "redirect:/assist/home";
+    }
+
+    @RequestMapping(value = "/assist/delete_order/{id}", method = RequestMethod.GET)
+    public String deleteOrderById(Model model, @PathVariable("id") int id) {
+        orderService.delete(id);
+        return "redirect:/assist/home";
+    }
+
+    @RequestMapping(value = "/assist/edit_order/{id}", method = RequestMethod.GET)
+    public String editOrder(@PathVariable("id") Integer id, Model model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        int userId = (Integer) session.getAttribute("id");
+        Order order = orderService.getById(id);
+        List<Order> orderList = orderService.getByUserId(userId);
+        for (Order order1 : orderList) {
+            if (order1.getId() != id) {
+                return "redirect:/assist/created_orders";
+            }
+        }
+        model.addAttribute("title", order.getTitle());
+        model.addAttribute("workplace", order.getWorkplace());
+        model.addAttribute("auditorium", order.getAuditorium());
+        model.addAttribute("content", order.getContent());
+        model.addAttribute("id", order.getId());
+        model.addAttribute("editOrder", order);
+
+        // System.out.println("aud"+  model.addAttribute("auditorium",order.getAuditorium()));
+        return "assistPage/assistEditOrder";
+    }
+
+    @RequestMapping(value = "/assist/edit_order/save", method = RequestMethod.POST)
+    public String orderEdited(@ModelAttribute("id") Integer id, @ModelAttribute("editOrder") Order order, ModelMap model, BindingResult result) {
+        editOrderValidator.validate(order, result);
+
+        if (result.hasErrors()) {
+            model.addAttribute("title", order.getTitle());
+            model.addAttribute("workplace", order.getWorkplace());
+            model.addAttribute("auditorium", order.getAuditorium());
+            model.addAttribute("content", order.getContent());
+            model.addAttribute("id", order.getId());
+            model.addAttribute("editOrder", order);
+            return "assistPage/assistEditOrder";
+        }
+        order.setId(id);
+        order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
+        orderService.update(order);
+
+        return "redirect:/assist/created_orders";
     }
 
 }

@@ -22,28 +22,23 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle menu-element active" data-toggle="dropdown" href="#"><spring:message
-                                code="admin.auditoriums"/><b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a class="menu-element-li" href="/admin/createAuditorium"><spring:message
-                                    code="admin.addAuditorium"/></a></li>
-                            <li><a class="menu-element-li" href="/admin/auditoriums"><spring:message
-                                    code="admin.auditoriums"/></a></li>
-                        </ul>
-                    </li>
+                    <li><a class="menu-element active" href="/admin/auditoriums"><spring:message
+                            code="admin.auditoriums"/></a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"><spring:message
                                 code="admin.users"/><b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a class="menu-element-li" href="/admin/allUsers"><spring:message code="admin.allUsers"/></a></li>
-                            <li><a class="menu-element-li" href="/admin/users"><spring:message code="admin.users"/></a></li>
+                            <li><a class="menu-element-li" href="/admin/allUsers"><spring:message
+                                    code="admin.allUsers"/></a></li>
+                            <li><a class="menu-element-li" href="/admin/users"><spring:message code="admin.users"/></a>
+                            </li>
                             <li><a class="menu-element-li" href="/admin/assistants"><spring:message
                                     code="admin.assistants"/></a></li>
                             <li><a class="menu-element-li" href="/admin/professors"><spring:message
                                     code="admin.professors"/></a></li>
-                            <li><a class="menu-element-li" href="/admin/blockedUsers"><spring:message code="admin.blocked"/></a>
+                            <li><a class="menu-element-li" href="/admin/blockedUsers"><spring:message
+                                    code="admin.blocked"/></a>
                             </li>
                         </ul>
                     </li>
@@ -73,17 +68,20 @@
             </c:forEach>
             </tbody>
         </table>
+        <a href="/admin/createAuditorium" class="btn btn-primary button-style"><spring:message
+                code="admin.addAuditorium"/></a>
     </div>
-<div class="footer">
-    <div class="thick"></div>
-    <div class="thin"></div>
-    <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
 
-    <div class="text-center">
-        <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
-        <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
+    <div class="footer">
+        <div class="thick"></div>
+        <div class="thin"></div>
+        <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
+
+        <div class="text-center">
+            <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
+            <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
+        </div>
     </div>
-</div>
 </div>
 </body>
 </html>

@@ -1,303 +1,306 @@
 @import url("reset.css");
-
 * {
-    margin: 0;
+	margin: 0;
 }
 
 html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+	margin: 0;
+	padding: 0;
+	height: 100%;
 }
 
 body {
-    background: url(../img/bcg.png);
-    font-family: "Trebuchet MS", "Helvetica", sans-serif;
-    font-size: medium;
-    color: #000;
+	background: url(../img/bcg.png);
+	font-family: "Trebuchet MS", "Helvetica", sans-serif;
+	font-size: medium;
+	color: #000;
 }
 
 #wrap {
-    min-height: 100%;
-    position: relative;
-    width: 900px;
-    background-color: #fff;
-    margin: 0 auto;
-    box-shadow: -6px 0 4px -4px rgba(0, 0, 0, .1), 6px 0 4px -4px rgba(0, 0, 0, .1);
+	min-height: 100%;
+	position: relative;
+	width: 900px;
+	background-color: #fff;
+	margin: 0 auto;
+	box-shadow: -6px 0 4px -4px rgba(0, 0, 0, .1), 6px 0 4px -4px rgba(0, 0, 0, .1);
 }
 
 #header {
-    background-color: #333366;
-    height: 85px;
-    position: fixed;
-    top: 0;
-    width: 900px;
-    z-index: 999;
+	background-color: #333366;
+	height: 85px;
+	position: fixed;
+	top: 0;
+	width: 900px;
+	z-index: 999;
 }
 
 #logo {
-    padding: 5px;
-    width: 305px;
-    height: 65px;
-    margin-top: 11px;
+	padding: 5px;
+	width: 305px;
+	height: 65px;
+	margin-top: 11px;
 }
 
 #time {
-    color: #000;
-    padding: 100px 15px 15px 15px;
-    margin-right: 20px;
-    text-align: right;
-    margin-top: 3px;
-    font-family: "Garamond", sans-serif;
-    font-size: 19px;
+	color: #000;
+	padding: 100px 15px 15px 15px;
+	margin-right: 20px;
+	text-align: right;
+	margin-top: 3px;
+	font-family: "Garamond", sans-serif;
+	font-size: 19px;
 }
 
 li {
-    list-style-type: none;
+	list-style-type: none;
 }
 
 ul {
-    margin-left: 0; /* IE  Opera */
-    padding-left: 0; /* Firefox, Safari, Chrome */
+	margin-left: 0; /* IE  Opera */
+	padding-left: 0; /* Firefox, Safari, Chrome */
 }
 
 a {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .leftWord {
-    color: #ffffff;
-    font-family: "Century Gothic", sans-serif;
-    font-size: 19px;
-    padding: 15px;
-    margin-right: 20px;
-    margin-top: -58px;
-    border-radius: 7px;
+	color: #ffffff;
+	font-family: "Century Gothic", sans-serif;
+	font-size: 19px;
+	padding: 15px;
+	margin-right: 20px;
+	margin-top: -58px;
+	border-radius: 7px;
 }
 
 .footertext {
-    font-size: 12px;
-    font-family: "Century Gothic", sans-serif;
-    color: #333366;
-    text-align: center;
-    padding: 15px;
+	font-size: 12px;
+	font-family: "Century Gothic", sans-serif;
+	color: #333366;
+	text-align: center;
+	padding: 15px;
 }
 
 .vertalign {
-    padding-top: 185px;
+	padding-top: 185px;
 }
 
 .form-style {
-    border-color: #333366;
-    border-radius: 7px;
-    padding-left: 10px;
+	border-color: #333366;
+	border-radius: 7px;
+	padding-left: 10px;
 }
 
 .button-style {
-    background-color: #333366;
-    border-radius: 7px;
+	background-color: #333366;
+	border-radius: 7px;
 }
 
 #login-button {
-    width: 220px;
+	width: 220px;
 }
 
 .thin, .thick {
-    margin: 0 auto;
-    width: 900px;
-    background-color: #333366;
+	margin: 0 auto;
+	width: 900px;
+	background-color: #333366;
 }
 
 .thin {
-    height: 1px;
-    margin-bottom: 2px;
+	height: 1px;
+	margin-bottom: 2px;
 }
 
 .thick {
-    height: 3px;
-    margin-bottom: 2px;
+	height: 3px;
+	margin-bottom: 2px;
 }
 
 #forgotpassword {
-    margin-left: 7px;
+	margin-left: 7px;
 }
 
 /**** Registration *****/
 
 #mainRegister {
-    margin-left: 180px;
-    margin-right: 180px;
+	margin-left: 180px;
+	margin-right: 180px;
 }
 
 #profEdit {
-    margin-left: 180px;
-    margin-right: 180px;
+	margin-left: 180px;
+	margin-right: 180px;
 }
 
 .centralWord {
-    font-family: "Century Gothic", sans-serif;
-    font-size: 36px;
-    padding: 20px;
-    text-align: center;
+	font-family: "Century Gothic", sans-serif;
+	font-size: 36px;
+	padding: 20px;
+	text-align: center;
 }
 
 .labels {
-    width: 210px;
-    font-size: 16px;
-    padding: 10px;
-    padding-top: 30px;
+	width: 210px;
+	font-size: 16px;
+	padding: 10px;
+	padding-top: 30px;
 }
 
 #register-button {
-    width: 220px;
+	width: 220px;
 }
 
 .regErrors {
-    color: #ff0000;
-    width: 220px;
-    position: absolute;
-    z-index: 999;
+	color: #ff0000;
+	width: 220px;
+	position: absolute;
+	z-index: 999;
 }
 
 a img {
-    border: none;
+	border: none;
 }
 
 .table-align {
-    padding: 20px 20px 0 20px;
-    border-radius: 7px;
+	padding: 20px 20px 0 20px;
+	border-radius: 7px;
 }
 
 .tbl {
-    border-collapse: separate;
-    border: 1px solid #333366;
-    border-radius: 7px;
+	border-collapse: separate;
+	border: 1px solid #333366;
+	border-radius: 7px;
 }
 
 .tbl th, .tbl td {
-    height: 40px;
-    text-align: center;
-    vertical-align: middle;
+	height: 40px;
+	text-align: center;
+	vertical-align: middle;
 }
 
 #hello {
-    font-family: "Century Gothic", sans-serif;
-    font-size: 30px;
-    color: #333366;
+	font-family: "Century Gothic", sans-serif;
+	font-size: 30px;
+	color: #333366;
 }
 
 #btn-add-order {
-    background-color: #333366;
-    border-radius: 7px;
+	background-color: #333366;
+	border-radius: 7px;
 }
 
 .drop-menu-element {
-    color: #ffffff;
-    font-family: "Century Gothic", sans-serif;
-    font-size: 18px;
+	color: #ffffff;
+	font-family: "Century Gothic", sans-serif;
+	font-size: 18px;
 }
 
 .menu-element {
-    color: #ffffff;
-    font-family: "Century Gothic";
-    font-size: 18px;
-    margin-top: 20px;
-    margin-left: 5px;
-    border-radius: 7px;
+	color: #ffffff;
+	font-family: "Century Gothic";
+	font-size: 18px;
+	margin-top: 20px;
+	margin-left: 5px;
+	border-radius: 7px;
 }
 
 .menu-element-li {
-    color: #333366;
-    font-family: "Century Gothic", sans-serif;
-    font-size: 18px;
-    margin-top: 3px;
-    border-radius: 7px;
+	color: #333366;
+	font-family: "Century Gothic", sans-serif;
+	font-size: 18px;
+	margin-top: 3px;
+	border-radius: 7px;
 }
 
 .active {
-    color: #333366;
-    background-color: #e7e7e7;
-    margin-left: 5px;
+	color: #333366;
+	background-color: #e7e7e7;
+	margin-left: 5px;
 }
 
 .active:hover {
-    color: #333366;
+	color: #333366;
 }
 
 #content {
-    border-color: #333366;
-    border-radius: 7px;
-    padding: 10px;
-    resize: none;
+	border-color: #333366;
+	border-radius: 7px;
+	padding: 10px;
+	resize: none;
 }
 
 #btn-create-order {
-    background-color: #333366;
-    border-radius: 7px;
-    margin-top: 15px;
+	background-color: #333366;
+	border-radius: 7px;
+	margin-top: 15px;
 }
 
 .select-style {
-    border-color: #333366;
-    border-radius: 7px;
+	border-color: #333366;
+	border-radius: 7px;
 }
 
 .label-style {
-    font-family: "Century Gothic", sans-serif;
-    color: #333366;
-    padding-bottom: 5px;
+	font-family: "Century Gothic", sans-serif;
+	color: #333366;
+	padding-bottom: 5px;
 }
 
 .footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 50px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 50px;
 }
 
 .top-block {
-    margin-top: 85px;
+	margin-top: 85px;
 }
 
 #auth-block {
-    padding-top: 100px;
+	padding-top: 100px;
 }
 
 #change-pass-button {
-    width: 220px;
+	width: 220px;
 }
 
 .top-table {
-    padding-top: 120px;
+	padding-top: 120px;
 }
 
 .bottom-block {
-    padding-bottom: 60px;
+	padding-bottom: 60px;
 }
 
 #sel1 {
-    width: 138px;
+	width: 138px;
 }
 
 #sel2 {
-    width: 120px;
+	width: 120px;
 }
 
 #title {
-    width: 270px;
+	width: 270px;
 }
 
 #title_errors {
-    color: #ff0000;
+	color: #ff0000;
 }
 
 #content_errors {
-    color: #ff0000;
+	color: #ff0000;
 }
 
 #workplace_access_num_errors {
     color: #ff0000;
+}
+
+#workplace_access_num_errors {
+	color: #ff0000;
 }
 
 #assist_add_order_button {
@@ -322,6 +325,15 @@ a img {
 
 #local a:hover {
     text-decoration: none;
+	color: #333366;
+	opacity: 1; /* <-- any transitioning property needs a starting value */
+	-webkit-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+#local a:hover {
+	text-decoration: none;
+	opacity: 0.5;
 }
 
 #local a:active {
@@ -346,4 +358,46 @@ a img {
 #assistCreateOrderBlock {
     padding-top: 90px;
     padding-bottom: 20px;
+}
+
+#assistContent {
+	height: 750px;
+	padding-bottom: 50px;
+}
+
+#assist_create_order_button {
+	background-color: #333366;
+	border-radius: 7px;
+	margin-top: -5px;
+	width: 270px;
+}
+
+#assistProfileForm {
+	margin-top: 60px;
+	margin-left: 180px;
+}
+
+#assistCreateCells {
+	margin-top: -5px;
+}
+
+#assist_description {
+	border-color: rgb(51, 51, 102);
+	border-radius: 7px;
+	padding: 10px;
+	resize: none;
+	width: 270px;
+}
+
+.centralWordEdit {
+	font-family: "Century Gothic", sans-serif;
+	font-size: 36px;
+	padding: 20px;
+	text-align: center;
+	margin-left: -15px;
+}
+
+#assist_content_errors {
+	color: #ff0000;
+	padding-left: 15px;
 }
