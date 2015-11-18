@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html lang="en">
 <head>
@@ -74,7 +75,7 @@
                 <tr data-href="#">
                     <td>${item.lastName}</td>
                     <td>${item.firstName}</td>
-                    <td>${item.role}</td>
+                    <td>${fn:toLowerCase(item.role)}</td>
                     <td><input type="image" src="../../../resources/img/edit.jpg" data-toggle="modal" data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;"></td>
                     <td>${item.accountStatus}</td>
                     <td><input type="image" src="../../../resources/img/edit.jpg" data-toggle="modal" data-target="#myModalStatus" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;"></td>
