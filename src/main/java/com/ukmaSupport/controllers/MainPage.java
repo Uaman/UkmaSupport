@@ -57,7 +57,7 @@ public class MainPage {
         HttpSession session = attr.getRequest().getSession();
         session.setAttribute("id", userService.getByEmail(auth.getName()).getId());
         if(userService.getByEmail(auth.getName()).getRole().equals("ADMIN"))
-            return "redirect:/users";
+            return "redirect:/admin/allUsers";
         if (userService.getByEmail(auth.getName()).getRole().equals("ASSISTANT"))
             return "redirect:/assist/home";
         return "redirect:/userhome";

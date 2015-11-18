@@ -58,7 +58,7 @@ public class AdminController {
     private final static String UNDONE = "Undone";
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/allUsers", method = RequestMethod.GET)
     public String showAllUsers(Model model) {
         List<User> users = userService.getAll();
         model.addAttribute("users", users);
@@ -66,7 +66,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
     public String showUsers(Model model) {
         List<User> users = userService.getByRole(USER);
         model.addAttribute("users", users);
@@ -74,7 +74,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/assistants", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/assistants", method = RequestMethod.GET)
     public String showAssistants(Model model) {
         List<User> users = userService.getByRole(ASSISTANT);
         model.addAttribute("users", users);
@@ -82,7 +82,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/professors", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/professors", method = RequestMethod.GET)
     public String showProfessors(Model model) {
         List<User> users = userService.getByRole(PROFESSOR);
         model.addAttribute("users", users);
@@ -90,7 +90,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/blocked", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/blockedUsers", method = RequestMethod.GET)
     public String showBlockedUsers(Model model) {
         List<User> users = userService.getByStatus(BLOCKED);
         model.addAttribute("users", users);
@@ -98,7 +98,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/allOrders", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/allOrders", method = RequestMethod.GET)
     public String showOrders(Model model) {
         List<Order> orders = orderService.getAll();
         model.addAttribute("orders", orders);
@@ -106,7 +106,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/auditoriums", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/auditoriums", method = RequestMethod.GET)
     public String showAuditoriums(Model model) {
         List<User> users = userService.getByRole(ASSISTANT);
         List<Auditorium> auditoriums = auditoriumService.getAll();
@@ -124,7 +124,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/createAuditorium", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/createAuditorium", method = RequestMethod.GET)
     public String createAuditorium(ModelMap model) {
         Auditorium order = new Auditorium();
         List<User> users = userService.getByRole(ASSISTANT);
@@ -134,7 +134,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/createAuditorium", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/createAuditorium", method = RequestMethod.POST)
     public String saveAuditorium(@ModelAttribute("newAuditorium") Auditorium auditorium, ModelMap model,BindingResult bindingResult) {
         model.addAttribute("number", auditorium.getNumber());
         audiroriumValidator.validate(auditorium,bindingResult);
@@ -146,7 +146,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/downloadExcel", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/downloadExcel", method = RequestMethod.GET)
     public String downloadExcel(Model model) {
         List<User> listUsers = userService.getAll();
         model.addAttribute("listUsers", listUsers);
@@ -154,7 +154,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/editAdminProfile", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/editProfile", method = RequestMethod.GET)
     public String editProfile(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
@@ -168,7 +168,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/editAdminProfile", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/editProfile", method = RequestMethod.POST)
     public String profileEdited(@ModelAttribute("passChangeForm") EditForm editForm, BindingResult result) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();

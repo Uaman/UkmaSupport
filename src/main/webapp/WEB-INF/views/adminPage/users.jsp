@@ -27,9 +27,9 @@
                         <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"><spring:message
                                 code="admin.auditoriums"/><b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a class="menu-element-li" href="/createAuditorium"><spring:message
+                            <li><a class="menu-element-li" href="/admin/createAuditorium"><spring:message
                                     code="admin.addAuditorium"/></a></li>
-                            <li><a class="menu-element-li" href="/auditoriums"><spring:message
+                            <li><a class="menu-element-li" href="/admin/auditoriums"><spring:message
                                     code="admin.auditoriums"/></a></li>
                         </ul>
                     </li>
@@ -38,19 +38,19 @@
                                 code="admin.users"/><b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a class="menu-element-li" href="/all"><spring:message code="admin.allUsers"/></a></li>
-                            <li><a class="menu-element-li" href="/users"><spring:message code="admin.users"/></a></li>
-                            <li><a class="menu-element-li" href="/assistants"><spring:message
+                            <li><a class="menu-element-li" href="/admin/allUsers"><spring:message code="admin.allUsers"/></a></li>
+                            <li><a class="menu-element-li" href="/admin/users"><spring:message code="admin.users"/></a></li>
+                            <li><a class="menu-element-li" href="/admin/assistants"><spring:message
                                     code="admin.assistants"/></a></li>
-                            <li><a class="menu-element-li" href="/professors"><spring:message
+                            <li><a class="menu-element-li" href="/admin/professors"><spring:message
                                     code="admin.professors"/></a></li>
-                            <li><a class="menu-element-li" href="/blocked"><spring:message code="admin.blocked"/></a>
+                            <li><a class="menu-element-li" href="/admin/blockedUsers"><spring:message code="admin.blocked"/></a>
                             </li>
                         </ul>
                     </li>
-                    <li><a id="orders" class="menu-element" href="/allOrders"><spring:message
+                    <li><a id="orders" class="menu-element" href="/admin/allOrders"><spring:message
                             code="admin.orders"/></a></li>
-                    <li><a id="editProfile" class="menu-element" href="/editAdminProfile"><spring:message
+                    <li><a id="editProfile" class="menu-element" href="/admin/editProfile"><spring:message
                             code="admin.edit"/></a></li>
                     <li><a class="menu-element" href="/logout"><spring:message code="admin.logout"/></a></li>
                 </ul>
