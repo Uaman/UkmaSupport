@@ -160,9 +160,8 @@ public class UserController {
         int userId = (Integer) session.getAttribute("id");
 
             Order order=orderService.getByUserIdAndId(userId,id);
-           System.out.println(order.getAuditorium());
-           Auditorium auditorium=auditoriumService.getById(Integer.parseInt(order.getAuditorium()));
-            if(order==null){
+            Auditorium auditorium=auditoriumService.getById(Integer.parseInt(order.getAuditorium()));
+            if(order.equals(null)){
             return "redirect:/userhome";
                            }
             model.addAttribute("title", order.getTitle());
