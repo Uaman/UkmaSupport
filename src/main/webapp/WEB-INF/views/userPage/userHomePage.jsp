@@ -54,7 +54,7 @@
                 success: function (response) {
                     var trHTML = '';
                     $.each(response, function (i, order) {
-                        trHTML +=  "<tr><td>"+ order.title + "</td>" +
+                        trHTML +=  "<tr><td>"+'<a href="/addComment/'+order.id+'">order.title</a>' +"</td>" +
                                 '   <td>' + order.workplace_access_num + "</td>" +
                                 '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y   %H:%m:%s')+"</td>"+
                                 '   <td>' +  '<form action="${pageContext.request.contextPath}/editOrder/'+order.id+'"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></form>'+"</td>"+
