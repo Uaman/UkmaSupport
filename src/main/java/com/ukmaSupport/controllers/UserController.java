@@ -104,7 +104,6 @@ public class UserController {
         order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
 
         orderService.createOrUpdate(order);
-        acceptionMail.send(userService.getById(userId).getEmail());
 
 
 
