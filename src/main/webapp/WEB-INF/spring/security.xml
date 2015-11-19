@@ -40,7 +40,7 @@
                     default-target-url="/succesfullRegistration"
                     username-parameter="j_username"
                     password-parameter="j_password"
-                    authentication-failure-url="/login?error"/>
+                    authentication-failure-url="/loginError"/>
         <logout logout-success-url="/"
                 logout-url="/logout"
                 />

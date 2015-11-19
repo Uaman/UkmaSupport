@@ -29,13 +29,7 @@ public class MainPage {
         return "mainPage/mainPage";
     }
 
-    @RequestMapping({"/login"})
-    public String showLoginForm() {
-        return "mainPage/loginPage";
-    }
-
-
-    @RequestMapping({"/login_error"})
+    @RequestMapping(value = "/loginError")
     public String showLoginError() {
         return "mainPage/failedLogin";
     }
