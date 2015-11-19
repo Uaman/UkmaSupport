@@ -12,24 +12,6 @@
 
   <script src="../../../resources/js/jquery-1.11.3.js"></script>
   <script src="../../../resources/js/bootstrap.min.js"></script>
-  <script type="text/javascript">
-    function startTime() {
-      var tm = new Date();
-      var h = tm.getHours();
-      var m = tm.getMinutes();
-      var s = tm.getSeconds();
-      m = checkTime(m);
-      s = checkTime(s);
-      document.getElementById('txt').innerHTML = h + ":" + m + ":" + s;
-      t = setTimeout('startTime()', 500);
-    }
-    function checkTime(i) {
-      if (i < 10) {
-        i = "0" + i;
-      }
-      return i;
-    }
-  </script>
 </head>
 
 <body onload="startTime()">
