@@ -16,7 +16,6 @@
 
         $(document).ready(function() {
             $("#records_table").tablesort();
-
         });
         function formatDate(date, fmt) {
             function pad(value) {
@@ -114,12 +113,21 @@
             </div>
         </div>
     </nav>
-    <div>
-        <p id="hello" class="top-block"><spring:message
+    <div  class="top-block">
+        <p id="hello"><spring:message
                 code="user.hello"/> ${currentUser.firstName}</p>
     </div>
 
-    <div class="table-align">
+    <div class="col-md-offset-7">
+        <form class="form-horizontal" method="get" action="/createOrder">
+                <div class="col-md-offset-7 col-md-4">
+                    <button id="btn-add-order" type="submit" class="btn btn-primary btn-block"><spring:message
+                            code="user.order"/></button>
+                </div>
+        </form>
+    </div>
+
+    <div class="table-align bottom-block user-table">
         <table id="records_table"    class="tbl table table-striped table-hover " >
             <thead>
             <tr>
@@ -128,22 +136,12 @@
                 <th ><spring:message code="assist.order.workplace"/></th>
                 <th><spring:message code="admin.orders.status"/></th>
                 <th><spring:message code="admin.orders.date"/></th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
         </table>
     </div>
-
-
-        <div class="col-md-offset-7 bottom-block">
-            <form class="form-horizontal" method="get" action="/createOrder">
-                <div class="form-group">
-                    <div class="col-md-offset-7 col-md-4">
-                        <button id="btn-add-order" type="submit" class="btn btn-primary btn-block"><spring:message
-                                code="user.order"/></button>
-                    </div>
-                </div>
-            </form>
-        </div>
 
     <div class="footer">
         <div class="thick"></div>

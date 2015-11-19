@@ -44,25 +44,25 @@
                     <input type="text" class="form-control form-style" id="title" name="title" value="${title}"
                            path="title">
                 </div>
-                <div id="title-error"><form:errors path="title" class="" id="title.errors"/></div>
+                <div class="error" id="title-error"><form:errors path="title" class="" id="title.errors"/></div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-3">
-                    <label class="label-style"><spring:message
+                    <label class="label-style" for="auditorium"><spring:message
+                            code="user.auditoriums.title"/>:</label>
+                    <form:input id="auditorium" path="auditorium" name="auditorium" type="text" value="${auditorium}"
+                                class="form-control select-style" READONLY="true"/>
+                </div>
+                <div class="col-md-3">
+                    <label class="label-style" for="workplace_access_num"><spring:message
                             code="user.workplace.number"/>:</label>
                     <form:input id="workplace_access_num" path="workplace_access_num" name="workplace_access_num"
                                 type="text" value=""
                                 class="form-control select-style" READONLY="true"/>
                 </div>
 
-                <div class="col-md-3">
-                    <label class="label-style"><spring:message
-                            code="user.auditoriums.title"/>:</label>
-                    <form:input id="auditorium" path="auditorium" name="auditorium" type="text" value="${auditorium}"
-                                class="form-control select-style" READONLY="true"/>
-                </div>
-                <div id="workplace-error"><form:errors path="workplace_access_num" class=""
+                <div class="error" id="workplace-error"><form:errors path="workplace_access_num" class=""
                                                        id="workplace_access_num.errors"/></div>
 
             </div>
@@ -72,7 +72,7 @@
                     <textarea class="col-md-12" rows="5" id="content" name="content" path="content"
                             >${content}</textarea>
                 </div>
-                <div id="content-error"><form:errors path="content" class="" id="content.errors"/></div>
+                <div class="error" id="content-error"><form:errors path="content" class="" id="content.errors"/></div>
             </div>
             <input type="hidden" name="id" value="${id}"/>
 

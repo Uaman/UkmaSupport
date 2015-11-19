@@ -61,7 +61,8 @@ ul {
 }
 
 a {
-	text-decoration: none;
+    text-decoration: none;
+    color: #333366;
 }
 
 .leftWord {
@@ -180,9 +181,10 @@ a img {
 }
 
 #hello {
-	font-family: "Century Gothic", sans-serif;
-	font-size: 30px;
-	color: #333366;
+    font-family: "Century Gothic", sans-serif;
+    font-size: 30px;
+    color: #333366;
+    padding: 20px 0 0 20px;
 }
 
 #btn-add-order {
@@ -296,6 +298,10 @@ a img {
 }
 
 #workplace_access_num_errors {
+     color: #ff0000;
+}
+
+#workplace_access_num_errors {
     color: #ff0000;
 }
 
@@ -361,43 +367,79 @@ a img {
 }
 
 #assistContent {
-	height: 750px;
-	padding-bottom: 50px;
+    height: 750px;
+    padding-bottom: 50px;
 }
 
 #assist_create_order_button {
-	background-color: #333366;
-	border-radius: 7px;
-	margin-top: -5px;
-	width: 270px;
+    background-color: #333366;
+    border-radius: 7px;
+    margin-top: -5px;
+    width: 270px;
 }
 
 #assistProfileForm {
-	margin-top: 60px;
-	margin-left: 180px;
+    margin-top: 60px;
+    margin-left: 180px;
 }
 
 #assistCreateCells {
-	margin-top: -5px;
+    margin-top: -5px;
 }
 
 #assist_description {
-	border-color: rgb(51, 51, 102);
-	border-radius: 7px;
-	padding: 10px;
-	resize: none;
-	width: 270px;
+    border-color: rgb(51, 51, 102);
+    border-radius: 7px;
+    padding: 10px;
+    resize: none;
+    width: 270px;
 }
 
 .centralWordEdit {
-	font-family: "Century Gothic", sans-serif;
-	font-size: 36px;
-	padding: 20px;
-	text-align: center;
-	margin-left: -15px;
+    font-family: "Century Gothic", sans-serif;
+    font-size: 36px;
+    padding: 20px;
+    text-align: center;
+    margin-left: -15px;
 }
 
 #assist_content_errors {
-	color: #ff0000;
-	padding-left: 15px;
+    color: #ff0000;
+    padding-left: 15px;
 }
+
+.error {
+    color: red;
+}
+#title-error {
+    padding-top: 8px;
+}
+#workplace-error {
+    padding-top: 21px;
+}
+#content-error {
+    padding-top: 39px;
+}
+.icon {
+    right: 6px;
+    color: #ffffff;
+}
+.icon-btn {
+    background-color: #333366;
+    border-radius: 7px;
+    width: 27px;
+    height: 26px;
+    padding-top: 4px;
+}
+.user-table {
+    overflow: auto;
+    height: 380px;
+    margin-top: 50px;
+}
+#auditorium {
+    width: 138px;
+}
+#workplace_access_num {
+    width: 120px;
+}
+
