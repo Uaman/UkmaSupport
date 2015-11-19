@@ -19,7 +19,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    private static final String GET_ALL_ORDERS = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id";
+    private static final String GET_ALL_ORDERS = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, users.last_name AS assist FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id";
 
 //    private static final String GET_ALL_ORDERS = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id";
 
@@ -127,6 +127,7 @@ public class OrderDaoImpl implements OrderDao {
         public Order mapRow(ResultSet rs, int rowNum) throws SQLException {
             Order order = new Order();
             order.setId(rs.getInt("id"));
+            order.setAssistantLastName(rs.getString("assist"));
             order.setUserId(rs.getInt("user_id"));
             order.setAssistantId(rs.getInt("assistant_id"));
             order.setWorkplace_id(rs.getInt("workplace_id"));

@@ -70,7 +70,7 @@
                     <td>${orders.auditorium}</td>
                     <td>${orders.workplace_access_num}</td>
                     <td>${orders.userId}</td>
-                    <td>${orders.assistantId}</td>
+                    <td>${orders.assistantLastName}</td>
                     <td>${orders.createdAt}</td>
                     <td>${orders.status}</td>
                 </tr>
