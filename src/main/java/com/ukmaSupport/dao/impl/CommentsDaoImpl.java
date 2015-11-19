@@ -9,10 +9,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 @Repository("commentsDao")
@@ -45,7 +42,7 @@ public class CommentsDaoImpl implements CommentsDao {
                 preparedStatement.setInt(2,comment.getAuthor().getId());
                 preparedStatement.setInt(3,comment.getOrderId());
                 preparedStatement.setString(4,comment.getContent());
-                preparedStatement.setLong(5,comment.getTime());
+                preparedStatement.setLong(5, comment.getTime().getTime());
                 return null;
             }});
     }
@@ -76,7 +73,7 @@ public class CommentsDaoImpl implements CommentsDao {
             comment.getAuthor().setAccountStatus(rs.getString("status_account"));
             comment.getAuthor().setDateOfEntry(new java.util.Date(rs.getDate("data_entry").getTime()));
             comment.setOrderId(rs.getInt("order_id"));
-            comment.setTime(rs.getLong("time"));
+            comment.setTime(new Timestamp(rs.getLong("time")));
             return comment;
         }
     };

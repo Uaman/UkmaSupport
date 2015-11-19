@@ -42,21 +42,26 @@
         <p class="body-text" id="order-date">Date:</p>
     </div>
     <div id="comments" class="col-md-offset-2 col-md-8">
-        <p class="comment body-text">comment#1: dfsdfjsdfsdfs</p>
-        <p class="comment body-text">comment#2: dfsdfjsasdfasdfsFdfsdfs</p>
-        <p class="comment body-text">comment#3: dfsdfjsdfsDSfSDfSFDdfs</p>
-        <p class="comment body-text">comment#4: dfsdfjsdfasdfasfdafsdfs</p>
-        <p class="comment body-text">comment#5: dfsdfjsSDFSDfSDFSDFSVxzcgstuhjtydjfyumfgmfgymgfSADASDASDASDcASCACASCdfsdfs</p>
-        <p class="comment body-text">comment#6: dfsdfjsASCACASCACSdfsdfs</p>
-        <p class="comment body-text">comment#7: dfsdfjsCzASCcSACASCdfsdfs</p>
-        <p class="comment body-text">comment#8: dfsdfjsASCASCASDcasjef;oiaj;foasjkf;doiawckpawecffawedfsdfs</p>
-        <p class="comment body-text">comment#9: dfsdfsdcSdfkjaso;efj;oaefaefjsdfsdfs</p>
-        <p class="comment body-text">comment#10: dfsdfjSDfake;AJ;DJ;aCSM;mksc;cssdfsdfs</p>
-        <p class="comment body-text">comment#11: dfsdCAPWECKPACMKPAC,PCfjsdfsdfs</p>
-        <p class="comment body-text">comment#12: dfsdfjCEWCJA[CE[CK[ACEECsdfsdfs</p>
-        <p class="comment body-text">comment#13: dfsdfjsCEAckjaPECJPaecCEdfsdfs</p>
-        <p class="comment body-text">comment#14: dfsdfCeck['CM[Aecjsdfsdfs</p>
+        <c:forEach var="comment" items="${allCommentaries}" varStatus="count" >
+            <p class="comment body-text">comment#${count}: By ${comment.author.firstName} ROLE ${comment.author.role} TIME ${comment.time} CONTENT ${comment.content} </p>
+        </c:forEach>
+
+
+        <%--<p class="comment body-text">comment#2: dfsdfjsasdfasdfsFdfsdfs</p>--%>
+        <%--<p class="comment body-text">comment#3: dfsdfjsdfsDSfSDfSFDdfs</p>--%>
+        <%--<p class="comment body-text">comment#4: dfsdfjsdfasdfasfdafsdfs</p>--%>
+        <%--<p class="comment body-text">comment#5: dfsdfjsSDFSDfSDFSDFSVxzcgstuhjtydjfyumfgmfgymgfSADASDASDASDcASCACASCdfsdfs</p>--%>
+        <%--<p class="comment body-text">comment#6: dfsdfjsASCACASCACSdfsdfs</p>--%>
+        <%--<p class="comment body-text">comment#7: dfsdfjsCzASCcSACASCdfsdfs</p>--%>
+        <%--<p class="comment body-text">comment#8: dfsdfjsASCASCASDcasjef;oiaj;foasjkf;doiawckpawecffawedfsdfs</p>--%>
+        <%--<p class="comment body-text">comment#9: dfsdfsdcSdfkjaso;efj;oaefaefjsdfsdfs</p>--%>
+        <%--<p class="comment body-text">comment#10: dfsdfjSDfake;AJ;DJ;aCSM;mksc;cssdfsdfs</p>--%>
+        <%--<p class="comment body-text">comment#11: dfsdCAPWECKPACMKPAC,PCfjsdfsdfs</p>--%>
+        <%--<p class="comment body-text">comment#12: dfsdfjCEWCJA[CE[CK[ACEECsdfsdfs</p>--%>
+        <%--<p class="comment body-text">comment#13: dfsdfjsCEAckjaPECJPaecCEdfsdfs</p>--%>
+        <%--<p class="comment body-text">comment#14: dfsdfCeck['CM[Aecjsdfsdfs</p>--%>
     </div>
+    <form:form a>
     <div id="add-comment" class="col-md-offset-2 col-md-8">
         <form class="form-horizontal">
             <div class="form-group">
@@ -72,6 +77,7 @@
             </div>
         </form>
     </div>
+    </form:form>
 
 <div class="footer">
     <div class="thick"></div>

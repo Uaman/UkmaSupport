@@ -1,6 +1,8 @@
 package com.ukmaSupport.models;
 
 
+import java.sql.Timestamp;
+
 public class Comment {
 
     int id;
@@ -11,7 +13,7 @@ public class Comment {
 
     String content;
 
-    long time;
+    Timestamp time;
 
     public int getId() {
         return id;
@@ -45,11 +47,11 @@ public class Comment {
         this.content = content;
     }
 
-    public long getTime() {
+    public Timestamp getTime() {
         return time;
     }
 
-    public void setTime(long time) {
+    public void setTime(Timestamp time) {
         this.time = time;
     }
 }
