@@ -113,7 +113,7 @@ public class AssistController {
         return orderService.getByAssistAndStatus(assistId, UNDONE);
     }
 
-    @RequestMapping(value = "/assist/get_created_compl", method = RequestMethod.GET)
+    @RequestMapping(value = "assist/assist/get_created_compl", method = RequestMethod.GET)
     public
     @ResponseBody
     List<Order> getAssistUserComplOrders() {

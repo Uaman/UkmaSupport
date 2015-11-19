@@ -51,7 +51,7 @@
             url: '${pageContext.request.contextPath}/user/allUserOrders',
             type: 'GET',
             success: function (response) {
-                /* var sorted = response.sort(function (a, b) {
+                 var sorted = response.sort(function (a, b) {
                  if (a.status < b.status) {
                  return 1;
                  }
@@ -59,9 +59,9 @@
                  return -1;
                  }
                  return 0;
-                 });*/
+                 });
                 var trHTML = '';
-                $.each(response, function (i, order) {
+                $.each(sorted, function (i, order) {
                     if (order.status == "Undone") {
                         trHTML += "<tr>"
                         + "<td>" + '<a href="/user/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
