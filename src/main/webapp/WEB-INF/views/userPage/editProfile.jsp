@@ -40,7 +40,7 @@
         </div>
     </nav>
 
-    <div id="profEdit" class="bottom-block top-block">
+    <div id="profEdit" class="bottom-block">
         <form:form id="passChangeForm" class="form-horizontal" action="editProfile" method="post"
                    commandName="passChangeForm">
             <div class="centralWord row col-md-offset-1" colspan="2" align="center"><spring:message
@@ -132,6 +132,7 @@
             </div>
         </form:form>
     </div>
+    <div class="footer">
     <div class="thick"></div>
     <div class="thin"></div>
     <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>

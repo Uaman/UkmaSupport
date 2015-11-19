@@ -26,9 +26,9 @@
     </nav>
 
 
-    <div id="mainRegister" class="bottom-block top-block">
+    <div id="mainRegister">
         <form:form id="userForm" class="form-horizontal" action="register" method="post" commandName="userForm">
-            <div class="centralWord row col-md-offset-2" colspan="2" align="center"><spring:message
+            <div class="centralWord row col-md-offset-1" colspan="2" align="center"><spring:message
                     code="registration.hello"/></div>
             <div class="form-group row">
                 <label class="col-md-4 control-label" for="firstName"><spring:message
