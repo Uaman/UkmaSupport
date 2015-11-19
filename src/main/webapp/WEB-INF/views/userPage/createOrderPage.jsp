@@ -17,7 +17,7 @@
     <script type="text/javascript">
         function getWorkPlace() {
             $.ajax({
-                url: 'ajaxtest',
+                url: '/user/ajaxtest',
                 type: 'GET',
                 data: {
                     text: $("#sel1").val()

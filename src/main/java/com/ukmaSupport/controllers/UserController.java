@@ -123,15 +123,6 @@ public class UserController {
         int userId = (Integer) session.getAttribute("id");
         System.out.println(userId);
         List<Order> orders = orderService.getByUserId(userId);
-        List<Auditorium> auditoriums = auditoriumService.getAll();
-        //Slow
-        for (Order order : orders) {
-            for (Auditorium auditorium : auditoriums) {
-                System.out.println(order.getAuditorium());
-                if (auditorium.getId() == (order.getAuditoriumId()))
-                    order.setAuditorium(auditorium.getNumber());
-            }
-        }
         return orders;
     }
 
@@ -150,14 +141,12 @@ public class UserController {
 
 
         Order order = orderService.getByUserIdAndId(userId, id);
-        System.out.println(order.getAuditorium());
-        Auditorium auditorium = auditoriumService.getById(order.getAuditoriumId());
         if (order == null) {
             return "redirect:/user/userhome";
         }
         model.addAttribute("title", order.getTitle());
         model.addAttribute("workplace", order.getWorkplace());
-        model.addAttribute("auditorium", auditorium.getNumber());
+        model.addAttribute("auditorium",order.getAuditorium());
         model.addAttribute("content", order.getContent());
         model.addAttribute("id", order.getId());
         model.addAttribute("editOrder", order);

@@ -48,7 +48,7 @@
         });
 
         $.ajax({
-            url: 'allUserOrders',
+            url: '${pageContext.request.contextPath}/user/allUserOrders',
             type: 'GET',
             success: function (response) {
                 /* var sorted = response.sort(function (a, b) {
