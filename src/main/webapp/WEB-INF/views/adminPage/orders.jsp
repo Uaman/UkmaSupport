@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <head>
@@ -66,7 +67,7 @@
             <tbody>
             <c:forEach items="${orders}" var="orders">
                 <tr data-href="#">
-                    <td>${orders.title}</td>
+                    <td>${fn:substring(orders.title,0,15)}</td>
                     <td>${orders.auditorium}</td>
                     <td>${orders.workplace_access_num}</td>
                     <td>${orders.userId}</td>
