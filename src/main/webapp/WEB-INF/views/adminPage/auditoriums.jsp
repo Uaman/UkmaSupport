@@ -52,24 +52,26 @@
         </div>
     </nav>
     <div class="table-align bottom-block top-table">
-        <table class="tbl table table_auditorium table-striped">
-            <thead>
-            <tr>
-                <th><spring:message code="admin.auditoriums.number"/></th>
-                <th><spring:message code="admin.auditoriums.assistantName"/></th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${auditoriums}" var="item" varStatus="count">
-                <tr data-href="#">
-                    <td><a href="/admin/auditoriums/${item.number}">${item.number}</a></td>
-                    <td>${item.assistantName}</td>
+        <div class="table-auditorium">
+            <table class="tbl table table_auditorium table-striped" style="max-width: 100%; width: 500px;">
+                <thead>
+                <tr>
+                    <th width="200px"><spring:message code="admin.auditoriums.number"/></th>
+                    <th width="230px"><spring:message code="admin.auditoriums.assistantName"/></th>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-        <a href="/admin/createAuditorium" class="btn btn-primary button-style"><spring:message
-                code="admin.addAuditorium"/></a>
+                </thead>
+                <tbody>
+                <c:forEach items="${auditoriums}" var="item" varStatus="count">
+                    <tr data-href="#">
+                        <td><a href="/admin/auditoriums/${item.number}">${item.number}</a></td>
+                        <td>${item.assistantName}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+        <center><a data-toggle="modal" data-target="#addAuditorium" class="btn btn-primary button-style" ><spring:message
+                code="admin.addAuditorium"/></a></center>
     </div>
 
     <div class="footer">
@@ -81,6 +83,24 @@
             <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
             <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
         </div>
+
+        <div class="modal fade" id="addAuditorium" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width:300px;" >
+                <div class="modal-content" >
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <center><h4 class="modal-title" id="myModalLabel">Add auditorium</h4></center>
+                    </div>
+                    <div class="modal-body">
+                        <center><input type="email" class="form-control form-style form-auditorium" placeholder="" style="text-align: center;"></center>
+                    </div>
+                    <div class="modal-footer">
+                        <center>  <button type="button" class="btn btn-default" data-dismiss="modal">Add auditorium</button></center>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 </body>
