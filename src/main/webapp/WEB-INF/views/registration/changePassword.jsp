@@ -23,14 +23,6 @@
     </div>
   </div>
 
-  <div id="time">
-					<span id="date">
-					<script type="text/javascript">
-                      var ld = new Date();
-                      document.write(ld.toDateString());
-                    </script></span>
-    <span id="txt"></span>
-  </div>
   <spring:url var="authUrl" value="/static/j_spring_security_check"/>
   <div class="col-md-offset-4 col-md-4 vertalign bottom-block" id="auth-block">
 
@@ -79,10 +71,6 @@
     <div class="thin"></div>
     <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
 
-    <div class="text-center">
-      <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
-      <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
-    </div>
   </div>
 </div>
 </body>

@@ -40,7 +40,6 @@ public class ForgotPasswordController {
         if(email == null || email.trim().isEmpty())
             modelMap.addAttribute("error", "Item Email is required!");
         else{
-            //User user = userService.getByEmail(email);
 
             List<User> users = userService.getAll();
 
@@ -48,19 +47,13 @@ public class ForgotPasswordController {
                 if(email.equals(item.getEmail())){
                     forgotPasswordMail.send(email, Constants.LOCAL_SERVER + Constants.CHANGE_PASSWORD + item.getId());
                     modelMap.addAttribute("success", "Success!");
+                    break;
                 }
                 else{
                     modelMap.addAttribute("noSuchUser", "User with this email does not exist");
                 }
             }
 
-           /* if(userSer){
-                forgotPasswordMail.send(email, Constants.LOCAL_SERVER + Constants.CHANGE_PASSWORD + user.getId());
-                modelMap.addAttribute("success", "Success!");
-            }
-            else{
-                modelMap.addAttribute("noSuchUser", "User with this email does not exist");
-            }*/
 
         }
 
