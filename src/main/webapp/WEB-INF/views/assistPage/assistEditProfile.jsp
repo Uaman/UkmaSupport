@@ -59,7 +59,7 @@
     </div>
 
         <div id="assistProfEdit" class="bottom-block top-block">
-            <form:form id="assistProfileForm" class="form-horizontal" action="assist/edit_profile" method="post"
+            <form:form id="assistProfileForm" class="form-horizontal" action="edit_profile" method="post"
                        commandName="passChangeForm">
                 <div class="centralWordEdit row col-md-offset-1" colspan="2" align="center">
                     <spring:message
