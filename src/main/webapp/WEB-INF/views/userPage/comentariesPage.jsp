@@ -65,10 +65,10 @@
         <%--<p class="comment body-text">comment#14: dfsdfCeck['CM[Aecjsdfsdfs</p>--%>
     </div>
     <div id="add-comment" class="col-md-offset-2 col-md-8">
-        <<form:form class="form-horizontal" action="/addComment/${id}" method="post" commandName="comment">
+        <form:form class="form-horizontal" action="/addComment/${id}" method="post" commandName="comment">
             <div class="form-group">
                 <div class="col-md-12">
-                    <textarea id="content" path="comment.content"  class="col-md-12 txt-area" rows="4" placeholder="write comment"></textarea>
+                    <textarea id="content" name="content" path="comment.content"  class="col-md-12 txt-area" rows="4" placeholder="write comment"></textarea>
                 </div>
             </div>
 

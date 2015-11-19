@@ -36,7 +36,7 @@ public class Commentaries {
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String addCommentPost(@PathVariable("id")int ordereId,@ModelAttribute("content") String comment, Model model, HttpServletRequest request) {
         System.out.println("comm:" + request.getParameter("content"));
-        return "";
+        return "redirect:/addComment/{id}";
     }
 }
 
