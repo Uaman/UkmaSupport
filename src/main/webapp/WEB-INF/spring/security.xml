@@ -52,8 +52,8 @@
         <!--<csrf disabled="true"/>-->
 
         <intercept-url pattern="/" access="permitAll"/>
-        <intercept-url pattern="/userhome**" access="hasRole('ROLE_USER')"/>
-        <intercept-url pattern="/editProfile**" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/assist/**" access="hasRole('ROLE_ASSISTANT')"/>
+        <intercept-url pattern="/user/**" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 
     </http>
