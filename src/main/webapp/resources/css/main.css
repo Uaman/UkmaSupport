@@ -417,9 +417,11 @@ a img {
 #workplace-error {
     padding-top: 21px;
 }
+
 #content-error {
     padding-top: 39px;
 }
+
 .icon {
     right: 6px;
     color: #ffffff;
@@ -436,17 +438,15 @@ a img {
     height: 380px;
     margin-top: 50px;
 }
+
 #auditorium {
     width: 138px;
 }
+
 #workplace_access_num {
     width: 120px;
 }
 
-.table-auditorium{
-	margin: 0 auto;
-	width: 430px;
-}
 #order-inf {
 	padding-top: 100px;
 	padding-left: 15px;
@@ -456,6 +456,7 @@ a img {
 	font-family: "Century Gothic", sans-serif;
 	font-size: 18px;
 }
+
 #comments {
 	height: 240px;
 	overflow: auto;
@@ -463,20 +464,24 @@ a img {
 	margin-bottom: 15px;
 	border-radius: 7px;
 }
+
 .txt-area {
 	border-color: #333366;
 	border-radius: 7px;
 	padding: 10px;
 	resize: none;
 }
+
 #btn-add-comment {
 	width: 125px;
 	background-color: #333366;
 	border-radius: 7px;
 }
+
 #add-comment {
 	margin-bottom: 60px;
 }
+
 .comment {
 	background-color: #bce8f1;
 	border-radius: 7px;
@@ -485,3 +490,41 @@ a img {
 	word-wrap: break-word;
 }
 
+html > body div.tableContainer {
+	overflow: hidden;
+	width: 430px;
+}
+
+div.tableContainer {
+	margin: 0 auto;
+	height: 590px;
+	overflow: auto;
+	width: 430px;
+}
+
+div.tableContainer table{
+	float: left;
+}
+
+
+thead.fixedHeader tr {
+	position: relative;
+}
+
+html > body thead.fixedHeader {
+	display: table;
+	overflow: auto;
+	width: 100%;
+}
+
+tbody.scrollContent {
+	display:block;
+	height: 410px;
+	overflow: auto;
+	width: 100%;
+}
+
+.table-auditorium{
+	margin: 0 auto;
+	width: 430px;
+}
