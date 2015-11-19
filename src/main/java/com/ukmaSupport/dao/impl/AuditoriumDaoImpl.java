@@ -16,13 +16,6 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
     @Autowired
     private JdbcTemplate template;
 
-    public AuditoriumDaoImpl() {
-    }
-
-    public AuditoriumDaoImpl(JdbcTemplate template) throws SQLException {
-        this.template = template;
-    }
-
     @Override
     public void save(Auditorium auditorium) {
         this.template.update("INSERT INTO auditorium(user_id,number) VALUES(?,?)",
@@ -56,7 +49,7 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
 
     @Override
     public List<Auditorium> getAll() {
-        String sql = "SELECT id,user_id,number FROM auditorium";
+        String sql = "SELECT id,user_id,number, concat(users.first_name, ' ', users.last_name) AS assist FROM auditorium LEFT JOIN users ON users.id_user=auditorium.user_id";
         return this.template.query(sql, new AuditoriumMapper());
     }
 }

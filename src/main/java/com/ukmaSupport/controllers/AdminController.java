@@ -95,17 +95,7 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/auditoriums", method = RequestMethod.GET)
     public String showAuditoriums(Model model) {
-        List<User> users = userService.getByRole(ASSISTANT);
         List<Auditorium> auditoriums = auditoriumService.getAll();
-        for(Auditorium auditorium: auditoriums){
-           auditorium.setAssistantName("Empty");
-            for(User user:users){
-                if(auditorium.getUserId()==user.getId()){
-                    auditorium.setAssistantName(user.getFirstName()+" "+user.getLastName());
-                    break;
-                }
-            }
-        }
         model.addAttribute("auditoriums", auditoriums);
         return "adminPage/auditoriums";
     }
