@@ -70,15 +70,15 @@
                         '   <td>' + order.status + "</td>" +
                         '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
                         '   <td>' + '<form action="${pageContext.request.contextPath}/assist/mark_done/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></form>' + "</td>" +
-                        '   <td>' + '<form action="${pageContext.request.contextPath}/assist/delete_order/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td></tr>";
+                        "</tr>";
                     } else {
                         trHTML += "<tr><td>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
-                        '   <td>' + order.workplace_id + "</td>" +
+                        '   <td>' + order.auditorium + "</td>" +
                         '   <td>' + order.workplace_access_num + "</td>" +
                         '   <td>' + order.status + "</td>" +
                         '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                        '   <td>' + "" + "</td>" +
-                        '   <td>' + '<form action="${pageContext.request.contextPath}/assist/delete_order/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td></tr>";
+                        '   <td>' + " " + "</td>" +
+                       "</tr>";
                     }
                 });
                 $('#records_table tbody').empty();

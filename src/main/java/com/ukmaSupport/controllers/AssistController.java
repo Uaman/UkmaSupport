@@ -91,49 +91,6 @@ public class AssistController {
         return orderService.getByUserId(userId);
     }
 
-    @RequestMapping(value = "/assist/get_assigned_compl", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    List<Order> getAssistComplOrders() {
-        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        HttpSession session = attr.getRequest().getSession();
-        int assistId = (Integer) session.getAttribute("id");
-        System.out.println(assistId);
-        return orderService.getByAssistAndStatus(assistId, DONE);
-    }
-
-    @RequestMapping(value = "/assist/get_assigned_uncompl", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    List<Order> getAssistUncomplOrders() {
-        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        HttpSession session = attr.getRequest().getSession();
-        int assistId = (Integer) session.getAttribute("id");
-        System.out.println(assistId);
-        return orderService.getByAssistAndStatus(assistId, UNDONE);
-    }
-
-    @RequestMapping(value = "assist/assist/get_created_compl", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    List<Order> getAssistUserComplOrders() {
-        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        HttpSession session = attr.getRequest().getSession();
-        int userId = (Integer) session.getAttribute("id");
-        System.out.println(userId);
-        return orderService.getByUserIdStatus(userId, DONE);
-    }
-
-    @RequestMapping(value = "assist/get_created_uncompl", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    List<Order> getAssistUserUncomplOrders() {
-        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        HttpSession session = attr.getRequest().getSession();
-        int userId = (Integer) session.getAttribute("id");
-        System.out.println(userId);
-        return orderService.getByUserIdStatus(userId, UNDONE);
-    }
 
     @RequestMapping(value = "/assist/edit_profile", method = RequestMethod.GET)
     public String editAssistProfile(Model model) {
@@ -201,9 +158,6 @@ public class AssistController {
         return "redirect:/assist/created_orders";
     }
 
-    /**
-     * ***************************************************************************
-     */
     @RequestMapping(value = "/assist/mark_done/{id}", method = RequestMethod.GET)
     public String setToDone(@PathVariable("id") Integer id, Model model) {
         Order order = orderService.getById(id);
