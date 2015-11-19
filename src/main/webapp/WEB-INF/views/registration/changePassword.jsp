@@ -5,7 +5,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>Change password</title>
+  <title><spring:message code="changePassword.title"/></title>
   <link href="../../../resources/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
   <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
   <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
@@ -32,33 +32,39 @@
 
       <div class="form-group">
         <div class="col-md-offset-1 col-md-10">
-          <input name="newPassword" value="${newPassword}" type="password"  class="form-control form-style" placeholder="New password"/>
+          <input name="newPassword" value="${newPassword}" type="password"  class="form-control form-style" placeholder="<spring:message code="admin.newPassword"/>"/>
         </div>
       </div>
 
       <div class="form-group">
         <div class="col-md-offset-1 col-md-10">
-          <input name="newPasswordConfirm" value="${newPasswordConfirm}" type="password"  class="form-control form-style" placeholder="Confirm new password"/>
+          <input name="newPasswordConfirm" value="${newPasswordConfirm}" type="password"  class="form-control form-style" placeholder="<spring:message code="assist.ConfirmNewPassword"/>"/>
         </div>
       </div>
 
       <div class="form-group">
         <div class="col-md-offset-1 col-md-10">
           <button id="changepass-button" type="submit" class="btn btn-primary btn-block button-style">
-            Change password
+            <spring:message code="changePassword.title"/>
           </button>
         </div>
       </div>
 
-      <c:if test="${not empty error}">
-        ${error}
-      </c:if>
-      <c:if test="${not empty success}">
-        ${success}
-      </c:if>
-      <c:if test="${not empty notEqual}">
-        ${notEqual}
-      </c:if>
+      <div class="form-group">
+        <div class="col-md-offset-1 col-md-10">
+          <c:if test="${not empty error}">
+            <spring:message code="changePassword.error.empty"/>
+          </c:if>
+          <c:if test="${not empty success}">
+            ${success}
+          </c:if>
+          <c:if test="${not empty notEqual}">
+            <spring:message code="changePassword.error.notEqual"/>
+          </c:if>
+        </div>
+      </div>
+
+
 
       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 

@@ -47,16 +47,14 @@ public class ForgotPasswordController {
                 if(email.equals(item.getEmail())){
                     forgotPasswordMail.send(email, Constants.LOCAL_SERVER + Constants.CHANGE_PASSWORD + item.getId());
                     modelMap.addAttribute("success", "Success!");
-                    break;
-                }
-                else{
-                    modelMap.addAttribute("noSuchUser", "User with this email does not exist");
+                    return "registration/forgotPasswordSuccess";
                 }
             }
 
 
         }
 
+        modelMap.addAttribute("noSuchUser", "User with this email does not exist");
         return "registration/forgotPassword";
 
     }
@@ -86,7 +84,8 @@ public class ForgotPasswordController {
             user.setPassword(PasswordEncryptor.encode(newPassword));
 
             userService.saveOrUpdate(user);
-            model.addAttribute("success", "Success!");
+            //model.addAttribute("success", "Success!");
+            return "registration/changePasswordSuccess";
         }
 
 

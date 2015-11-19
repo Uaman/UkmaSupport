@@ -5,7 +5,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>Forgot password?</title>
+  <title><spring:message code="forgotPassword.title"/></title>
   <link href="../../../resources/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
   <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
   <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
@@ -31,29 +31,33 @@
 
       <div class="form-group">
         <div class="col-md-offset-1 col-md-10">
-          <input name="email" type="email" value="${email}"  class="form-control form-style" placeholder="Your email"/>
+          <input name="email" type="email" value="${email}"  class="form-control form-style" placeholder="<spring:message code="registration.email"/>"/>
         </div>
       </div>
 
       <div class="form-group">
         <div class="col-md-offset-1 col-md-10">
           <button id="changepass-button" type="submit" class="btn btn-primary btn-block button-style">
-            Send email
+            <spring:message code="forgotPassword.sendEmail"/>
           </button>
         </div>
       </div>
 
-      <c:if test="${not empty error}">
-        ${error}
-      </c:if>
-      <c:choose>
-        <c:when test="${not empty success}">
-          ${success}
-        </c:when>
-        <c:otherwise>
-          ${noSuchUser}
-        </c:otherwise>
-      </c:choose>
+      <div class="form-group">
+        <div class="col-md-offset-1 col-md-10">
+          <c:if test="${not empty error}">
+            <spring:message code="forgotPassword.error.emptyEmail"/>
+          </c:if>
+          <c:if test="${not empty success}">
+            ${success}
+          </c:if>
+          <c:if test="${not empty noSuchUser}">
+            <spring:message code="forgotPassword.error.noUser"/>
+          </c:if>
+        </div>
+      </div>
+
+
 
 
       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
