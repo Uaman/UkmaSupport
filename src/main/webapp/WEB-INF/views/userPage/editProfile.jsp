@@ -30,9 +30,9 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a class="menu-element" href="/userhome"><spring:message
+                    <li><a class="menu-element" href="/user/userhome"><spring:message
                             code="admin.orders"/></a></li>
-                    <li><a id="editProfile" class="menu-element" href="/editProfile"><spring:message
+                    <li><a id="editProfile" class="menu-element" href="/user/editProfile"><spring:message
                             code="admin.edit"/></a></li>
                     <li><a class="menu-element" href="/logout"><spring:message code="admin.logout"/></a></li>
                 </ul>
@@ -41,7 +41,8 @@
     </nav>
 
     <div id="profEdit" class="bottom-block top-block">
-        <form:form id="passChangeForm" class="form-horizontal" action="editProfile" method="post" commandName="passChangeForm">
+        <form:form id="passChangeForm" class="form-horizontal" action="/user/editProfile" method="post"
+                   commandName="passChangeForm">
             <div class="centralWord row col-md-offset-1" colspan="2" align="center"><spring:message
                     code="admin.hello"/></div>
             <div class="form-group row">

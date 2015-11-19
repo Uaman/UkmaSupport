@@ -60,6 +60,6 @@ public class MainPage {
             return "redirect:/admin/allUsers";
         if (userService.getByEmail(auth.getName()).getRole().equals("ASSISTANT"))
             return "redirect:/assist/home";
-        return "redirect:/userhome";
+        return "redirect:/user/userhome";
     }
 }

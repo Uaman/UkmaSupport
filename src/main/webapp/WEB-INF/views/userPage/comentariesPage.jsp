@@ -21,13 +21,13 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="/userhome"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                <a href="/user/userhome"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a class="menu-element"  href="/userhome"> <spring:message
+                    <li><a class="menu-element" href="/user/userhome"> <spring:message
                             code="admin.orders"/></a></li>
-                    <li><a id = "editProfile" class="menu-element" href="/editProfile"><spring:message
+                    <li><a id="editProfile" class="menu-element" href="/user/editProfile"><spring:message
                             code="admin.edit"/></a></li>
                     <li><a class="menu-element" href="/logout"><spring:message code="admin.logout"/></a></li>
                 </ul>
@@ -37,40 +37,38 @@
 
     <div class="col-md-offset-4 col-md-8 vertalign bottom-block">
         <form:form class="form-horizontal">
-        <div class="form-group">
-            <div class="col-md-6">
-                        <textarea class="col-md-12" rows="3"  id="content"  name="content" path="content" placeholder="Text"/></textarea>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <textarea class="col-md-12" rows="3" id="content" name="content" path="content"
+                              placeholder="Text"/></textarea>
+                </div>
+                <div id="content-error"><form:errors path="content" class="" id="content.errors"
+                                                     cssStyle="color: #ff0000;"/></div>
             </div>
-            <div id="content-error"><form:errors path="content" class="" id="content.errors" cssStyle="color: #ff0000;"/></div>
-        </div>
-        <br>
-        <br> <br> <br> <br>
+            <br>
+            <br> <br> <br> <br>
 
-
-        <div class="form-group">
-            <div class="col-md-6">
-                <button id="btn-create-order" type="submit" class="btn-info">Add comment</button>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <button id="btn-create-order" type="submit" class="btn-info">Add comment</button>
+                </div>
             </div>
-        </div>
 
         </form:form>
     </div>
-
-
 </div>
 
 
+<div class="footer">
+    <div class="thick"></div>
+    <div class="thin"></div>
+    <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
 
-    <div class="footer">
-        <div class="thick"></div>
-        <div class="thin"></div>
-        <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
-
-        <div class="text-center">
-            <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
-            <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
-        </div>
+    <div class="text-center">
+        <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
+        <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
     </div>
+</div>
 
 
 </body>

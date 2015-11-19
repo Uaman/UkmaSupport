@@ -15,17 +15,17 @@
     <script src="../../../resources/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-        function  getWorkPlace() {
+        function getWorkPlace() {
             $.ajax({
-                url : 'ajaxtest',
-                type : 'GET',
-                data:{
-                    text : $("#sel1").val()
+                url: 'ajaxtest',
+                type: 'GET',
+                data: {
+                    text: $("#sel1").val()
                 },
-                success : function(data) {
+                success: function (data) {
                     $('#sel2').html('');// to clear the previous option
                     $('#res').html(data);
-                    $.each(data, function(i, workplace) {
+                    $.each(data, function (i, workplace) {
                         $('#sel2').append($('<option>').text(workplace.accessNumber).attr('value', workplace.accessNumber));
                     });
                 }
@@ -41,13 +41,13 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="/userhome"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                <a href="/user/userhome"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a class="menu-element"  href="/userhome"> <spring:message
+                    <li><a class="menu-element" href="/user/userhome"> <spring:message
                             code="admin.orders"/></a></li>
-                    <li><a id = "editProfile" class="menu-element" href="/editProfile"><spring:message
+                    <li><a id="editProfile" class="menu-element" href="/user/editProfile"><spring:message
                             code="admin.edit"/></a></li>
                     <li><a class="menu-element" href="/logout"><spring:message code="admin.logout"/></a></li>
                 </ul>
@@ -56,15 +56,17 @@
     </nav>
 
     <div class="col-md-offset-4 col-md-8 vertalign bottom-block">
-        <form:form class="form-horizontal" id="newOrder" action="/createOrder" method="post" commandName="newOrder">
+        <form:form class="form-horizontal" id="newOrder" action="/user/createOrder" method="post" commandName="newOrder">
             <div class="form-group">
                 <div class="col-md-6">
-                    <div class="error" id="form-error"><form:errors class="" path="auditorium" id="auditorium.errors"/></div>
+                    <div class="error" id="form-error"><form:errors class="" path="auditorium"
+                                                                    id="auditorium.errors"/></div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-6" display="inline-block">
-                    <input type="text" class="form-control form-style" id="title" value="${newOrder.title}" name="title" placeholder="<spring:message
+                    <input type="text" class="form-control form-style" id="title" value="${newOrder.title}" name="title"
+                           placeholder="<spring:message
                             code="user.title"/>" path="title">
                 </div>
                 <div class="error" id="title-error"><form:errors path="title" class="" id="title.errors"/></div>
@@ -73,7 +75,8 @@
                 <div class="col-md-3">
                     <label class="label-style" for="sel1"><spring:message
                             code="user.auditoriums.title"/>:</label>
-                    <select name="auditorium" class="form-control select-style" id="sel1" path="auditorium" onchange="getWorkPlace()" >
+                    <select name="auditorium" class="form-control select-style" id="sel1" path="auditorium"
+                            onchange="getWorkPlace()">
                         <option value="" disabled selected><spring:message
                                 code="user.auditoriums.title"/></option>
                         <c:forEach items="${auditoriums}" var="item" varStatus="count">
@@ -84,18 +87,20 @@
                 <div class="col-md-3">
                     <label class="label-style" for="sel2"><spring:message
                             code="user.workplace.number"/>:</label>
-                    <select name="workplace_access_num" class="form-control select-style" id="sel2" path="workplace_access_num">
+                    <select name="workplace_access_num" class="form-control select-style" id="sel2"
+                            path="workplace_access_num">
                         <option value="" disabled selected><spring:message
                                 code="user.workplace.number"/></option>
                     </select>
                 </div>
-                <div class="error" id="workplace-error"><form:errors path="workplace_access_num" class="" id="workplace_access_num.errors"/></div>
+                <div class="error" id="workplace-error"><form:errors path="workplace_access_num" class=""
+                                                                     id="workplace_access_num.errors"/></div>
 
             </div>
 
             <div class="form-group">
                 <div class="col-md-6">
-                    <textarea class="col-md-12" rows="5"  id="content"  name="content" path="content" placeholder="<spring:message
+                    <textarea class="col-md-12" rows="5" id="content" name="content" path="content" placeholder="<spring:message
                             code="user.description"/>">${newOrder.content}</textarea>
                 </div>
                 <div class="error" id="content-error"><form:errors path="content" class="" id="content.errors"/></div>

@@ -26,18 +26,18 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a class="menu-element" href="/userhome"> <spring:message
+                    <li><a class="menu-element" href="/user/userhome"> <spring:message
                             code="admin.orders"/></a></li>
-                    <li><a id="editProfile" class="menu-element" href="/editProfile"><spring:message
+                    <li><a id="editProfile" class="menu-element" href="/user/editProfile"><spring:message
                             code="admin.edit"/></a></li>
-                    <li><a class="menu-element" href="/"><spring:message code="admin.logout"/></a></li>
+                    <li><a class="menu-element" href="/logout"><spring:message code="admin.logout"/></a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <div class="col-md-offset-4 col-md-8 vertalign bottom-block">
-        <form:form class="form-horizontal" id="edit" action='${pageContext.request.contextPath}/editOrder/save'
+        <form:form class="form-horizontal" id="edit" action='/user${pageContext.request.contextPath}/editOrder/save'
                    method="post" commandName="editOrder">
             <div class="form-group">
                 <div class="col-md-6" display="inline-block">
@@ -63,7 +63,7 @@
                 </div>
 
                 <div class="error" id="workplace-error"><form:errors path="workplace_access_num" class=""
-                                                       id="workplace_access_num.errors"/></div>
+                                                                     id="workplace_access_num.errors"/></div>
 
             </div>
 
