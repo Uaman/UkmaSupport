@@ -1,5 +1,6 @@
 package com.ukmaSupport.controllers;
 
+import com.ukmaSupport.mailService.templates.OrderIsDoneMail;
 import com.ukmaSupport.models.*;
 import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.OrderService;
@@ -42,6 +43,9 @@ public class AssistController {
 
     @Autowired
     private AuditoriumService auditoriumService;
+
+    @Autowired
+    private OrderIsDoneMail orderIsDoneMail;
 
     @Autowired
     @Qualifier("passChangeValidator")
@@ -164,6 +168,10 @@ public class AssistController {
             order.setStatus(DONE);
         }
         orderService.createOrUpdate(order);
+
+        User user = userService.getById(order.getUserId());
+        orderIsDoneMail.send(user.getEmail());
+
         return "redirect:/assist/home";
     }
 
