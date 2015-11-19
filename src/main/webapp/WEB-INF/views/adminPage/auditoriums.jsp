@@ -11,9 +11,7 @@
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-
 <div id="wrap">
     <nav id="header">
         <div class="container-fluid">
@@ -52,28 +50,27 @@
         </div>
     </nav>
     <div class="table-align bottom-block top-table">
-        <div class="table-auditorium">
-            <table class="tbl table table_auditorium table-striped" style="max-width: 100%; width: 500px;">
-                <thead>
+        <div id="tableContainer" class="tableContainer">
+            <table class="tbl table table_auditorium table-striped" style="max-width: 100%; width: 430px; ">
+                <thead class="fixedHeader">
                 <tr>
-                    <th width="200px"><spring:message code="admin.auditoriums.number"/></th>
+                    <th width="187px"><spring:message code="admin.auditoriums.number"/></th>
                     <th width="230px"><spring:message code="admin.auditoriums.assistantName"/></th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody class="scrollContent">
                 <c:forEach items="${auditoriums}" var="item" varStatus="count">
                     <tr data-href="#">
-                        <td><a href="/admin/auditoriums/${item.number}">${item.number}</a></td>
-                        <td>${item.assistantName}</td>
+                        <td width="200px"><a href="/admin/auditoriums/${item.number}">${item.number}</a></td>
+                        <td width="230px">${item.assistantName}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
+            <center><a data-toggle="modal" data-target="#addAuditorium" class="btn btn-primary button-style" ><spring:message
+                    code="admin.addAuditorium"/></a></center>
         </div>
-        <center><a data-toggle="modal" data-target="#addAuditorium" class="btn btn-primary button-style" ><spring:message
-                code="admin.addAuditorium"/></a></center>
     </div>
-
     <div class="footer">
         <div class="thick"></div>
         <div class="thin"></div>
@@ -100,7 +97,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 </body>
