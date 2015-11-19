@@ -69,7 +69,7 @@
                         '   <td>' + order.workplace_access_num + "</td>" +
                         '   <td>' + order.status + "</td>" +
                         '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                        '   <td>' + '<form action="${pageContext.request.contextPath}/assist/mark_done/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                        '   <td>' + '<form action="${pageContext.request.contextPath}/assist/mark_done/' + order.id + '"><button  type="submit"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button></form>' + "</td>" +
                         "</tr>";
                     } else {
                         trHTML += "<tr><td>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
@@ -77,7 +77,7 @@
                         '   <td>' + order.workplace_access_num + "</td>" +
                         '   <td>' + order.status + "</td>" +
                         '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                        '   <td>' + " " + "</td>" +
+                                '   <td>' + '<form action="${pageContext.request.contextPath}/assist/mark_done/' + order.id + '"><button  type="submit"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></button></form>' + "</td>" +
                        "</tr>";
                     }
                 });
@@ -144,6 +144,7 @@
                     <th><spring:message code="assist.orders.workplace"/></th>
                     <th><spring:message code="admin.orders.status"/></th>
                     <th><spring:message code="admin.orders.date"/></th>
+                    <th><spring:message code="assist.orders.changeStatus"/></th>
                 </tr>
                 </thead>
             </table>

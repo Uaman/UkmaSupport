@@ -20,7 +20,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import com.ukmaSupport.dao.interfaces.OrderDao;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
@@ -34,9 +33,6 @@ public class AssistController {
 
     @Autowired
     private OrderService orderService;
-
-    @Autowired
-    private OrderDao orderDao;
 
     @Autowired
     private WorkplaceService workplaceService;
@@ -87,7 +83,7 @@ public class AssistController {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
         int userId = (Integer) session.getAttribute("id");
-        System.out.println(userId);
+        //System.out.println(userId);
         return orderService.getByUserId(userId);
     }
 
@@ -161,7 +157,12 @@ public class AssistController {
     @RequestMapping(value = "/assist/mark_done/{id}", method = RequestMethod.GET)
     public String setToDone(@PathVariable("id") Integer id, Model model) {
         Order order = orderService.getById(id);
-        order.setStatus(DONE);
+        System.out.println(order.getStatus());
+        if(order.getStatus().equals(DONE)) {
+            order.setStatus(UNDONE);
+        }else {
+            order.setStatus(DONE);
+        }
         orderService.createOrUpdate(order);
         return "redirect:/assist/home";
     }
@@ -190,7 +191,6 @@ public class AssistController {
         model.addAttribute("id", order.getId());
         model.addAttribute("editOrder", order);
 
-        // System.out.println("aud"+  model.addAttribute("auditorium",order.getAuditorium()));
         return "assistPage/assistEditOrder";
     }
 
