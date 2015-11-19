@@ -48,8 +48,6 @@ public class AdminController {
     private final static String PROFESSOR = "PROFESSOR";
 
     private final static String BLOCKED = "blocked";
-    private final static String DONE = "done";
-    private final static String UNDONE = "Undone";
 
     @RequestMapping(value = "/admin/allUsers", method = RequestMethod.GET)
     public String showAllUsers(Model model) {
@@ -106,14 +104,13 @@ public class AdminController {
         model.addAttribute("name", name);
         List<Auditorium> auditoriums = auditoriumService.getAll();
 
-        for(Auditorium auditorium:auditoriums){
-            if(auditorium.getNumber().equals(name)){
+        for (Auditorium auditorium : auditoriums) {
+            if (auditorium.getNumber().equals(name)) {
                 List<Workplace> workplaces = workplaceService.getByAuditoryName(name);
                 model.addAttribute("workplaces", workplaces);
                 return "adminPage/workplaces";
             }
         }
-
         return "/404";
     }
 
@@ -126,16 +123,16 @@ public class AdminController {
         return "adminPage/addAuditorium";
     }
 
-    @RequestMapping(value = "/admin/createAuditorium", method = RequestMethod.POST)
-    public String saveAuditorium(@ModelAttribute("newAuditorium") Auditorium auditorium, ModelMap model,BindingResult bindingResult) {
-        model.addAttribute("number", auditorium.getNumber());
-        audiroriumValidator.validate(auditorium,bindingResult);
-        if(bindingResult.hasErrors())
-            return "adminPage/addAuditorium";
-
-        auditoriumService.save(auditorium);
-        return "redirect:/auditoriums";
-    }
+//    @RequestMapping(value = "/admin/createAuditorium", method = RequestMethod.POST)
+//    public String saveAuditorium(@ModelAttribute("newAuditorium") Auditorium auditorium, ModelMap model, BindingResult bindingResult) {
+//        model.addAttribute("number", auditorium.getNumber());
+//        audiroriumValidator.validate(auditorium, bindingResult);
+//        if (bindingResult.hasErrors())
+//            return "adminPage/addAuditorium";
+//
+//        auditoriumService.save(auditorium);
+//        return "redirect:/auditoriums";
+//    }
 
     @RequestMapping(value = "/admin/downloadExcel", method = RequestMethod.GET)
     public String downloadExcel(Model model) {
