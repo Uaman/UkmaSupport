@@ -69,6 +69,8 @@
             </tbody>
         </table>
     </div>
+    <center><a data-toggle="modal" data-target="#addWorkplace" class="btn btn-primary button-style" ><spring:message
+            code="admin.workplaces.addWorkplace"/></a></center>
 
     <div class="footer">
         <div class="thick"></div>
@@ -78,6 +80,23 @@
         <div class="text-center">
             <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
             <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
+        </div>
+
+        <div class="modal fade" id="addWorkplace" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width:300px;" >
+                <div class="modal-content" >
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <center><h4 class="modal-title" id="myModalLabel">Add workplace</h4></center>
+                    </div>
+                    <div class="modal-body">
+                        <center><input type="email" class="form-control form-style form-auditorium" placeholder="" style="text-align: center;"></center>
+                    </div>
+                    <div class="modal-footer">
+                        <center>  <button type="button" class="btn btn-default" data-dismiss="modal">Add workplace</button></center>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
