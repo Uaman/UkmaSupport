@@ -447,4 +447,41 @@ a img {
 	margin: 0 auto;
 	width: 430px;
 }
+#order-inf {
+	padding-top: 100px;
+	padding-left: 15px;
+}
+.body-text {
+	color: #333366;
+	font-family: "Century Gothic", sans-serif;
+	font-size: 18px;
+}
+#comments {
+	height: 240px;
+	overflow: auto;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	border-radius: 7px;
+}
+.txt-area {
+	border-color: #333366;
+	border-radius: 7px;
+	padding: 10px;
+	resize: none;
+}
+#btn-add-comment {
+	width: 125px;
+	background-color: #333366;
+	border-radius: 7px;
+}
+#add-comment {
+	margin-bottom: 60px;
+}
+.comment {
+	background-color: #bce8f1;
+	border-radius: 7px;
+	padding: 7px;
+	margin-bottom: 7px;
+	word-wrap: break-word;
+}
 

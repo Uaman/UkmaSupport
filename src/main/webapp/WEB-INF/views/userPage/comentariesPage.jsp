@@ -35,29 +35,43 @@
         </div>
     </nav>
 
-    <div class="col-md-offset-4 col-md-8 vertalign bottom-block">
-        <form:form class="form-horizontal">
-            <div class="form-group">
-                <div class="col-md-6">
-                    <textarea class="col-md-12" rows="3" id="content" name="content" path="content"
-                              placeholder="Text"/></textarea>
-                </div>
-                <div id="content-error"><form:errors path="content" class="" id="content.errors"
-                                                     cssStyle="color: #ff0000;"/></div>
-            </div>
-            <br>
-            <br> <br> <br> <br>
-
-            <div class="form-group">
-                <div class="col-md-6">
-                    <button id="btn-create-order" type="submit" class="btn-info">Add comment</button>
-                </div>
-            </div>
-
-        </form:form>
+    <div id="order-inf">
+        <p class="body-text" id="order-title">Title:</p>
+        <p class="body-text" id="order-auditorium">Auditorium:</p>
+        <p class="body-text" id="order-workplace">Workplace:</p>
+        <p class="body-text" id="order-date">Date:</p>
     </div>
-</div>
+    <div id="comments" class="col-md-offset-2 col-md-8">
+        <p class="comment body-text">comment#1: dfsdfjsdfsdfs</p>
+        <p class="comment body-text">comment#2: dfsdfjsasdfasdfsFdfsdfs</p>
+        <p class="comment body-text">comment#3: dfsdfjsdfsDSfSDfSFDdfs</p>
+        <p class="comment body-text">comment#4: dfsdfjsdfasdfasfdafsdfs</p>
+        <p class="comment body-text">comment#5: dfsdfjsSDFSDfSDFSDFSVxzcgstuhjtydjfyumfgmfgymgfSADASDASDASDcASCACASCdfsdfs</p>
+        <p class="comment body-text">comment#6: dfsdfjsASCACASCACSdfsdfs</p>
+        <p class="comment body-text">comment#7: dfsdfjsCzASCcSACASCdfsdfs</p>
+        <p class="comment body-text">comment#8: dfsdfjsASCASCASDcasjef;oiaj;foasjkf;doiawckpawecffawedfsdfs</p>
+        <p class="comment body-text">comment#9: dfsdfsdcSdfkjaso;efj;oaefaefjsdfsdfs</p>
+        <p class="comment body-text">comment#10: dfsdfjSDfake;AJ;DJ;aCSM;mksc;cssdfsdfs</p>
+        <p class="comment body-text">comment#11: dfsdCAPWECKPACMKPAC,PCfjsdfsdfs</p>
+        <p class="comment body-text">comment#12: dfsdfjCEWCJA[CE[CK[ACEECsdfsdfs</p>
+        <p class="comment body-text">comment#13: dfsdfjsCEAckjaPECJPaecCEdfsdfs</p>
+        <p class="comment body-text">comment#14: dfsdfCeck['CM[Aecjsdfsdfs</p>
+    </div>
+    <div id="add-comment" class="col-md-offset-2 col-md-8">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <textarea class="col-md-12 txt-area" rows="4" placeholder="write comment"></textarea>
+                </div>
+            </div>
 
+            <div class="form-group">
+                <div class="col-md-offset-9">
+                    <button id="btn-add-comment" type="submit" class="btn btn-primary btn-block">Add comment</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
 <div class="footer">
     <div class="thick"></div>
@@ -70,6 +84,7 @@
     </div>
 </div>
 
+</div>
 
 </body>
 </html>
