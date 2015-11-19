@@ -23,6 +23,8 @@ public class ForgotPasswordController {
     @Autowired
     private UserService userService;
 
+    private static final String PASSWORD_PATTERN = "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$";
+
     @Autowired
     private ForgotPasswordMail forgotPasswordMail;
 
@@ -78,13 +80,15 @@ public class ForgotPasswordController {
         else if(!newPassword.equals(newPasswordConfirm)){
             model.addAttribute("notEqual", "Passwords are not equal");
         }
+        else if(!newPassword.matches(PASSWORD_PATTERN)) {
+            model.addAttribute("incorect", "incorect");
+        }
         else{
 
             User user = userService.getById(id);
             user.setPassword(PasswordEncryptor.encode(newPassword));
 
             userService.saveOrUpdate(user);
-            //model.addAttribute("success", "Success!");
             return "registration/changePasswordSuccess";
         }
 
