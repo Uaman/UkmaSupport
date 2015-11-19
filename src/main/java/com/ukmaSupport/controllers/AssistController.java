@@ -215,7 +215,7 @@ public class AssistController {
     @RequestMapping(value = "/assist/delete_order/{id}", method = RequestMethod.GET)
     public String deleteOrderById(Model model, @PathVariable("id") int id) {
         orderService.delete(id);
-        return "redirect:/assist/home";
+        return "redirect:/assist/created_orders";
     }
 
     @RequestMapping(value = "/assist/edit_order/{id}", method = RequestMethod.GET)
@@ -223,13 +223,12 @@ public class AssistController {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
         int userId = (Integer) session.getAttribute("id");
-        Order order = orderService.getById(id);
-        List<Order> orderList = orderService.getByUserId(userId);
-        for (Order order1 : orderList) {
-            if (order1.getId() != id) {
+        Order order = orderService.getByUserIdAndId(userId, id);
+
+            if (order == null) {
                 return "redirect:/assist/created_orders";
             }
-        }
+
         model.addAttribute("title", order.getTitle());
         model.addAttribute("workplace", order.getWorkplace());
         model.addAttribute("auditorium", order.getAuditorium());

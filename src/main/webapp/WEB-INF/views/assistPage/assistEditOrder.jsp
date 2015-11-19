@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <title>createOrder</title>
+    <title>Edit Order</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="../../../resources/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
@@ -18,26 +18,39 @@
 <body>
 
 <div id="wrap">
+    <div id="assistContent">
+        <nav id="header">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="/assist/home"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                </div>
 
-    <nav id="header">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a href="/"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle menu-element" data-toggle="dropdown"
+                               href="#"><spring:message code="assist.menu.Orders"/><b
+                                    class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li class="drop-menu-element"><a class="menu-element-li"
+                                                                 href="/assist/home">
+                                    <spring:message code="assist.menu.Assigned"/></a></li>
+                                <li class="drop-menu-element"><a class="menu-element-li"
+                                                                 href="/assist/created_orders">
+                                    <spring:message code="assist.menu.Created"/></a></li>
+                            </ul>
+                        </li>
+                        <li><a id="editAssistProfile" class="menu-element" href="/assist/edit_profile">
+                            <spring:message code="assist.menu.Profile"/></a></li>
+                        <li><a class="menu-element" href="/logout"><spring:message code="assist.menu.LogOut"/></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a class="menu-element" href="/user/userhome"> <spring:message
-                            code="admin.orders"/></a></li>
-                    <li><a id="editProfile" class="menu-element" href="/user/editProfile"><spring:message
-                            code="admin.edit"/></a></li>
-                    <li><a class="menu-element" href="/logout"><spring:message code="admin.logout"/></a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+        </nav>
 
     <div class="col-md-offset-4 col-md-8 vertalign bottom-block">
-        <form:form class="form-horizontal" id="edit" action='/user${pageContext.request.contextPath}/editOrder/save'
+        <form:form class="form-horizontal" id="edit" action='/assist${pageContext.request.contextPath}/edit_order/save'
                    method="post" commandName="editOrder">
             <div class="form-group">
                 <div class="col-md-6" display="inline-block">
@@ -70,7 +83,7 @@
             <div class="form-group">
                 <div class="col-md-6">
                     <textarea class="col-md-12" rows="5" id="content" name="content" path="content"
-                            >${content}</textarea>
+                    >${content}</textarea>
                 </div>
                 <div class="error" id="content-error"><form:errors path="content" class="" id="content.errors"/></div>
             </div>
@@ -95,6 +108,7 @@
             <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
             <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
         </div>
+    </div>
     </div>
 </div>
 </body>
