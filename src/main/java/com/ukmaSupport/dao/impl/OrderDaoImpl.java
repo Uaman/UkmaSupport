@@ -19,14 +19,15 @@ public class OrderDaoImpl implements OrderDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+    private static final String GET_ALL_ORDERS = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id";
 
-    private static final String GET_ALL_ORDERS = "SELECT orders.id,orders.workplace_id, orders.user_id, orders.assistant_id,workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id";
+//    private static final String GET_ALL_ORDERS = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id";
 
     private static final String GET_ALL_ORDERS_BY_USER_ID = "SELECT orders.id,orders.workplace_id, orders.user_id, orders.assistant_id,auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id  WHERE user_id=?";
 
     private static final String GET_ALL_ORDERS_BY_USER_ID_AND_ID = "SELECT orders.id,orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id,workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE orders.id=? AND orders.user_id=?";
 
-    private static final String GET_ALL_ORDERS_BY_USER_ID_STATUS ="SELECT orders.id, orders.user_id, orders.assistant_id,workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE user_id=? AND status=?";
+    private static final String GET_ALL_ORDERS_BY_USER_ID_STATUS = "SELECT orders.id, orders.user_id, orders.assistant_id,workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE user_id=? AND status=?";
 
     private static final String GET_ORDER_BY_ID = "SELECT orders.id, orders.user_id, orders.assistant_id,workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE orders.id=?";
 
@@ -60,13 +61,14 @@ public class OrderDaoImpl implements OrderDao {
         return jdbcTemplate.query(GET_ALL_ORDERS_BY_USER_ID, new Object[]{user_id}, rowMapper);
     }
 
-    public Order getByUserIdAndId(int user_id,int id) {
-        List<Order> orders = jdbcTemplate.query(GET_ALL_ORDERS_BY_USER_ID_AND_ID, new Object[]{id,user_id}, rowMapper);
+    public Order getByUserIdAndId(int user_id, int id) {
+        List<Order> orders = jdbcTemplate.query(GET_ALL_ORDERS_BY_USER_ID_AND_ID, new Object[]{id, user_id}, rowMapper);
         return orders.isEmpty() ? null : orders.get(0);
     }
+
     @Override
-    public List<Order> getUserStatus(int user_id,String status) {
-        return jdbcTemplate.query(GET_ALL_ORDERS_BY_USER_ID_STATUS, new Object[]{user_id,status}, rowMapper);
+    public List<Order> getUserStatus(int user_id, String status) {
+        return jdbcTemplate.query(GET_ALL_ORDERS_BY_USER_ID_STATUS, new Object[]{user_id, status}, rowMapper);
     }
 
     @Override
@@ -93,10 +95,12 @@ public class OrderDaoImpl implements OrderDao {
             }
         });
     }
+
     @Override
     public void update(Order order) {
-        jdbcTemplate.update(UPDATE,order.getTitle(),order.getContent(),order.getCreatedAt(),order.getId());
+        jdbcTemplate.update(UPDATE, order.getTitle(), order.getContent(), order.getCreatedAt(), order.getId());
     }
+
     @Override
     public void delete(int id) {
         jdbcTemplate.update(DELETE_ORDER, id);
@@ -127,7 +131,7 @@ public class OrderDaoImpl implements OrderDao {
             order.setAssistantId(rs.getInt("assistant_id"));
             order.setWorkplace_id(rs.getInt("workplace_id"));
             order.setWorkplace_access_num(rs.getString("access_num"));
-            order.setAuditorium(rs.getString("auditorium_id"));
+            order.setAuditorium(rs.getString("number"));
             order.setAuditoriumId(rs.getInt("auditorium_id"));
             order.setTitle(rs.getString("title"));
             order.setContent(rs.getString("content"));
