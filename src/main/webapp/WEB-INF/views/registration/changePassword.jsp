@@ -61,6 +61,9 @@
           <c:if test="${not empty notEqual}">
             <spring:message code="changePassword.error.notEqual"/>
           </c:if>
+          <c:if test="${not empty incorect}">
+            <spring:message code="changePassword.error.incorrect"/>
+          </c:if>
         </div>
       </div>
 

@@ -140,7 +140,12 @@ public class AdminController {
         model.addAttribute("listUsers", listUsers);
         return "excelView";
     }
-
+    @RequestMapping(headers = "Content-Type=application/json",value = "/admin/changeRole", method = RequestMethod.POST)
+    public @ResponseBody
+    void getRole(@RequestParam("role") String role) {
+        System.out.print("QQWEWQ");
+        System.out.println("ROLE: " + role);
+    }
     @RequestMapping(value = "/admin/editProfile", method = RequestMethod.GET)
     public String editProfile(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

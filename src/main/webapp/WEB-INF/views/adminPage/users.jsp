@@ -11,27 +11,35 @@
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
-    <script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-resource.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#test").click(function (e) {
+                var data='role'+$('input:radio[name=role]:checked').val()
+                var role =$('input:radio[name=role]:checked').val();
+                alert(role);
+                $.ajax({
+                    url: "/admin/changeRole",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: JSON.stringify("{\"role\":\"+admin\"}"),
+                    contentType: 'application/json',
+                    mimeType: 'application/json',
+                    success: function(data) {
+                        alert(data.role);
+                    },
+                    error:function(data,status,er) {
+                        alert("error: "+data+" status: "+status+" er:"+er);
+                    }
+                });
+            });
+        });
 
-    function changeStatus() {
-    $("#myModalStatus").validate({
-    submitHandler: function (form) {
-    $(form).ajax({
-    type: "POST",
-    url: tgtUrl,
-    data: formdata,
-    success: function() {
-    alert("success");
-    },
-    error: function(e) {
-   // **//NOT INVOKED**
-    alert("Error"+e);
-    }
-    });
-    }
-    });
-    }
+
     </script>
+
+
+
 </head>
 
 <body>
@@ -115,13 +123,13 @@
                 <center><h4 class="modal-title" id="myModalLabel">Edit Role</h4></center>
             </div>
             <div class="modal-body">
-                <input type="radio" name="browser" value="ie"> Assistant<Br>
-                <input type="radio" name="browser" value="opera"> User<Br>
-                <input type="radio" name="browser" value="opera"> Admin<Br>
-                <input type="radio" name="browser" value="firefox"> Professor<Br>
+                <input type="radio" name="role" value="Assistant"> Assistant<Br>
+                <input type="radio" name="role" value="User"> User<Br>
+                <input type="radio" name="role" value="Admin"> Admin<Br>
+                <input type="radio" name="role" value="Professor"> Professor<Br>
             </div>
             <div class="modal-footer">
-                <center>  <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button></center>
+                <center>  <button type="button" id="test" type="submit"  onclick="changeRole()" class="btn btn-default" data-dismiss="modal">Ok</button></center>
             </div>
         </div>
     </div>

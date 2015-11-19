@@ -113,7 +113,7 @@ public class AssistController {
         return orderService.getByAssistAndStatus(assistId, UNDONE);
     }
 
-    @RequestMapping(value = "/assist/get_created_compl", method = RequestMethod.GET)
+    @RequestMapping(value = "assist/assist/get_created_compl", method = RequestMethod.GET)
     public
     @ResponseBody
     List<Order> getAssistUserComplOrders() {
@@ -205,7 +205,7 @@ public class AssistController {
      * ***************************************************************************
      */
     @RequestMapping(value = "/assist/mark_done/{id}", method = RequestMethod.GET)
-    public String setToDone(@RequestParam("orderid") Integer id, Model model) {
+    public String setToDone(@PathVariable("id") Integer id, Model model) {
         Order order = orderService.getById(id);
         order.setStatus(DONE);
         orderService.createOrUpdate(order);
@@ -213,7 +213,7 @@ public class AssistController {
     }
 
     @RequestMapping(value = "/assist/delete_order/{id}", method = RequestMethod.GET)
-    public String deleteOrderById(Model model, @PathVariable("id") int id) {
+    public String deleteOrderById(Model model, @PathVariable("id") Integer id) {
         orderService.delete(id);
         return "redirect:/assist/created_orders";
     }
