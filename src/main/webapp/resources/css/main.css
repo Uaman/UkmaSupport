@@ -401,3 +401,8 @@ a img {
 	color: #ff0000;
 	padding-left: 15px;
 }
+
+.table-auditorium{
+	margin: 0 auto;
+	width: 430px;
+}
