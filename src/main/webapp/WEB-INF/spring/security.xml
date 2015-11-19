@@ -45,11 +45,13 @@
                 logout-url="/logout"
                 />
 
+
+
         <!--login-page="/login"-->
         <!--username-parameter="email"-->
         <!--password-parameter="password"-->
         <!--<csrf/>-->
-        <!--<csrf disabled="true"/>-->
+        <csrf disabled="true"/>
 
         <intercept-url pattern="/" access="permitAll"/>
         <intercept-url pattern="/assist/**" access="hasRole('ROLE_ASSISTANT')"/>

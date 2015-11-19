@@ -5,6 +5,7 @@
 <html>
 <head>
     <title></title>
+    <sec:csrfMetaTags/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="../../../resources/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
@@ -41,6 +42,8 @@
         <p class="body-text" id="order-workplace">Workplace:</p>
         <p class="body-text" id="order-date">Date:</p>
     </div>
+    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+
     <div id="comments" class="col-md-offset-2 col-md-8">
         <c:forEach var="comment" items="${allCommentaries}" varStatus="count" >
             <p class="comment body-text">comment#${count}: By ${comment.author.firstName} ROLE ${comment.author.role} TIME ${comment.time} CONTENT ${comment.content} </p>
@@ -61,12 +64,11 @@
         <%--<p class="comment body-text">comment#13: dfsdfjsCEAckjaPECJPaecCEdfsdfs</p>--%>
         <%--<p class="comment body-text">comment#14: dfsdfCeck['CM[Aecjsdfsdfs</p>--%>
     </div>
-    <form:form a>
     <div id="add-comment" class="col-md-offset-2 col-md-8">
-        <form class="form-horizontal">
+        <<form:form class="form-horizontal" action="/addComment/${id}" method="post" commandName="comment">
             <div class="form-group">
                 <div class="col-md-12">
-                    <textarea class="col-md-12 txt-area" rows="4" placeholder="write comment"></textarea>
+                    <textarea id="content" path="comment.content"  class="col-md-12 txt-area" rows="4" placeholder="write comment"></textarea>
                 </div>
             </div>
 
@@ -75,9 +77,8 @@
                     <button id="btn-add-comment" type="submit" class="btn btn-primary btn-block">Add comment</button>
                 </div>
             </div>
-        </form>
+        </form:form>
     </div>
-    </form:form>
 
 <div class="footer">
     <div class="thick"></div>
