@@ -370,7 +370,7 @@ a img {
 
 #assistContent {
     height: 750px;
-    padding-bottom: 50px;
+	padding-bottom: 70px;
 }
 
 #assist_create_order_button {
@@ -545,6 +545,7 @@ tbody.scrollContent {
 }
 
 .regAssistErrors {
+	margin-top: 8px;
 	color: #ff0000;
 	width: 200px;
 	position: absolute;
