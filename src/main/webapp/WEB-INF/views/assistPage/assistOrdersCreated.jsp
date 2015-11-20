@@ -134,6 +134,13 @@
         <p id="helloAssist2" class="top-block"><spring:message code="assist.hello"/></p>
     </div>
 
+        <div>
+            <form class="form-horizontal" method="get" action="/assist/create_order">
+                <button id="assist_add_order_button" class="btn btn-primary btn-block">
+                    <spring:message code="assist.AddOrder"/></button>
+            </form>
+        </div>
+
     <div class="table-align">
         <table id="records_table" class="tbl table table-striped table-hover ">
             <thead>
@@ -148,12 +155,6 @@
         </table>
     </div>
 
-    <div>
-        <form class="form-horizontal" method="get" action="/assist/create_order">
-            <button id="assist_add_order_button" class="btn btn-primary btn-block">
-                <spring:message code="assist.AddOrder"/></button>
-        </form>
-    </div>
 
     </div>
 
