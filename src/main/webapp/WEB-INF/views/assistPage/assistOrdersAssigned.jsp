@@ -21,6 +21,7 @@
             function pad(value) {
                 return (value.toString().length < 2) ? '0' + value : value;
             }
+
             return fmt.replace(/%([a-zA-Z])/g, function (_, fmtCode) {
                 switch (fmtCode) {
                     case 'Y':
@@ -63,23 +64,12 @@
                 });
                 var trHTML = '';
                 $.each(response, function (i, order) {
-                    if (order.status == "Undone") {
-                        trHTML += "<tr><td>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
-                        '   <td>' + order.auditorium + "</td>" +
-                        '   <td>' + order.workplace_access_num + "</td>" +
-                        '   <td>' + order.status + "</td>" +
-                        '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                        '   <td>' + '<form action="${pageContext.request.contextPath}/assist/mark_done/' + order.id + '"><button  type="submit"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button></form>' + "</td>" +
-                        "</tr>";
-                    } else {
-                        trHTML += "<tr><td>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
-                        '   <td>' + order.auditorium + "</td>" +
-                        '   <td>' + order.workplace_access_num + "</td>" +
-                        '   <td>' + order.status + "</td>" +
-                        '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                                '   <td>' + '<form action="${pageContext.request.contextPath}/assist/mark_done/' + order.id + '"><button  type="submit"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></button></form>' + "</td>" +
-                       "</tr>";
-                    }
+                    trHTML += "<tr><td>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
+                    '   <td>' + order.auditorium + "</td>" +
+                    '   <td>' + order.workplace_access_num + "</td>" +
+                    '   <td>' + '<a href="${pageContext.request.contextPath}/assist/mark_done/' + order.id + '">'  + order.status + '<a>'+ "</td>" +
+                    '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
+                    "</tr>";
                 });
                 $('#records_table tbody').empty();
                 $('#records_table').append(trHTML);
@@ -92,48 +82,48 @@
 <div id="wrap">
     <div id="assistContent">
 
-    <nav id="header">
+        <nav id="header">
 
-        <div class="container-fluid">
+            <div class="container-fluid">
 
-            <div class="navbar-header">
-                <a href="/assist/home"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                <div class="navbar-header">
+                    <a href="/assist/home"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                </div>
+
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#">
+                                <spring:message code="assist.menu.Orders"/><b
+                                    class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li class="drop-menu-element"><a class="menu-element-li"
+                                                                 href="/assist/home">
+                                    <spring:message code="assist.menu.Assigned"/></a></li>
+                                <li class="drop-menu-element"><a class="menu-element-li"
+                                                                 href="/assist/created_orders">
+                                    <spring:message code="assist.menu.Created"/></a></li>
+                            </ul>
+                        </li>
+
+                        <li><a id="editAssistProfile" class="menu-element" href="/assist/edit_profile">
+                            <spring:message code="assist.menu.Profile"/></a></li>
+
+                        <li><a class="menu-element" href="/logout"><spring:message code="assist.menu.LogOut"/></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
+        </nav>
 
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#">
-                            <spring:message code="assist.menu.Orders"/><b
-                                class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/assist/home">
-                                <spring:message code="assist.menu.Assigned"/></a></li>
-                            <li class="drop-menu-element"><a class="menu-element-li"
-                                                             href="/assist/created_orders">
-                                <spring:message code="assist.menu.Created"/></a></li>
-                        </ul>
-                    </li>
-
-                    <li><a id="editAssistProfile" class="menu-element" href="/assist/edit_profile">
-                        <spring:message code="assist.menu.Profile"/></a></li>
-
-                    <li><a class="menu-element" href="/logout"><spring:message code="assist.menu.LogOut"/></a>
-                    </li>
-                </ul>
-            </div>
+        <div id="local">
+            <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
+            <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
         </div>
-    </nav>
 
-    <div id="local">
-        <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
-        <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
-    </div>
-
-    <div>
-        <p id="helloAssist"><spring:message code="assist.hello"/></p>
-    </div>
+        <div>
+            <p id="helloAssist"><spring:message code="assist.hello"/></p>
+        </div>
 
         <div class="table-align">
             <table id="records_table" class="tbl table table-striped table-hover ">
@@ -144,7 +134,6 @@
                     <th><spring:message code="assist.orders.workplace"/></th>
                     <th><spring:message code="admin.orders.status"/></th>
                     <th><spring:message code="admin.orders.date"/></th>
-                    <th><spring:message code="assist.orders.changeStatus"/></th>
                 </tr>
                 </thead>
             </table>
