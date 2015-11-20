@@ -118,10 +118,21 @@ public String setToDone(@PathVariable("id") Integer id, Model model) {
     }
 
     @RequestMapping(value = "/admin/auditoriums", method = RequestMethod.GET)
-    public String showAuditoriums(Model model) {
-        List<Auditorium> auditoriums = auditoriumService.getAll();
-        model.addAttribute("auditoriums", auditoriums);
+    public String allAuditoriums(Model model) {
         return "adminPage/auditoriums";
+    }
+
+    @RequestMapping(value = "/admin/getAuditoriums", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Auditorium> getAuditoriums() {
+        return auditoriumService.getAll();
+    }
+
+    @RequestMapping(value = "/admin/auditoriums/delete/{id}", method = RequestMethod.GET)
+    public String deleteOrderById(Model model, @PathVariable("id") int id) {
+        auditoriumService.delete(id);
+        return "redirect:/admin/auditoriums";
     }
 
     @RequestMapping(value = "/admin/auditoriums/{name}", method = RequestMethod.GET)
