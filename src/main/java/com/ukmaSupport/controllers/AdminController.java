@@ -141,18 +141,16 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/auditoriums/{name}", method = RequestMethod.GET)
     public String showWorkplaces(@PathVariable("name") String name, Model model) {
-
         model.addAttribute("name", name);
-        List<Auditorium> auditoriums = auditoriumService.getAll();
+        return "adminPage/workplaces";
+    }
 
-        for (Auditorium auditorium : auditoriums) {
-            if (auditorium.getNumber().equals(name)) {
-                List<Workplace> workplaces = workplaceService.getByAuditoryName(name);
-                model.addAttribute("workplaces", workplaces);
-                return "adminPage/workplaces";
-            }
-        }
-        return "/404";
+    @RequestMapping(value = "/admin/auditoriums/{name}/getWorkplaces", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Workplace> getWorkplaces(@PathVariable("name") String name, Model model) {
+        model.addAttribute("name", name);
+        return workplaceService.getByAuditoryName(name);
     }
 
 //    @RequestMapping(value = "/admin/createAuditorium", method = RequestMethod.GET)

@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <head>
@@ -10,6 +11,41 @@
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
+    <script src="../../../resources/js/tsort.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $("#records_table").tablesort();
+        });
+        jQuery(function ($) {
+            $('tbody tr[data-href]').addClass('clickable').click(function () {
+                window.location = $(this).attr('data-href');
+            });
+        });
+
+        $.ajax({
+            url: '/admin/auditoriums/${name}/getWorkplaces',
+            type: 'GET',
+            success: function (response) {
+                var sorted = response.sort(function (a, b) {
+                    if (a.status < b.status) {
+                        return 1;
+                    }
+                    if (a.status > b.status) {
+                        return -1;
+                    }
+                    return 0;
+                });
+                var trHTML = '';
+                $.each(sorted, function (i, workplace) {
+                    trHTML += "<tr>" +
+                    '<td>' + workplace.accessNumber + "</td>" +"</tr>";
+                });
+                $('#records_table tbody').empty();
+                $('#records_table').append(trHTML);
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -54,24 +90,16 @@
 
 
     <div class="table-align bottom-block top-table">
-        <table class="tbl table table_auditorium table-striped">
+        <table id="records_table" class="tbl table table_auditorium table-striped">
             <thead>
             <tr>
                 <th><spring:message code="admin.workplaces.workplace"/></th>
             </tr>
             </thead>
-            <tbody>
-            <c:forEach items="${workplaces}" var="item" varStatus="count">
-                <tr data-href="#">
-                    <td>${item.accessNumber}</td>
-                </tr>
-            </c:forEach>
-            </tbody>
         </table>
     </div>
-    <center><a data-toggle="modal" data-target="#addWorkplace" class="btn btn-primary button-style" ><spring:message
+    <center><a data-toggle="modal" data-target="#addWorkplace" class="btn btn-primary button-style"><spring:message
             code="admin.workplaces.addWorkplace"/></a></center>
-
     <div class="footer">
         <div class="thick"></div>
         <div class="thin"></div>
@@ -82,18 +110,22 @@
             <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
         </div>
 
-        <div class="modal fade" id="addWorkplace" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" style="width:300px;" >
-                <div class="modal-content" >
+        <div class="modal fade" id="addWorkplace" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" style="width:300px;">
+                <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <center><h4 class="modal-title" id="myModalLabel">Add workplace</h4></center>
                     </div>
                     <div class="modal-body">
-                        <center><input type="email" class="form-control form-style form-auditorium" placeholder="" style="text-align: center;"></center>
+                        <center><input type="email" class="form-control form-style form-auditorium" placeholder=""
+                                       style="text-align: center;"></center>
                     </div>
                     <div class="modal-footer">
-                        <center>  <button type="button" class="btn btn-default" data-dismiss="modal">Add workplace</button></center>
+                        <center>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Add workplace</button>
+                        </center>
                     </div>
                 </div>
             </div>
