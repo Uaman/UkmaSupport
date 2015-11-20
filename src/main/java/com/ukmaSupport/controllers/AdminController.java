@@ -153,6 +153,12 @@ public class AdminController {
         return workplaceService.getByAuditoryName(name);
     }
 
+    @RequestMapping(value = "/admin/auditoriums/{name}/workplaces/delete/{id}", method = RequestMethod.GET)
+    public String deleteWorkplaceById(@PathVariable("name") String name, @PathVariable("id") int id) {
+        workplaceService.delete(id);
+        return "redirect:/admin/auditoriums/" + name;
+    }
+
 //    @RequestMapping(value = "/admin/createAuditorium", method = RequestMethod.GET)
 //    public String createAuditorium(ModelMap model) {
 //        Auditorium order = new Auditorium();

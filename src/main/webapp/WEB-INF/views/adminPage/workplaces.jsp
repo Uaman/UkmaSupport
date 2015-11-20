@@ -39,7 +39,9 @@
                 var trHTML = '';
                 $.each(sorted, function (i, workplace) {
                     trHTML += "<tr>" +
-                    '<td>' + workplace.accessNumber + "</td>" +"</tr>";
+                    '<td>' + workplace.accessNumber + "</td>" +
+                    "<td>" + '<form action="/admin/auditoriums/${name}/workplaces/delete/' + workplace.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
+                    "</tr>";
                 });
                 $('#records_table tbody').empty();
                 $('#records_table').append(trHTML);
@@ -94,6 +96,7 @@
             <thead>
             <tr>
                 <th><spring:message code="admin.workplaces.workplace"/></th>
+                <th><spring:message code="admin.auditoriums.delete"/></th>
             </tr>
             </thead>
         </table>
