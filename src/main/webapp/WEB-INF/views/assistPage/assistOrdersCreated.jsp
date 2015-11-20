@@ -131,7 +131,7 @@
     </div>
 
     <div>
-        <p id="helloAssist" class="top-block"><spring:message code="assist.hello"/>!</p>
+        <p id="helloAssist2" class="top-block"><spring:message code="assist.hello"/></p>
     </div>
 
     <div class="table-align">

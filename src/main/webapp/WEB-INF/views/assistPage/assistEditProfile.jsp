@@ -74,7 +74,7 @@
                                     class="form-control form-style" READONLY="true"/>
                     </div>
                     <div class="col-md-offset-9">
-                        <form:errors path="firstName" class="regErrors" id="firstName.errors"
+                        <form:errors path="firstName" class="regAssistErrors" id="firstName.errors"
                                      cssStyle="color: #ff0000;"/>
                     </div>
                 </div>
@@ -87,7 +87,8 @@
                                     class="form-control form-style" READONLY="true"/>
                     </div>
                     <div class="col-md-offset-9">
-                        <form:errors path="lastName" class="regErrors" id="lastName.errors" cssStyle="color: #ff0000;"/>
+                        <form:errors path="lastName" class="regAssistErrors" id="lastName.errors"
+                                     cssStyle="color: #ff0000;"/>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -99,7 +100,7 @@
                                     class="form-control form-style" READONLY="true"/>
                     </div>
                     <div class="col-md-offset-9">
-                        <form:errors path="email" class="regErrors" id="email.errors"
+                        <form:errors path="email" class="regAssistErrors" id="email.errors"
                                      cssStyle="color: #ff0000;"/>
                     </div>
                 </div>
@@ -112,7 +113,7 @@
                                     class="form-control form-style"/>
                     </div>
                     <div class="col-md-offset-9">
-                        <form:errors path="oldPassword" class="regErrors" id="oldPassword.errors"
+                        <form:errors path="oldPassword" class="regAssistErrors" id="oldPassword.errors"
                                      cssStyle="color: #ff0000;"/>
                     </div>
                 </div>
@@ -125,7 +126,7 @@
                                     class="form-control form-style"/>
                     </div>
                     <div class="col-md-offset-9">
-                        <form:errors path="password" class="regErrors" id="password.errors"
+                        <form:errors path="password" class="regAssistErrors" id="password.errors"
                                      cssStyle="color: #ff0000;"/>
                     </div>
                 </div>
@@ -138,7 +139,7 @@
                                     class="form-control form-style"/>
                     </div>
                     <div class="col-md-offset-9">
-                        <form:errors path="confPassword" class="regErrors" id="confPassword.errors"
+                        <form:errors path="confPassword" class="regAssistErrors" id="confPassword.errors"
                                      cssStyle="color: #ff0000;"/>
                     </div>
                 </div>
