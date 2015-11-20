@@ -53,7 +53,7 @@ public class AdminController {
     private final static String BLOCKED = "blocked";
 
     @RequestMapping(value = "/admin/allUsers", method = RequestMethod.GET)
-    public String allUsers(Model model) {
+    public String allUsers() {
         return "adminPage/users";
     }
 
@@ -64,18 +64,22 @@ public class AdminController {
         return userService.getAll();
     }
 
-    @RequestMapping(value = "/admin/mark_done/{id}", method = RequestMethod.GET)
-public String setToDone(@PathVariable("id") Integer id, Model model) {
-    User user = userService.getById(id);
-    if(user.getAccountStatus().equals(BLOCKED)) {
-        user.setAccountStatus("active");
-    }else {
-        user.setAccountStatus(BLOCKED);
-    }
+    @RequestMapping(value = "/admin/users/changeStatus/{id}", method = RequestMethod.GET)
+    public String changeUserStatus(@PathVariable("id") Integer id) {
+        User user = userService.getById(id);
+        if (user.getAccountStatus().equals(BLOCKED))
+            user.setAccountStatus("active");
+        else
+            user.setAccountStatus(BLOCKED);
         userService.saveOrUpdate(user);
+        return "redirect:/admin/allUsers";
+    }
 
-    return "redirect:/admin/allUsers";
-}
+    @RequestMapping(value = "/admin/users/delete/{id}", method = RequestMethod.GET)
+    public String deleteUserById(@PathVariable("id") int id) {
+        userService.delete(id);
+        return "redirect:/admin/allUsers";
+    }
 
     @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
     public String showUsers(Model model) {
@@ -106,7 +110,7 @@ public String setToDone(@PathVariable("id") Integer id, Model model) {
     }
 
     @RequestMapping(value = "/admin/allOrders", method = RequestMethod.GET)
-    public String allOrders(Model model) {
+    public String allOrders() {
         return "adminPage/orders";
     }
 
@@ -118,7 +122,7 @@ public String setToDone(@PathVariable("id") Integer id, Model model) {
     }
 
     @RequestMapping(value = "/admin/auditoriums", method = RequestMethod.GET)
-    public String allAuditoriums(Model model) {
+    public String allAuditoriums() {
         return "adminPage/auditoriums";
     }
 
@@ -130,7 +134,7 @@ public String setToDone(@PathVariable("id") Integer id, Model model) {
     }
 
     @RequestMapping(value = "/admin/auditoriums/delete/{id}", method = RequestMethod.GET)
-    public String deleteOrderById(Model model, @PathVariable("id") int id) {
+    public String deleteOrderById(@PathVariable("id") int id) {
         auditoriumService.delete(id);
         return "redirect:/admin/auditoriums";
     }

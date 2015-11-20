@@ -70,7 +70,8 @@
                     '   <td>' + user.firstName + "</td>" +
                     '   <td>' + user.role.toString().toLowerCase() + "</td>" +
                     '   <td>' + '<input type="image" src="../../../resources/img/edit.jpg" data-toggle="modal" data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
-                    '   <td>' + '<a href="${pageContext.request.contextPath}/admin/mark_done/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
+                    '   <td>' + '<a href="/admin/users/changeStatus/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
+                    "<td>" + '<form action="/admin/users/delete/' + user.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
                     "</tr>";
                 });
                 $('#records_table tbody').empty();
@@ -130,6 +131,7 @@
                 <th style="width:120px;"><spring:message code="admin.users.role"/></th>
                 <th class="no-sort" width="25px;"></th>
                 <th><spring:message code="admin.users.status"/></th>
+                <th><spring:message code="admin.auditoriums.delete"/></th>
             </tr>
             </thead>
         </table>
