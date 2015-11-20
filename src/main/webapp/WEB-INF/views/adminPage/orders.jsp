@@ -47,7 +47,7 @@
             });
         });
         $.ajax({
-            url: '/admin/get_all_orders',
+            url: '/admin/getAllOrders',
             type: 'GET',
             data: {
                 text: $("#sel2").val()
@@ -64,7 +64,7 @@
                 });
                 var trHTML = '';
                 $.each(response, function (i, order) {
-                        trHTML += "<tr><td>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
+                        trHTML += "<tr><td>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0,15) + '</a>' + "</td>" +
                         '   <td>' + order.auditorium + "</td>" +
                         '   <td>' + order.workplace_access_num + "</td>" +
                         '   <td>' + order.userId + "</td>" +

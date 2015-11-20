@@ -53,11 +53,29 @@ public class AdminController {
     private final static String BLOCKED = "blocked";
 
     @RequestMapping(value = "/admin/allUsers", method = RequestMethod.GET)
-    public String showAllUsers(Model model) {
-        List<User> users = userService.getAll();
-        model.addAttribute("users", users);
+    public String allUsers(Model model) {
         return "adminPage/users";
     }
+
+    @RequestMapping(value = "/admin/getAllUsers", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<User> getAllUsers() {
+        return userService.getAll();
+    }
+
+    @RequestMapping(value = "/admin/mark_done/{id}", method = RequestMethod.GET)
+public String setToDone(@PathVariable("id") Integer id, Model model) {
+    User user = userService.getById(id);
+    if(user.getAccountStatus().equals(BLOCKED)) {
+        user.setAccountStatus("active");
+    }else {
+        user.setAccountStatus(BLOCKED);
+    }
+        userService.saveOrUpdate(user);
+
+    return "redirect:/admin/allUsers";
+}
 
     @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
     public String showUsers(Model model) {
@@ -92,7 +110,7 @@ public class AdminController {
         return "adminPage/orders";
     }
 
-    @RequestMapping(value = "/admin/get_all_orders", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/getAllOrders", method = RequestMethod.GET)
     public
     @ResponseBody
     List<Order> getAllOrders() {
