@@ -37,8 +37,82 @@
 
 
     </script>
+    <script src="../../../resources/js/tsort.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#records_table").tablesort();
+            var deleteLink = $("a:contains('Delete')");
+        });
+        function formatDate(date, fmt) {
+            function pad(value) {
+                return (value.toString().length < 2) ? '0' + value : value;
+            }
+            return fmt.replace(/%([a-zA-Z])/g, function (_, fmtCode) {
+                switch (fmtCode) {
+                    case 'Y':
+                        return date.getUTCFullYear();
+                    case 'M':
+                        return pad(date.getUTCMonth() + 1);
+                    case 'd':
+                        return pad(date.getUTCDate());
+                    case 'H':
+                        return pad(date.getUTCHours() + 2);
+                    case 'm':
+                        return pad(date.getUTCMinutes());
+                    case 's':
+                        return pad(date.getUTCSeconds());
+                    default:
+                        throw new Error('Unsupported format code: ' + fmtCode);
+                }
+            });
+        }
+        jQuery(function ($) {
+            $('tbody tr[data-href]').addClass('clickable').click(function () {
+                window.location = $(this).attr('data-href');
+            });
+        });
+        $.ajax({
+            url: '/admin/getAllUsers',
+            type: 'GET',
+            data: {
+                text: $("#sel2").val()
+            },
+            success: function (response) {
+                var sorted = response.sort(function (a, b) {
+                    if (a.createdAt < b.createdAt) {
+                        return 1;
+                    }
+                    if (a.createdAt > b.createdAt) {
+                        return -1;
+                    }
+                    return 0;
+                });
+                var trHTML = '';
+                $.each(response, function (i, user) {
 
-
+                    if (user.accountStatus == "blocked") {
+                        trHTML += "<tr><td>"+ user.lastName +"</td>" +
+                        '   <td>' + user.firstName + "</td>" +
+                        '   <td>' + user.role.toString().toLowerCase() + "</td>" +
+                        '   <td>' + '<input type="image" src="../../../resources/img/edit.jpg" data-toggle="modal" data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
+                        '   <td>' + user.accountStatus + "</td>" +
+                        '   <td>' + '<form action="${pageContext.request.contextPath}/admin/mark_done/' + user.id + '"><button  type="submit"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button></form>' + "</td>" +
+                        "</tr>";
+                    } else {
+                        trHTML += "<tr><td>"+ user.lastName +"</td>" +
+                        '   <td>' + user.firstName + "</td>" +
+                        '   <td>' + user.role.toString().toLowerCase() + "</td>" +
+                        '   <td>' + '<input type="image" src="../../../resources/img/edit.jpg" data-toggle="modal" data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
+                        '   <td>' + user.accountStatus + "</td>" +
+                        '   <td>' + '<form action="${pageContext.request.contextPath}/admin/mark_done/' + user.id + '"><button  type="submit"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></button></form>' + "</td>" +
+                        "</tr>";
+                    }
+                });
+                $('#records_table tbody').empty();
+                $('#records_table').append(trHTML);
+            }
+        });
+    </script>
 
 </head>
 
@@ -80,7 +154,7 @@
     </nav>
 
     <div class="table-align bottom-block top-table">
-        <table class="tbl table table-striped">
+        <table id="records_table" class="tbl table table-striped">
             <thead>
             <tr>
                 <th><spring:message code="registration.lastName"/></th>
@@ -88,21 +162,9 @@
                 <th style="width:120px;"><spring:message code="admin.users.role"/></th>
                 <th width="25px;"></th>
                 <th style="width:150px;"><spring:message code="admin.users.status"/></th>
-                <th width="25px;"></th>
+                <th><spring:message code="admin.users.changeStatus"/></th>
             </tr>
             </thead>
-            <tbody>
-            <c:forEach items="${users}" var="item" varStatus="count">
-                <tr data-href="#">
-                    <td>${item.lastName}</td>
-                    <td>${item.firstName}</td>
-                    <td>${fn:toLowerCase(item.role)}</td>
-                    <td><input type="image" src="../../../resources/img/edit.jpg" data-toggle="modal" data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;"></td>
-                    <td>${item.accountStatus}</td>
-                    <td><input type="image" src="../../../resources/img/edit.jpg" data-toggle="modal" data-target="#myModalStatus" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;"></td>
-                </tr>
-            </c:forEach>
-            </tbody>
         </table>
     </div>
 <div class="footer">
