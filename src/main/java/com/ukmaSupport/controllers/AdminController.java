@@ -17,7 +17,10 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -85,10 +88,15 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/allOrders", method = RequestMethod.GET)
-    public String showOrders(Model model) {
-        List<Order> orders = orderService.getAll();
-        model.addAttribute("orders", orders);
+    public String allOrders(Model model) {
         return "adminPage/orders";
+    }
+
+    @RequestMapping(value = "/admin/get_all_orders", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Order> getAllOrders() {
+        return orderService.getAll();
     }
 
     @RequestMapping(value = "/admin/auditoriums", method = RequestMethod.GET)
@@ -114,14 +122,14 @@ public class AdminController {
         return "/404";
     }
 
-    @RequestMapping(value = "/admin/createAuditorium", method = RequestMethod.GET)
-    public String createAuditorium(ModelMap model) {
-        Auditorium order = new Auditorium();
-        List<User> users = userService.getByRole(ASSISTANT);
-        model.addAttribute("newAuditorium", order);
-        model.addAttribute("assistants", users);
-        return "adminPage/addAuditorium";
-    }
+//    @RequestMapping(value = "/admin/createAuditorium", method = RequestMethod.GET)
+//    public String createAuditorium(ModelMap model) {
+//        Auditorium order = new Auditorium();
+//        List<User> users = userService.getByRole(ASSISTANT);
+//        model.addAttribute("newAuditorium", order);
+//        model.addAttribute("assistants", users);
+//        return "adminPage/addAuditorium";
+//    }
 
 //    @RequestMapping(value = "/admin/createAuditorium", method = RequestMethod.POST)
 //    public String saveAuditorium(@ModelAttribute("newAuditorium") Auditorium auditorium, ModelMap model, BindingResult bindingResult) {
@@ -140,12 +148,15 @@ public class AdminController {
         model.addAttribute("listUsers", listUsers);
         return "excelView";
     }
-    @RequestMapping(headers = "Content-Type=application/json",value = "/admin/changeRole", method = RequestMethod.POST)
-    public @ResponseBody
+
+    @RequestMapping(headers = "Content-Type=application/json", value = "/admin/changeRole", method = RequestMethod.POST)
+    public
+    @ResponseBody
     void getRole(@RequestParam("role") String role) {
         System.out.print("QQWEWQ");
         System.out.println("ROLE: " + role);
     }
+
     @RequestMapping(value = "/admin/editProfile", method = RequestMethod.GET)
     public String editProfile(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
