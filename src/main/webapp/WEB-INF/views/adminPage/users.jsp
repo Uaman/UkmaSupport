@@ -13,10 +13,10 @@
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-resource.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("#test").click(function (e) {
-                var data='role'+$('input:radio[name=role]:checked').val()
-                var role =$('input:radio[name=role]:checked').val();
+                var data = 'role' + $('input:radio[name=role]:checked').val()
+                var role = $('input:radio[name=role]:checked').val();
                 alert(role);
                 $.ajax({
                     url: "/admin/changeRole",
@@ -25,11 +25,11 @@
                     data: JSON.stringify("{\"role\":\"+admin\"}"),
                     contentType: 'application/json',
                     mimeType: 'application/json',
-                    success: function(data) {
+                    success: function (data) {
                         alert(data.role);
                     },
-                    error:function(data,status,er) {
-                        alert("error: "+data+" status: "+status+" er:"+er);
+                    error: function (data, status, er) {
+                        alert("error: " + data + " status: " + status + " er:" + er);
                     }
                 });
             });
@@ -66,24 +66,12 @@
                 });
                 var trHTML = '';
                 $.each(response, function (i, user) {
-
-                    if (user.accountStatus == "blocked") {
-                        trHTML += "<tr><td>"+ user.lastName +"</td>" +
-                        '   <td>' + user.firstName + "</td>" +
-                        '   <td>' + user.role.toString().toLowerCase() + "</td>" +
-                        '   <td>' + '<input type="image" src="../../../resources/img/edit.jpg" data-toggle="modal" data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
-                        '   <td>' + user.accountStatus + "</td>" +
-                        '   <td>' + '<form action="${pageContext.request.contextPath}/admin/mark_done/' + user.id + '"><button  type="submit"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button></form>' + "</td>" +
-                        "</tr>";
-                    } else {
-                        trHTML += "<tr><td>"+ user.lastName +"</td>" +
-                        '   <td>' + user.firstName + "</td>" +
-                        '   <td>' + user.role.toString().toLowerCase() + "</td>" +
-                        '   <td>' + '<input type="image" src="../../../resources/img/edit.jpg" data-toggle="modal" data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
-                        '   <td>' + user.accountStatus + "</td>" +
-                        '   <td>' + '<form action="${pageContext.request.contextPath}/admin/mark_done/' + user.id + '"><button  type="submit"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></button></form>' + "</td>" +
-                        "</tr>";
-                    }
+                    trHTML += "<tr><td>" + user.lastName + "</td>" +
+                    '   <td>' + user.firstName + "</td>" +
+                    '   <td>' + user.role.toString().toLowerCase() + "</td>" +
+                    '   <td>' + '<input type="image" src="../../../resources/img/edit.jpg" data-toggle="modal" data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
+                    '   <td>' + '<a href="${pageContext.request.contextPath}/admin/mark_done/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
+                    "</tr>";
                 });
                 $('#records_table tbody').empty();
                 $('#records_table').append(trHTML);
@@ -110,13 +98,16 @@
                                 code="admin.users"/><b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a class="menu-element-li" href="/admin/allUsers"><spring:message code="admin.allUsers"/></a></li>
-                            <li><a class="menu-element-li" href="/admin/users"><spring:message code="admin.users"/></a></li>
+                            <li><a class="menu-element-li" href="/admin/allUsers"><spring:message
+                                    code="admin.allUsers"/></a></li>
+                            <li><a class="menu-element-li" href="/admin/users"><spring:message code="admin.users"/></a>
+                            </li>
                             <li><a class="menu-element-li" href="/admin/assistants"><spring:message
                                     code="admin.assistants"/></a></li>
                             <li><a class="menu-element-li" href="/admin/professors"><spring:message
                                     code="admin.professors"/></a></li>
-                            <li><a class="menu-element-li" href="/admin/blockedUsers"><spring:message code="admin.blocked"/></a>
+                            <li><a class="menu-element-li" href="/admin/blockedUsers"><spring:message
+                                    code="admin.blocked"/></a>
                             </li>
                         </ul>
                     </li>
@@ -139,40 +130,43 @@
                 <th style="width:120px;"><spring:message code="admin.users.role"/></th>
                 <th class="no-sort" width="25px;"></th>
                 <th><spring:message code="admin.users.status"/></th>
-                <th class="no-sort"><spring:message code="admin.users.changeStatus"/></th>
             </tr>
             </thead>
         </table>
     </div>
-<div class="footer">
-    <div class="thick"></div>
-    <div class="thin"></div>
-    <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
+    <div class="footer">
+        <div class="thick"></div>
+        <div class="thin"></div>
+        <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
 
-    <div class="text-center">
-        <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
-        <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
+        <div class="text-center">
+            <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
+            <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
+        </div>
     </div>
-</div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width:300px;" >
-        <div class="modal-content" >
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <center><h4 class="modal-title" id="myModalLabel">Edit Role</h4></center>
-            </div>
-            <div class="modal-body">
-                <input type="radio" name="role" value="Assistant"> Assistant<Br>
-                <input type="radio" name="role" value="User"> User<Br>
-                <input type="radio" name="role" value="Admin"> Admin<Br>
-                <input type="radio" name="role" value="Professor"> Professor<Br>
-            </div>
-            <div class="modal-footer">
-                <center>  <button type="button" id="test" type="submit"  onclick="changeRole()" class="btn btn-default" data-dismiss="modal">Ok</button></center>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:300px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <center><h4 class="modal-title" id="myModalLabel">Edit Role</h4></center>
+                </div>
+                <div class="modal-body">
+                    <input type="radio" name="role" value="Assistant"> Assistant<Br>
+                    <input type="radio" name="role" value="User"> User<Br>
+                    <input type="radio" name="role" value="Admin"> Admin<Br>
+                    <input type="radio" name="role" value="Professor"> Professor<Br>
+                </div>
+                <div class="modal-footer">
+                    <center>
+                        <button type="button" id="test" type="submit" onclick="changeRole()" class="btn btn-default"
+                                data-dismiss="modal">Ok
+                        </button>
+                    </center>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 </body>
 </html>
