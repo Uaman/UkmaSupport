@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <title>Edit Order</title>
+    <title><spring:message code="assist.title.EditOrder"/></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="../../../resources/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
@@ -49,7 +49,12 @@
             </div>
         </nav>
 
-    <div class="col-md-offset-4 col-md-8 vertalign bottom-block">
+        <div class="text-center">
+            <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
+            <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
+        </div>
+
+        <div class="col-md-offset-4 col-md-8 vertalign bottom-block">
         <form:form class="form-horizontal" id="edit" action='/assist${pageContext.request.contextPath}/edit_order/save'
                    method="post" commandName="editOrder">
             <div class="form-group">
@@ -103,11 +108,6 @@
         <div class="thick"></div>
         <div class="thin"></div>
         <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
-
-        <div class="text-center">
-            <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
-            <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
-        </div>
     </div>
     </div>
 </div>
