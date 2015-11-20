@@ -43,29 +43,6 @@
             $("#records_table").tablesort();
             var deleteLink = $("a:contains('Delete')");
         });
-        function formatDate(date, fmt) {
-            function pad(value) {
-                return (value.toString().length < 2) ? '0' + value : value;
-            }
-            return fmt.replace(/%([a-zA-Z])/g, function (_, fmtCode) {
-                switch (fmtCode) {
-                    case 'Y':
-                        return date.getUTCFullYear();
-                    case 'M':
-                        return pad(date.getUTCMonth() + 1);
-                    case 'd':
-                        return pad(date.getUTCDate());
-                    case 'H':
-                        return pad(date.getUTCHours() + 2);
-                    case 'm':
-                        return pad(date.getUTCMinutes());
-                    case 's':
-                        return pad(date.getUTCSeconds());
-                    default:
-                        throw new Error('Unsupported format code: ' + fmtCode);
-                }
-            });
-        }
         jQuery(function ($) {
             $('tbody tr[data-href]').addClass('clickable').click(function () {
                 window.location = $(this).attr('data-href');
@@ -160,9 +137,9 @@
                 <th><spring:message code="registration.lastName"/></th>
                 <th><spring:message code="registration.firstName"/></th>
                 <th style="width:120px;"><spring:message code="admin.users.role"/></th>
-                <th width="25px;"></th>
-                <th style="width:150px;"><spring:message code="admin.users.status"/></th>
-                <th><spring:message code="admin.users.changeStatus"/></th>
+                <th class="no-sort" width="25px;"></th>
+                <th><spring:message code="admin.users.status"/></th>
+                <th class="no-sort"><spring:message code="admin.users.changeStatus"/></th>
             </tr>
             </thead>
         </table>
@@ -192,24 +169,6 @@
             </div>
             <div class="modal-footer">
                 <center>  <button type="button" id="test" type="submit"  onclick="changeRole()" class="btn btn-default" data-dismiss="modal">Ok</button></center>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="myModalStatus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width:300px;" >
-        <div class="modal-content" >
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <center><h4 class="modal-title" id="myModalLabelStatus">Edit Status</h4></center>
-            </div>
-            <div class="modal-body">
-                <input type="radio" name="browser" value="ie"> Active<Br>
-                <input type="radio" name="browser" value="opera"> Blocked<Br>
-            </div>
-            <div class="modal-footer">
-                <center>  <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button></center>
             </div>
         </div>
     </div>
