@@ -38,7 +38,12 @@ public class OrderValidator implements Validator {
 
             if (order.getContent() == "") {
                 errors.rejectValue("content", "valid.order.content");
-            }else if(order.getContent().length() < 10) errors.rejectValue("content","valid.order.shortContent");
+            }else if(order.getContent().length() < 10) {
+                errors.rejectValue("content","valid.order.shortContent");
+            }
+            else if(order.getContent().length() >= 100){
+                errors.rejectValue("content","v");
+            }
         }
 
     }
