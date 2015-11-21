@@ -25,7 +25,7 @@ public class CommentsDaoImpl implements CommentsDao {
             "WHERE comment.order_id = ? " +
             "ORDER BY comment.time";
 
-    private String CREATE_COMMENT = "INSERT INTO comment (id, user_id, order_id, content, time) VALUES(?,?,?,?,?)";
+    private String CREATE_COMMENT = "INSERT INTO comment (user_id, order_id, content, time) VALUES(?,?,?,?)";
 
     @Override
     public List<Comment> getAllComments(int order_id) {
@@ -38,12 +38,11 @@ public class CommentsDaoImpl implements CommentsDao {
             @Override
             public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                 PreparedStatement preparedStatement = con.prepareStatement(CREATE_COMMENT);
-                preparedStatement.setInt(1,comment.getId());
-                preparedStatement.setInt(2,comment.getAuthor().getId());
-                preparedStatement.setInt(3,comment.getOrderId());
-                preparedStatement.setString(4,comment.getContent());
-                preparedStatement.setLong(5, comment.getTime().getTime());
-                return null;
+                preparedStatement.setInt(1,comment.getAuthor().getId());
+                preparedStatement.setInt(2,comment.getOrderId());
+                preparedStatement.setString(3,comment.getContent());
+                preparedStatement.setLong(4, comment.getTime().getTime());
+                return preparedStatement;
             }});
     }
 

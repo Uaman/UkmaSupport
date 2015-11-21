@@ -46,7 +46,7 @@
 
     <div id="comments" class="col-md-offset-2 col-md-8">
         <c:forEach var="comment" items="${allCommentaries}" varStatus="count" >
-            <p class="comment body-text">comment#${count}: By ${comment.author.firstName} ROLE ${comment.author.role} TIME ${comment.time} CONTENT ${comment.content} </p>
+            <p class="comment body-text">comment#: By ${comment.author.firstName} ROLE ${comment.author.role} TIME ${comment.time} CONTENT ${comment.content} </p>
         </c:forEach>
 
 

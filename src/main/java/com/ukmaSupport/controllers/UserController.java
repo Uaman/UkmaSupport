@@ -96,6 +96,7 @@ public class UserController {
             model.addAttribute("newOrder", order);
             return "userPage/createOrderPage";
         }
+
         order.setUserId(userId);
         order.setStatus(UNDONE);
         order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
