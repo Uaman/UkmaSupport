@@ -108,7 +108,8 @@ public class UserController {
 
         orderService.createOrUpdate(order);
 
-        newOrderMail.send(assistant.getEmail());
+        if (assistant != null)
+            newOrderMail.send(assistant.getEmail());
 
         return "redirect:/user/userhome";
     }
