@@ -25,7 +25,6 @@ public class MainPage {
 
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
-        model.addAttribute("message", "Welcome!");
         return "mainPage/mainPage";
     }
 

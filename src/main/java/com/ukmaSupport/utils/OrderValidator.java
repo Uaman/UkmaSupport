@@ -42,7 +42,7 @@ public class OrderValidator implements Validator {
                 errors.rejectValue("content","valid.order.shortContent");
             }
             else if(order.getContent().length() >= 100){
-                errors.rejectValue("content","v");
+                errors.rejectValue("content","valid.order.tooLongDescription");
             }
         }
 
