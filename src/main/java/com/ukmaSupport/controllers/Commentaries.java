@@ -52,7 +52,7 @@ public class Commentaries {
         
         User user = userService.getById(getCurrentUser());
 
-        if(user.getRole() == "ADMIN"){
+        if(user.getRole().equals("ADMIN")){
             return "adminPage/comentariesPage";
         }
         return "userPage/comentariesPage";
