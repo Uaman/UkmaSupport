@@ -310,12 +310,28 @@ public class AdminController {
     @RequestMapping(value = "/admin/changeRole", method = RequestMethod.POST)
     public
     @ResponseBody
-    String setUserRole(@RequestBody Map<String, Object> searchParam) {
-        System.out.println("================ " + searchParam.get("role"));
-        //   User u
-        //userService.saveOrUpdate();
+    String setUserRole(@RequestBody Map<String, Object> searchParam,User user,ModelMap model) {
+        String role= (String) searchParam.get("role");
+        Integer id = (Integer) searchParam.get("userId");
+        user=userService.getById(id);
+        System.out.println(role + " " + id);
+        String userRole = null;
+        if (role.equals("Assistant")) {
+            userRole = "ASSISTANT";
 
-        return "ok";
+        } else if (role.equals("User")) {
+            userRole = "USER";
+
+        } else if (role.equals("Admin")) {
+            userRole = "ADMIN";
+
+        } else if (role.equals("Professor")) {
+            userRole = "PROFESSOR";
+        }
+        user.setRole(userRole);
+        userService.saveOrUpdate(user);
+
+        return "redirect:/admin/getAllOrders";
     }
 
     @RequestMapping(value = "/admin/editProfile", method = RequestMethod.GET)
