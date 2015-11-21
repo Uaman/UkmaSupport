@@ -81,11 +81,11 @@
                 });
                 var trHTML = '';
                 $.each(response, function (i, user) {
-                    trHTML += "<tr><td>" + user.lastName + "</td>" +
+                    trHTML += "<tr><td>" + '<a href="/admin/users/userProfile/' + user.id + '">'+user.lastName + "</td>" +
                     '   <td>' + user.firstName + "</td>" +
                     '   <td>' + user.role.toString().toLowerCase() + "</td>" +
                     '   <td>' + '<input type="image" src="../../../resources/img/edit.jpg" class="userId" data-toggle="modal"'+ 'value="'+user.accountStatus +'"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
-                    '   <td>' + '<a href="${pageContext.request.contextPath}/admin/mark_done/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
+                    '   <td>' + '<a href="/admin/mark_done/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
                     "</tr>";
                 });
                 $('#records_table tbody').empty();

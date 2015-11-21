@@ -36,7 +36,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
     public List<Order> getByUserIdStatus(int user_id, String status) {
-        return orderDao.getUserStatus(user_id,status);
+        return orderDao.getUserStatus(user_id, status);
     }
 
 
@@ -79,5 +79,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getByAssistAndStatus(int assistid, String status) {
         return orderDao.getByAssistAndStatus(assistid, status);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    @Override
+    public int getUserOrdersCount(int id){
+        return orderDao.getUserOrdersCount(id);
     }
 }

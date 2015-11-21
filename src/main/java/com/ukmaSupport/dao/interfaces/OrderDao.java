@@ -28,4 +28,6 @@ public interface OrderDao {
 
     List<Order> getByAssistAndStatus(int assistid, String status);
 
+    int getUserOrdersCount(int id);
+
 }

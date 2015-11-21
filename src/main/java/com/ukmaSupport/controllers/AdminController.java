@@ -344,4 +344,12 @@ public class AdminController {
         userService.saveOrUpdate(user);
         return "userPage/passwordChangeSuccess";
     }
+
+    @RequestMapping(value = "/admin/users/userProfile/{id}", method = RequestMethod.GET)
+    public String showUser(@PathVariable("id") int id, Model model) {
+        User user = userService.getById(id);
+        user.setOrdersCount(orderService.getUserOrdersCount(user.getId()));
+        model.addAttribute("passChangeForm", user);
+        return "adminPage/userPage";
+    }
 }
