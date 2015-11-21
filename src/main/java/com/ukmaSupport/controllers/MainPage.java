@@ -29,6 +29,11 @@ public class MainPage {
         return "mainPage/mainPage";
     }
 
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String landingPage(ModelMap model) {
+        return "mainPage/landingPage";
+    }
+
     @RequestMapping(value = "/loginError")
     public String showLoginError() {
         return "mainPage/failedLogin";
