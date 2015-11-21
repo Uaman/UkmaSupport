@@ -26,7 +26,11 @@ public class OrderValidator implements Validator {
         }else {
             if (order.getTitle() == "") {
                 errors.rejectValue("title", "valid.order.title");
-            }else if(order.getTitle().length() < 8) errors.rejectValue("title","valid.order.shortTitle");
+            }else if(order.getTitle().length() < 8) {
+                errors.rejectValue("title","valid.order.shortTitle");
+            }else if(order.getTitle().length() > 20){
+                errors.rejectValue("title","valid.order.tooLongTitle");
+            }
 
             if (order.getWorkplace_access_num() == null) {
                 errors.rejectValue("workplace_access_num", "valid.order.workspace");
