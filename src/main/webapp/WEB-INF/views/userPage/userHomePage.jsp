@@ -130,7 +130,7 @@
     </div>
 
     <div class="table-align bottom-block">
-        <table id="records_table" class="tbl table table-striped user-table">
+        <table id="records_table" class="tbl table table-striped user-table order-table">
             <thead>
             <tr>
                 <th class="no-sort title-col"><spring:message code="admin.orders.title"/></th>

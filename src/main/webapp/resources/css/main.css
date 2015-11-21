@@ -518,11 +518,13 @@ a img {
 }
 
 .comment {
-	background-color: #bce8f1;
 	border-radius: 7px;
 	padding: 7px;
-	margin-bottom: 7px;
 	word-wrap: break-word;
+	color: #333366;
+	font-family: "Century Gothic", sans-serif;
+	font-size: 16px;
+
 }
 
 html > body div.tableContainer {
@@ -596,9 +598,36 @@ tbody.scrollContent {
 	border-radius: 7px;
 }
 ::-webkit-scrollbar-track{
-	border-left: solid 1px #333366;
+	border: solid 1px #333366;
 	border-radius: 7px;
 }
+.user-comment {
+	background-color: rgba(188, 232, 241, 0.8);
+}
+.assistant-comment {
+	background-color: rgba(135, 206, 235, 0.8);
+}
+.admin-comment {
+	background-color: #b0c4de;
+}
+.bold-text {
+	font-weight: bold;
+}
+.comment-date {
+	color: #333366;
+	font-family: "Century Gothic", sans-serif;
+	font-size: 15px;
+	text-align: center;
+	padding-top: 6px;
+}
+.order-table {
+	margin-top: 40px;
+}
+.comment-block {
+	margin-top: 8px;
+}
+
+
 
 #localization {
 	padding-top: 15px;

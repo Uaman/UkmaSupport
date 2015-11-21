@@ -46,23 +46,27 @@
 
     <div id="comments" class="col-md-offset-2 col-md-8">
         <c:forEach var="comment" items="${allCommentaries}" varStatus="count" >
-            <p class="comment body-text">comment#: By ${comment.author.firstName} ROLE ${comment.author.role} TIME ${comment.time.toLocaleString()} CONTENT ${comment.content} </p>
+            <c:choose>
+                <c:when test="${comment.author.role == 'USER'}">
+                    <div class="col-md-12 comment-block">
+                        <div class="col-md-3 comment-date">${comment.time.toLocaleString()}</div>
+                        <div class="col-md-offset-3 comment user-comment"><span class="bold-text">${comment.author.firstName}, ${comment.author.role}</span><br>${comment.content} </div>
+                    </div>
+                </c:when>
+                <c:when test="${comment.author.role == 'ASSISTANT'}">
+                    <div class="col-md-12 comment-block">
+                        <div class="col-md-9 comment assistant-comment"><span class="bold-text">${comment.author.firstName}, ${comment.author.role}</span><br>${comment.content} </div>
+                        <div class="col-md-offset-9 comment-date">${comment.time.toLocaleString()}</div>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="col-md-12 comment-block">
+                        <div class="col-md-9 comment admin-comment"><span class="bold-text">${comment.author.firstName}, ${comment.author.role}</span><br>${comment.content} </div>
+                        <div class="col-md-offset-9 comment-date">${comment.time.toLocaleString()}</div>
+                    </div>
+                </c:otherwise>
+            </c:choose>
         </c:forEach>
-
-
-        <%--<p class="comment body-text">comment#2: dfsdfjsasdfasdfsFdfsdfs</p>--%>
-        <%--<p class="comment body-text">comment#3: dfsdfjsdfsDSfSDfSFDdfs</p>--%>
-        <%--<p class="comment body-text">comment#4: dfsdfjsdfasdfasfdafsdfs</p>--%>
-        <%--<p class="comment body-text">comment#5: dfsdfjsSDFSDfSDFSDFSVxzcgstuhjtydjfyumfgmfgymgfSADASDASDASDcASCACASCdfsdfs</p>--%>
-        <%--<p class="comment body-text">comment#6: dfsdfjsASCACASCACSdfsdfs</p>--%>
-        <%--<p class="comment body-text">comment#7: dfsdfjsCzASCcSACASCdfsdfs</p>--%>
-        <%--<p class="comment body-text">comment#8: dfsdfjsASCASCASDcasjef;oiaj;foasjkf;doiawckpawecffawedfsdfs</p>--%>
-        <%--<p class="comment body-text">comment#9: dfsdfsdcSdfkjaso;efj;oaefaefjsdfsdfs</p>--%>
-        <%--<p class="comment body-text">comment#10: dfsdfjSDfake;AJ;DJ;aCSM;mksc;cssdfsdfs</p>--%>
-        <%--<p class="comment body-text">comment#11: dfsdCAPWECKPACMKPAC,PCfjsdfsdfs</p>--%>
-        <%--<p class="comment body-text">comment#12: dfsdfjCEWCJA[CE[CK[ACEECsdfsdfs</p>--%>
-        <%--<p class="comment body-text">comment#13: dfsdfjsCEAckjaPECJPaecCEdfsdfs</p>--%>
-        <%--<p class="comment body-text">comment#14: dfsdfCeck['CM[Aecjsdfsdfs</p>--%>
     </div>
     <div id="add-comment" class="col-md-offset-2 col-md-8">
         <form:form class="form-horizontal" action="/addComment/${id}" method="post" commandName="comment">
