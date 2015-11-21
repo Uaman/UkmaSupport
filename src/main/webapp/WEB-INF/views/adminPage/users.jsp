@@ -17,39 +17,31 @@
             $("#test").click(function (e) {
 
                 var dataRole = $('input:radio[name=role]:checked').val();
-              //  var myBookId = $('#records_table').data('id');
-                //var rowIndex =  $('#records_table').find('td').first().text()
-               //alert(rowIndex);
                 changeRole = {
-                    role : dataRole,
-
+                    role: dataRole
                 };
-
-
                 var postParamForDatatable = $.ajax({
-                    url :  "${pageContext.request.contextPath}/admin/changeRole",
-                    type : "POST",
-                    contentType : "application/json",
-                    data : JSON.stringify(changeRole)
+                    url: "${pageContext.request.contextPath}/admin/changeRole",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(changeRole)
                 });
 
                 console.log("get data ");
 
-                postParamForDatatable.done(function(repliedData) {
-                    console.log("repliedData "+repliedData);
+                postParamForDatatable.done(function (repliedData) {
+                    console.log("repliedData " + repliedData);
                 });
 
-
-                postParamForDatatable.fail(function(jqXHR, textStatus, errorThrown) {
+                postParamForDatatable.fail(function (jqXHR, textStatus, errorThrown) {
                     alert("The following error occured: " + textStatus, errorThrown);
                 });
 
-                postParamForDatatable.always(function() {
+                postParamForDatatable.always(function () {
                     console.log("callback handler that will be called regardless if the request failed or succeeded");
                 });
             });
         });
-
 
     </script>
     <script src="../../../resources/js/tsort.js"></script>
@@ -81,11 +73,12 @@
                 });
                 var trHTML = '';
                 $.each(response, function (i, user) {
-                    trHTML += "<tr><td>" + '<a href="/admin/users/userProfile/' + user.id + '">'+user.lastName + "</td>" +
+                    trHTML += "<tr><td>" + '<a href="/admin/users/userProfile/' + user.id + '">' + user.lastName + "</td>" +
                     '   <td>' + user.firstName + "</td>" +
                     '   <td>' + user.role.toString().toLowerCase() + "</td>" +
-                    '   <td>' + '<input type="image" src="../../../resources/img/edit.jpg" class="userId" data-toggle="modal"'+ 'value="'+user.accountStatus +'"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
-                    '   <td>' + '<a href="/admin/mark_done/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
+                    '   <td>' + '<input type="image" src="../../../resources/img/edit.jpg" data-toggle="modal" data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
+                    '   <td>' + '<a href="/admin/users/changeStatus/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
+                    "<td>" + '<form action="/admin/users/delete/' + user.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
                     "</tr>";
                 });
                 $('#records_table tbody').empty();
@@ -133,7 +126,8 @@
                         <ul class="dropdown-menu">
                             <li><a class="menu-element-li" href="/admin/allOrders"><spring:message
                                     code="admin.orders"/></a></li>
-                            <li><a class="menu-element-li" href="/admin/myOrders"><spring:message code="admin.myOrders"/></a>
+                            <li><a class="menu-element-li" href="/admin/myOrders"><spring:message
+                                    code="admin.myOrders"/></a>
                             </li>
                         </ul>
                     </li>
@@ -154,6 +148,7 @@
                 <th style="width:120px;"><spring:message code="admin.users.role"/></th>
                 <th class="no-sort" width="25px;"></th>
                 <th><spring:message code="admin.users.status"/></th>
+                <th class="no-sort" width="25px;"></th>
             </tr>
             </thead>
         </table>
@@ -183,7 +178,7 @@
                 </div>
                 <div class="modal-footer">
                     <center>
-                        <button type="button" id="test" type="submit"  class="btn btn-default"
+                        <button type="button" id="test" type="submit" class="btn btn-default"
                                 data-dismiss="modal">Ok
                         </button>
                     </center>
