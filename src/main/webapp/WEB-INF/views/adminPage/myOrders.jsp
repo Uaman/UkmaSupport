@@ -130,7 +130,8 @@
                         <ul class="dropdown-menu">
                             <li><a class="menu-element-li" href="/admin/allOrders"><spring:message
                                     code="admin.orders"/></a></li>
-                            <li><a class="menu-element-li" href="/admin/myOrders"><spring:message code="admin.myOrders"/></a>
+                            <li><a class="menu-element-li" href="/admin/myOrders"><spring:message
+                                    code="admin.myOrders"/></a>
                             </li>
                         </ul>
                     </li>
@@ -142,7 +143,21 @@
         </div>
     </nav>
 
-    <div class="table-align bottom-block top-table">
+    <div class="top-block">
+        <p id="hello"><spring:message
+                code="user.hello"/></p>
+    </div>
+
+    <div class="col-md-offset-7">
+        <form class="form-horizontal" method="get" action="/admin/orders/createOrder">
+            <div class="col-md-offset-7 col-md-4">
+                <button id="btn-add-order" type="submit" class="btn btn-primary btn-block"><spring:message
+                        code="user.order"/></button>
+            </div>
+        </form>
+    </div>
+
+    <div class="table-align bottom-block user-table">
         <table id="records_table" class="tbl table table-striped">
             <thead>
             <tr>

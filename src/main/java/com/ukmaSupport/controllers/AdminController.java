@@ -1,11 +1,13 @@
 package com.ukmaSupport.controllers;
 
+import com.ukmaSupport.mailService.templates.NewOrderMail;
 import com.ukmaSupport.models.*;
 import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.OrderService;
 import com.ukmaSupport.services.interfaces.UserService;
 import com.ukmaSupport.services.interfaces.WorkplaceService;
 import com.ukmaSupport.utils.AudiroriumValidator;
+import com.ukmaSupport.utils.OrderValidator;
 import com.ukmaSupport.utils.PasswordChangeValidator;
 import com.ukmaSupport.utils.PasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -32,8 +35,15 @@ public class AdminController {
     private PasswordChangeValidator validator;
 
     @Autowired
+    @Qualifier("orderValidator")
+    private OrderValidator orderValidator;
+
+    @Autowired
     @Qualifier("audiroriumValidator")
     private AudiroriumValidator audiroriumValidator;
+
+    @Autowired
+    private NewOrderMail newOrderMail;
 
     @Autowired
     private UserService userService;
@@ -135,6 +145,52 @@ public class AdminController {
         HttpSession session = attr.getRequest().getSession();
         int userId = (Integer) session.getAttribute("id");
         return orderService.getByUserId(userId);
+    }
+
+    @RequestMapping(value = "/admin/showWorkplaces", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Workplace> getWorkplaces(@RequestParam("text") String text) {
+        List<Workplace> workplaces = workplaceService.getByAuditoryName(text);
+        return workplaces;
+    }
+
+    @RequestMapping(value = "/admin/orders/createOrder", method = RequestMethod.GET)
+    public String createOrder(ModelMap model) {
+        Order order = new Order();
+        List<Auditorium> auditoriums = auditoriumService.getAll();
+        model.addAttribute("newOrder", order);
+        model.addAttribute("auditoriums", auditoriums);
+        return "adminPage/createOrder";
+    }
+
+    @RequestMapping(value = "/admin/orders/createOrder", method = RequestMethod.POST)
+    public String createOrderPost(@ModelAttribute("newOrder") Order order, ModelMap model, BindingResult result) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        int userId = (Integer) session.getAttribute("id");
+        orderValidator.validate(order, result);
+        if (result.hasErrors()) {
+            List<Auditorium> auditoriums = auditoriumService.getAll();
+            model.addAttribute("auditoriums", auditoriums);
+            model.addAttribute("newOrder", order);
+            return "adminPage/createOrder";
+        }
+
+        order.setUserId(userId);
+        order.setStatus("Undone");
+        order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
+        User assistant = userService.getResponsibleAssistant(order.getAuditorium());
+        int assistantId = 0;
+        if (assistant != null) assistantId = assistant.getId();
+        order.setAssistantId(assistantId);
+        order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
+
+        orderService.createOrUpdate(order);
+
+        //newOrderMail.send(assistant.getEmail());
+
+        return "redirect:/admin/myOrders";
     }
 
     @RequestMapping(value = "/admin/auditoriums", method = RequestMethod.GET)
