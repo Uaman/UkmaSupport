@@ -13,16 +13,30 @@
     <script src="../../../resources/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
+
+
         $(document).ready(function () {
-            $("#test").click(function (e) {
+            $("#test").click(function () {
 
                 var dataRole = $('input:radio[name=role]:checked').val();
               //  var myBookId = $('#records_table').data('id');
                 //var rowIndex =  $('#records_table').find('td').first().text()
                //alert(rowIndex);
+
+                $('#records_table tr').unbind().click(function(e){
+                    e.preventDefault();
+
+                    var userId="";
+                    if(userId!=null){
+                       userId="";
+                    }
+                    userId= $(e.target).data('id');
+                   // alert(userId);
+
+
                 changeRole = {
                     role : dataRole,
-
+                    userId:userId
                 };
 
 
@@ -30,24 +44,42 @@
                     url :  "${pageContext.request.contextPath}/admin/changeRole",
                     type : "POST",
                     contentType : "application/json",
-                    data : JSON.stringify(changeRole)
+                    data : JSON.stringify(changeRole),
+                    success: function (response) {
+                        $.ajax({
+                            url: '/admin/getAllUsers',
+                            type: 'GET',
+                            success: function (response) {
+                                var sorted = response.sort(function (a, b) {
+                                    if (a.createdAt < b.createdAt) {
+                                        return 1;
+                                    }
+                                    if (a.createdAt > b.createdAt) {
+                                        return -1;
+                                    }
+                                    return 0;
+                                });
+                                var trHTML = '';
+                                $.each(response, function (i, user) {
+                                    trHTML += "<tr><td>" + user.lastName + "</td>" +
+                                            '   <td>' + user.firstName + "</td>" +
+                                            '   <td>' + user.role.toString().toLowerCase() + "</td>" +
+                                            '   <td>' + '<input type="image" src="../../../resources/img/edit.jpg" class="userId" data-toggle="modal"'+ 'data-id="'+user.id +'"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
+                                            '   <td>' + '<a href="${pageContext.request.contextPath}/admin/mark_done/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
+                                            "</tr>";
+                                });
+                                $('#records_table tbody').empty();
+                                $('#records_table').append(trHTML);
+                            }
+                        });
+                    }
                 });
 
-                console.log("get data ");
-
-                postParamForDatatable.done(function(repliedData) {
-                    console.log("repliedData "+repliedData);
-                });
-
-
-                postParamForDatatable.fail(function(jqXHR, textStatus, errorThrown) {
-                    alert("The following error occured: " + textStatus, errorThrown);
-                });
-
-                postParamForDatatable.always(function() {
-                    console.log("callback handler that will be called regardless if the request failed or succeeded");
                 });
             });
+
+
+
         });
 
 
@@ -84,7 +116,7 @@
                     trHTML += "<tr><td>" + user.lastName + "</td>" +
                     '   <td>' + user.firstName + "</td>" +
                     '   <td>' + user.role.toString().toLowerCase() + "</td>" +
-                    '   <td>' + '<input type="image" src="../../../resources/img/edit.jpg" class="userId" data-toggle="modal"'+ 'value="'+user.accountStatus +'"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
+                    '   <td>' + '<input type="image" src="../../../resources/img/edit.jpg" class="userId" data-toggle="modal"'+ 'data-id="'+user.id +'"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
                     '   <td>' + '<a href="${pageContext.request.contextPath}/admin/mark_done/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
                     "</tr>";
                 });
