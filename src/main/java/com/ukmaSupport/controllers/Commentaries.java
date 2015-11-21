@@ -2,6 +2,7 @@ package com.ukmaSupport.controllers;
 
 
 import com.ukmaSupport.models.Comment;
+import com.ukmaSupport.models.Order;
 import com.ukmaSupport.models.User;
 import com.ukmaSupport.services.interfaces.CommentService;
 import com.ukmaSupport.services.interfaces.OrderService;
@@ -40,10 +41,16 @@ public class Commentaries {
     public String addComment(@PathVariable("id")int ordereId, Model model){
 
         List<Comment> commentaries = commentService.getAllComments(ordereId);
+
         Comment comment = new Comment();
 
+        Order currentOrder = orderService.getById(ordereId);
+
+        model.addAttribute("order", currentOrder);
         model.addAttribute("allCommentaries",commentaries);
         model.addAttribute("comment",comment);
+
+
         return "userPage/comentariesPage";
     }
 
@@ -56,7 +63,7 @@ public class Commentaries {
         return "redirect:/addComment/{id}";
     }
 
-    private Comment createCommentObject(int ordereId, String content){
+    private Comment createCommentObject(int orderId, String content){
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
         int currentUserId = (Integer) session.getAttribute("id");
@@ -68,7 +75,7 @@ public class Commentaries {
         User author = new User();
         author.setId(currentUserId);
 
-        comment.setOrderId(ordereId);
+        comment.setOrderId(orderId);
         comment.setContent(content);
         comment.setTime(new Timestamp(new Date().getTime()));
         comment.setAuthor(author);
