@@ -25,7 +25,7 @@ public class MainPage {
 
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
-        return "mainPage/landingPage";
+        return "mainPage/mainPage";
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
