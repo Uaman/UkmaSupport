@@ -17,7 +17,10 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -128,7 +131,10 @@ public class AdminController {
     public
     @ResponseBody
     List<Order> getMyOrders() {
-        return orderService.getAll();
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        int userId = (Integer) session.getAttribute("id");
+        return orderService.getByUserId(userId);
     }
 
     @RequestMapping(value = "/admin/auditoriums", method = RequestMethod.GET)
