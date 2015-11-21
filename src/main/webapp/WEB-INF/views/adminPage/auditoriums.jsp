@@ -12,6 +12,55 @@
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script src="../../../resources/js/tsort.js"></script>
     <script>
+                $(document).ready(function () {
+                    $("#test").click(function (e) {
+
+                        var dataAuditorium =$("input").val();
+                        //  var myBookId = $('#records_table').data('id');
+                        //var rowIndex =  $('#records_table').find('td').first().text()
+                     //   alert(dataAuditorium);
+                        addAuditorium = {
+                            auditorium : dataAuditorium,
+
+                        };
+
+
+                     var postParamForDatatable = $.ajax({
+                            url :  "${pageContext.request.contextPath}/admin/createAuditoriums",
+                            type : "POST",
+                            contentType : "application/json",
+                            data : JSON.stringify(addAuditorium),
+                         success: function (response) {
+                             $.ajax({
+                                 url: '/admin/getAuditoriums',
+                                 type: 'GET',
+                                 success: function (response) {
+                                     var sorted = response.sort(function (a, b) {
+                                         if (a.status < b.status) {
+                                             return 1;
+                                         }
+                                         if (a.status > b.status) {
+                                             return -1;
+                                         }
+                                         return 0;
+                                     });
+                                     var trHTML = '';
+                                     $.each(sorted, function (i, auditorium) {
+                                         trHTML += "<tr>" +
+                                                 '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
+                                                 '<td width="230px">' + auditorium.assistantName + "</td>" +
+                                                 "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                                                 "</tr>";
+                                     });
+                                     $('#records_table tbody').empty();
+                                     $('#records_table').append(trHTML);
+                                 }
+                             });
+                         }
+                        });
+
+                    });
+                });
 
         $(document).ready(function () {
             $("#records_table").tablesort();
@@ -129,7 +178,7 @@
                     </div>
                     <div class="modal-footer">
                         <center>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Add auditorium</button>
+                            <button type="button" id="test" class="btn btn-default" data-dismiss="modal">Add auditorium</button>
                         </center>
                     </div>
                 </div>

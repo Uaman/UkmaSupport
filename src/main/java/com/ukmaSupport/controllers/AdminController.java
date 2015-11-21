@@ -17,11 +17,9 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class AdminController {
@@ -185,13 +183,36 @@ public class AdminController {
         model.addAttribute("listUsers", listUsers);
         return "excelView";
     }
+    @RequestMapping(value = "/admin/createAuditoriums", method = RequestMethod.POST)
+    public String saveAuditorium(@RequestBody Map<String, Object> searchParam,  ModelMap model,Auditorium auditorium) {
+        String number= (String) searchParam.get("auditorium");
+        auditorium.setNumber(number);
+        System.out.println(""+searchParam);
 
-    @RequestMapping(headers = "Content-Type=application/json", value = "/admin/changeRole", method = RequestMethod.POST)
-    public
-    @ResponseBody
-    void getRole(@RequestParam("role") String role) {
-        System.out.print("QQWEWQ");
-        System.out.println("ROLE: " + role);
+        auditoriumService.save(auditorium);
+        return "redirect:/admin/auditoriums";
+   }
+    @RequestMapping(value = "/admin/createWorkplaces", method = RequestMethod.POST)
+    public String saveWorkplaces(@RequestBody Map<String, Object> searchParam,  ModelMap model,Workplace workplace) {
+        Integer access_number= (Integer) searchParam.get("workplaces");
+        String number= (String) searchParam.get("number");
+        System.out.println(access_number+"================ "+number);
+        Auditorium auditorium=auditoriumService.getByNumber(number);
+        workplace.setAccessNumber(access_number);
+        workplace.setAuditoriumId(auditorium.getId());
+        workplaceService.save(workplace);
+        return "redirect:/admin/auditoriums/" + number;
+
+    }
+
+
+    @RequestMapping(value = "/admin/changeRole", method = RequestMethod.POST)
+    public @ResponseBody String setUserRole(@RequestBody Map<String, Object> searchParam) {
+        System.out.println("================ "+searchParam.get("role"));
+     //   User u
+         //userService.saveOrUpdate();
+
+        return "ok";
     }
 
     @RequestMapping(value = "/admin/editProfile", method = RequestMethod.GET)

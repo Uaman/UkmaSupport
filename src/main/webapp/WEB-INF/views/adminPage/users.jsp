@@ -11,26 +11,41 @@
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-resource.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $("#test").click(function (e) {
-                var data = 'role' + $('input:radio[name=role]:checked').val()
-                var role = $('input:radio[name=role]:checked').val();
-                alert(role);
-                $.ajax({
-                    url: "/admin/changeRole",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: JSON.stringify("{\"role\":\"+admin\"}"),
-                    contentType: 'application/json',
-                    mimeType: 'application/json',
-                    success: function (data) {
-                        alert(data.role);
-                    },
-                    error: function (data, status, er) {
-                        alert("error: " + data + " status: " + status + " er:" + er);
-                    }
+
+                var dataRole = $('input:radio[name=role]:checked').val();
+              //  var myBookId = $('#records_table').data('id');
+                //var rowIndex =  $('#records_table').find('td').first().text()
+               //alert(rowIndex);
+                changeRole = {
+                    role : dataRole,
+
+                };
+
+
+                var postParamForDatatable = $.ajax({
+                    url :  "${pageContext.request.contextPath}/admin/changeRole",
+                    type : "POST",
+                    contentType : "application/json",
+                    data : JSON.stringify(changeRole)
+                });
+
+                console.log("get data ");
+
+                postParamForDatatable.done(function(repliedData) {
+                    console.log("repliedData "+repliedData);
+                });
+
+
+                postParamForDatatable.fail(function(jqXHR, textStatus, errorThrown) {
+                    alert("The following error occured: " + textStatus, errorThrown);
+                });
+
+                postParamForDatatable.always(function() {
+                    console.log("callback handler that will be called regardless if the request failed or succeeded");
                 });
             });
         });
@@ -69,9 +84,8 @@
                     trHTML += "<tr><td>" + user.lastName + "</td>" +
                     '   <td>' + user.firstName + "</td>" +
                     '   <td>' + user.role.toString().toLowerCase() + "</td>" +
-                    '   <td>' + '<input type="image" src="../../../resources/img/edit.jpg" data-toggle="modal" data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
-                    '   <td>' + '<a href="/admin/users/changeStatus/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
-                    "<td>" + '<form action="/admin/users/delete/' + user.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
+                    '   <td>' + '<input type="image" src="../../../resources/img/edit.jpg" class="userId" data-toggle="modal"'+ 'value="'+user.accountStatus +'"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
+                    '   <td>' + '<a href="${pageContext.request.contextPath}/admin/mark_done/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
                     "</tr>";
                 });
                 $('#records_table tbody').empty();
@@ -131,7 +145,6 @@
                 <th style="width:120px;"><spring:message code="admin.users.role"/></th>
                 <th class="no-sort" width="25px;"></th>
                 <th><spring:message code="admin.users.status"/></th>
-                <th><spring:message code="admin.auditoriums.delete"/></th>
             </tr>
             </thead>
         </table>
@@ -161,7 +174,7 @@
                 </div>
                 <div class="modal-footer">
                     <center>
-                        <button type="button" id="test" type="submit" onclick="changeRole()" class="btn btn-default"
+                        <button type="button" id="test" type="submit"  class="btn btn-default"
                                 data-dismiss="modal">Ok
                         </button>
                     </center>
