@@ -54,6 +54,7 @@
         <csrf disabled="true"/>
 
         <intercept-url pattern="/" access="permitAll"/>
+        <intercept-url pattern="/addComment/**" access="hasAnyRole('ROLE_USER','ROLE_ASSISTANT','ROLE_ADMIN')"/>
         <intercept-url pattern="/assist/**" access="hasRole('ROLE_ASSISTANT')"/>
         <intercept-url pattern="/user/**" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>

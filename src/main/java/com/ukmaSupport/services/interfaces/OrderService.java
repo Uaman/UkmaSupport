@@ -27,4 +27,6 @@ public interface OrderService {
     List<Order> getAllAssistOrders(int assistid);
 
     List<Order> getByAssistAndStatus(int assistid, String status);
+
+    int getUserOrdersCount(int id);
 }

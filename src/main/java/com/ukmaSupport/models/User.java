@@ -24,6 +24,8 @@ public class User implements Serializable {
 
     private String accountStatus;
 
+    private int ordersCount;
+
     public String getAccountStatus() {
         return accountStatus;
     }
@@ -109,5 +111,13 @@ public class User implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getOrdersCount() {
+        return ordersCount;
+    }
+
+    public void setOrdersCount(int ordersCount) {
+        this.ordersCount = ordersCount;
     }
 }
