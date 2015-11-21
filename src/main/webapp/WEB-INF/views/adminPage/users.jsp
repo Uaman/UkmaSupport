@@ -24,7 +24,7 @@
                //alert(rowIndex);
 
                 $('#records_table tr').unbind().click(function(e){
-                    e.preventDefault();
+                  //  e.preventDefault();
 
                     var userId="";
                     if(userId!=null){
