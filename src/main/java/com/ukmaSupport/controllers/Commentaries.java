@@ -49,8 +49,12 @@ public class Commentaries {
         model.addAttribute("order", currentOrder);
         model.addAttribute("allCommentaries",commentaries);
         model.addAttribute("comment",comment);
+        
+        User user = userService.getById(getCurrentUser());
 
-
+        if(user.getRole() == "ADMIN"){
+            return "adminPage/comentariesPage";
+        }
         return "userPage/comentariesPage";
     }
 
@@ -59,21 +63,21 @@ public class Commentaries {
         System.out.println("comm:" + request.getParameter("content"));
 
         commentService.createComment(createCommentObject(ordereId, content));
-
+        sentNotification(ordereId,getCurrentUser());
         return "redirect:/addComment/{id}";
     }
 
-    private Comment createCommentObject(int orderId, String content){
+    private int getCurrentUser(){
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
-        int currentUserId = (Integer) session.getAttribute("id");
+        return (Integer) session.getAttribute("id");
+    }
 
-        System.out.println(currentUserId);
-        
+    private Comment createCommentObject(int orderId, String content){
         Comment comment = new Comment();
 
         User author = new User();
-        author.setId(currentUserId);
+        author.setId(getCurrentUser());
 
         comment.setOrderId(orderId);
         comment.setContent(content);
@@ -81,6 +85,10 @@ public class Commentaries {
         comment.setAuthor(author);
 
         return comment;
+    }
+
+    private void sentNotification (int orderId, int auth){
+
     }
 }
 
