@@ -6,10 +6,7 @@ import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.OrderService;
 import com.ukmaSupport.services.interfaces.UserService;
 import com.ukmaSupport.services.interfaces.WorkplaceService;
-import com.ukmaSupport.utils.AudiroriumValidator;
-import com.ukmaSupport.utils.OrderValidator;
-import com.ukmaSupport.utils.PasswordChangeValidator;
-import com.ukmaSupport.utils.PasswordEncryptor;
+import com.ukmaSupport.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
@@ -37,6 +34,10 @@ public class AdminController {
     @Autowired
     @Qualifier("orderValidator")
     private OrderValidator orderValidator;
+
+    @Autowired
+    @Qualifier("editOrderValidator")
+    private EditOrderValidator editOrderValidator;
 
     @Autowired
     @Qualifier("audiroriumValidator")
@@ -189,6 +190,53 @@ public class AdminController {
         orderService.createOrUpdate(order);
 
         //newOrderMail.send(assistant.getEmail());
+
+        return "redirect:/admin/myOrders";
+    }
+
+    @RequestMapping(value = "/admin/orders/delete/{id}", method = RequestMethod.GET)
+    public String deleteOrderById(Model model, @PathVariable("id") int id) {
+        orderService.delete(id);
+        return "redirect:/admin/myOrders";
+    }
+
+    @RequestMapping(value = "/admin/orders/edit/{id}", method = RequestMethod.GET)
+    public String editOrder(@PathVariable("id") Integer id, Model model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+
+        int userId = (Integer) session.getAttribute("id");
+
+        Order order = orderService.getByUserIdAndId(userId, id);
+        if (order == null) {
+            return "redirect:/admin/myOrders";
+        }
+        model.addAttribute("title", order.getTitle());
+        model.addAttribute("workplace", order.getWorkplace());
+        model.addAttribute("auditorium", order.getAuditorium());
+        model.addAttribute("content", order.getContent());
+        model.addAttribute("id", order.getId());
+        model.addAttribute("editOrder", order);
+
+        return "adminPage/editOrder";
+    }
+
+    @RequestMapping(value = "/admin/orders/edit/save", method = RequestMethod.POST)
+    public String orderEdited(@ModelAttribute("id") Integer id, @ModelAttribute("editOrder") Order order, ModelMap model, BindingResult result) {
+        editOrderValidator.validate(order, result);
+
+        if (result.hasErrors()) {
+            model.addAttribute("title", order.getTitle());
+            model.addAttribute("workplace", order.getWorkplace());
+            model.addAttribute("auditorium", order.getAuditorium());
+            model.addAttribute("content", order.getContent());
+            model.addAttribute("id", order.getId());
+            model.addAttribute("editOrder", order);
+            return "adminPage/editOrder";
+        }
+        order.setId(id);
+        order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
+        orderService.update(order);
 
         return "redirect:/admin/myOrders";
     }

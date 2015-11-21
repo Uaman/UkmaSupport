@@ -71,8 +71,8 @@
                         "<td>" + order.workplace_access_num + "</td>" +
                         "<td>" + order.status + "</td>" +
                         "<td>" + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                        "<td>" + '<form action="/admin/editOrder/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></form>' + "</td>" +
-                        "<td>" + '<form action="/admin/delete/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                        "<td>" + '<form action="/admin/orders/edit/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                        "<td>" + '<form action="/admin/orders/delete/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
                         "</tr>";
                     } else {
                         trHTML += "<tr>" +
@@ -82,7 +82,7 @@
                         "<td>" + order.status + "</td>" +
                         "<td>" + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
                         "<td>" + "  " + "</td>" +
-                        "<td>" + '<form action="/admin/delete/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                        "<td>" + '<form action="/admin/orders/delete/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
                         "</tr>";
                     }
                 });
