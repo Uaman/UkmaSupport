@@ -47,17 +47,13 @@
     margin-top: -49px;
     font-family: "Garamond", sans-serif;
     color: #333366;
-    margin-left: 840px;
+    margin-left: 820px;
     font-size: 20px;
 }
 
 #mainLocal a {
     color: #333366;
-}
-
-#mainLocal a:hover {
     text-decoration: none;
-    color: #333366;
     opacity: 1;
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
