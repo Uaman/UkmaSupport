@@ -350,7 +350,7 @@ a img {
 }
 
 #helloAssist {
-    margin-top: -10px;
+	margin-top: 85px;
     font-family: "Century Gothic", sans-serif;
     font-size: 30px;
     color: #333366;
@@ -371,7 +371,7 @@ a img {
 
 #assistContent {
     height: 750px;
-	padding-bottom: 70px;
+	padding-bottom: 50px;
 }
 
 #assist_create_order_button {
@@ -598,5 +598,43 @@ tbody.scrollContent {
 	border-left: solid 1px #333366;
 	border-radius: 7px;
 }
+
+#localization {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	position: absolute;
+	margin-top: -49px;
+	font-family: "Garamond", sans-serif;
+	color: #333366;
+	margin-left: 820px;
+	font-size: 20px;
+}
+
+#localization a {
+	color: #333366;
+	text-decoration: none;
+	opacity: 1;
+	-webkit-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+#localization a:hover {
+	text-decoration: none;
+	opacity: 0.5;
+}
+
+#localization a:active {
+	font-weight: bold;
+}
+
+#footer {
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+	width: 900px;
+	height: 50px;
+	background-color: #fff;
+}
+
 
 
