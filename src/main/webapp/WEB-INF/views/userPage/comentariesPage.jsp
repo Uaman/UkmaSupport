@@ -5,7 +5,6 @@
 <html>
 <head>
     <title></title>
-    <sec:csrfMetaTags/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="../../../resources/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
@@ -37,16 +36,17 @@
     </nav>
 
     <div id="order-inf">
-        <p class="body-text" id="order-title">Title:</p>
-        <p class="body-text" id="order-auditorium">Auditorium:</p>
-        <p class="body-text" id="order-workplace">Workplace:</p>
-        <p class="body-text" id="order-date">Date:</p>
+        <p class="body-text" id="order-title">Title: ${order.title}</p>
+        <p class="body-text" id="order-auditorium">Auditorium: ${order.auditorium}</p>
+        <p class="body-text" id="order-workplace">Workplace: ${order.workplace_access_num}</p>
+        <p class="body-text" id="order-date">Date: ${order.createdAt.toLocaleString()}</p>
+        <p class="body-text" id="order-description">Description: ${order.content}</p>
     </div>
     <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 
     <div id="comments" class="col-md-offset-2 col-md-8">
         <c:forEach var="comment" items="${allCommentaries}" varStatus="count" >
-            <p class="comment body-text">comment#${count}: By ${comment.author.firstName} ROLE ${comment.author.role} TIME ${comment.time} CONTENT ${comment.content} </p>
+            <p class="comment body-text">comment#: By ${comment.author.firstName} ROLE ${comment.author.role} TIME ${comment.time.toLocaleString()} CONTENT ${comment.content} </p>
         </c:forEach>
 
 

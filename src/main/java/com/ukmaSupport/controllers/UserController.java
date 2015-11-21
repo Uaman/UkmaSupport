@@ -96,6 +96,7 @@ public class UserController {
             model.addAttribute("newOrder", order);
             return "userPage/createOrderPage";
         }
+
         order.setUserId(userId);
         order.setStatus(UNDONE);
         order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
@@ -107,7 +108,8 @@ public class UserController {
 
         orderService.createOrUpdate(order);
 
-        newOrderMail.send(assistant.getEmail());
+        if (assistant != null)
+            newOrderMail.send(assistant.getEmail());
 
         return "redirect:/user/userhome";
     }

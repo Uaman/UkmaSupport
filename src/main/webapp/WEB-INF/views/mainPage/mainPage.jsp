@@ -32,7 +32,7 @@
     </div>
 
     <spring:url var="authUrl" value="/static/j_spring_security_check"/>
-    <div class="col-md-offset-4 col-md-4 vertalign bottom-block" id="auth-block">
+    <div class="col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4 vertalign bottom-block" id="auth-block">
 
         <form class="form-horizontal" style="margin-top: 130px;" method="post" action="${authUrl}">
 

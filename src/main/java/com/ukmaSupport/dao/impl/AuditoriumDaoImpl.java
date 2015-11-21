@@ -1,14 +1,12 @@
 package com.ukmaSupport.dao.impl;
 
-import com.ukmaSupport.models.Auditorium;
-import com.ukmaSupport.dao.mapper.AuditoriumMapper;
 import com.ukmaSupport.dao.interfaces.AuditoriumDao;
-import com.ukmaSupport.models.User;
+import com.ukmaSupport.dao.mapper.AuditoriumMapper;
+import com.ukmaSupport.models.Auditorium;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @Repository("auditoriumDao")
@@ -37,7 +35,7 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
 
     @Override
     public Auditorium getByNumber(String number) {
-        String sql = "SELECT id,user_id,number FROM auditorium WHERE number=?";
+        String sql = "SELECT id,user_id,number, concat(users.first_name, ' ', users.last_name) AS assist FROM auditorium LEFT JOIN users ON users.id_user=auditorium.user_id WHERE number=?";
         List<Auditorium> auditoriums = template.query(sql, new Object[]{number}, new AuditoriumMapper());
         return auditoriums.isEmpty() ? null : auditoriums.get(0);
     }

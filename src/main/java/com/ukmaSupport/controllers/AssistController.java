@@ -169,8 +169,8 @@ public class AssistController {
         }
         orderService.createOrUpdate(order);
 
-        User user = userService.getById(order.getUserId());
-        orderIsDoneMail.send(user.getEmail());
+       // User user = userService.getById(order.getUserId());
+        //orderIsDoneMail.send(user.getEmail());
 
         return "redirect:/assist/home";
     }

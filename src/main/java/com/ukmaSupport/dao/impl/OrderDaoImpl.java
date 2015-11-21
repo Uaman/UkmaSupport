@@ -45,6 +45,8 @@ public class OrderDaoImpl implements OrderDao {
 
     private static final String UPDATE = "UPDATE orders SET title=?, content=?, created_at=? WHERE id=?";
 
+    private static final String GET_USER_ORDERS_COUNT = "SELECT count(orders.id) FROM orders WHERE orders.user_id=?";
+
     @Override
     public Order getById(int id) {
         List<Order> users = jdbcTemplate.query(GET_ORDER_BY_ID, new Object[]{id}, rowMapper);
@@ -119,6 +121,11 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public List<Order> getByAssistAndStatus(int assistant_id, String status) {
         return jdbcTemplate.query(GET_ALL_ORDERS_BY_ASSIST_AND_STATUS, new Object[]{assistant_id, status}, rowMapper);
+    }
+
+    @Override
+    public int getUserOrdersCount(int id){
+        return jdbcTemplate.queryForInt(GET_USER_ORDERS_COUNT, new Object[]{id});
     }
 
     private static final RowMapper<Order> rowMapper = new RowMapper<Order>() {

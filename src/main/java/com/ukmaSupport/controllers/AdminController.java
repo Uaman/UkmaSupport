@@ -1,13 +1,12 @@
 package com.ukmaSupport.controllers;
 
+import com.ukmaSupport.mailService.templates.NewOrderMail;
 import com.ukmaSupport.models.*;
 import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.OrderService;
 import com.ukmaSupport.services.interfaces.UserService;
 import com.ukmaSupport.services.interfaces.WorkplaceService;
-import com.ukmaSupport.utils.AudiroriumValidator;
-import com.ukmaSupport.utils.PasswordChangeValidator;
-import com.ukmaSupport.utils.PasswordEncryptor;
+import com.ukmaSupport.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
@@ -21,7 +20,9 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class AdminController {
@@ -31,8 +32,19 @@ public class AdminController {
     private PasswordChangeValidator validator;
 
     @Autowired
+    @Qualifier("orderValidator")
+    private OrderValidator orderValidator;
+
+    @Autowired
+    @Qualifier("editOrderValidator")
+    private EditOrderValidator editOrderValidator;
+
+    @Autowired
     @Qualifier("audiroriumValidator")
     private AudiroriumValidator audiroriumValidator;
+
+    @Autowired
+    private NewOrderMail newOrderMail;
 
     @Autowired
     private UserService userService;
@@ -53,7 +65,7 @@ public class AdminController {
     private final static String BLOCKED = "blocked";
 
     @RequestMapping(value = "/admin/allUsers", method = RequestMethod.GET)
-    public String allUsers(Model model) {
+    public String allUsers() {
         return "adminPage/users";
     }
 
@@ -64,18 +76,22 @@ public class AdminController {
         return userService.getAll();
     }
 
-    @RequestMapping(value = "/admin/mark_done/{id}", method = RequestMethod.GET)
-public String setToDone(@PathVariable("id") Integer id, Model model) {
-    User user = userService.getById(id);
-    if(user.getAccountStatus().equals(BLOCKED)) {
-        user.setAccountStatus("active");
-    }else {
-        user.setAccountStatus(BLOCKED);
-    }
+    @RequestMapping(value = "/admin/users/changeStatus/{id}", method = RequestMethod.GET)
+    public String changeUserStatus(@PathVariable("id") Integer id) {
+        User user = userService.getById(id);
+        if (user.getAccountStatus().equals(BLOCKED))
+            user.setAccountStatus("active");
+        else
+            user.setAccountStatus(BLOCKED);
         userService.saveOrUpdate(user);
+        return "redirect:/admin/allUsers";
+    }
 
-    return "redirect:/admin/allUsers";
-}
+    @RequestMapping(value = "/admin/users/delete/{id}", method = RequestMethod.GET)
+    public String deleteUserById(@PathVariable("id") int id) {
+        userService.delete(id);
+        return "redirect:/admin/allUsers";
+    }
 
     @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
     public String showUsers(Model model) {
@@ -106,7 +122,7 @@ public String setToDone(@PathVariable("id") Integer id, Model model) {
     }
 
     @RequestMapping(value = "/admin/allOrders", method = RequestMethod.GET)
-    public String allOrders(Model model) {
+    public String allOrders() {
         return "adminPage/orders";
     }
 
@@ -117,48 +133,151 @@ public String setToDone(@PathVariable("id") Integer id, Model model) {
         return orderService.getAll();
     }
 
-    @RequestMapping(value = "/admin/auditoriums", method = RequestMethod.GET)
-    public String showAuditoriums(Model model) {
+    @RequestMapping(value = "/admin/myOrders", method = RequestMethod.GET)
+    public String myOrders() {
+        return "adminPage/myOrders";
+    }
+
+    @RequestMapping(value = "/admin/getMyOrders", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Order> getMyOrders() {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        int userId = (Integer) session.getAttribute("id");
+        return orderService.getByUserId(userId);
+    }
+
+    @RequestMapping(value = "/admin/showWorkplaces", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Workplace> getWorkplaces(@RequestParam("text") String text) {
+        List<Workplace> workplaces = workplaceService.getByAuditoryName(text);
+        return workplaces;
+    }
+
+    @RequestMapping(value = "/admin/orders/createOrder", method = RequestMethod.GET)
+    public String createOrder(ModelMap model) {
+        Order order = new Order();
         List<Auditorium> auditoriums = auditoriumService.getAll();
+        model.addAttribute("newOrder", order);
         model.addAttribute("auditoriums", auditoriums);
+        return "adminPage/createOrder";
+    }
+
+    @RequestMapping(value = "/admin/orders/createOrder", method = RequestMethod.POST)
+    public String createOrderPost(@ModelAttribute("newOrder") Order order, ModelMap model, BindingResult result) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        int userId = (Integer) session.getAttribute("id");
+        orderValidator.validate(order, result);
+        if (result.hasErrors()) {
+            List<Auditorium> auditoriums = auditoriumService.getAll();
+            model.addAttribute("auditoriums", auditoriums);
+            model.addAttribute("newOrder", order);
+            return "adminPage/createOrder";
+        }
+
+        order.setUserId(userId);
+        order.setStatus("Undone");
+        order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
+        User assistant = userService.getResponsibleAssistant(order.getAuditorium());
+        int assistantId = 0;
+        if (assistant != null) assistantId = assistant.getId();
+        order.setAssistantId(assistantId);
+        order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
+
+        orderService.createOrUpdate(order);
+
+        //newOrderMail.send(assistant.getEmail());
+
+        return "redirect:/admin/myOrders";
+    }
+
+    @RequestMapping(value = "/admin/orders/delete/{id}", method = RequestMethod.GET)
+    public String deleteOrderById(Model model, @PathVariable("id") int id) {
+        orderService.delete(id);
+        return "redirect:/admin/myOrders";
+    }
+
+    @RequestMapping(value = "/admin/orders/edit/{id}", method = RequestMethod.GET)
+    public String editOrder(@PathVariable("id") Integer id, Model model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+
+        int userId = (Integer) session.getAttribute("id");
+
+        Order order = orderService.getByUserIdAndId(userId, id);
+        if (order == null) {
+            return "redirect:/admin/myOrders";
+        }
+        model.addAttribute("title", order.getTitle());
+        model.addAttribute("workplace", order.getWorkplace());
+        model.addAttribute("auditorium", order.getAuditorium());
+        model.addAttribute("content", order.getContent());
+        model.addAttribute("id", order.getId());
+        model.addAttribute("editOrder", order);
+
+        return "adminPage/editOrder";
+    }
+
+    @RequestMapping(value = "/admin/orders/edit/save", method = RequestMethod.POST)
+    public String orderEdited(@ModelAttribute("id") Integer id, @ModelAttribute("editOrder") Order order, ModelMap model, BindingResult result) {
+        editOrderValidator.validate(order, result);
+
+        if (result.hasErrors()) {
+            model.addAttribute("title", order.getTitle());
+            model.addAttribute("workplace", order.getWorkplace());
+            model.addAttribute("auditorium", order.getAuditorium());
+            model.addAttribute("content", order.getContent());
+            model.addAttribute("id", order.getId());
+            model.addAttribute("editOrder", order);
+            return "adminPage/editOrder";
+        }
+        order.setId(id);
+        order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
+        orderService.update(order);
+
+        return "redirect:/admin/myOrders";
+    }
+
+    @RequestMapping(value = "/admin/auditoriums", method = RequestMethod.GET)
+    public String allAuditoriums() {
         return "adminPage/auditoriums";
+    }
+
+    @RequestMapping(value = "/admin/getAuditoriums", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Auditorium> getAuditoriums() {
+        return auditoriumService.getAll();
+    }
+
+    @RequestMapping(value = "/admin/auditoriums/delete/{id}", method = RequestMethod.GET)
+    public String deleteOrderById(@PathVariable("id") int id) {
+        auditoriumService.delete(id);
+        return "redirect:/admin/auditoriums";
     }
 
     @RequestMapping(value = "/admin/auditoriums/{name}", method = RequestMethod.GET)
     public String showWorkplaces(@PathVariable("name") String name, Model model) {
-
         model.addAttribute("name", name);
-        List<Auditorium> auditoriums = auditoriumService.getAll();
-
-        for (Auditorium auditorium : auditoriums) {
-            if (auditorium.getNumber().equals(name)) {
-                List<Workplace> workplaces = workplaceService.getByAuditoryName(name);
-                model.addAttribute("workplaces", workplaces);
-                return "adminPage/workplaces";
-            }
-        }
-        return "/404";
+        return "adminPage/workplaces";
     }
 
-//    @RequestMapping(value = "/admin/createAuditorium", method = RequestMethod.GET)
-//    public String createAuditorium(ModelMap model) {
-//        Auditorium order = new Auditorium();
-//        List<User> users = userService.getByRole(ASSISTANT);
-//        model.addAttribute("newAuditorium", order);
-//        model.addAttribute("assistants", users);
-//        return "adminPage/addAuditorium";
-//    }
+    @RequestMapping(value = "/admin/auditoriums/{name}/getWorkplaces", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Workplace> getWorkplaces(@PathVariable("name") String name, Model model) {
+        model.addAttribute("name", name);
+        return workplaceService.getByAuditoryName(name);
+    }
 
-//    @RequestMapping(value = "/admin/createAuditorium", method = RequestMethod.POST)
-//    public String saveAuditorium(@ModelAttribute("newAuditorium") Auditorium auditorium, ModelMap model, BindingResult bindingResult) {
-//        model.addAttribute("number", auditorium.getNumber());
-//        audiroriumValidator.validate(auditorium, bindingResult);
-//        if (bindingResult.hasErrors())
-//            return "adminPage/addAuditorium";
-//
-//        auditoriumService.save(auditorium);
-//        return "redirect:/auditoriums";
-//    }
+    @RequestMapping(value = "/admin/auditoriums/{name}/workplaces/delete/{id}", method = RequestMethod.GET)
+    public String deleteWorkplaceById(@PathVariable("name") String name, @PathVariable("id") int id) {
+        workplaceService.delete(id);
+        return "redirect:/admin/auditoriums/" + name;
+    }
 
     @RequestMapping(value = "/admin/downloadExcel", method = RequestMethod.GET)
     public String downloadExcel(Model model) {
@@ -167,12 +286,36 @@ public String setToDone(@PathVariable("id") Integer id, Model model) {
         return "excelView";
     }
 
-    @RequestMapping(headers = "Content-Type=application/json", value = "/admin/changeRole", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/createAuditoriums", method = RequestMethod.POST)
+    public String saveAuditorium(@RequestBody Map<String, Object> searchParam, ModelMap model, Auditorium auditorium) {
+        String number = (String) searchParam.get("auditorium");
+        auditorium.setNumber(number);
+        auditoriumService.save(auditorium);
+        return "redirect:/admin/auditoriums";
+    }
+
+    @RequestMapping(value = "/admin/createWorkplaces", method = RequestMethod.POST)
+    public String saveWorkplaces(@RequestBody Map<String, Object> searchParam, ModelMap model, Workplace workplace) {
+        Integer access_number = (Integer) searchParam.get("workplaces");
+        String number = (String) searchParam.get("number");
+        Auditorium auditorium = auditoriumService.getByNumber(number);
+        workplace.setAccessNumber(access_number);
+        workplace.setAuditoriumId(auditorium.getId());
+        workplaceService.save(workplace);
+        return "redirect:/admin/auditoriums/" + number;
+
+    }
+
+
+    @RequestMapping(value = "/admin/changeRole", method = RequestMethod.POST)
     public
     @ResponseBody
-    void getRole(@RequestParam("role") String role) {
-        System.out.print("QQWEWQ");
-        System.out.println("ROLE: " + role);
+    String setUserRole(@RequestBody Map<String, Object> searchParam) {
+        System.out.println("================ " + searchParam.get("role"));
+        //   User u
+        //userService.saveOrUpdate();
+
+        return "ok";
     }
 
     @RequestMapping(value = "/admin/editProfile", method = RequestMethod.GET)
@@ -200,5 +343,13 @@ public String setToDone(@PathVariable("id") Integer id, Model model) {
         user.setPassword(pass);
         userService.saveOrUpdate(user);
         return "userPage/passwordChangeSuccess";
+    }
+
+    @RequestMapping(value = "/admin/users/userProfile/{id}", method = RequestMethod.GET)
+    public String showUser(@PathVariable("id") int id, Model model) {
+        User user = userService.getById(id);
+        user.setOrdersCount(orderService.getUserOrdersCount(user.getId()));
+        model.addAttribute("passChangeForm", user);
+        return "adminPage/userPage";
     }
 }
