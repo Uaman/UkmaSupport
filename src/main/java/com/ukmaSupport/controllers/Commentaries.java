@@ -4,6 +4,8 @@ package com.ukmaSupport.controllers;
 import com.ukmaSupport.models.Comment;
 import com.ukmaSupport.models.User;
 import com.ukmaSupport.services.interfaces.CommentService;
+import com.ukmaSupport.services.interfaces.OrderService;
+import com.ukmaSupport.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,12 @@ public class Commentaries {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private OrderService orderService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String addComment(@PathVariable("id")int ordereId, Model model){
