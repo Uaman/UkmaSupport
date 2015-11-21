@@ -25,7 +25,7 @@
         </div>
     </nav>
 
-
+    <div id="ContentRegister">
     <div id="mainRegister">
         <form:form id="userForm" class="form-horizontal" action="register" method="post" commandName="userForm">
             <div class="centralWord row col-md-offset-1" colspan="2" align="center"><spring:message
@@ -105,13 +105,14 @@
             </div>
         </form:form>
     </div>
+    </div>
 
-    <div class="footer">
+    <div id="footer">
         <div class="thick"></div>
         <div class="thin"></div>
-        <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
+        <div><p class="footertext"><spring:message code="login.footer"/></p></div>
 
-        <div class="text-center">
+        <div id="localization">
             <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
             <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
         </div>

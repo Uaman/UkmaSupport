@@ -30,11 +30,11 @@
             </ul>
         </div>
     </div>
-
+    <div id="ContentLogin">
     <spring:url var="authUrl" value="/static/j_spring_security_check"/>
     <div class="col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4 vertalign bottom-block" id="auth-block">
 
-        <form class="form-horizontal" style="margin-top: 130px;" method="post" action="${authUrl}">
+        <form class="form-horizontal" style="margin-top: 170px;" method="post" action="${authUrl}">
 
             <div class="form-group">
                 <div class="col-md-offset-1 col-md-10">
@@ -64,6 +64,8 @@
             </div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
+    </div>
+
     </div>
 
     <div id="footer">
