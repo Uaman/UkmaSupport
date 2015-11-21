@@ -47,8 +47,17 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a id="orders" class="menu-element" href="/admin/allOrders"><spring:message
-                            code="admin.orders"/></a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"><spring:message
+                                code="admin.orders"/><b
+                                class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="menu-element-li" href="/admin/allOrders"><spring:message
+                                    code="admin.orders"/></a></li>
+                            <li><a class="menu-element-li" href="/admin/myOrders"><spring:message code="admin.myOrders"/></a>
+                            </li>
+                        </ul>
+                    </li>
                     <li><a id="editProfile" class="menu-element active" href="/admin/editProfile"><spring:message
                             code="admin.edit"/></a></li>
                     <li><a class="menu-element" href="/logout"><spring:message code="admin.logout"/></a></li>

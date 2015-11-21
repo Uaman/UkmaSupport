@@ -12,55 +12,50 @@
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script src="../../../resources/js/tsort.js"></script>
     <script>
-                $(document).ready(function () {
-                    $("#test").click(function (e) {
+        $(document).ready(function () {
+            $("#test").click(function (e) {
 
-                        var dataAuditorium =$("input").val();
-                        //  var myBookId = $('#records_table').data('id');
-                        //var rowIndex =  $('#records_table').find('td').first().text()
-                     //   alert(dataAuditorium);
-                        addAuditorium = {
-                            auditorium : dataAuditorium,
+                var dataAuditorium = $("input").val();
+                addAuditorium = {
+                    auditorium: dataAuditorium
+                };
 
-                        };
-
-
-                     var postParamForDatatable = $.ajax({
-                            url :  "${pageContext.request.contextPath}/admin/createAuditoriums",
-                            type : "POST",
-                            contentType : "application/json",
-                            data : JSON.stringify(addAuditorium),
-                         success: function (response) {
-                             $.ajax({
-                                 url: '/admin/getAuditoriums',
-                                 type: 'GET',
-                                 success: function (response) {
-                                     var sorted = response.sort(function (a, b) {
-                                         if (a.status < b.status) {
-                                             return 1;
-                                         }
-                                         if (a.status > b.status) {
-                                             return -1;
-                                         }
-                                         return 0;
-                                     });
-                                     var trHTML = '';
-                                     $.each(sorted, function (i, auditorium) {
-                                         trHTML += "<tr>" +
-                                                 '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
-                                                 '<td width="230px">' + auditorium.assistantName + "</td>" +
-                                                 "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
-                                                 "</tr>";
-                                     });
-                                     $('#records_table tbody').empty();
-                                     $('#records_table').append(trHTML);
-                                 }
-                             });
-                         }
+                var postParamForDatatable = $.ajax({
+                    url: "${pageContext.request.contextPath}/admin/createAuditoriums",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(addAuditorium),
+                    success: function (response) {
+                        $.ajax({
+                            url: '/admin/getAuditoriums',
+                            type: 'GET',
+                            success: function (response) {
+                                var sorted = response.sort(function (a, b) {
+                                    if (a.status < b.status) {
+                                        return 1;
+                                    }
+                                    if (a.status > b.status) {
+                                        return -1;
+                                    }
+                                    return 0;
+                                });
+                                var trHTML = '';
+                                $.each(sorted, function (i, auditorium) {
+                                    trHTML += "<tr>" +
+                                    '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
+                                    '<td width="230px">' + auditorium.assistantName + "</td>" +
+                                    "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                                    "</tr>";
+                                });
+                                $('#records_table tbody').empty();
+                                $('#records_table').append(trHTML);
+                            }
                         });
-
-                    });
+                    }
                 });
+
+            });
+        });
 
         $(document).ready(function () {
             $("#records_table").tablesort();
@@ -127,8 +122,18 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a id="orders" class="menu-element" href="/admin/allOrders"><spring:message
-                            code="admin.orders"/></a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"><spring:message
+                                code="admin.orders"/><b
+                                class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="menu-element-li" href="/admin/allOrders"><spring:message
+                                    code="admin.orders"/></a></li>
+                            <li><a class="menu-element-li" href="/admin/myOrders"><spring:message
+                                    code="admin.myOrders"/></a>
+                            </li>
+                        </ul>
+                    </li>
                     <li><a id="editProfile" class="menu-element" href="/admin/editProfile"><spring:message
                             code="admin.edit"/></a></li>
                     <li><a class="menu-element" href="/logout"><spring:message code="admin.logout"/></a></li>
@@ -138,7 +143,8 @@
     </nav>
     <div class="table-align bottom-block top-table">
         <div id="tableContainer" class="tableContainer">
-            <table id="records_table" class="tbl table table_auditorium table-striped" style="max-width: 100%; width: 430px; ">
+            <table id="records_table" class="tbl table table_auditorium table-striped"
+                   style="max-width: 100%; width: 430px; ">
                 <thead class="fixedHeader">
                 <tr>
                     <th width="187px"><spring:message code="admin.auditoriums.number"/></th>
@@ -178,7 +184,9 @@
                     </div>
                     <div class="modal-footer">
                         <center>
-                            <button type="button" id="test" class="btn btn-default" data-dismiss="modal">Add auditorium</button>
+                            <button type="button" id="test" class="btn btn-default" data-dismiss="modal">Add
+                                auditorium
+                            </button>
                         </center>
                     </div>
                 </div>
