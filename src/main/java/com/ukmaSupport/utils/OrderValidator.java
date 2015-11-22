@@ -17,19 +17,17 @@ public class OrderValidator implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
 
-        Order order = (Order)o;
-//        System.out.println("Title:" + order.getTitle() + "; Workpl:" + order.getWorkplace_access_num() +
-//                "; Descr:" + order.getContent() );
-        if((order.getTitle() == "") && (order.getContent() == "")
-                && (order.getWorkplace_access_num() == null)){
+        Order order = (Order) o;
+        if ((order.getTitle() == "") && (order.getContent() == "")
+                && (order.getWorkplace_access_num() == null)) {
             errors.rejectValue("auditorium", "valid.order.fillAllTheForms");
-        }else {
+        } else {
             if (order.getTitle() == "") {
                 errors.rejectValue("title", "valid.order.title");
-            }else if(order.getTitle().length() < 8) {
-                errors.rejectValue("title","valid.order.shortTitle");
-            }else if(order.getTitle().length() > 20){
-                errors.rejectValue("title","valid.order.tooLongTitle");
+            } else if (order.getTitle().length() < 8) {
+                errors.rejectValue("title", "valid.order.shortTitle");
+            } else if (order.getTitle().length() > 20) {
+                errors.rejectValue("title", "valid.order.tooLongTitle");
             }
 
             if (order.getWorkplace_access_num() == null) {
@@ -38,11 +36,10 @@ public class OrderValidator implements Validator {
 
             if (order.getContent() == "") {
                 errors.rejectValue("content", "valid.order.content");
-            }else if(order.getContent().length() < 10) {
-                errors.rejectValue("content","valid.order.shortContent");
-            }
-            else if(order.getContent().length() >= 100){
-                errors.rejectValue("content","valid.order.tooLongDescription");
+            } else if (order.getContent().length() < 10) {
+                errors.rejectValue("content", "valid.order.shortContent");
+            } else if (order.getContent().length() >= 100) {
+                errors.rejectValue("content", "valid.order.tooLongDescription");
             }
         }
 
