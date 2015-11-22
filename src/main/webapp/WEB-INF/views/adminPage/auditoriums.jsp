@@ -149,7 +149,7 @@
                 <tr>
                     <th width="187px"><spring:message code="admin.auditoriums.number"/></th>
                     <th width="230px"><spring:message code="admin.auditoriums.assistantName"/></th>
-                    <th width="50px" class="no-sort"><spring:message code="admin.auditoriums.delete"/></th>
+                    <th width="50px" class="no-sort"></th>
                 </tr>
                 </thead>
                 <tbody class="scrollContent">
