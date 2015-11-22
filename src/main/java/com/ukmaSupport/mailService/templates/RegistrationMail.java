@@ -13,8 +13,9 @@ public class RegistrationMail {
     @Autowired
     private MailService mailService;
 
-    public void send(String toAddr, String link){
+    public void send(String toAddr, int userId){
         String subject = "Welcome to UKMA Support";
+        String link = Constants.LOCAL_SERVER + Constants.VERIFICATION + userId;
         String body = "Welcome to UKMA Support." + "\n\n" + "Please verify your email " + link +
                 "\n\nUKMA Support\n" + Constants.SERVER;
 

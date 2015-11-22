@@ -45,7 +45,7 @@ public class Registration {
         userService.saveOrUpdate(user);
         String email = user.getEmail();
         user = userService.getByEmail(email);
-        registrationMail.send(email, Constants.LOCAL_SERVER + Constants.VERIFICATION + user.getId());
+        registrationMail.send(email, user.getId());
         return "registration/registrationSuccess";
     }
 }

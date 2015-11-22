@@ -12,6 +12,6 @@ public class Constants {
 
     public static final String CHANGE_PASSWORD = "/changePassword?id=";
 
-
+    public static final String COMMENTS = "/addComment/";
 
 }

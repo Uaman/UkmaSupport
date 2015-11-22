@@ -12,8 +12,9 @@ public class ForgotPasswordMail {
     @Autowired
     private MailService mailService;
 
-    public void send(String toAddr, String link){
+    public void send(String toAddr, int userId){
         String subject = "You can change your password now";
+        String link = Constants.LOCAL_SERVER + Constants.CHANGE_PASSWORD + userId;
         String body = "You can change your password: " + link + "\n\nUKMA Support\n" + Constants.SERVER;
         mailService.sendEmail(toAddr, FROM_ADDR, subject, body);
     }

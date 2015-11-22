@@ -47,7 +47,7 @@ public class ForgotPasswordController {
 
             for(User item : users){
                 if(email.equals(item.getEmail())){
-                    forgotPasswordMail.send(email, Constants.LOCAL_SERVER + Constants.CHANGE_PASSWORD + item.getId());
+                    forgotPasswordMail.send(email, item.getId());
                     modelMap.addAttribute("success", "Success!");
                     return "registration/forgotPasswordSuccess";
                 }
