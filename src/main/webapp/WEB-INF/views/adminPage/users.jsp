@@ -16,16 +16,13 @@
 
         $(document).ready(function () {
             $("#test").click(function () {
-
                 var dataRole = $('input:radio[name=role]:checked').val();
+
                 $('#records_table tr').unbind().click(function (e) {
                     //  e.preventDefault();
 
-                    var userId = "";
-                    if (userId != null) {
-                        userId = "";
-                    }
-                    userId = $(e.target).data('id');
+                  var  userId = $(e.target).attr("data-id");
+
 
                     changeRole = {
                         role: dataRole,
@@ -39,27 +36,20 @@
                         data: JSON.stringify(changeRole),
                         success: function (response) {
                             $.ajax({
-                                url: '/admin/getAllUsers',
+                                url: '${pageContext.request.contextPath}/admin/getAllUsers',
                                 type: 'GET',
                                 success: function (response) {
-                                    var sorted = response.sort(function (a, b) {
-                                        if (a.createdAt < b.createdAt) {
-                                            return 1;
-                                        }
-                                        if (a.createdAt > b.createdAt) {
-                                            return -1;
-                                        }
-                                        return 0;
-                                    });
                                     var trHTML = '';
                                     $.each(response, function (i, user) {
-                                        trHTML += "<tr><td>" + user.lastName + "</td>" +
-                                        '<td>' + user.firstName + "</td>" +
-                                        '<td>' + user.role.toString().toLowerCase() + "</td>" +
-                                        '<td>' + '<input type="image" src="../../../resources/img/edit.jpg" data-toggle="modal" data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
-                                        "<td>" + '<a href="/admin/users/changeStatus/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
-                                        "<td width='50px'>" + '<form action="/admin/users/delete/' + user.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
-                                        "</tr>";
+                                        trHTML += '<tr>' +
+                                                "<td>" + user.lastName + "</td>" +
+                                                '<td>' + user.firstName + "</td>" +
+                                                '<td>' + user.role.toString().toLowerCase() + "</td>" +
+                                                '   <td>' + '<input type="image" src="../../../resources/img/edit.jpg" class="userId" data-toggle="modal"'+ 'data-id="'+user.id +'"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
+
+                                                '<td>' + '<a href="/admin/users/changeStatus/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
+                                                "<td width='50px'>" + '<form action="/admin/users/delete/' + user.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
+                                                "</tr>";
                                     });
                                     $('#records_table tbody').empty();
                                     $('#records_table').append(trHTML);
@@ -102,11 +92,13 @@
                 });
                 var trHTML = '';
                 $.each(response, function (i, user) {
-                    trHTML += "<tr><td>" + user.lastName + "</td>" +
+                    trHTML += '<tr>' +
+                    "<td>" + user.lastName + "</td>" +
                     '<td>' + user.firstName + "</td>" +
                     '<td>' + user.role.toString().toLowerCase() + "</td>" +
-                    '<td>' + '<input type="image" src="../../../resources/img/edit.jpg" data-toggle="modal" data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
-                    '<td>' + '<a href="/admin/users/changeStatus/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
+                            '   <td>' + '<input type="image" src="../../../resources/img/edit.jpg" class="userId" data-toggle="modal"'+ 'data-id="'+user.id +'"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
+
+                            '<td>' + '<a href="/admin/users/changeStatus/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
                     "<td width='50px'>" + '<form action="/admin/users/delete/' + user.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
                     "</tr>";
                 });
