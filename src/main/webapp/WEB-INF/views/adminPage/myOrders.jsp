@@ -71,8 +71,8 @@
                         "<td>" + order.workplace_access_num + "</td>" +
                         "<td>" + order.status + "</td>" +
                         "<td>" + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                        "<td>" + '<form action="/admin/orders/edit/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></form>' + "</td>" +
-                        "<td>" + '<form action="/admin/orders/delete/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                        "<td width='50px'>" + '<form action="/admin/orders/edit/' + order.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
+                        "<td width='50px'>" + '<form action="/admin/orders/delete/' + order.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit" style=""><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
                         "</tr>";
                     } else {
                         trHTML += "<tr>" +
@@ -81,8 +81,8 @@
                         "<td>" + order.workplace_access_num + "</td>" +
                         "<td>" + order.status + "</td>" +
                         "<td>" + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                        "<td>" + "  " + "</td>" +
-                        "<td>" + '<form action="/admin/orders/delete/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                        "<td width='50px'>" + "  " + "</td>" +
+                        "<td width='50px'>" + '<form action="/admin/orders/delete/' + order.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
                         "</tr>";
                     }
                 });
@@ -150,7 +150,7 @@
 
     <div class="col-md-offset-7">
         <form class="form-horizontal" method="get" action="/admin/orders/createOrder">
-            <div class="col-md-offset-7 col-md-4">
+            <div class="col-md-offset-7 col-md-4 button-myorders">
                 <button id="btn-add-order" type="submit" class="btn btn-primary btn-block"><spring:message
                         code="user.order"/></button>
             </div>
@@ -166,8 +166,8 @@
                 <th><spring:message code="assist.order.workplace"/></th>
                 <th><spring:message code="admin.orders.status"/></th>
                 <th><spring:message code="admin.orders.date"/></th>
-                <th></th>
-                <th></th>
+                <th width='50px'></th>
+                <th width='50px'></th>
             </tr>
             </thead>
         </table>
