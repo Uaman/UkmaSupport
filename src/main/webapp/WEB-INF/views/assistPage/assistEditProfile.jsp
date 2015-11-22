@@ -53,10 +53,6 @@
         </div>
     </nav>
 
-    <div id="local">
-        <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
-        <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
-    </div>
 
         <div id="assistProfEdit" class="bottom-block top-block">
             <form:form id="assistProfileForm" class="form-horizontal" action="edit_profile" method="post"
@@ -109,7 +105,7 @@
                         <spring:message code="assist.OldPassword"/></label>
 
                     <div class="col-md-4">
-                        <form:input id="oldPassword" path="oldPassword" name="oldPassword" type="text" value=""
+                        <form:input id="oldPassword" path="oldPassword" name="oldPassword" type="password" value=""
                                     class="form-control form-style"/>
                     </div>
                     <div class="col-md-offset-9">
@@ -122,7 +118,7 @@
                         <spring:message code="assist.NewPassword"/></label>
 
                     <div class="col-md-4">
-                        <form:input id="password" path="password" name="password" type="text" value=""
+                        <form:input id="password" path="password" name="password" type="password" value=""
                                     class="form-control form-style"/>
                     </div>
                     <div class="col-md-offset-9">
@@ -135,7 +131,7 @@
                         <spring:message code="assist.ConfirmNewPassword"/></label>
 
                     <div class="col-md-4">
-                        <form:input id="confPassword" path="confPassword" name="confPassword" type="text" value=""
+                        <form:input id="confPassword" path="confPassword" name="confPassword" type="password" value=""
                                     class="form-control form-style"/>
                     </div>
                     <div class="col-md-offset-9">
@@ -155,10 +151,14 @@
 
     </div>
 
-    <div class="footer">
+    <div id="footer">
         <div class="thick"></div>
         <div class="thin"></div>
         <div><p class="footertext"><spring:message code="login.footer"/></p></div>
+        <div id="localization">
+            <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
+            <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
+        </div>
     </div>
 </div>
 </body>

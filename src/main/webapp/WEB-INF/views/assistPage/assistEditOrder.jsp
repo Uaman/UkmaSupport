@@ -49,12 +49,7 @@
             </div>
         </nav>
 
-        <div class="text-center">
-            <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
-            <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
-        </div>
-
-        <div class="col-md-offset-4 col-md-8 vertalign bottom-block">
+        <div class="col-md-offset-4 col-md-8 vertalign bottom-block" style="padding-top:220px;">
         <form:form class="form-horizontal" id="edit" action='/assist${pageContext.request.contextPath}/edit_order/save'
                    method="post" commandName="editOrder">
             <div class="form-group">
@@ -104,10 +99,14 @@
     </div>
 
 
-    <div class="footer">
+        <div id="footer">
         <div class="thick"></div>
         <div class="thin"></div>
-        <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
+            <div><p class="footertext"><spring:message code="login.footer"/></p></div>
+            <div id="localization">
+                <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
+                <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
+            </div>
     </div>
     </div>
 </div>

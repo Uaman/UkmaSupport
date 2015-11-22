@@ -351,7 +351,7 @@ a img {
 }
 
 #helloAssist {
-	margin-top: 85px;
+	padding-top: 110px;
     font-family: "Century Gothic", sans-serif;
     font-size: 30px;
     color: #333366;
@@ -366,12 +366,12 @@ a img {
 }
 
 #assistCreateOrderBlock {
-    padding-top: 90px;
+	padding-top: 220px;
     padding-bottom: 20px;
 }
 
 #assistContent {
-    height: 750px;
+	height: 700px;
 	padding-bottom: 50px;
 }
 
@@ -383,8 +383,8 @@ a img {
 }
 
 #assistProfileForm {
-	margin-top: -20px;
-    margin-left: 180px;
+	padding-top: 90px;
+	margin-left: 150px;
 }
 
 #assistCreateCells {
@@ -572,7 +572,7 @@ tbody.scrollContent {
 }
 
 #helloAssist2 {
-	margin-top: -90px;
+	padding-top: 110px;
 	font-family: "Century Gothic", sans-serif;
 	font-size: 30px;
 	color: #333366;
@@ -684,5 +684,22 @@ tbody.scrollContent {
 	margin-bottom: 10px;
 }
 
+.RegistrationWord {
+	margin-left: 85px;
+}
+
+#AssistTableDiv {
+	width: 860px;
+	height: 470px;
+	margin-left: 20px;
+	overflow: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.AssistTable {
+	padding: 0px;
+	width: 850px;
+}
 
 
