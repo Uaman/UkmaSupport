@@ -44,7 +44,7 @@
                     <form:input id="firstName" path="firstName" name="firstName" type="text" value=""
                                 class="form-control form-style"/>
                 </div>
-                <div class="col-md-offset-9">
+                <div class="col-md-offset-11">
                     <form:errors path="firstName" class="regErrors" id="firstName.errors"
                                  cssStyle="color: #ff0000;"/>
                 </div>
@@ -57,7 +57,7 @@
                     <form:input id="lastName" path="lastName" name="lastName" type="text" value=""
                                 class="form-control form-style"/>
                 </div>
-                <div class="col-md-offset-9">
+                <div class="col-md-offset-11">
                     <form:errors path="lastName" class="regErrors" id="lastName.errors"
                                  cssStyle="color: #ff0000;"/>
                 </div>
@@ -70,7 +70,7 @@
                     <form:input id="email" path="email" name="email" type="text" value=""
                                 class="form-control form-style"/>
                 </div>
-                <div class="col-md-offset-9">
+                <div class="col-md-offset-11">
                     <form:errors path="email" class="regErrors" id="email.errors"
                                  cssStyle="color: #ff0000;"/>
                 </div>
@@ -83,7 +83,7 @@
                     <form:input id="password" path="password" name="password" type="password" value=""
                                 class="form-control form-style"/>
                 </div>
-                <div class="col-md-offset-9">
+                <div class="col-md-offset-11">
                     <form:errors path="password" class="regErrors" id="password.errors"
                                  cssStyle="color: #ff0000;"/>
                 </div>
@@ -96,7 +96,7 @@
                     <form:input id="confPassword" path="confPassword" name="confPassword" type="password" value=""
                                 class="form-control form-style"/>
                 </div>
-                <div class="col-md-offset-9">
+                <div class="col-md-offset-11">
                     <form:errors path="confPassword" class="regErrors" id="confPassword.errors"
                                  cssStyle="color: #ff0000;"/>
                 </div>
