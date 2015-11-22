@@ -125,11 +125,6 @@
         </div>
     </nav>
 
-    <div id="local">
-        <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
-        <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
-    </div>
-
     <div>
         <p id="helloAssist2" class="top-block"><spring:message code="assist.hello"/></p>
     </div>
@@ -141,8 +136,9 @@
             </form>
         </div>
 
-    <div class="table-align">
-        <table id="records_table" class="tbl table table-striped table-hover ">
+        <div id="AssistTableDiv">
+            <div class="AssistTable table-align">
+                <table id="records_table" class="tbl table table-striped">
             <thead>
             <tr>
                 <th class="no-sort"><spring:message code="assist.orders.title"/></th>
@@ -154,14 +150,19 @@
             </thead>
         </table>
     </div>
+        </div>
 
 
     </div>
 
-    <div class="footer">
+    <div id="footer">
         <div class="thick"></div>
         <div class="thin"></div>
         <div><p class="footertext"><spring:message code="login.footer"/></p></div>
+        <div id="localization">
+            <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
+            <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
+        </div>
     </div>
 </div>
 </body>

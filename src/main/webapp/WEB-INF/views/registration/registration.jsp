@@ -28,7 +28,7 @@
     <div id="ContentRegister">
     <div id="mainRegister">
         <form:form id="userForm" class="form-horizontal" action="register" method="post" commandName="userForm">
-            <div class="centralWord row col-md-offset-1" colspan="2" align="center"><spring:message
+            <div class="RegistrationWord centralWord row col-md-offset-1" colspan="2" align="center"><spring:message
                     code="registration.hello"/></div>
             <div class="form-group">
                 <div class="col-md-offset-4 col-md-6">
