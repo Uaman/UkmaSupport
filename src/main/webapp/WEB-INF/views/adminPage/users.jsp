@@ -15,14 +15,11 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            $("#test").click(function () {
+            var userId;
+            $('#myModal').on('show.bs.modal', function (e) {
+                var userId = $(e.relatedTarget).attr('data-id');
+            $("#test").click(function (e) {
                 var dataRole = $('input:radio[name=role]:checked').val();
-
-                $('#records_table tr').unbind().click(function (e) {
-                    //  e.preventDefault();
-
-                  var  userId = $(e.target).attr("data-id");
-
 
                     changeRole = {
                         role: dataRole,
