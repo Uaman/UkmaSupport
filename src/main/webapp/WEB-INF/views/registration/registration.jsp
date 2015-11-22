@@ -30,6 +30,12 @@
         <form:form id="userForm" class="form-horizontal" action="register" method="post" commandName="userForm">
             <div class="centralWord row col-md-offset-1" colspan="2" align="center"><spring:message
                     code="registration.hello"/></div>
+            <div class="form-group">
+                <div class="col-md-offset-4 col-md-6">
+                    <div class="error" id="form-error"><form:errors class="" path="dateOfEntry"
+                                                                    id="dateOfEntry.errors"/></div>
+                </div>
+            </div>
             <div class="form-group row">
                 <label class="col-md-4 control-label" for="firstName"><spring:message
                         code="registration.firstName"/></label>
