@@ -68,18 +68,18 @@
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
         <property name="url"
-                  value="jdbc:postgresql://ec2-54-217-208-102.eu-west-1.compute.amazonaws.com/d3n5tjmb82o7ko?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
-        <property name="username" value="xihegrjcahwwvo"/>
-        <property name="password" value="DPdsJaB3QJPy2Rztl8YuJ5futy"/>
+                  value="${database.postgre.url}"/>
+        <property name="username" value="${database.postgre.user}"/>
+        <property name="password" value="${database.postgre.password}"/>
     </bean>
     <!--><-->
 
     <!--> Mail Sender bean for sending emails <-->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host" value="smtp.gmail.com"/>
-        <property name="port" value="587"/>
-        <property name="username" value="uukkmmaa.ssuuppoorrtt@gmail.com"/>
-        <property name="password" value="ceggjhn4444"/>
+        <property name="host" value="${mailSending.host}"/>
+        <property name="port" value="${mailSending.port}"/>
+        <property name="username" value="${mailSending.user}"/>
+        <property name="password" value="${mailSending.pass}"/>
         <!-->I think it's bad :( <-->
 
         <!-- The name of the property, following JavaBean naming conventions -->
