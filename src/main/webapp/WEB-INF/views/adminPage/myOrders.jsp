@@ -66,7 +66,7 @@
                 $.each(response, function (i, order) {
                     if (order.status == "Undone") {
                         trHTML += "<tr>"
-                        + "<td>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
+                        + "<td>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0,15) + '</a>' + "</td>" +
                         "<td>" + order.auditorium + "</td>" +
                         "<td>" + order.workplace_access_num + "</td>" +
                         "<td>" + order.status + "</td>" +
@@ -76,7 +76,7 @@
                         "</tr>";
                     } else {
                         trHTML += "<tr>" +
-                        "<td>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
+                        "<td>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0,15) + '</a>' + "</td>" +
                         "<td>" + order.auditorium + "</td>" +
                         "<td>" + order.workplace_access_num + "</td>" +
                         "<td>" + order.status + "</td>" +
