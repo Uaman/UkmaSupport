@@ -1,6 +1,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:p="http://www.springframework.org/schema/p"
        xmlns:security="http://www.springframework.org/schema/security"
        xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -23,9 +24,16 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <bean id="property"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          p:location="classpath:tech.properties" />
+
 
     <bean id="myUserDetailsService" class="com.ukmaSupport.services.UserServices"/>
     <context:annotation-config/>
+
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+
 
 
     <!-- error messages and validators for registration and password change -->
@@ -95,7 +103,6 @@
     </bean>
     <!--><-->
 
-    <mvc:resources mapping="/resources/**" location="/resources/"/>
 
     <!--> transaction-manager <-->
     <tx:annotation-driven transaction-manager="transactionManager"/>
