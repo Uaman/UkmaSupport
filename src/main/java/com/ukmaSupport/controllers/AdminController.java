@@ -311,8 +311,8 @@ public class AdminController {
     @ResponseBody
     public String setUserRole(@RequestBody Map<String, Object> searchParam,ModelMap model) {
         String role= (String) searchParam.get("role");
-        Integer id = (Integer) searchParam.get("userId");
-        User user=userService.getById(id);
+        String id = (String) searchParam.get("userId");
+        User user=userService.getById(Integer.parseInt(id));
         System.out.println(role + " " + id);
         String userRole = null;
         if (role.equals("Assistant")) {
