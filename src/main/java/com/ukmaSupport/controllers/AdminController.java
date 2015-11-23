@@ -279,21 +279,21 @@ public class AdminController {
         return "redirect:/admin/auditoriums/" + name;
     }
 
-    @RequestMapping(value = "/admin/assistantReport", method = RequestMethod.GET)
-    public String assistantReport(Model model) {
-        List<Order> orderList = orderService.getByUserIdStatus(115,"done");
+    @RequestMapping(value = "/admin/assistantReport/{id}", method = RequestMethod.GET)
+    public String assistantReport(@PathVariable("id") Integer id,Model model) {
+        List<Order> orderList = orderService.getByUserIdStatus(id,"done");
         model.addAttribute("orderList", orderList);
         return "excelView";
     }
-    @RequestMapping(value = "/admin/auditoriumReport", method = RequestMethod.GET)
-    public String auditoriumReport(Model model) {
-        List<Order> orderList = orderService.getByAuditoriumNumber("2-304");
+    @RequestMapping(value = "/admin/auditoriumReport/{number}", method = RequestMethod.GET)
+    public String auditoriumReport(@PathVariable("number") String number,Model model) {
+        List<Order> orderList = orderService.getByAuditoriumNumber(number);
         model.addAttribute("orderList", orderList);
         return "excelView";
     }
-    @RequestMapping(value = "/admin/workplaceReport", method = RequestMethod.GET)
-    public String workplaceReport(Model model) {
-        List<Order> orderList = orderService.getByWorkplaceAcessNum(2344);
+    @RequestMapping(value = "/admin/workplaceReport/{acess_num}", method = RequestMethod.GET)
+    public String workplaceReport(@PathVariable("acess_num") Integer acess_num,Model model) {
+        List<Order> orderList = orderService.getByWorkplaceAcessNum(acess_num);
         model.addAttribute("orderList", orderList);
         return "excelView";
     }

@@ -41,11 +41,24 @@
                                 });
                                 var trHTML = '';
                                 $.each(sorted, function (i, auditorium) {
-                                    trHTML += "<tr>" +
-                                    '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
-                                    '<td width="230px">' + auditorium.assistantName + "</td>" +
-                                    "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
-                                    "</tr>";
+                                    if(auditorium.userId==0) {
+                                        trHTML += "<tr>" +
+                                                '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
+                                                "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                                                '<td width="230px">' + auditorium.assistantName + "</td>" +
+                                                '<td >' + "" + "</td>" +
+                                                "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                                                "</tr>";
+                                    }else{
+                                        trHTML += "<tr>" +
+                                                '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
+                                                "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                                                '<td width="230px">' + auditorium.assistantName + "</td>" +
+                                                "<td>" + '<form action="/admin/assistantReport/' + auditorium.userId + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                                                "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                                                "</tr>";
+
+                                    }
                                 });
                                 $('#records_table tbody').empty();
                                 $('#records_table').append(trHTML);
@@ -81,11 +94,24 @@
                 });
                 var trHTML = '';
                 $.each(sorted, function (i, auditorium) {
-                    trHTML += "<tr>" +
-                    '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
-                    '<td width="230px">' + auditorium.assistantName + "</td>" +
-                    "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
-                    "</tr>";
+                    if(auditorium.userId==0) {
+                        trHTML += "<tr>" +
+                                '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
+                                "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                                '<td width="230px">' + auditorium.assistantName + "</td>" +
+                                '<td >' + "" + "</td>" +
+                                "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                                "</tr>";
+                    }else{
+                        trHTML += "<tr>" +
+                                '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
+                                "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                                '<td width="230px">' + auditorium.assistantName + "</td>" +
+                                "<td>" + '<form action="/admin/assistantReport/' + auditorium.userId + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                                "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                                "</tr>";
+
+                    }
                 });
                 $('#records_table tbody').empty();
                 $('#records_table').append(trHTML);

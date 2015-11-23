@@ -48,6 +48,7 @@
                                 $.each(sorted, function (i, workplace) {
                                     trHTML += "<tr>" +
                                             '<td>' + workplace.accessNumber + "</td>" +
+                                            "<td>" + '<form action="/admin/workplaceReport/' + workplace.accessNumber + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
                                             "<td>" + '<form action="/admin/auditoriums/${name}/workplaces/delete/' + workplace.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
                                             "</tr>";
                                 });
@@ -86,6 +87,7 @@
                 $.each(sorted, function (i, workplace) {
                     trHTML += "<tr >" +
                     '<td>' + workplace.accessNumber + "</td>" +
+                            "<td>" + '<form action="/admin/workplaceReport/' + workplace.accessNumber + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
                     "<td>" + '<form action="/admin/auditoriums/${name}/workplaces/delete/' + workplace.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
                     "</tr>";
                 });
