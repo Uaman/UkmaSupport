@@ -64,13 +64,13 @@
                 });
                 var trHTML = '';
                 $.each(response, function (i, order) {
-                        trHTML += "<tr><td>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0,15) + '</a>' + "</td>" +
-                        '   <td>' + order.auditorium + "</td>" +
-                        '   <td>' + order.workplace_access_num + "</td>" +
-                        '   <td>' + order.userId + "</td>" +
-                        '   <td>' + order.assistantLastName + "</td>" +
-                        '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                        '   <td>' + order.status + "</td></tr>";
+                        trHTML += "<tr><td class='title-col-orders'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0,15) + '</a>' + "</td>" +
+                        '   <td class="auditorium-col-orders">' + order.auditorium + "</td>" +
+                        '   <td class="workplace-col-orders">' + order.workplace_access_num + "</td>" +
+                        '   <td class="user-col-orders">' + order.userId + "</td>" +
+                        '   <td class="assistant-col-orders">' + order.assistantLastName + "</td>" +
+                        '   <td class="date-col-orders">' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
+                        '   <td class="status-col-orders">' + order.status + "</td></tr>";
                 });
                 $('#records_table tbody').empty();
                 $('#records_table').append(trHTML);
@@ -129,16 +129,17 @@
     </nav>
 
     <div class="table-align bottom-block top-table">
-        <table id="records_table" class="tbl table table-striped">
+        <table id="records_table" class="tbl table table-striped admin-table">
             <thead>
             <tr>
-                <th class="no-sort"><spring:message code="admin.orders.title"/></th>
-                <th><spring:message code="admin.orders.auditorium"/></th>
-                <th><spring:message code="admin.orders.workplace"/></th>
-                <th><spring:message code="admin.orders.user"/></th>
-                <th><spring:message code="admin.orders.assistant"/></th>
-                <th><spring:message code="admin.orders.date"/></th>
-                <th><spring:message code="admin.orders.status"/></th>
+                <th class="no-sort title-col-orders-th"><spring:message code="admin.orders.title"/></th>
+                <th class="auditorium-col-orders"><spring:message code="admin.orders.auditorium"/></th>
+                <th class="workplace-col-orders"><spring:message code="admin.orders.workplace"/></th>
+                <th class="user-col-orders"><spring:message code="admin.orders.user"/></th>
+                <th class="assistant-col-orders"><spring:message code="admin.orders.assistant"/></th>
+                <th class="date-col-orders"><spring:message code="admin.orders.date"/></th>
+                <th class="status-col-orders-th"><spring:message code="admin.orders.status"/></th>
+                <th class="indent"></th>
             </tr>
             </thead>
         </table>

@@ -439,13 +439,27 @@ a img {
 }
 .user-table tbody{
 	display: block;
-	height: 340px;
+	max-height: 340px;
 	width: 100%;
 	overflow: hidden;
 	overflow-y: auto;
 }
 
 .user-table tr{
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+
+.admin-table tbody{
+	display: block;
+	max-height: 340px;
+	width: 100%;
+	overflow: hidden;
+	overflow-y: auto;
+}
+
+.admin-table tr{
 	display: table;
 	width: 100%;
 	table-layout: fixed;
@@ -472,6 +486,72 @@ a img {
 
 .date-col {
 	width: 20%;
+}
+
+.lastname-col {
+	width: 30%;
+}
+.firstname-col {
+	width: 30%;
+}
+.delete-col {
+	width: 5%;
+}
+
+.delete-col-th{
+	width: 8%;
+}
+.status-col-th{
+	width: 17%;
+}
+.role-col {
+	width: 10%;
+}
+
+.change-col{
+	width: 5%;
+}
+.user-col{
+	width: 5%;
+}
+.assistant-col{
+	width: 5%;
+}
+
+.workplace-col-orders{
+	width:15%;
+}
+.title-col-orders{
+	width:20%;
+}
+.title-col-orders-th{
+	width:19%;
+}
+.auditorium-col-orders{
+	width:10%;
+}
+
+.user-col-orders{
+	width:10%;
+}
+
+.assistant-col-orders{
+	width:15%;
+}
+
+.date-col-orders{
+	width:15%;
+}
+
+.status-col-orders{
+	width:15%;
+}
+.status-col-orders-th{
+	width:12%;
+}
+
+.indent{
+	width:4%;
 }
 
 #auditorium {

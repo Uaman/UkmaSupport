@@ -38,13 +38,13 @@
                                 success: function (response) {
                                     var trHTML = '';
                                     $.each(response, function (i, user) {
-                                        trHTML += "<tr><td>" + '<a href="/admin/users/userProfile/' + user.id + '">' + user.lastName + "</td>" +
-                                        '<td>' + user.firstName + "</td>" +
-                                        '<td>' + user.role.toString().toLowerCase() + "</td>" +
-                                        '   <td>' + '<input type="image" src="../../../resources/img/edit.jpg" class="userId" data-toggle="modal"' + 'data-id="' + user.id + '"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
+                                        trHTML += "<tr><td class='lastname-col'>" + '<a href="/admin/users/userProfile/' + user.id + '">' + user.lastName + "</td>" +
+                                        '<td class="firstname-col">' + user.firstName + "</td>" +
+                                        '<td class="role-col">' + user.role.toString().toLowerCase() + "</td>" +
+                                        '   <td class="change-col">' + '<input type="image" src="../../../resources/img/edit.jpg" class="userId" data-toggle="modal"' + 'data-id="' + user.id + '"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
 
-                                        '<td>' + '<a href="/admin/users/changeStatus/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
-                                        "<td width='50px'>" + '<form action="/admin/users/delete/' + user.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
+                                        '<td class="status-col">' + '<a href="/admin/users/changeStatus/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
+                                        "<td class='delete-col'>" + '<form action="/admin/users/delete/' + user.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
                                         "</tr>";
                                     });
                                     $('#records_table tbody').empty();
@@ -88,13 +88,13 @@
                 });
                 var trHTML = '';
                 $.each(response, function (i, user) {
-                    trHTML += "<tr><td>" + '<a href="/admin/users/userProfile/' + user.id + '">' + user.lastName + "</td>" +
-                    '<td>' + user.firstName + "</td>" +
-                    '<td>' + user.role.toString().toLowerCase() + "</td>" +
-                    '   <td>' + '<input type="image" src="../../../resources/img/edit.jpg" class="userId" data-toggle="modal"' + 'data-id="' + user.id + '"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
+                    trHTML += "<tr><td class='lastname-col'>" + '<a href="/admin/users/userProfile/' + user.id + '">' + user.lastName + "</td>" +
+                    '<td class="firstname-col">' + user.firstName + "</td>" +
+                    '<td class="role-col">' + user.role.toString().toLowerCase() + "</td>" +
+                    '   <td class="change-col">' + '<input type="image" src="../../../resources/img/edit.jpg" class="userId" data-toggle="modal"' + 'data-id="' + user.id + '"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
 
-                    '<td>' + '<a href="/admin/users/changeStatus/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
-                    "<td width='50px'>" + '<form action="/admin/users/delete/' + user.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
+                    '<td class="status-col">' + '<a href="/admin/users/changeStatus/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
+                    "<td class='delete-col'>" + '<form action="/admin/users/delete/' + user.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
                     "</tr>";
                 });
                 $('#records_table tbody').empty();
@@ -156,15 +156,15 @@
     </nav>
 
     <div class="table-align bottom-block top-table">
-        <table id="records_table" class="tbl table table-striped">
+        <table id="records_table" class="tbl table table-striped admin-table">
             <thead>
             <tr>
-                <th><spring:message code="registration.lastName"/></th>
-                <th><spring:message code="registration.firstName"/></th>
-                <th style="width:120px;"><spring:message code="admin.users.role"/></th>
-                <th class="no-sort" width="25px;"></th>
-                <th><spring:message code="admin.users.status"/></th>
-                <th class="no-sort" width='50px'></th>
+                <th class="lastname-col"><spring:message code="registration.lastName"/></th>
+                <th class="firstname-col"><spring:message code="registration.firstName"/></th>
+                <th class="role-col"><spring:message code="admin.users.role"/></th>
+                <th class="no-sort change-col""></th>
+                <th class="status-col-th"><spring:message code="admin.users.status"/></th>
+                <th class="no-sort delete-col-th"></th>
             </tr>
             </thead>
         </table>

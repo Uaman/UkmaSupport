@@ -66,23 +66,23 @@
                 $.each(response, function (i, order) {
                     if (order.status == "Undone") {
                         trHTML += "<tr>"
-                        + "<td>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0,15) + '</a>' + "</td>" +
-                        "<td>" + order.auditorium + "</td>" +
-                        "<td>" + order.workplace_access_num + "</td>" +
-                        "<td>" + order.status + "</td>" +
-                        "<td>" + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                        "<td width='50px'>" + '<form action="/admin/orders/edit/' + order.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
-                        "<td width='50px'>" + '<form action="/admin/orders/delete/' + order.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit" style=""><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
+                        + "<td class='title-col'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0,15) + '</a>' + "</td>" +
+                        "<td class='auditorium-col'>" + order.auditorium + "</td>" +
+                        "<td class='workplace-col'>" + order.workplace_access_num + "</td>" +
+                        "<td class='status-col'>" + order.status + "</td>" +
+                        "<td class='date-col'>" + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
+                        "<td class='btn-col'>" + '<form action="/admin/orders/edit/' + order.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
+                        "<td class='btn-col'>" + '<form action="/admin/orders/delete/' + order.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit" style=""><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
                         "</tr>";
                     } else {
                         trHTML += "<tr>" +
-                        "<td>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0,15) + '</a>' + "</td>" +
-                        "<td>" + order.auditorium + "</td>" +
-                        "<td>" + order.workplace_access_num + "</td>" +
-                        "<td>" + order.status + "</td>" +
-                        "<td>" + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                        "<td width='50px'>" + "  " + "</td>" +
-                        "<td width='50px'>" + '<form action="/admin/orders/delete/' + order.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
+                        "<td class='title-col'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0,15) + '</a>' + "</td>" +
+                        "<td class='auditorium-col'>" + order.auditorium + "</td>" +
+                        "<td class='workplace-col'>" + order.workplace_access_num + "</td>" +
+                        "<td class='status-col'>" + order.status + "</td>" +
+                        "<td class='date-col'>" + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
+                        "<td class='btn-col'>" + "  " + "</td>" +
+                        "<td class='btn-col'>" + '<form action="/admin/orders/delete/' + order.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
                         "</tr>";
                     }
                 });
@@ -158,16 +158,16 @@
     </div>
 
     <div class="table-align bottom-block user-table">
-        <table id="records_table" class="tbl table table-striped">
+        <table id="records_table" class="tbl table table-striped admin-table">
             <thead>
             <tr>
-                <th class="no-sort"><spring:message code="admin.orders.title"/></th>
-                <th><spring:message code="admin.orders.auditorium"/></th>
-                <th><spring:message code="assist.order.workplace"/></th>
-                <th><spring:message code="admin.orders.status"/></th>
-                <th><spring:message code="admin.orders.date"/></th>
-                <th width='50px'></th>
-                <th width='50px'></th>
+                <th class="no-sort title-col"><spring:message code="admin.orders.title"/></th>
+                <th class="auditorium-col"><spring:message code="admin.orders.auditorium"/></th>
+                <th class="workplace-col"><spring:message code="assist.order.workplace"/></th>
+                <th class="status-col"><spring:message code="admin.orders.status"/></th>
+                <th class="date-col"><spring:message code="admin.orders.date"/></th>
+                <th class="btn-col"></th>
+                <th class="btn-col"></th>
             </tr>
             </thead>
         </table>
