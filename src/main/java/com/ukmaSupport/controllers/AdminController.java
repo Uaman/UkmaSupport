@@ -279,10 +279,22 @@ public class AdminController {
         return "redirect:/admin/auditoriums/" + name;
     }
 
-    @RequestMapping(value = "/admin/downloadExcel", method = RequestMethod.GET)
-    public String downloadExcel(Model model) {
-        List<User> listUsers = userService.getAll();
-        model.addAttribute("listUsers", listUsers);
+    @RequestMapping(value = "/admin/assistantReport", method = RequestMethod.GET)
+    public String assistantReport(Model model) {
+        List<Order> orderList = orderService.getByUserIdStatus(115,"done");
+        model.addAttribute("orderList", orderList);
+        return "excelView";
+    }
+    @RequestMapping(value = "/admin/auditoriumReport", method = RequestMethod.GET)
+    public String auditoriumReport(Model model) {
+        List<Order> orderList = orderService.getByAuditoriumNumber("2-304");
+        model.addAttribute("orderList", orderList);
+        return "excelView";
+    }
+    @RequestMapping(value = "/admin/workplaceReport", method = RequestMethod.GET)
+    public String workplaceReport(Model model) {
+        List<Order> orderList = orderService.getByWorkplaceAcessNum(2344);
+        model.addAttribute("orderList", orderList);
         return "excelView";
     }
 

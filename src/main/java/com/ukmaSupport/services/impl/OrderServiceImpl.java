@@ -30,6 +30,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
+    public List<Order> getByAuditoriumNumber(String number) {
+        return orderDao.getByAuditoriumNumber(number);
+    }
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    @Override
+    public List<Order> getByWorkplaceAcessNum(int access_num) {
+        return orderDao.getByWorkplaceAcessNum(access_num);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    @Override
     public List<Order> getByUserId(int user_id) {
         return orderDao.getByUserId(user_id);
     }

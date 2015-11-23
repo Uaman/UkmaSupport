@@ -1,14 +1,12 @@
-package com.ukmaSupport.services;
+package com.ukmaSupport.services.reportService;
 
-import com.ukmaSupport.models.User;
-import com.ukmaSupport.services.impl.UserServiceImpl;
+import com.ukmaSupport.models.Order;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.view.document.AbstractExcelView;
 
@@ -18,17 +16,15 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
-@Service("reportService")
-public class ReportService extends AbstractExcelView {
-    @Autowired
-    UserServiceImpl userService;
+@Service("workplaceReport")
+public class WorkplaceReport extends AbstractExcelView {
     @Override
     protected void buildExcelDocument(Map<String, Object> model, org.apache.poi.hssf.usermodel.HSSFWorkbook workbook, HttpServletRequest request, HttpServletResponse response) throws Exception {
         // get data model which is passed by the Spring container
 
-        List<User> listUsers = (List<User>) model.get("listUsers");
+        List<Order> listUsers = (List<Order>) model.get("orderList");
         // create a new Excel sheet
-        HSSFSheet sheet = workbook.createSheet("Users");
+        HSSFSheet sheet = workbook.createSheet("Orders");
         sheet.setDefaultColumnWidth(30);
 
         // create style for header cells
@@ -44,17 +40,23 @@ public class ReportService extends AbstractExcelView {
         // create header row
         HSSFRow header = sheet.createRow(0);
 
-        header.createCell(0).setCellValue("User id");
+        header.createCell(0).setCellValue("Order id");
         header.getCell(0).setCellStyle(style);
 
-        header.createCell(1).setCellValue("Email");
+        header.createCell(1).setCellValue("Assistant LastName");
         header.getCell(1).setCellStyle(style);
 
-        header.createCell(2).setCellValue("Status Account");
+        header.createCell(2).setCellValue("Order status");
         header.getCell(2).setCellStyle(style);
 
-        header.createCell(3).setCellValue("Date of Entry");
+        header.createCell(3).setCellValue("Auditorium");
         header.getCell(3).setCellStyle(style);
+
+        header.createCell(4).setCellValue("Workplace");
+        header.getCell(4).setCellStyle(style);
+
+        header.createCell(5).setCellValue("Date of created");
+        header.getCell(5).setCellStyle(style);
 
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
@@ -62,14 +64,18 @@ public class ReportService extends AbstractExcelView {
         // create data rows
         int rowCount = 1;
 
-        for (User aUser : listUsers) {
+        for (Order aOrder : listUsers) {
             HSSFRow aRow = sheet.createRow(rowCount++);
-            aRow.createCell(0).setCellValue(aUser.getId());
-            aRow.createCell(1).setCellValue(aUser.getEmail());
-            aRow.createCell(2).setCellValue(aUser.getAccountStatus());
-            aRow.createCell(3).setCellValue(sdf.format(aUser.getDateOfEntry()));
+            aRow.createCell(0).setCellValue(aOrder.getId());
+            aRow.createCell(1).setCellValue(aOrder.getAssistantLastName());
+            aRow.createCell(2).setCellValue(aOrder.getStatus());
+            aRow.createCell(3).setCellValue(aOrder.getAuditorium());
+            aRow.createCell(4).setCellValue(aOrder.getWorkplace_access_num());
+            aRow.createCell(5).setCellValue(sdf.format(aOrder.getCreatedAt()));
 
         }
     }
 
 }
+
+

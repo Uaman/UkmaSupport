@@ -10,6 +10,10 @@ public interface OrderService {
 
     List<Order> getByStatus(String status);
 
+    List<Order> getByAuditoriumNumber(String number);
+
+    List<Order> getByWorkplaceAcessNum(int access_num);
+
     List<Order> getByUserId(int user_id);
 
     List<Order> getByUserIdStatus(int user_id,String status);

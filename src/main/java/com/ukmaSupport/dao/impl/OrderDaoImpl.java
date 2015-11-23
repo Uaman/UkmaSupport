@@ -25,9 +25,13 @@ public class OrderDaoImpl implements OrderDao {
 
     private static final String GET_ALL_ORDERS_BY_USER_ID = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, users.last_name AS assist FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE orders.user_id=?";
 
+    private static final String GET_ALL_ORDERS_BY_AUDITORIUM_NUMBER = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, users.last_name AS assist FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE auditorium.number=?";
+
+    private static final String GET_ALL_ORDERS_BY_WORKPLACE_ACCESS_NUM = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, users.last_name AS assist FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE workplace.access_num=?";
+
     private static final String GET_ALL_ORDERS_BY_USER_ID_AND_ID = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, users.last_name AS assist FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE orders.id=? AND orders.user_id=?";
 
-    private static final String GET_ALL_ORDERS_BY_USER_ID_STATUS = "SELECT orders.id, orders.user_id, orders.assistant_id,workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE user_id=? AND status=?";
+    private static final String GET_ALL_ORDERS_BY_USER_ID_STATUS = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, users.last_name AS assist FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE orders.assistant_id=? AND orders.status=?";
 
     private static final String GET_ORDER_BY_ID = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, users.last_name AS assist FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id  WHERE orders.id=?";
 
@@ -62,7 +66,14 @@ public class OrderDaoImpl implements OrderDao {
     public List<Order> getByUserId(int user_id) {
         return jdbcTemplate.query(GET_ALL_ORDERS_BY_USER_ID, new Object[]{user_id}, rowMapper);
     }
-
+    @Override
+    public List<Order> getByAuditoriumNumber(String number) {
+        return jdbcTemplate.query(GET_ALL_ORDERS_BY_AUDITORIUM_NUMBER, new Object[]{number}, rowMapper);
+    }
+    @Override
+    public List<Order> getByWorkplaceAcessNum(int access_num) {
+        return jdbcTemplate.query(GET_ALL_ORDERS_BY_WORKPLACE_ACCESS_NUM, new Object[]{access_num}, rowMapper);
+    }
     public Order getByUserIdAndId(int user_id, int id) {
         List<Order> orders = jdbcTemplate.query(GET_ALL_ORDERS_BY_USER_ID_AND_ID, new Object[]{id, user_id}, rowMapper);
         return orders.isEmpty() ? null : orders.get(0);
