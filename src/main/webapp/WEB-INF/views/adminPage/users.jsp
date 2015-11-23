@@ -33,7 +33,7 @@
                         data: JSON.stringify(changeRole),
                         success: function (response) {
                             $.ajax({
-                                url: '${pageContext.request.contextPath}/admin/getAllUsers',
+                                url: '/admin/get'+'${link}',
                                 type: 'GET',
                                 success: function (response) {
                                     var trHTML = '';
@@ -71,7 +71,7 @@
             });
         });
         $.ajax({
-            url: '/admin/getAllUsers',
+            url: '/admin/get'+'${link}',
             type: 'GET',
             data: {
                 text: $("#sel2").val()

@@ -65,7 +65,8 @@ public class AdminController {
     private final static String BLOCKED = "blocked";
 
     @RequestMapping(value = "/admin/allUsers", method = RequestMethod.GET)
-    public String allUsers() {
+    public String allUsers(Model model) {
+        model.addAttribute("link", "AllUsers");
         return "adminPage/users";
     }
 
@@ -74,6 +75,58 @@ public class AdminController {
     @ResponseBody
     List<User> getAllUsers() {
         return userService.getAll();
+    }
+
+    @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
+    public String users(Model model) {
+        model.addAttribute("link", "Users");
+        return "adminPage/users";
+    }
+
+    @RequestMapping(value = "/admin/getUsers", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<User> getUsers() {
+        return userService.getByRole(USER);
+    }
+
+    @RequestMapping(value = "/admin/assistants", method = RequestMethod.GET)
+    public String assistants(Model model) {
+        model.addAttribute("link", "Assistants");
+        return "adminPage/users";
+    }
+
+    @RequestMapping(value = "/admin/getAssistants", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<User> getAssistants() {
+        return userService.getByRole(ASSISTANT);
+    }
+
+    @RequestMapping(value = "/admin/professors", method = RequestMethod.GET)
+    public String professors(Model model) {
+        model.addAttribute("link", "Professors");
+        return "adminPage/users";
+    }
+
+    @RequestMapping(value = "/admin/getProfessors", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<User> getProfessors() {
+        return userService.getByRole(PROFESSOR);
+    }
+
+    @RequestMapping(value = "/admin/blockedUsers", method = RequestMethod.GET)
+    public String blockedUsers(Model model) {
+        model.addAttribute("link", "BlockedUsers");
+        return "adminPage/users";
+    }
+
+    @RequestMapping(value = "/admin/getBlockedUsers", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<User> getBlockedUsers() {
+        return userService.getByStatus(BLOCKED);
     }
 
     @RequestMapping(value = "/admin/users/changeStatus/{id}", method = RequestMethod.GET)
@@ -91,34 +144,6 @@ public class AdminController {
     public String deleteUserById(@PathVariable("id") int id) {
         userService.delete(id);
         return "redirect:/admin/allUsers";
-    }
-
-    @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
-    public String showUsers(Model model) {
-        List<User> users = userService.getByRole(USER);
-        model.addAttribute("users", users);
-        return "adminPage/users";
-    }
-
-    @RequestMapping(value = "/admin/assistants", method = RequestMethod.GET)
-    public String showAssistants(Model model) {
-        List<User> users = userService.getByRole(ASSISTANT);
-        model.addAttribute("users", users);
-        return "adminPage/users";
-    }
-
-    @RequestMapping(value = "/admin/professors", method = RequestMethod.GET)
-    public String showProfessors(Model model) {
-        List<User> users = userService.getByRole(PROFESSOR);
-        model.addAttribute("users", users);
-        return "adminPage/users";
-    }
-
-    @RequestMapping(value = "/admin/blockedUsers", method = RequestMethod.GET)
-    public String showBlockedUsers(Model model) {
-        List<User> users = userService.getByStatus(BLOCKED);
-        model.addAttribute("users", users);
-        return "adminPage/users";
     }
 
     @RequestMapping(value = "/admin/allOrders", method = RequestMethod.GET)
