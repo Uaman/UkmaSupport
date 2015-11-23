@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title><spring:message code="registration.successTitle"/></title>
+    <title><spring:message code="changePassword.title"/></title>
     <link href="../../../resources/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
@@ -15,7 +15,6 @@
 
 <body>
 <div id="wrap">
-
     <div id="header">
         <div>
             <a href="/"><img id="logo" alt="brand" style="margin-left: 15px;"
@@ -24,7 +23,7 @@
     </div>
 
     <div class="top-block">
-        <p id="registrationSuccess" class="centralWord"><spring:message code="registration.success"/></p>
+        <p id="forgotPasswordSuccess" class="centralWord"><spring:message code="changePassword.success"/></p>
         <a class="centralButton btn btn-primary button-style" href="/login"><spring:message
                 code="registration.login"/></a>
     </div>

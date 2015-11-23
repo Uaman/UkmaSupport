@@ -782,4 +782,16 @@ tbody.scrollContent {
 	width: 850px;
 }
 
+.centralButton {
+	width: 220px;
+	margin-left: 340px;
+}
+
+#registrationSuccess {
+	padding: 50px;
+}
+
+#forgotPasswordSuccess {
+	padding: 50px;
+}
 
