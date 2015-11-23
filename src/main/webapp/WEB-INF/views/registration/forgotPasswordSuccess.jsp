@@ -27,16 +27,17 @@
 
   <div class="top-block">
     <p id="forgotPasswordSuccess" class="centralWord"><spring:message code="forgotPassword.success"/></p>
-    <center><a class="btn btn-primary button-style" href="/"><spring:message code="registration.mainPage"/></a></center>
+    <a class="centralButton btn btn-primary button-style" href="/login"><spring:message code="registration.login"/></a>
   </div>
 
-
-
-
-  <div class="footer">
+  <div id="footer">
     <div class="thick"></div>
     <div class="thin"></div>
-    <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
+    <div><p class="footertext"><spring:message code="login.footer"/></p></div>
+    <div id="localization">
+      <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
+      <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
+    </div>
   </div>
 </div>
 </body>
