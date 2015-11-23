@@ -81,8 +81,26 @@
 
     <div id="comments" class="col-md-offset-2 col-md-8">
         <c:forEach var="comment" items="${allCommentaries}" varStatus="count">
-            <p class="comment body-text">comment#: By ${comment.author.firstName} ROLE ${comment.author.role}
-                TIME ${comment.time.toLocaleString()} CONTENT ${comment.content} </p>
+            <c:choose>
+                <c:when test="${comment.author.role == 'USER'}">
+                    <div class="col-md-12 comment-block">
+                        <div class="col-md-3 comment-date">${comment.time.toLocaleString()}</div>
+                        <div class="col-md-offset-3 comment user-comment"><span class="bold-text">${comment.author.firstName}, ${comment.author.role}</span><br>${comment.content} </div>
+                    </div>
+                </c:when>
+                <c:when test="${comment.author.role == 'ASSISTANT'}">
+                    <div class="col-md-12 comment-block">
+                        <div class="col-md-9 comment assistant-comment"><span class="bold-text">${comment.author.firstName}, ${comment.author.role}</span><br>${comment.content} </div>
+                        <div class="col-md-offset-9 comment-date">${comment.time.toLocaleString()}</div>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="col-md-12 comment-block">
+                        <div class="col-md-9 comment admin-comment"><span class="bold-text">${comment.author.firstName}, ${comment.author.role}</span><br>${comment.content} </div>
+                        <div class="col-md-offset-9 comment-date">${comment.time.toLocaleString()}</div>
+                    </div>
+                </c:otherwise>
+            </c:choose>
         </c:forEach>
     </div>
     <div id="add-comment" class="col-md-offset-2 col-md-8">
