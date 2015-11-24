@@ -815,4 +815,10 @@ tbody.scrollContent {
 #forgotPasswordSuccess {
 	padding: 50px;
 }
+#add-order-form {
+	padding-top: 20px;
+}
+.assistant-top {
+	margin-bottom: 20px;
+}
 

@@ -125,14 +125,16 @@
         </div>
     </nav>
 
-    <div>
-        <p id="helloAssist2" class="top-block"><spring:message code="assist.hello"/></p>
+    <div class="top-block col-md-6 assistant-top">
+        <p id="hello"><spring:message code="assist.hello"/>${currentUser.firstName}</p>
     </div>
 
-        <div>
-            <form class="form-horizontal" method="get" action="/assist/create_order">
-                <button id="assist_add_order_button" class="btn btn-primary btn-block">
+        <div class="col-md-offset-7 top-block assistant-top">
+            <form id="add-order-form" class="form-horizontal" method="get" action="/assist/create_order">
+                <div class="col-md-offset-7 col-md-4">
+                <button id="btn-add-order" type="submit" class="btn btn-primary btn-block">
                     <spring:message code="assist.AddOrder"/></button>
+                </div>
             </form>
         </div>
 

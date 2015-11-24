@@ -115,13 +115,13 @@
             </div>
         </div>
     </nav>
-    <div class="top-block">
+    <div class="top-block col-md-6">
         <p id="hello"><spring:message
                 code="user.hello"/> ${currentUser.firstName}</p>
     </div>
 
-    <div class="col-md-offset-7">
-        <form class="form-horizontal" method="get" action="/user/createOrder">
+    <div class="col-md-offset-7 top-block">
+        <form id="add-order-form" class="form-horizontal" method="get" action="/user/createOrder">
             <div class="col-md-offset-7 col-md-4">
                 <button id="btn-add-order" type="submit" class="btn btn-primary btn-block"><spring:message
                         code="user.order"/></button>

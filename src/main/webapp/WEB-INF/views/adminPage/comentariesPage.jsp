@@ -14,6 +14,17 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#content').keyup(function() {
+                if ($('#content').val() != '') {
+                    $('#btn-add-comment').removeClass('disabled');
+                } else {
+                    $('#btn-add-comment').addClass('disabled');
+                }
+            });
+        });
+    </script>
 
 </head>
 <body>
@@ -114,7 +125,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-9">
-                    <button id="btn-add-comment" type="submit" class="btn btn-primary btn-block">Add comment</button>
+                    <button id="btn-add-comment" type="submit" class="btn btn-primary btn-block disabled">Add comment</button>
                 </div>
             </div>
         </form:form>
