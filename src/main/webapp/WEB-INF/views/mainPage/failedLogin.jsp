@@ -35,11 +35,12 @@
         <div class="col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4 vertalign bottom-block" id="auth-block">
 
 
-
-            <form class="form-horizontal" style="margin-top: 70px;" method="post" action="${authUrl}">
+            <form class="form-horizontal" style="margin-top: 140px;" method="post" action="${authUrl}">
 
                 <div class="form-group">
-                    <font color="red"><p id="forgotPasswordSuccess" class="centralWord"><spring:message code="login.error"/></p></font>
+                    <div class="col-md-offset-1 col-md-10">
+                        <font color="red"><p id="loginFailed"><spring:message code="login.error"/></p></font>
+                    </div>
                 </div>
 
                 <div class="form-group">
