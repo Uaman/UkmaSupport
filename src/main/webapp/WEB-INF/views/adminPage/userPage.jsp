@@ -73,11 +73,6 @@
     </nav>
 
     <div id="profEdit" class="top-block bottom-block">
-        <form action="/admin/allUsers" style="margin-left:-160px;">
-            <button id="change-pass-button" type="submit" value="editAdminProfile"
-                    class="btn btn-primary btn-block button-style"><spring:message code="admin.users.back"/>
-            </button>
-        </form>
         <form:form id="passChangeForm" class="form-horizontal" action="/admin/allUsers" method="get"
                    commandName="passChangeForm">
             <div class="centralWord row col-md-offset-1" colspan="2" align="center"><spring:message
@@ -116,24 +111,6 @@
                 <div class="col-md-4">
                     <form:input id="role" path="role" name="role" type="text" value=""
                                 class="form-control form-style text-lowercase" READONLY="true"/>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-4 control-label" for="accountStatus"><spring:message
-                        code="admin.users.status"/></label>
-
-                <div class="col-md-4">
-                    <form:input id="accountStatus" path="accountStatus" name="accountStatus" type="text" value=""
-                                class="form-control form-style" READONLY="true"/>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-4 control-label" for="ordersCount"><spring:message
-                        code="admin.users.orders"/></label>
-
-                <div class="col-md-4">
-                    <form:input id="ordersCount" path="ordersCount" name="ordersCount" type="text" value=""
-                                class="form-control form-style" READONLY="true"/>
                 </div>
             </div>
         </form:form>

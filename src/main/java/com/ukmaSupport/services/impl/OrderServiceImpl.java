@@ -91,10 +91,4 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getByAssistAndStatus(int assistid, String status) {
         return orderDao.getByAssistAndStatus(assistid, status);
     }
-
-    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    @Override
-    public int getUserOrdersCount(int id){
-        return orderDao.getUserOrdersCount(id);
-    }
 }

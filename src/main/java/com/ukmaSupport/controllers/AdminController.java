@@ -400,7 +400,6 @@ public class AdminController {
     @RequestMapping(value = "/admin/users/userProfile/{id}", method = RequestMethod.GET)
     public String showUser(@PathVariable("id") int id, Model model) {
         User user = userService.getById(id);
-        user.setOrdersCount(orderService.getUserOrdersCount(user.getId()));
         List<Order> orders = orderService.getByUserId(id);
         model.addAttribute("passChangeForm", user);
         model.addAttribute("orders", orders);
