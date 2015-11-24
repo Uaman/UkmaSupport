@@ -305,19 +305,21 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/assistantReport/{id}", method = RequestMethod.GET)
-    public String assistantReport(@PathVariable("id") Integer id,Model model) {
-        List<Order> orderList = orderService.getByUserIdStatus(id,"done");
+    public String assistantReport(@PathVariable("id") Integer id, Model model) {
+        List<Order> orderList = orderService.getByUserIdStatus(id, "done");
         model.addAttribute("orderList", orderList);
         return "excelView";
     }
+
     @RequestMapping(value = "/admin/auditoriumReport/{number}", method = RequestMethod.GET)
-    public String auditoriumReport(@PathVariable("number") String number,Model model) {
+    public String auditoriumReport(@PathVariable("number") String number, Model model) {
         List<Order> orderList = orderService.getByAuditoriumNumber(number);
         model.addAttribute("orderList", orderList);
         return "excelView";
     }
+
     @RequestMapping(value = "/admin/workplaceReport/{acess_num}", method = RequestMethod.GET)
-    public String workplaceReport(@PathVariable("acess_num") Integer acess_num,Model model) {
+    public String workplaceReport(@PathVariable("acess_num") Integer acess_num, Model model) {
         List<Order> orderList = orderService.getByWorkplaceAcessNum(acess_num);
         model.addAttribute("orderList", orderList);
         return "excelView";
@@ -340,16 +342,14 @@ public class AdminController {
         workplace.setAuditoriumId(auditorium.getId());
         workplaceService.save(workplace);
         return "redirect:/admin/auditoriums/" + number;
-
     }
-
 
     @RequestMapping(value = "/admin/changeRole", method = RequestMethod.POST)
     @ResponseBody
-    public String setUserRole(@RequestBody Map<String, Object> searchParam,ModelMap model) {
-        String role= (String) searchParam.get("role");
+    public String setUserRole(@RequestBody Map<String, Object> searchParam, ModelMap model) {
+        String role = (String) searchParam.get("role");
         String id = (String) searchParam.get("userId");
-        User user=userService.getById(Integer.parseInt(id));
+        User user = userService.getById(Integer.parseInt(id));
         System.out.println(role + " " + id);
         String userRole = null;
         if (role.equals("Assistant")) {
@@ -364,8 +364,8 @@ public class AdminController {
         } else if (role.equals("Professor")) {
             userRole = "PROFESSOR";
         }
-      user.setRole(userRole);
-      userService.saveOrUpdate(user);
+        user.setRole(userRole);
+        userService.saveOrUpdate(user);
 
         return "redirect:/admin/getAllOrders";
     }
@@ -401,7 +401,9 @@ public class AdminController {
     public String showUser(@PathVariable("id") int id, Model model) {
         User user = userService.getById(id);
         user.setOrdersCount(orderService.getUserOrdersCount(user.getId()));
+        List<Order> orders = orderService.getByUserId(id);
         model.addAttribute("passChangeForm", user);
+        model.addAttribute("orders", orders);
         return "adminPage/userPage";
     }
 }

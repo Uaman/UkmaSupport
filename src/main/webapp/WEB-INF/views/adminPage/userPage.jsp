@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -18,6 +19,7 @@
             });
         });
     </script>
+
 </head>
 
 <body>
@@ -126,15 +128,6 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-md-4 control-label" for="dateOfEntry"><spring:message
-                        code="admin.users.date"/></label>
-
-                <div class="col-md-4">
-                    <form:input id="dateOfEntry" path="dateOfEntry" name="dateOfEntry" type="text" value=""
-                                class="form-control form-style" READONLY="true"/>
-                </div>
-            </div>
-            <div class="form-group row">
                 <label class="col-md-4 control-label" for="ordersCount"><spring:message
                         code="admin.users.orders"/></label>
 
@@ -144,6 +137,46 @@
                 </div>
             </div>
         </form:form>
+    </div>
+    <div class="table-align bottom-block top-table padding-tom">
+        <table id="records_table" class="tbl table table-striped admin-table" style="margin-top: -170px;">
+            <thead>
+            <tr>
+                <th class="no-sort title-col-orders-th" style="margin-left: 20px;width:50px;"><spring:message
+                        code="admin.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                                                        width="8px" height="14px"></th>
+                <th class="auditorium-col-orders-th" style="width: 70px;"><spring:message
+                        code="admin.orders.auditorium"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                                                             width="8px" height="14px"></th>
+                <th class="workplace-col-orders-th" style="width: 70px;"><spring:message code="admin.orders.workplace"/><img
+                        class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
+                <th class="user-col-orders" style="width: 50px;"><spring:message code="admin.orders.user"/><img
+                        class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
+                <th class="assistant-col-orders" style="width: 50px;"><spring:message
+                        code="admin.orders.assistant"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                                                            width="8px" height="14px"></th>
+                <th class="date-col-orders-th" style="width: 50px;"><spring:message code="admin.orders.date"/><img
+                        class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
+                <th class="status-col-orders-th" style="width: 50px;"><spring:message code="admin.orders.status"/><img
+                        class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
+                <th class="indent" style="width: 50px;"></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <c:forEach items="${orders}" var="orders">
+                <tr data-href="#">
+                    <td>${fn:substring(orders.title,0,15)}</td>
+                    <td>${orders.auditorium}</td>
+                    <td>${orders.workplace_access_num}</td>
+                    <td>${orders.userId}</td>
+                    <td>${orders.assistantLastName}</td>
+                    <td>${orders.createdAt}</td>
+                    <td>${orders.status}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
     </div>
 
     <div class="footer">
