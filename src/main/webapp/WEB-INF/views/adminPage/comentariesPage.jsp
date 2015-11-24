@@ -15,6 +15,7 @@
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+            $('#comments').scrollTop(99999999);
             $('#content').keyup(function() {
                 if ($('#content').val() != '') {
                     $('#btn-add-comment').removeClass('disabled');
