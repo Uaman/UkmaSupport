@@ -464,6 +464,12 @@ a img {
 	width: 100%;
 	table-layout: fixed;
 }
+
+.icon-sort{
+	margin-left: 5px;
+	cursor:pointer;
+}
+
 .btn-col {
 	width: 5%;
 }
@@ -521,18 +527,30 @@ a img {
 .workplace-col-orders{
 	width:15%;
 }
+.workplace-col-orders-th th{
+	width:18%;
+	float:right;
+	text-align:left;
+}
 .title-col-orders{
 	width:20%;
 }
 .title-col-orders-th{
-	width:19%;
+	width:13%;
+	float:right;
+	text-align:right;
+}
+.auditorium-col-orders-th{
+	width:16%;
+	float:right;
+	text-align:right;
 }
 .auditorium-col-orders{
 	width:10%;
 }
 
 .user-col-orders{
-	width:10%;
+	width:12%;
 }
 
 .assistant-col-orders{
@@ -542,12 +560,15 @@ a img {
 .date-col-orders{
 	width:15%;
 }
+.date-col-orders-th{
+	width:12%;
+}
 
 .status-col-orders{
 	width:15%;
 }
 .status-col-orders-th{
-	width:12%;
+	width:10%;
 }
 
 .indent{

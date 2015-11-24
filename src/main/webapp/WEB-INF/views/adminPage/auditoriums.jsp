@@ -173,8 +173,8 @@
                    style="max-width: 100%; width: 430px; ">
                 <thead class="fixedHeader">
                 <tr>
-                    <th width="187px"><spring:message code="admin.auditoriums.number"/></th>
-                    <th width="230px"><spring:message code="admin.auditoriums.assistantName"/></th>
+                    <th width="187px" style="vertical-align: middle;"><spring:message code="admin.auditoriums.number"/><img class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
+                    <th width="230px"><spring:message code="admin.auditoriums.assistantName"/> <img class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
                     <th width="50px" class="no-sort"></th>
                 </tr>
                 </thead>

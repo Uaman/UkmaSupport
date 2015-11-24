@@ -6829,3 +6829,7 @@ button.close {
 .glyphicon-menu-up:before {
   content: "\e260";
 }
+
+.glyphicon-sort{
+  line-height: 5px;
+}

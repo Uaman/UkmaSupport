@@ -152,8 +152,8 @@
         <table id="records_table" class="tbl table table_auditorium table-striped">
             <thead>
             <tr>
-                <th><spring:message code="admin.workplaces.workplace"/></th>
-                <th><spring:message code="admin.auditoriums.delete"/></th>
+                <th><spring:message code="admin.workplaces.workplace"/><img class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
+                <th></th>
             </tr>
             </thead>
         </table>
