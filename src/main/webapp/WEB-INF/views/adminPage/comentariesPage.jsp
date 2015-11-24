@@ -4,8 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <title></title>
-    <sec:csrfMetaTags/>
+    <title><spring:message code="commentaries.title"/></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="../../../resources/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
