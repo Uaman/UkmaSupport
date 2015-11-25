@@ -51,15 +51,15 @@
             url: '${pageContext.request.contextPath}/user/allUserOrders',
             type: 'GET',
             success: function (response) {
-                 var sorted = response.sort(function (a, b) {
-                 if (a.status < b.status) {
-                 return 1;
-                 }
-                 if (a.status > b.status) {
-                 return -1;
-                 }
-                 return 0;
-                 });
+                var sorted = response.sort(function (a, b) {
+                    if (a.status < b.status) {
+                        return 1;
+                    }
+                    if (a.status > b.status) {
+                        return -1;
+                    }
+                    return 0;
+                });
                 var trHTML = '';
                 $.each(sorted, function (i, order) {
                     if (order.status == "Undone") {
@@ -86,13 +86,9 @@
                 });
                 $('#records_table tbody').empty();
                 $('#records_table').append(trHTML);
-
             }
-
         });
-
     </script>
-
 </head>
 
 <body>
@@ -145,12 +141,11 @@
         </table>
     </div>
 
-    <div class="footer">
+    <div id="footer">
         <div class="thick"></div>
         <div class="thin"></div>
-        <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
-
-        <div class="text-center">
+        <div><p class="footertext"><spring:message code="login.footer"/></p></div>
+        <div id="localization">
             <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
             <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
         </div>

@@ -56,7 +56,8 @@
     </nav>
 
     <div class="col-md-offset-4 col-md-8 vertalign bottom-block">
-        <form:form class="form-horizontal" id="newOrder" action="/user/createOrder" method="post" commandName="newOrder">
+        <form:form class="form-horizontal" id="newOrder" action="/user/createOrder" method="post"
+                   commandName="newOrder">
             <div class="form-group">
                 <div class="col-md-6">
                     <div class="error" id="form-error"><form:errors class="" path="auditorium"
@@ -116,12 +117,11 @@
     </div>
 
 
-    <div class="footer">
+    <div id="footer">
         <div class="thick"></div>
         <div class="thin"></div>
-        <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
-
-        <div class="text-center">
+        <div><p class="footertext"><spring:message code="login.footer"/></p></div>
+        <div id="localization">
             <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
             <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
         </div>

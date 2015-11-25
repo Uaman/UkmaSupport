@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><spring:message code="editAdmin.title"/></title>
@@ -132,16 +132,16 @@
             </div>
         </form:form>
     </div>
-    <div class="footer">
-    <div class="thick"></div>
-    <div class="thin"></div>
-    <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
 
-    <div class="text-center">
-        <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
-        <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
+    <div id="footer">
+        <div class="thick"></div>
+        <div class="thin"></div>
+        <div><p class="footertext"><spring:message code="login.footer"/></p></div>
+        <div id="localization">
+            <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
+            <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
+        </div>
     </div>
-</div>
 </div>
 </body>
 </html>

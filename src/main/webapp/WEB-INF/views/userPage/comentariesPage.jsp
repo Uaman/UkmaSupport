@@ -14,9 +14,9 @@
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#comments').scrollTop(99999999);
-            $('#content').keyup(function() {
+            $('#content').keyup(function () {
                 if ($('#content').val() != '') {
                     $('#btn-add-comment').removeClass('disabled');
                 } else {
@@ -49,31 +49,41 @@
 
     <div id="order-inf">
         <p class="body-text" id="order-title">Title: ${order.title}</p>
+
         <p class="body-text" id="order-auditorium">Auditorium: ${order.auditorium}</p>
+
         <p class="body-text" id="order-workplace">Workplace: ${order.workplace_access_num}</p>
+
         <p class="body-text" id="order-date">Date: ${order.createdAt.toLocaleString()}</p>
+
         <p class="body-text" id="order-description">Description: ${order.content}</p>
     </div>
-    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
     <div id="comments" class="col-md-offset-2 col-md-8">
-        <c:forEach var="comment" items="${allCommentaries}" varStatus="count" >
+        <c:forEach var="comment" items="${allCommentaries}" varStatus="count">
             <c:choose>
                 <c:when test="${comment.author.role == 'USER'}">
                     <div class="col-md-12 comment-block">
                         <div class="col-md-3 comment-date">${comment.time.toLocaleString()}</div>
-                        <div class="col-md-offset-3 comment user-comment"><span class="bold-text">${comment.author.firstName}, ${comment.author.role}</span><br>${comment.content} </div>
+                        <div class="col-md-offset-3 comment user-comment"><span
+                                class="bold-text">${comment.author.firstName}, ${comment.author.role}</span><br>${comment.content}
+                        </div>
                     </div>
                 </c:when>
                 <c:when test="${comment.author.role == 'ASSISTANT'}">
                     <div class="col-md-12 comment-block">
-                        <div class="col-md-9 comment assistant-comment"><span class="bold-text">${comment.author.firstName}, ${comment.author.role}</span><br>${comment.content} </div>
+                        <div class="col-md-9 comment assistant-comment"><span
+                                class="bold-text">${comment.author.firstName}, ${comment.author.role}</span><br>${comment.content}
+                        </div>
                         <div class="col-md-offset-9 comment-date">${comment.time.toLocaleString()}</div>
                     </div>
                 </c:when>
                 <c:otherwise>
                     <div class="col-md-12 comment-block">
-                        <div class="col-md-9 comment admin-comment"><span class="bold-text">${comment.author.firstName}, ${comment.author.role}</span><br>${comment.content} </div>
+                        <div class="col-md-9 comment admin-comment"><span
+                                class="bold-text">${comment.author.firstName}, ${comment.author.role}</span><br>${comment.content}
+                        </div>
                         <div class="col-md-offset-9 comment-date">${comment.time.toLocaleString()}</div>
                     </div>
                 </c:otherwise>
@@ -84,24 +94,25 @@
         <form:form class="form-horizontal" action="/addComment/${id}" method="post" commandName="comment">
             <div class="form-group">
                 <div class="col-md-12">
-                    <textarea id="content" name="content" path="comment.content"  class="col-md-12 txt-area" rows="4" placeholder="write comment"></textarea>
+                    <textarea id="content" name="content" path="comment.content" class="col-md-12 txt-area" rows="4"
+                              placeholder="write comment"></textarea>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-offset-9">
-                    <button id="btn-add-comment" type="submit" class="btn btn-primary btn-block disabled">Add comment</button>
+                    <button id="btn-add-comment" type="submit" class="btn btn-primary btn-block disabled">Add comment
+                    </button>
                 </div>
             </div>
         </form:form>
     </div>
 
-    <div class="footer">
+    <div id="footer">
         <div class="thick"></div>
         <div class="thin"></div>
-        <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
-
-        <div class="text-center">
+        <div><p class="footertext"><spring:message code="login.footer"/></p></div>
+        <div id="localization">
             <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
             <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
         </div>
