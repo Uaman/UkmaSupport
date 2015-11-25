@@ -14,7 +14,7 @@ public class CommentForUserMail {
 
     public void send(String toAddr, int orderId){
         String subject = "Your order has been commented";
-        String link = Constants.LOCAL_SERVER + Constants.COMMENTS + orderId;
+        String link = Constants.SERVER + Constants.COMMENTS + orderId;
         String body = "Your order has been commented. Details: " + link + "\n\nUKMA Support\n" + Constants.SERVER;
 
         mailService.sendEmail(toAddr, FROM_ADDR, subject, body);
