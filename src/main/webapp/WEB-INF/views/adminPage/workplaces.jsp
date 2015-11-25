@@ -103,7 +103,7 @@
 <div id="wrap">
     <nav id="header">
         <div class="container-fluid">
-            <div class="navbar-header" style="width: 290px;">
+            <div class="navbar-header">
                 <a href="/"><img id="adm_logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse">
