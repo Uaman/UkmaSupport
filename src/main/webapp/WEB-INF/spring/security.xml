@@ -36,7 +36,7 @@
     <http>
 
         <form-login login-processing-url="/static/j_spring_security_check"
-                    login-page="/"
+                    login-page="/login"
                     default-target-url="/succesfullRegistration"
                     username-parameter="j_username"
                     password-parameter="j_password"

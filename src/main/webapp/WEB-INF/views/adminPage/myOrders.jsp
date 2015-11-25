@@ -69,7 +69,7 @@
                         + "<td class='title-col'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
                         "<td class='auditorium-col'>" + order.auditorium + "</td>" +
                         "<td class='workplace-col'>" + order.workplace_access_num + "</td>" +
-                        "<td class='status-col'>" + order.status + "</td>" +
+                        "<td class='status-col-ord'>" + order.status + "</td>" +
                         "<td class='date-col'>" + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
                         "<td class='btn-col'>" + '<form action="/admin/orders/edit/' + order.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
                         "<td class='btn-col'>" + '<form action="/admin/orders/delete/' + order.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit" style=""><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
@@ -79,7 +79,7 @@
                         "<td class='title-col'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
                         "<td class='auditorium-col'>" + order.auditorium + "</td>" +
                         "<td class='workplace-col'>" + order.workplace_access_num + "</td>" +
-                        "<td class='status-col'>" + order.status + "</td>" +
+                        "<td class='status-col-ord'>" + order.status + "</td>" +
                         "<td class='date-col'>" + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
                         "<td class='btn-col'>" + "  " + "</td>" +
                         "<td class='btn-col'>" + '<form action="/admin/orders/delete/' + order.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
@@ -164,7 +164,7 @@
     <div class="col-md-offset-7 top-block">
         <form id="add-order-form" class="form-horizontal" method="get" action="/admin/orders/createOrder">
             <div class="col-md-offset-7 col-md-4">
-                <button id="Adm_Button" type="submit" class="btn btn-primary btn-block"><spring:message
+                <button id="btn-add-order" class="btn btn-primary btn-block" type="submit"><spring:message
                         code="user.order"/></button>
             </div>
         </form>
@@ -174,11 +174,16 @@
         <table id="records_table" class="tbl table table-striped admin-table order-table">
             <thead>
             <tr>
-                <th class="no-sort title-col"><spring:message code="admin.orders.title"/></th>
-                <th class="auditorium-col"><spring:message code="admin.orders.auditorium"/></th>
-                <th class="workplace-col"><spring:message code="assist.order.workplace"/></th>
-                <th class="status-col"><spring:message code="admin.orders.status"/></th>
-                <th class="date-col"><spring:message code="admin.orders.date"/></th>
+                <th class="no-sort title-col"><spring:message code="admin.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                                                                                              width="8px" height="14px"></th>
+                <th class="auditorium-col"><spring:message code="admin.orders.auditorium"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                                                                                                width="8px" height="14px"></th>
+                <th class="workplace-col"><spring:message code="admin.orders.workplace"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                                                                                              width="8px" height="14px"></th>
+                <th class="status-col-ord"><spring:message code="admin.orders.status"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                                                                                        width="8px" height="14px"></th>
+                <th class="date-col"><spring:message code="admin.orders.date"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                                                                                    width="8px" height="14px"></th>
                 <th class="btn-col"></th>
                 <th class="btn-col"></th>
             </tr>

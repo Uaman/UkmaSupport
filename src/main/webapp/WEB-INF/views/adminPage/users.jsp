@@ -207,13 +207,13 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <center><h4 class="modal-title" id="myModalLabel">Edit Role</h4></center>
+                    <center><h4 class="modal-title" id="myModalLabel"><spring:message code="admin.users.editRole"/></h4></center>
                 </div>
                 <div class="modal-body">
-                    <input type="radio" name="role" value="Assistant"> Assistant<Br>
-                    <input type="radio" name="role" value="User"> User<Br>
-                    <input type="radio" name="role" value="Admin"> Admin<Br>
-                    <input type="radio" name="role" value="Professor"> Professor<Br>
+                    <input type="radio" name="role" value="Assistant"><spring:message code="admin.users.assistant"/><Br>
+                    <input type="radio" name="role" value="User"><spring:message code="admin.users.user"/><Br>
+                    <input type="radio" name="role" value="Admin"><spring:message code="admin.users.admin"/><Br>
+                    <input type="radio" name="role" value="Professor"><spring:message code="admin.users.professor"/><Br>
                 </div>
                 <div class="modal-footer">
                     <center>

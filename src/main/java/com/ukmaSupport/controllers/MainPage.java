@@ -25,12 +25,12 @@ public class MainPage {
 
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
-        return "mainPage/mainPage";
+        return "mainPage/landingPage";
     }
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String landingPage(ModelMap model) {
-        return "mainPage/landingPage";
+        return "mainPage/mainPage";
     }
 
     @RequestMapping(value = "/loginError")

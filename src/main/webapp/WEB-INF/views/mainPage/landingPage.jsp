@@ -24,7 +24,7 @@
 
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a id="login" class="menu-element" href="/">
+                    <li><a id="login" class="menu-element" href="/login">
                         <spring:message code="login.login"/></a></li>
                 </ul>
             </div>
