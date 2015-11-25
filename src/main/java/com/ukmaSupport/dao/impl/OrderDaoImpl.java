@@ -19,7 +19,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    private static final String GET_ALL_ORDERS = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, users.last_name AS assist FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id";
+    private static final String GET_ALL_ORDERS = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, concat(users.last_name, '') AS assist FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id";
 
     private static final String GET_ALL_ORDERS_BY_USER_ID = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, users.last_name AS assist FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE orders.user_id=?";
 
