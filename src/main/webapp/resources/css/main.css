@@ -489,6 +489,9 @@ a img {
 .status-col {
 	width: 20%;
 }
+.status-col-ord {
+	width: 13%;
+}
 
 .date-col {
 	width: 20%;
@@ -527,52 +530,53 @@ a img {
 .workplace-col-orders{
 	width:15%;
 }
-.workplace-col-orders-th th{
-	width:18%;
-	float:right;
-	text-align:left;
+.workplace-col-orders-th{
+	width:15%;
 }
 .title-col-orders{
-	width:20%;
+	width:18%;
 }
-.title-col-orders-th{
-	width:13%;
-	float:right;
-	text-align:right;
+.title-col-orders-th {
+	width: 18%;
+}
+
+.auditorium-col-orders{
+	width:16%;
 }
 .auditorium-col-orders-th{
 	width:16%;
-	float:right;
-	text-align:right;
-}
-.auditorium-col-orders{
-	width:10%;
 }
 
 .user-col-orders{
+	width:12%;
+}
+.user-col-orders-th{
 	width:12%;
 }
 
 .assistant-col-orders{
 	width:15%;
 }
-
-.date-col-orders{
+.assistant-col-orders-th{
 	width:15%;
 }
+
+.date-col-orders{
+	width:16%;
+}
 .date-col-orders-th{
-	width:12%;
+	width:16%;
 }
 
 .status-col-orders{
 	width:15%;
 }
 .status-col-orders-th{
-	width:10%;
+	width:13%;
 }
 
 .indent{
-	width:4%;
+	width:3%;
 }
 
 #auditorium {
