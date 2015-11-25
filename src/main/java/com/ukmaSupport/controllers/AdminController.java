@@ -400,9 +400,14 @@ public class AdminController {
     @RequestMapping(value = "/admin/users/userProfile/{id}", method = RequestMethod.GET)
     public String showUser(@PathVariable("id") int id, Model model) {
         User user = userService.getById(id);
-        List<Order> orders = orderService.getByUserId(id);
         model.addAttribute("passChangeForm", user);
-        model.addAttribute("orders", orders);
         return "adminPage/userPage";
+    }
+
+    @RequestMapping(value = "/admin/users/getUserProfile/{id}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Order> getUserOrders(@PathVariable("id") int id) {
+        return orderService.getByUserId(id);
     }
 }

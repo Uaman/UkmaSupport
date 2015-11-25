@@ -12,18 +12,74 @@
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
+    <script src="../../../resources/js/tsort.js"></script>
     <script>
+        $(document).ready(function () {
+            $("#records_table").tablesort();
+            var deleteLink = $("a:contains('Delete')");
+        });
+        function formatDate(date, fmt) {
+            function pad(value) {
+                return (value.toString().length < 2) ? '0' + value : value;
+            }
+
+            return fmt.replace(/%([a-zA-Z])/g, function (_, fmtCode) {
+                switch (fmtCode) {
+                    case 'Y':
+                        return date.getUTCFullYear();
+                    case 'M':
+                        return pad(date.getUTCMonth() + 1);
+                    case 'd':
+                        return pad(date.getUTCDate());
+                    case 'H':
+                        return pad(date.getUTCHours() + 2);
+                    case 'm':
+                        return pad(date.getUTCMinutes());
+                    case 's':
+                        return pad(date.getUTCSeconds());
+                    default:
+                        throw new Error('Unsupported format code: ' + fmtCode);
+                }
+            });
+        }
         jQuery(function ($) {
             $('tbody tr[data-href]').addClass('clickable').click(function () {
                 window.location = $(this).attr('data-href');
             });
         });
+        $.ajax({
+            url: '/admin/users/getUserProfile/' + '${id}',
+            type: 'GET',
+            data: {
+                text: $("#sel2").val()
+            },
+            success: function (response) {
+                var sorted = response.sort(function (a, b) {
+                    if (a.createdAt < b.createdAt) {
+                        return 1;
+                    }
+                    if (a.createdAt > b.createdAt) {
+                        return -1;
+                    }
+                    return 0;
+                });
+                var trHTML = '';
+                $.each(response, function (i, order) {
+                    trHTML += "<tr><td class='title-col-orders'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
+                    '   <td class="auditorium-col-orders">' + order.auditorium + "</td>" +
+                    '   <td class="workplace-col-orders">' + order.workplace_access_num + "</td>" +
+                    '   <td class="assistant-col-orders">' + order.assistantLastName + "</td>" +
+                    '   <td class="date-col-orders">' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
+                    '   <td class="status-col-orders">' + order.status + "</td></tr>";
+                });
+                $('#records_table tbody').empty();
+                $('#records_table').append(trHTML);
+            }
+        });
     </script>
-
 </head>
 
 <body>
-
 <div id="wrap">
     <nav id="header">
         <div class="container-fluid">
@@ -120,8 +176,7 @@
             <thead>
             <tr>
                 <th class="no-sort title-col-orders-th" style="margin-left: 20px;width:50px;"><spring:message
-                        code="admin.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png"
-                                                        width="8px" height="14px"></th>
+                        code="admin.orders.title"/></th>
                 <th class="auditorium-col-orders-th" style="width: 70px;"><spring:message
                         code="admin.orders.auditorium"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                              width="8px" height="14px"></th>
@@ -137,18 +192,6 @@
             </tr>
             </thead>
 
-            <tbody>
-            <c:forEach items="${orders}" var="orders">
-                <tr data-href="#">
-                    <td>${fn:substring(orders.title,0,15)}</td>
-                    <td>${orders.auditorium}</td>
-                    <td>${orders.workplace_access_num}</td>
-                    <td>${orders.assistantLastName}</td>
-                    <td>${orders.createdAt}</td>
-                    <td>${orders.status}</td>
-                </tr>
-            </c:forEach>
-            </tbody>
         </table>
     </div>
 
