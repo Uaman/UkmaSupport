@@ -220,7 +220,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/orders/delete/{id}", method = RequestMethod.GET)
-    public String deleteOrderById(Model model, @PathVariable("id") int id) {
+    public String deleteOrderById(@PathVariable("id") int id) {
         orderService.delete(id);
         return "redirect:/admin/myOrders";
     }
@@ -251,6 +251,7 @@ public class AdminController {
         editOrderValidator.validate(order, result);
 
         if (result.hasErrors()) {
+
             model.addAttribute("title", order.getTitle());
             model.addAttribute("workplace", order.getWorkplace());
             model.addAttribute("auditorium", order.getAuditorium());
@@ -279,7 +280,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/auditoriums/delete/{id}", method = RequestMethod.GET)
-    public String deleteOrderById(@PathVariable("id") int id) {
+    public String deleteAuditoriumById(@PathVariable("id") int id) {
         auditoriumService.delete(id);
         return "redirect:/admin/auditoriums";
     }
@@ -326,7 +327,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/createAuditoriums", method = RequestMethod.POST)
-    public String saveAuditorium(@RequestBody Map<String, Object> searchParam, ModelMap model, Auditorium auditorium) {
+    public String saveAuditorium(@RequestBody Map<String, Object> searchParam, Auditorium auditorium) {
         String number = (String) searchParam.get("auditorium");
         auditorium.setNumber(number);
         auditoriumService.save(auditorium);
@@ -334,7 +335,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/createWorkplaces", method = RequestMethod.POST)
-    public String saveWorkplaces(@RequestBody Map<String, Object> searchParam, ModelMap model, Workplace workplace) {
+    public String saveWorkplaces(@RequestBody Map<String, Object> searchParam, Workplace workplace) {
         Integer access_number = (Integer) searchParam.get("workplaces");
         String number = (String) searchParam.get("number");
         Auditorium auditorium = auditoriumService.getByNumber(number);
@@ -346,11 +347,10 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/changeRole", method = RequestMethod.POST)
     @ResponseBody
-    public String setUserRole(@RequestBody Map<String, Object> searchParam, ModelMap model) {
+    public String setUserRole(@RequestBody Map<String, Object> searchParam) {
         String role = (String) searchParam.get("role");
         String id = (String) searchParam.get("userId");
         User user = userService.getById(Integer.parseInt(id));
-        System.out.println(role + " " + id);
         String userRole = null;
         if (role.equals("Assistant")) {
             userRole = "ASSISTANT";

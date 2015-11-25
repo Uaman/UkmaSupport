@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title><spring:message code="editAdmin.title"/></title>
+    <title><spring:message code="admin.user.title"/></title>
     <link href="../../../resources/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
@@ -127,8 +127,6 @@
                                                              width="8px" height="14px"></th>
                 <th class="workplace-col-orders-th" style="width: 70px;"><spring:message code="admin.orders.workplace"/><img
                         class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
-                <th class="user-col-orders" style="width: 50px;"><spring:message code="admin.orders.user"/><img
-                        class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
                 <th class="assistant-col-orders" style="width: 50px;"><spring:message
                         code="admin.orders.assistant"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                             width="8px" height="14px"></th>
@@ -136,7 +134,6 @@
                         class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
                 <th class="status-col-orders-th" style="width: 50px;"><spring:message code="admin.orders.status"/><img
                         class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
-                <th class="indent" style="width: 50px;"></th>
             </tr>
             </thead>
 
@@ -146,7 +143,6 @@
                     <td>${fn:substring(orders.title,0,15)}</td>
                     <td>${orders.auditorium}</td>
                     <td>${orders.workplace_access_num}</td>
-                    <td>${orders.userId}</td>
                     <td>${orders.assistantLastName}</td>
                     <td>${orders.createdAt}</td>
                     <td>${orders.status}</td>
@@ -156,12 +152,11 @@
         </table>
     </div>
 
-    <div class="footer">
+    <div id="footer">
         <div class="thick"></div>
         <div class="thin"></div>
-        <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
-
-        <div class="text-center">
+        <div><p class="footertext"><spring:message code="login.footer"/></p></div>
+        <div id="localization">
             <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
             <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
         </div>
