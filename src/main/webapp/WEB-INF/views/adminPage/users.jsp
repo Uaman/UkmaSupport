@@ -110,11 +110,24 @@
 <div id="wrap">
     <nav id="header">
         <div class="container-fluid">
-            <div class="navbar-header" style="width: 290px;">
-                <a href=""><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
+            <div class="navbar-header">
+                <a href="/"><img id="adm_logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"><spring:message
+                                code="admin.reports"/><b
+                                class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="menu-element-li" href="/admin/report_auditorium"><spring:message
+                                    code="admin.Auditorium_Stats"/></a></li>
+                            <li><a class="menu-element-li" href="/admin/report_assist"><spring:message
+                                    code="admin.Assist_Stats"/></a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li><a class="menu-element" href="/admin/auditoriums"><spring:message
                             code="admin.auditoriums"/></a></li>
                     <li class="dropdown">

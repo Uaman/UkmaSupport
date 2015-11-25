@@ -822,3 +822,12 @@ tbody.scrollContent {
 	margin-bottom: 20px;
 }
 
+#adm_logo {
+	margin-top: 22px;
+	width: 230px;
+}
+
+.Adm_Button {
+	width: 220px;
+	margin-left: -100px;
+}
