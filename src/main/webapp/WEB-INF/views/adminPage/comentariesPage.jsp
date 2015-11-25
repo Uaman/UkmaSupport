@@ -91,15 +91,19 @@
     </nav>
 
     <div id="order-inf">
-        <p class="body-text" id="order-title">Title: ${order.title}</p>
+        <p class="body-text" id="order-title"><spring:message code="commentaries.titles"/>${order.title}</p>
 
-        <p class="body-text" id="order-auditorium">Auditorium: ${order.auditorium}</p>
+        <p class="body-text" id="order-auditorium"><spring:message
+                code="commentaries.auditorium"/>${order.auditorium}</p>
 
-        <p class="body-text" id="order-workplace">Workplace: ${order.workplace_access_num}</p>
+        <p class="body-text" id="order-workplace"><spring:message
+                code="commentaries.workplace"/>${order.workplace_access_num}</p>
 
-        <p class="body-text" id="order-date">Date: ${order.createdAt.toLocaleString()}</p>
+        <p class="body-text" id="order-date"><spring:message
+                code="commentaries.date"/>${order.createdAt.toLocaleString()}</p>
 
-        <p class="body-text" id="order-description">Description: ${order.content}</p>
+        <p class="body-text" id="order-description"><spring:message
+                code="commentaries.description"/>${order.content}</p>
     </div>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
