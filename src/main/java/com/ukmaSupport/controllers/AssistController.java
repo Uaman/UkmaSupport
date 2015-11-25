@@ -61,6 +61,10 @@ public class AssistController {
 
     @RequestMapping(value = "/assist/home", method = RequestMethod.GET)
     public String allAssistOrders(Model model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        User currentUser = userService.getById((Integer) session.getAttribute("id"));
+        model.addAttribute("currentUser", currentUser);
         return "assistPage/assistOrdersAssigned";
     }
 
@@ -77,6 +81,11 @@ public class AssistController {
 
     @RequestMapping(value = "/assist/created_orders", method = RequestMethod.GET)
     public String allAssistUserOrders(Model model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        User currentUser = userService.getById((Integer) session.getAttribute("id"));
+        model.addAttribute("currentUser", currentUser);
+
         return "assistPage/assistOrdersCreated";
     }
 
