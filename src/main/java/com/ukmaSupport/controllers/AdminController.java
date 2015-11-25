@@ -57,6 +57,8 @@ public class AdminController {
 
     @Autowired
     private OrderService orderService;
+    private final static String DONE = "done";
+    private final static String UNDONE = "Undone";
 
     private final static String USER = "USER";
     private final static String ASSISTANT = "ASSISTANT";
@@ -311,23 +313,28 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/assistantReport/{id}", method = RequestMethod.GET)
     public String assistantReport(@PathVariable("id") Integer id, Model model) {
-        List<Order> orderList = orderService.getByUserIdStatus(id, "done");
+        int countDone=orderService.getCountOrderByAssistant(id, DONE);
+        int contUndone=orderService.getCountOrderByAssistant(id,UNDONE);
+
+        List<Order> orderList = orderService.getAllAssistOrders(id);
         model.addAttribute("orderList", orderList);
-        return "excelView";
+        model.addAttribute("countDone", countDone);
+        model.addAttribute("countUndone", contUndone);
+        return "assistantReport";
     }
 
     @RequestMapping(value = "/admin/auditoriumReport/{number}", method = RequestMethod.GET)
     public String auditoriumReport(@PathVariable("number") String number, Model model) {
         List<Order> orderList = orderService.getByAuditoriumNumber(number);
         model.addAttribute("orderList", orderList);
-        return "excelView";
+        return "auditoriumReport";
     }
 
     @RequestMapping(value = "/admin/workplaceReport/{acess_num}", method = RequestMethod.GET)
     public String workplaceReport(@PathVariable("acess_num") Integer acess_num, Model model) {
         List<Order> orderList = orderService.getByWorkplaceAcessNum(acess_num);
         model.addAttribute("orderList", orderList);
-        return "excelView";
+        return "workplaceReport";
     }
 
     @RequestMapping(value = "/admin/createAuditoriums", method = RequestMethod.POST)

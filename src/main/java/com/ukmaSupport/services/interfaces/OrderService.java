@@ -18,6 +18,8 @@ public interface OrderService {
 
     List<Order> getByUserIdStatus(int user_id,String status);
 
+    int getCountOrderByAssistant(int assistant_id,String status);
+
     void createOrUpdate(Order order);
 
     void delete(int id);

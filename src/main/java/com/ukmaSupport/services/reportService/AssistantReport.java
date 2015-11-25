@@ -1,6 +1,7 @@
 package com.ukmaSupport.services.reportService;
 
 import com.ukmaSupport.models.Order;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -23,15 +24,19 @@ public class AssistantReport extends AbstractExcelView {
         // get data model which is passed by the Spring container
 
         List<Order> listOrder = (List<Order>) model.get("orderList");
+        Integer countDone= (Integer) model.get("countDone");
+        Integer contUndone= (Integer) model.get("countUndone");
         // create a new Excel sheet
         HSSFSheet sheet = workbook.createSheet("Orders");
-        sheet.setDefaultColumnWidth(30);
+        sheet.setDefaultColumnWidth(15);
+        sheet.setDefaultRowHeight((short) (2 * sheet.getDefaultRowHeightInPoints()));
 
         // create style for header cells
+
         CellStyle style = workbook.createCellStyle();
         Font font = workbook.createFont();
         font.setFontName("Arial");
-        style.setFillForegroundColor(HSSFColor.BLUE.index);
+        style.setFillForegroundColor(HSSFColor.LIGHT_ORANGE.index);
         style.setFillPattern(CellStyle.SOLID_FOREGROUND);
         font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
         font.setColor(HSSFColor.WHITE.index);
@@ -40,24 +45,27 @@ public class AssistantReport extends AbstractExcelView {
         // create header row
         HSSFRow header = sheet.createRow(0);
 
-        header.createCell(0).setCellValue("Order id");
+
+        header.createCell(0).setCellValue("Id");
         header.getCell(0).setCellStyle(style);
 
-        header.createCell(1).setCellValue("Assistant LastName");
+        header.createCell(1).setCellValue("Assistant");
         header.getCell(1).setCellStyle(style);
 
-        header.createCell(2).setCellValue("Order status");
+        header.createCell(2).setCellValue("Status");
         header.getCell(2).setCellStyle(style);
 
-        header.createCell(3).setCellValue("Auditorium");
+        header.createCell(3).setCellValue("Title");
         header.getCell(3).setCellStyle(style);
 
-        header.createCell(4).setCellValue("Workplace");
+        header.createCell(4).setCellValue("Auditorium");
         header.getCell(4).setCellStyle(style);
 
-        header.createCell(5).setCellValue("Date of created");
+        header.createCell(5).setCellValue("Workplace");
         header.getCell(5).setCellStyle(style);
 
+        header.createCell(6).setCellValue("Date");
+        header.getCell(6).setCellStyle(style);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
 
@@ -66,14 +74,27 @@ public class AssistantReport extends AbstractExcelView {
 
         for (Order aOrder : listOrder) {
             HSSFRow aRow = sheet.createRow(rowCount++);
+
             aRow.createCell(0).setCellValue(aOrder.getId());
             aRow.createCell(1).setCellValue(aOrder.getAssistantLastName());
             aRow.createCell(2).setCellValue(aOrder.getStatus());
-            aRow.createCell(3).setCellValue(aOrder.getAuditorium());
-            aRow.createCell(4).setCellValue(aOrder.getWorkplace_access_num());
-            aRow.createCell(5).setCellValue(sdf.format(aOrder.getCreatedAt()));
+            aRow.createCell(3).setCellValue(aOrder.getTitle());
+            aRow.createCell(4).setCellValue(aOrder.getAuditorium());
+            aRow.createCell(5).setCellValue(aOrder.getWorkplace_access_num());
+            aRow.createCell(6).setCellValue(sdf.format(aOrder.getCreatedAt()));
+
 
         }
+        HSSFRow aRow_ = sheet.createRow(listOrder.size()+1);
+        aRow_.setRowStyle((HSSFCellStyle) style);
+        HSSFRow aRow = sheet.createRow(listOrder.size()+2);
+        aRow.createCell(2).setCellValue("Done :");
+        aRow.createCell(3).setCellValue(countDone);
+        aRow.setRowStyle((HSSFCellStyle) style);
+        HSSFRow aRow1 = sheet.createRow(listOrder.size()+3);
+        aRow1.createCell(2).setCellValue("Undone :");
+        aRow1.createCell(3).setCellValue(contUndone);
+        aRow1.setRowStyle((HSSFCellStyle) style);
     }
 
 }

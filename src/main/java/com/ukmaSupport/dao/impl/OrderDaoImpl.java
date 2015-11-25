@@ -37,7 +37,7 @@ public class OrderDaoImpl implements OrderDao {
 
     private static final String GET_ALL_ASSIST_ORDERS = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, users.last_name AS assist FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE assistant_id=?";
 
-    private static final String GET_ALL_ORDERS_BY_ASSIST_AND_STATUS = "SELECT orders.id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status FROM orders INNER JOIN workplace ON orders.workplace_id=workplace.id WHERE assistant_id=? AND status=?";
+    private static final String GET_ALL_ORDERS_BY_ASSIST_AND_STATUS = "SELECT COUNT (orders.status) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE orders.assistant_id=? AND orders.status=? ";
 
     private static final String DELETE_ORDER = "DELETE FROM orders WHERE id=?";
 
@@ -56,10 +56,10 @@ public class OrderDaoImpl implements OrderDao {
     public List<Order> getByStatus(String status) {
         return jdbcTemplate.query(GET_ORDERS_BY_STATUS, new Object[]{status}, rowMapper);
     }
-
     @Override
-    public List<Order> getByUserId(int user_id) {
-        return jdbcTemplate.query(GET_ALL_ORDERS_BY_USER_ID, new Object[]{user_id}, rowMapper);
+    public int getCountOrderByAssistant(int assistant_id,String status) {
+        int total= jdbcTemplate.queryForObject(GET_ALL_ORDERS_BY_ASSIST_AND_STATUS, new Object[]{assistant_id, status}, Integer.class);
+        return total;
     }
 
     @Override
@@ -71,7 +71,10 @@ public class OrderDaoImpl implements OrderDao {
     public List<Order> getByWorkplaceAcessNum(int access_num) {
         return jdbcTemplate.query(GET_ALL_ORDERS_BY_WORKPLACE_ACCESS_NUM, new Object[]{access_num}, rowMapper);
     }
-
+    @Override
+    public List<Order> getByUserId(int user_id) {
+        return jdbcTemplate.query(GET_ALL_ORDERS_BY_USER_ID, new Object[]{user_id}, rowMapper);
+    }
     public Order getByUserIdAndId(int user_id, int id) {
         return jdbcTemplate.queryForObject(GET_ALL_ORDERS_BY_USER_ID_AND_ID, new Object[]{id, user_id}, rowMapper);
     }

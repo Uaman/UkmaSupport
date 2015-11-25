@@ -16,6 +16,8 @@ public interface OrderDao {
 
     List<Order> getByUserId(int user_id);
 
+    int getCountOrderByAssistant(int assistant_id,String status);
+
     List<Order> getUserStatus(int user_id,String status);
 
     void createOrUpdate(Order order);

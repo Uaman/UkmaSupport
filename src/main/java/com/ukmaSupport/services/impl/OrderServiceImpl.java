@@ -58,6 +58,12 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.getUserStatus(user_id, status);
     }
 
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    @Override
+    public int getCountOrderByAssistant(int assistant_id, String status) {
+        return orderDao.getCountOrderByAssistant(assistant_id,status);
+    }
+
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
     @Override
