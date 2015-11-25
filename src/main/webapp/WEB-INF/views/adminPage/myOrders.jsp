@@ -143,22 +143,22 @@
         </div>
     </nav>
 
-    <div class="top-block">
+    <div class="top-block col-md-6">
         <p id="hello"><spring:message
-                code="user.hello"/></p>
+                code="user.hello"/> ${currentUser.firstName}</p>
     </div>
 
-    <div class="col-md-offset-7">
-        <form class="form-horizontal" method="get" action="/admin/orders/createOrder">
-            <div class="col-md-offset-7 col-md-4 button-myorders">
+    <div class="col-md-offset-7 top-block">
+        <form id="add-order-form" class="form-horizontal" method="get" action="/admin/orders/createOrder">
+            <div class="col-md-offset-7 col-md-4">
                 <button id="btn-add-order" type="submit" class="btn btn-primary btn-block"><spring:message
                         code="user.order"/></button>
             </div>
         </form>
     </div>
 
-    <div class="table-align bottom-block user-table">
-        <table id="records_table" class="tbl table table-striped admin-table">
+    <div class="table-align bottom-block">
+        <table id="records_table" class="tbl table table-striped admin-table order-table">
             <thead>
             <tr>
                 <th class="no-sort title-col"><spring:message code="admin.orders.title"/></th>

@@ -159,7 +159,11 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/myOrders", method = RequestMethod.GET)
-    public String myOrders() {
+    public String myOrders(Model model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        User currentUser = userService.getById((Integer) session.getAttribute("id"));
+        model.addAttribute("currentUser", currentUser);
         return "adminPage/myOrders";
     }
 
