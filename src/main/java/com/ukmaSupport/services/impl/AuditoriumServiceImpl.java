@@ -25,7 +25,13 @@ public class AuditoriumServiceImpl implements AuditoriumService {
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
     public Auditorium getById(int id) {
-        return auditoriumDao.getById(id);
+        Auditorium auditorium;
+        try {
+            auditorium = auditoriumDao.getById(id);
+        } catch (Exception e) {
+            auditorium = null;
+        }
+        return auditorium;
     }
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
@@ -37,7 +43,13 @@ public class AuditoriumServiceImpl implements AuditoriumService {
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
     public Auditorium getByNumber(String number) {
-        return auditoriumDao.getByNumber(number);
+        Auditorium auditorium;
+        try {
+            auditorium = auditoriumDao.getByNumber(number);
+        } catch (Exception e) {
+            auditorium = null;
+        }
+        return auditorium;
     }
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)

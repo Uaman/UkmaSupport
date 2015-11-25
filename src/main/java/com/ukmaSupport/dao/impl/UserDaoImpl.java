@@ -40,8 +40,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getById(int id) {
-        List<User> users = jdbcTemplate.query(GET_USER_BY_ID, new Object[]{id}, rowMapper);
-        return users.isEmpty() ? null : users.get(0);
+        return jdbcTemplate.queryForObject(GET_USER_BY_ID, new Object[]{id}, rowMapper);
     }
 
     @Override
@@ -86,8 +85,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getByEmail(String email) {
-        List<User> users = jdbcTemplate.query(GET_USER_BY_EMAIL, new Object[]{email}, rowMapper);
-        return users.isEmpty() ? null : users.get(0);
+        return jdbcTemplate.queryForObject(GET_USER_BY_EMAIL, new Object[]{email}, rowMapper);
     }
 
     @Override

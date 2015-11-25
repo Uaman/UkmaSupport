@@ -25,13 +25,25 @@ public class WorkplaceServiceImpl implements WorkplaceService {
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
     public Workplace getById(int id) {
-        return workplaceDao.getById(id);
+        Workplace workplace;
+        try {
+            workplace = workplaceDao.getById(id);
+        } catch (Exception e) {
+            workplace = null;
+        }
+        return workplace;
     }
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
     public Workplace getByNumber(int number) {
-        return workplaceDao.getByNumber(number);
+        Workplace workplace;
+        try {
+            workplace = workplaceDao.getByNumber(number);
+        } catch (Exception e) {
+            workplace = null;
+        }
+        return workplace;
     }
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

@@ -19,7 +19,13 @@ public class OrderServiceImpl implements OrderService {
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
     public Order getById(int id) {
-        return orderDao.getById(id);
+        Order order;
+        try {
+            order = orderDao.getById(id);
+        } catch (Exception e) {
+            order = null;
+        }
+        return order;
     }
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -33,6 +39,7 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getByAuditoriumNumber(String number) {
         return orderDao.getByAuditoriumNumber(number);
     }
+
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
     public List<Order> getByWorkplaceAcessNum(int access_num) {
@@ -44,6 +51,7 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getByUserId(int user_id) {
         return orderDao.getByUserId(user_id);
     }
+
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
     public List<Order> getByUserIdStatus(int user_id, String status) {
@@ -68,10 +76,17 @@ public class OrderServiceImpl implements OrderService {
     public void update(Order order) {
         orderDao.update(order);
     }
+
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
-    public Order getByUserIdAndId(int user_id,int id){
-       return orderDao.getByUserIdAndId(user_id,id);
+    public Order getByUserIdAndId(int user_id, int id) {
+        Order order;
+        try {
+            order = orderDao.getByUserIdAndId(user_id, id);
+        } catch (Exception e) {
+            order = null;
+        }
+        return order;
     }
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
