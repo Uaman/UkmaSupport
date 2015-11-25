@@ -37,13 +37,16 @@
                                 code="admin.users"/><b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a class="menu-element-li" href="/admin/allUsers"><spring:message code="admin.allUsers"/></a></li>
-                            <li><a class="menu-element-li" href="/admin/users"><spring:message code="admin.users"/></a></li>
+                            <li><a class="menu-element-li" href="/admin/allUsers"><spring:message
+                                    code="admin.allUsers"/></a></li>
+                            <li><a class="menu-element-li" href="/admin/users"><spring:message code="admin.users"/></a>
+                            </li>
                             <li><a class="menu-element-li" href="/admin/assistants"><spring:message
                                     code="admin.assistants"/></a></li>
                             <li><a class="menu-element-li" href="/admin/professors"><spring:message
                                     code="admin.professors"/></a></li>
-                            <li><a class="menu-element-li" href="/admin/blockedUsers"><spring:message code="admin.blocked"/></a>
+                            <li><a class="menu-element-li" href="/admin/blockedUsers"><spring:message
+                                    code="admin.blocked"/></a>
                             </li>
                         </ul>
                     </li>
@@ -54,7 +57,8 @@
                         <ul class="dropdown-menu">
                             <li><a class="menu-element-li" href="/admin/allOrders"><spring:message
                                     code="admin.orders"/></a></li>
-                            <li><a class="menu-element-li" href="/admin/myOrders"><spring:message code="admin.myOrders"/></a>
+                            <li><a class="menu-element-li" href="/admin/myOrders"><spring:message
+                                    code="admin.myOrders"/></a>
                             </li>
                         </ul>
                     </li>
@@ -159,12 +163,11 @@
         </form:form>
     </div>
 
-    <div class="footer">
+    <div id="footer">
         <div class="thick"></div>
         <div class="thin"></div>
-        <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
-
-        <div class="text-center">
+        <div><p class="footertext"><spring:message code="login.footer"/></p></div>
+        <div id="localization">
             <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
             <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
         </div>

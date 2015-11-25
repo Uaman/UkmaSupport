@@ -33,7 +33,7 @@
                         data: JSON.stringify(changeRole),
                         success: function (response) {
                             $.ajax({
-                                url: '/admin/get'+'${link}',
+                                url: '/admin/get' + '${link}',
                                 type: 'GET',
                                 success: function (response) {
                                     var trHTML = '';
@@ -71,7 +71,7 @@
             });
         });
         $.ajax({
-            url: '/admin/get'+'${link}',
+            url: '/admin/get' + '${link}',
             type: 'GET',
             data: {
                 text: $("#sel2").val()
@@ -159,22 +159,32 @@
         <table id="records_table" class="tbl table table-striped admin-table">
             <thead>
             <tr>
-                <th class="lastname-col"><spring:message code="registration.lastName"/><img class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
-                <th class="firstname-col"><spring:message code="registration.firstName"/><img class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
-                <th class="role-col"><spring:message code="admin.users.role"/><img class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
+                <th class="lastname-col"><spring:message code="registration.lastName"/><img class="icon-sort"
+                                                                                            src="../../../resources/img/sort15.png"
+                                                                                            width="8px" height="14px">
+                </th>
+                <th class="firstname-col"><spring:message code="registration.firstName"/><img class="icon-sort"
+                                                                                              src="../../../resources/img/sort15.png"
+                                                                                              width="8px" height="14px">
+                </th>
+                <th class="role-col"><spring:message code="admin.users.role"/><img class="icon-sort"
+                                                                                   src="../../../resources/img/sort15.png"
+                                                                                   width="8px" height="14px"></th>
                 <th class="no-sort change-col"></th>
-                <th class="status-col-th"><spring:message code="admin.users.status"/><img class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
+                <th class="status-col-th"><spring:message code="admin.users.status"/><img class="icon-sort"
+                                                                                          src="../../../resources/img/sort15.png"
+                                                                                          width="8px" height="14px">
+                </th>
                 <th class="no-sort delete-col-th"></th>
             </tr>
             </thead>
         </table>
     </div>
-    <div class="footer">
+    <div id="footer">
         <div class="thick"></div>
         <div class="thin"></div>
-        <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
-
-        <div class="text-center">
+        <div><p class="footertext"><spring:message code="login.footer"/></p></div>
+        <div id="localization">
             <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
             <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
         </div>

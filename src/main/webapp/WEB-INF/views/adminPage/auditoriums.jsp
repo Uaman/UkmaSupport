@@ -41,23 +41,22 @@
                                 });
                                 var trHTML = '';
                                 $.each(sorted, function (i, auditorium) {
-                                    if(auditorium.userId==0) {
+                                    if (auditorium.userId == 0) {
                                         trHTML += "<tr>" +
-                                                '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
-                                                "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
-                                                '<td width="230px">' + auditorium.assistantName + "</td>" +
-                                                '<td >' + "" + "</td>" +
-                                                "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
-                                                "</tr>";
-                                    }else{
+                                        '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
+                                        "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                                        '<td width="230px">' + auditorium.assistantName + "</td>" +
+                                        '<td >' + "" + "</td>" +
+                                        "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                                        "</tr>";
+                                    } else {
                                         trHTML += "<tr>" +
-                                                '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
-                                                "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
-                                                '<td width="230px">' + auditorium.assistantName + "</td>" +
-                                                "<td>" + '<form action="/admin/assistantReport/' + auditorium.userId + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
-                                                "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
-                                                "</tr>";
-
+                                        '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
+                                        "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                                        '<td width="230px">' + auditorium.assistantName + "</td>" +
+                                        "<td>" + '<form action="/admin/assistantReport/' + auditorium.userId + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                                        "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                                        "</tr>";
                                     }
                                 });
                                 $('#records_table tbody').empty();
@@ -66,7 +65,6 @@
                         });
                     }
                 });
-
             });
         });
 
@@ -94,23 +92,22 @@
                 });
                 var trHTML = '';
                 $.each(sorted, function (i, auditorium) {
-                    if(auditorium.userId==0) {
+                    if (auditorium.userId == 0) {
                         trHTML += "<tr>" +
-                                '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
-                                "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
-                                '<td width="230px">' + auditorium.assistantName + "</td>" +
-                                '<td >' + "" + "</td>" +
-                                "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
-                                "</tr>";
-                    }else{
+                        '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
+                        "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                        '<td width="230px">' + auditorium.assistantName + "</td>" +
+                        '<td >' + "" + "</td>" +
+                        "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                        "</tr>";
+                    } else {
                         trHTML += "<tr>" +
-                                '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
-                                "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
-                                '<td width="230px">' + auditorium.assistantName + "</td>" +
-                                "<td>" + '<form action="/admin/assistantReport/' + auditorium.userId + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
-                                "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
-                                "</tr>";
-
+                        '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
+                        "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                        '<td width="230px">' + auditorium.assistantName + "</td>" +
+                        "<td>" + '<form action="/admin/assistantReport/' + auditorium.userId + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                        "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                        "</tr>";
                     }
                 });
                 $('#records_table tbody').empty();
@@ -173,8 +170,14 @@
                    style="max-width: 100%; width: 430px; ">
                 <thead class="fixedHeader">
                 <tr>
-                    <th width="187px" style="vertical-align: middle;"><spring:message code="admin.auditoriums.number"/><img class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
-                    <th width="230px"><spring:message code="admin.auditoriums.assistantName"/> <img class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
+                    <th width="187px" style="vertical-align: middle;"><spring:message
+                            code="admin.auditoriums.number"/><img class="icon-sort"
+                                                                  src="../../../resources/img/sort15.png" width="8px"
+                                                                  height="14px"></th>
+                    <th width="230px"><spring:message code="admin.auditoriums.assistantName"/> <img class="icon-sort"
+                                                                                                    src="../../../resources/img/sort15.png"
+                                                                                                    width="8px"
+                                                                                                    height="14px"></th>
                     <th width="50px" class="no-sort"></th>
                 </tr>
                 </thead>
@@ -186,39 +189,39 @@
                     code="admin.addAuditorium"/></a></center>
         </div>
     </div>
-    <div class="footer">
+    <div id="footer">
         <div class="thick"></div>
         <div class="thin"></div>
-        <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
-
-        <div class="text-center">
+        <div><p class="footertext"><spring:message code="login.footer"/></p></div>
+        <div id="localization">
             <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
             <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
         </div>
+    </div>
 
-        <div class="modal fade" id="addAuditorium" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog" style="width:300px;">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <center><h4 class="modal-title" id="myModalLabel">Add auditorium</h4></center>
-                    </div>
-                    <div class="modal-body">
-                        <center><input type="email" class="form-control form-style form-auditorium" placeholder=""
-                                       style="text-align: center;"></center>
-                    </div>
-                    <div class="modal-footer">
-                        <center>
-                            <button type="button" id="test" class="btn btn-default" data-dismiss="modal">Add
-                                auditorium
-                            </button>
-                        </center>
-                    </div>
+    <div class="modal fade" id="addAuditorium" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width:300px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <center><h4 class="modal-title" id="myModalLabel">Add auditorium</h4></center>
+                </div>
+                <div class="modal-body">
+                    <center><input type="email" class="form-control form-style form-auditorium" placeholder=""
+                                   style="text-align: center;"></center>
+                </div>
+                <div class="modal-footer">
+                    <center>
+                        <button type="button" id="test" class="btn btn-default" data-dismiss="modal">Add
+                            auditorium
+                        </button>
+                    </center>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 </body>
 </html>

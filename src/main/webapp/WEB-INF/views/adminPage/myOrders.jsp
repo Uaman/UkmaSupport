@@ -66,7 +66,7 @@
                 $.each(response, function (i, order) {
                     if (order.status == "Undone") {
                         trHTML += "<tr>"
-                        + "<td class='title-col'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0,15) + '</a>' + "</td>" +
+                        + "<td class='title-col'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
                         "<td class='auditorium-col'>" + order.auditorium + "</td>" +
                         "<td class='workplace-col'>" + order.workplace_access_num + "</td>" +
                         "<td class='status-col'>" + order.status + "</td>" +
@@ -76,7 +76,7 @@
                         "</tr>";
                     } else {
                         trHTML += "<tr>" +
-                        "<td class='title-col'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0,15) + '</a>' + "</td>" +
+                        "<td class='title-col'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
                         "<td class='auditorium-col'>" + order.auditorium + "</td>" +
                         "<td class='workplace-col'>" + order.workplace_access_num + "</td>" +
                         "<td class='status-col'>" + order.status + "</td>" +
@@ -172,12 +172,11 @@
             </thead>
         </table>
     </div>
-    <div class="footer">
+    <div id="footer">
         <div class="thick"></div>
         <div class="thin"></div>
-        <div><p class="footertext" style="padding-bottom: 10px;"><spring:message code="login.footer"/></p></div>
-
-        <div class="text-center">
+        <div><p class="footertext"><spring:message code="login.footer"/></p></div>
+        <div id="localization">
             <a href="?lang=en" class="language"><spring:message code="language.en"/></a>
             <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
         </div>
