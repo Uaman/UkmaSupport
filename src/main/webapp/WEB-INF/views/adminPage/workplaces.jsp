@@ -192,7 +192,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <center><h4 class="modal-title" id="myModalLabel">Add workplace</h4></center>
+                    <center><h4 class="modal-title" id="myModalLabel"><spring:message
+                            code="admin.workplaces.addWorkplace"/></h4></center>
                 </div>
                 <div class="modal-body">
                     <center><input id="lol" type="email" class="form-control form-style form-auditorium" placeholder=""
@@ -200,7 +201,8 @@
                 </div>
                 <div class="modal-footer">
                     <center>
-                        <button type="button" id="test" class="btn btn-default" data-dismiss="modal">Add workplace
+                        <button type="button" id="test" class="btn btn-default" data-dismiss="modal"><spring:message
+                                code="admin.workplaces.addWorkplace"/>
                         </button>
                     </center>
                 </div>

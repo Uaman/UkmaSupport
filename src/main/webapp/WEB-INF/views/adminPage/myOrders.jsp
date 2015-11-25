@@ -176,7 +176,7 @@
             <tr>
                 <th class="no-sort title-col"><spring:message code="admin.orders.title"/></th>
                 <th class="auditorium-col"><spring:message code="admin.orders.auditorium"/></th>
-                <th class="workplace-col"><spring:message code="assist.order.workplace"/></th>
+                <th class="workplace-col"><spring:message code="admin.orders.workplace"/></th>
                 <th class="status-col"><spring:message code="admin.orders.status"/></th>
                 <th class="date-col"><spring:message code="admin.orders.date"/></th>
                 <th class="btn-col"></th>

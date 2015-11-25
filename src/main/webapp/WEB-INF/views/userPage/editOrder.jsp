@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <title>createOrder</title>
+    <title><spring:message code="assist.title.EditOrder"/></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="../../../resources/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
