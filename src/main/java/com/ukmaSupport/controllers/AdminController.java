@@ -414,4 +414,33 @@ public class AdminController {
     List<Order> getUserOrders(@PathVariable("id") int id) {
         return orderService.getByUserId(id);
     }
+
+    @RequestMapping(value = "/admin/report_auditorium", method = RequestMethod.GET)
+    public String reportByAuditorium(Model model) {
+        model.addAttribute("link", "report_auditorium");
+        return "adminPage/reportAudit";
+    }
+
+    @RequestMapping(value = "/admin/report_assist", method = RequestMethod.GET)
+    public String reportByAssist(Model model) {
+        model.addAttribute("link", "report_assist");
+        return "adminPage/reportAssist";
+    }
+
+    /**
+     * No Time intervals *
+     */
+    @RequestMapping(value = "/admin/get_report_audit/{number}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Order> getReportByAuditor(@PathVariable("number") String number) {
+        return orderService.getByAuditoriumNumber(number);
+    }
+
+    @RequestMapping(value = "/admin/get_report_assist/{id}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Order> getReportByAssist(@PathVariable("id") int id) {
+        return orderService.getAllAssistOrders(id);
+    }
 }
