@@ -15,7 +15,6 @@ import org.springframework.validation.Validator;
 public class PasswordChangeValidator implements Validator {
     @Autowired
     private UserService userDao;
-    private static final String FIO_PATTERN = "[\\p{InCyrillic}]+";
 
     public boolean supports(Class<?> paramClass) {
         return EditForm.class.equals(paramClass);
@@ -24,10 +23,6 @@ public class PasswordChangeValidator implements Validator {
     @Override
     public void validate(Object obj, Errors errors) {
         EditForm form = (EditForm) obj;
-        if (!form.getFirstName().matches(FIO_PATTERN))
-            errors.rejectValue("firstName", "valid.firstName", "FirstName is required.");
-        if (!form.getLastName().matches(FIO_PATTERN))
-            errors.rejectValue("lastName", "valid.lastName", "LastName is required.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "valid.password", "Password is required.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confPassword", "valid.confPassword", "Confirm password is required.");
         if (!PasswordEncryptor.matches(form.getOldPassword(), userDao.getByEmail(form.getEmail()).getPassword()))
