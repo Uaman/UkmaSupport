@@ -94,11 +94,7 @@
 
                 <div class="col-md-4">
                     <form:input id="firstName" path="firstName" name="firstName" type="text" value=""
-                                class="form-control form-style"/>
-                </div>
-                <div class="col-md-offset-9">
-                    <form:errors path="firstName" class="regErrors" id="firstName.errors"
-                                 cssStyle="color: #ff0000;"/>
+                                class="form-control form-style" READONLY="true"/>
                 </div>
             </div>
             <div class="form-group row">
@@ -107,11 +103,7 @@
 
                 <div class="col-md-4">
                     <form:input id="lastName" path="lastName" name="lastName" type="text" value=""
-                                class="form-control form-style"/>
-                </div>
-                <div class="col-md-offset-9">
-                    <form:errors path="lastName" class="regErrors" id="lastName.errors"
-                                 cssStyle="color: #ff0000;"/>
+                                class="form-control form-style" READONLY="true"/>
                 </div>
             </div>
             <div class="form-group row">
@@ -121,10 +113,6 @@
                 <div class="col-md-4">
                     <form:input id="email" path="email" name="email" type="text" value=""
                                 class="form-control form-style" READONLY="true"/>
-                </div>
-                <div class="col-md-offset-9">
-                    <form:errors path="email" class="regErrors" id="email.errors"
-                                 cssStyle="color: #ff0000;"/>
                 </div>
             </div>
             <div class="form-group row">
