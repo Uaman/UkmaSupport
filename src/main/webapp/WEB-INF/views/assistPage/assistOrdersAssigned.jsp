@@ -93,7 +93,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#">
+                            <a class="dropdown-toggle menu-element active" data-toggle="dropdown" href="#">
                                 <spring:message code="assist.menu.Orders"/><b
                                     class="caret"></b></a>
                             <ul class="dropdown-menu">
