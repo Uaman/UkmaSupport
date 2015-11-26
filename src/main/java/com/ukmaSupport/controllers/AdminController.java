@@ -445,14 +445,24 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/report_auditorium", method = RequestMethod.GET)
     public String reportByAuditorium(Model model) {
+        List<Auditorium> auditoriums = auditoriumService.getAll();
+        model.addAttribute("auditoriums", auditoriums);
         model.addAttribute("link", "report_auditorium");
         return "adminPage/reportAudit";
     }
 
     @RequestMapping(value = "/admin/report_assist", method = RequestMethod.GET)
     public String reportByAssist(Model model) {
+        List<User> assistants = userService.getByRole(ASSISTANT);
+        model.addAttribute("assistants", assistants);
         model.addAttribute("link", "report_assist");
         return "adminPage/reportAssist";
+    }
+
+    @RequestMapping(value = "/admin/report_all", method = RequestMethod.GET)
+    public String reportAll(Model model) {
+        model.addAttribute("link", "report_all");
+        return "adminPage/reportAll";
     }
 
     /**
@@ -471,4 +481,6 @@ public class AdminController {
     List<Order> getReportByAssist(@PathVariable("id") int id) {
         return orderService.getAllAssistOrders(id);
     }
+
+
 }
