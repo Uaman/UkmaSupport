@@ -64,21 +64,21 @@
                 var trHTML = '';
                 $.each(response, function (i, order) {
                     if (order.status == "Undone") {
-                        trHTML += "<tr><td class='title-col-user'>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
-                        '   <td class="auditorium-col">' + order.auditorium + "</td>" +
-                        '   <td class="workplace-col">' + order.workplace_access_num + "</td>" +
-                        '   <td class="status-col-ord">' + order.status + "</td>" +
-                        '   <td class="date-col">' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                        '   <td class="btn-col">' + '<form action="${pageContext.request.contextPath}/assist/edit_order/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></form>' + "</td>" +
-                        '   <td class="btn-col">' + '<form action="${pageContext.request.contextPath}/assist/delete_order/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td></tr>";
+                        trHTML += "<tr><td>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
+                        '   <td>' + order.auditorium + "</td>" +
+                        '   <td>' + order.workplace_access_num + "</td>" +
+                        '   <td>' + order.status + "</td>" +
+                        '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
+                        '   <td>' + '<form action="${pageContext.request.contextPath}/assist/edit_order/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                        '   <td>' + '<form action="${pageContext.request.contextPath}/assist/delete_order/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td></tr>";
                     } else {
-                        trHTML += "<tr><td class='title-col-user'>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
-                        '   <td class="auditorium-col">' + order.workplace_id + "</td>" +
-                        '   <td class="workplace-col">' + order.workplace_access_num + "</td>" +
-                        '   <td class="status-col-ord">' + order.status + "</td>" +
-                        '   <td class="date-col">' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                        '   <td class="btn-col">' + "" + "</td>" +
-                        '   <td class="btn-col">' + '<form action="${pageContext.request.contextPath}/assist/delete_order/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td></tr>";
+                        trHTML += "<tr><td>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
+                        '   <td>' + order.workplace_id + "</td>" +
+                        '   <td>' + order.workplace_access_num + "</td>" +
+                        '   <td>' + order.status + "</td>" +
+                        '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
+                        '   <td>' + "" + "</td>" +
+                        '   <td>' + '<form action="${pageContext.request.contextPath}/assist/delete_order/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td></tr>";
                     }
                 });
                 $('#records_table tbody').empty();
@@ -126,37 +126,32 @@
     </nav>
 
     <div class="top-block col-md-6 assistant-top">
-        <p id="hello"><spring:message code="assist.hello"/>, ${currentUser.firstName}</p>
+        <p id="helloAssist2"><spring:message code="assist.hello"/>, ${currentUser.firstName}!</p>
     </div>
 
         <div class="col-md-offset-7 top-block assistant-top">
             <form id="add-order-form" class="form-horizontal" method="get" action="/assist/create_order">
                 <div class="col-md-offset-7 col-md-4">
-                    <button id="Adm_Button" type="submit" class="btn btn-primary btn-block">
+                    <button id="assist_add_order_button" type="submit" class="btn btn-primary btn-block">
                     <spring:message code="assist.AddOrder"/></button>
                 </div>
             </form>
         </div>
 
-        <div class="table-align bottom-block">
-            <table id="records_table" class="tbl table table-striped admin-table order-table">
-                <thead>
-                <tr>
-                    <th class="no-sort title-col"><spring:message code="assist.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png"
-                                                                                                  width="8px" height="14px"></th>
-                    <th class="auditorium-col"><spring:message code="assist.orders.auditorium"/><img class="icon-sort" src="../../../resources/img/sort15.png"
-                                                                                                    width="8px" height="14px"></th>
-                    <th class="workplace-col"><spring:message code="assist.orders.workplace"/><img class="icon-sort" src="../../../resources/img/sort15.png"
-                                                                                                  width="8px" height="14px"></th>
-                    <th class="status-col-ord"><spring:message code="admin.orders.status"/><img class="icon-sort" src="../../../resources/img/sort15.png"
-                                                                                                width="8px" height="14px"></th>
-                    <th class="date-col"><spring:message code="admin.orders.date"/><img class="icon-sort" src="../../../resources/img/sort15.png"
-                                                                                        width="8px" height="14px"></th>
-                    <th class="btn-col"></th>
-                    <th class="btn-col"></th>
-                </tr>
-                </thead>
-            </table>
+        <div id="AssistTableDiv">
+            <div class="AssistTable table-align">
+                <table id="records_table" class="tbl table table-striped">
+                    <thead>
+                    <tr>
+                        <th class="no-sort"><spring:message code="assist.orders.title"/></th>
+                        <th><spring:message code="assist.orders.auditorium"/></th>
+                        <th><spring:message code="assist.orders.workplace"/></th>
+                        <th><spring:message code="admin.orders.status"/></th>
+                        <th><spring:message code="admin.orders.date"/></th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
 
 

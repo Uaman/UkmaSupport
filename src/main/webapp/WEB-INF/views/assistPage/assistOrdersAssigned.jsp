@@ -116,9 +116,9 @@
             </div>
         </nav>
 
-
         <div>
-            <p id="helloAssist"><spring:message code="assist.hello"/>, ${currentUser.firstName}</p>
+            <p id="helloAssist"><spring:message code="assist.hello"/>, ${
+                    currentUser.firstName}!</p>
         </div>
 
         <div id="AssistTableDiv">

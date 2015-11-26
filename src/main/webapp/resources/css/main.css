@@ -506,7 +506,7 @@ tbody.scrollContent {
 
 #assist_add_order_button {
     width: 220px;
-    margin-left: 660px;
+	margin-left: -100px;
     background-color: #333366;
 }
 
@@ -689,7 +689,6 @@ tbody.scrollContent {
 
 }
 
-
 .error-text {
 	background-color: #e4b9b9;
 	padding: 5px;
@@ -697,7 +696,7 @@ tbody.scrollContent {
 }
 
 #helloAssist2 {
-	padding-top: 110px;
+	padding-top: 25px;
 	font-family: "Century Gothic", sans-serif;
 	font-size: 30px;
 	color: #333366;
