@@ -84,6 +84,13 @@ public class AdminController {
         model.addAttribute("link", "Users");
         return "adminPage/users";
     }
+    @RequestMapping(value = "/admin/getAllAssistant", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<User> getAllAssists() {
+        List<User> users = userService.getByRole(ASSISTANT);
+        return users;
+    }
 
     @RequestMapping(value = "/admin/getUsers", method = RequestMethod.GET)
     public
@@ -355,7 +362,17 @@ public class AdminController {
         workplaceService.save(workplace);
         return "redirect:/admin/auditoriums/" + number;
     }
+    @RequestMapping(value = "/admin/setAssistToAuditorium", method = RequestMethod.POST)
+    public String setAssistToAuditorium(@RequestBody Map<String, Object> searchParam) {
+        String assistID = (String) searchParam.get("assistID");
+        String auditoriumID=(String)searchParam.get("auditoriumID");
+        System.out.println(assistID +"   "+auditoriumID);
+        Auditorium auditorium=auditoriumService.getByNumber(auditoriumID);
+        auditorium.setUserId(Integer.parseInt(assistID));
+        auditoriumService.update(auditorium);
 
+        return "redirect:/admin/auditoriums";
+    }
     @RequestMapping(value = "/admin/changeRole", method = RequestMethod.POST)
     @ResponseBody
     public String setUserRole(@RequestBody Map<String, Object> searchParam) {

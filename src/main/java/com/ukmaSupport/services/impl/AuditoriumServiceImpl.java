@@ -22,6 +22,8 @@ public class AuditoriumServiceImpl implements AuditoriumService {
         auditoriumDao.save(auditorium);
     }
 
+
+
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
     public Auditorium getById(int id) {
@@ -51,6 +53,7 @@ public class AuditoriumServiceImpl implements AuditoriumService {
         }
         return auditorium;
     }
+
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     @Override
