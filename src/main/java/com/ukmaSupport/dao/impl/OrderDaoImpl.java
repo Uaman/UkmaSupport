@@ -47,7 +47,7 @@ public class OrderDaoImpl implements OrderDao {
 
     private static final String UPDATE_QUERY = "UPDATE orders SET user_id=?, assistant_id=?, workplace_id=?, title=?, content=?, created_at=?, status=? WHERE id=?";
 
-    private static final String UPDATE = "UPDATE orders SET title=?, content=?, created_at=? WHERE id=?";
+    private static final String UPDATE = "UPDATE orders SET assistant_id=?, title=?, content=?, created_at=? WHERE id=?";
 
     @Override
     public Order getById(int id) {
@@ -58,9 +58,10 @@ public class OrderDaoImpl implements OrderDao {
     public List<Order> getByStatus(String status) {
         return jdbcTemplate.query(GET_ORDERS_BY_STATUS, new Object[]{status}, rowMapper);
     }
+
     @Override
-    public int getCountOrderByAssistant(int assistant_id,String status) {
-        int total= jdbcTemplate.queryForObject(GET_ALL_ORDERS_BY_ASSIST_AND_STATUS, new Object[]{assistant_id, status}, Integer.class);
+    public int getCountOrderByAssistant(int assistant_id, String status) {
+        int total = jdbcTemplate.queryForObject(GET_ALL_ORDERS_BY_ASSIST_AND_STATUS, new Object[]{assistant_id, status}, Integer.class);
         return total;
     }
 
@@ -73,10 +74,12 @@ public class OrderDaoImpl implements OrderDao {
     public List<Order> getByWorkplaceAcessNum(int access_num) {
         return jdbcTemplate.query(GET_ALL_ORDERS_BY_WORKPLACE_ACCESS_NUM, new Object[]{access_num}, rowMapper);
     }
+
     @Override
     public List<Order> getByUserId(int user_id) {
         return jdbcTemplate.query(GET_ALL_ORDERS_BY_USER_ID, new Object[]{user_id}, rowMapper);
     }
+
     public Order getByUserIdAndId(int user_id, int id) {
         return jdbcTemplate.queryForObject(GET_ALL_ORDERS_BY_USER_ID_AND_ID, new Object[]{id, user_id}, rowMapper);
     }
@@ -113,7 +116,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public void update(Order order) {
-        jdbcTemplate.update(UPDATE, order.getTitle(), order.getContent(), order.getCreatedAt(), order.getId());
+        jdbcTemplate.update(UPDATE, order.getAssistantId(), order.getTitle(), order.getContent(), order.getCreatedAt(), order.getId());
     }
 
     @Override

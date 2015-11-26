@@ -57,6 +57,7 @@ public class AdminController {
 
     @Autowired
     private OrderService orderService;
+
     private final static String DONE = "done";
     private final static String UNDONE = "Undone";
 
@@ -83,13 +84,6 @@ public class AdminController {
     public String users(Model model) {
         model.addAttribute("link", "Users");
         return "adminPage/users";
-    }
-    @RequestMapping(value = "/admin/getAllAssistant", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    List<User> getAllAssists() {
-        List<User> users = userService.getByRole(ASSISTANT);
-        return users;
     }
 
     @RequestMapping(value = "/admin/getUsers", method = RequestMethod.GET)
@@ -320,8 +314,8 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/assistantReport/{id}", method = RequestMethod.GET)
     public String assistantReport(@PathVariable("id") Integer id, Model model) {
-        int countDone=orderService.getCountOrderByAssistant(id, DONE);
-        int contUndone=orderService.getCountOrderByAssistant(id,UNDONE);
+        int countDone = orderService.getCountOrderByAssistant(id, DONE);
+        int contUndone = orderService.getCountOrderByAssistant(id, UNDONE);
 
         List<Order> orderList = orderService.getAllAssistOrders(id);
         model.addAttribute("orderList", orderList);
@@ -362,16 +356,27 @@ public class AdminController {
         workplaceService.save(workplace);
         return "redirect:/admin/auditoriums/" + number;
     }
+
     @RequestMapping(value = "/admin/setAssistToAuditorium", method = RequestMethod.POST)
     public String setAssistToAuditorium(@RequestBody Map<String, Object> searchParam) {
         String assistID = (String) searchParam.get("assistID");
-        String auditoriumID=(String)searchParam.get("auditoriumID");
-        Auditorium auditorium=auditoriumService.getByNumber(auditoriumID);
+        String auditoriumID = (String) searchParam.get("auditoriumID");
+        Auditorium auditorium = auditoriumService.getByNumber(auditoriumID);
         auditorium.setUserId(Integer.parseInt(assistID));
         auditoriumService.update(auditorium);
-
         return "redirect:/admin/auditoriums";
     }
+
+    @RequestMapping(value = "/admin/setAssistToOrder", method = RequestMethod.POST)
+    public String setAssistToOrder(@RequestBody Map<String, Object> searchParam) {
+        String assistID = (String) searchParam.get("assistID");
+        String orderID = (String) searchParam.get("orderID");
+        Order order = orderService.getById(Integer.parseInt(orderID));
+        order.setAssistantId(Integer.parseInt(assistID));
+        orderService.update(order);
+        return "redirect:/admin/allOrders";
+    }
+
     @RequestMapping(value = "/admin/changeRole", method = RequestMethod.POST)
     @ResponseBody
     public String setUserRole(@RequestBody Map<String, Object> searchParam) {
