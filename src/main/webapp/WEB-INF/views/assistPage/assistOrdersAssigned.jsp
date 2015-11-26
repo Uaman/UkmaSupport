@@ -116,24 +116,25 @@
             </div>
         </nav>
 
+
         <div>
-            <p id="helloAssist"><spring:message code="assist.hello"/>${currentUser.firstName}</p>
+            <p id="helloAssist"><spring:message code="assist.hello"/>, ${currentUser.firstName}</p>
         </div>
 
         <div id="AssistTableDiv">
             <div class="AssistTable table-align">
                 <table id="records_table" class="AssistTable tbl table table-striped">
-                <thead>
-                <tr>
-                    <th class="no-sort"><spring:message code="assist.orders.title"/></th>
-                    <th><spring:message code="assist.orders.auditorium"/></th>
-                    <th><spring:message code="assist.orders.workplace"/></th>
-                    <th><spring:message code="admin.orders.status"/></th>
-                    <th><spring:message code="admin.orders.date"/></th>
-                </tr>
-                </thead>
-            </table>
-        </div>
+                    <thead>
+                    <tr>
+                        <th class="no-sort"><spring:message code="assist.orders.title"/></th>
+                        <th><spring:message code="assist.orders.auditorium"/></th>
+                        <th><spring:message code="assist.orders.workplace"/></th>
+                        <th><spring:message code="admin.orders.status"/></th>
+                        <th><spring:message code="admin.orders.date"/></th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
     <div id="footer">
