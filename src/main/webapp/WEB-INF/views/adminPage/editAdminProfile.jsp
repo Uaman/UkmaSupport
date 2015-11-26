@@ -35,11 +35,14 @@
                                 code="admin.reports"/><b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a class="menu-element-li" href="/admin/report_auditorium"><spring:message
-                                    code="admin.Auditorium_Stats"/></a></li>
+                            <li><a class="menu-element-li" href="/admin/report_all"><spring:message
+                                    code="admin.All_Stats"/></a>
+                            </li>
                             <li><a class="menu-element-li" href="/admin/report_assist"><spring:message
                                     code="admin.Assist_Stats"/></a>
                             </li>
+                            <li><a class="menu-element-li" href="/admin/report_auditorium"><spring:message
+                                    code="admin.Auditorium_Stats"/></a></li>
                         </ul>
                     </li>
 
