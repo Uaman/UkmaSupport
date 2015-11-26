@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title><spring:message code="login.error"/></title>
+    <title><spring:message code="login.title"/></title>
     <link href="../../../resources/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
