@@ -19,7 +19,7 @@
 
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="/index"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                <a href="/"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
 
             <div class="collapse navbar-collapse">

@@ -26,11 +26,18 @@
                 }
             });
             $('#comments').scrollTop($('#comments').prop('scrollHeight'));
+            $('.add-comment-form').submit(function() {
+                return false;
+            });
             $('#content').keyup(function() {
                 if ($('#content').val() != '') {
                     $('#btn-add-comment').removeClass('disabled');
+                    $('.add-comment-form').unbind();
                 } else {
                     $('#btn-add-comment').addClass('disabled');
+                    $('.add-comment-form').submit(function() {
+                        return false;
+                    });
                 }
             });
         });
@@ -161,7 +168,7 @@
                 </c:forEach>
             </div>
             <div id="add-comment" class="col-md-offset-1 col-md-10">
-                <form:form class="form-horizontal" action="/addComment/${id}" method="post" commandName="comment">
+                <form:form class="form-horizontal add-comment-form" action="/addComment/${id}" method="post" commandName="comment">
                     <div class="form-group">
                         <div class="col-md-12">
                     <textarea id="content" name="content" path="comment.content" class="col-md-12 txt-area" rows="4"
