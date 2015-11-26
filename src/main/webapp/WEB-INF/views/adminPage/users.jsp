@@ -179,14 +179,14 @@
                                                                                             src="../../../resources/img/sort15.png"
                                                                                             width="8px" height="14px">
                 </th>
-                <th class="firstname-col"><spring:message code="registration.firstName"/><img class="icon-sort"
+                <th class="firstname-col-th"><spring:message code="registration.firstName"/><img class="icon-sort"
                                                                                               src="../../../resources/img/sort15.png"
                                                                                               width="8px" height="14px">
                 </th>
-                <th class="role-col"><spring:message code="admin.users.role"/><img class="icon-sort"
+                <th class="role-col-th"><spring:message code="admin.users.role"/><img class="icon-sort"
                                                                                    src="../../../resources/img/sort15.png"
                                                                                    width="8px" height="14px"></th>
-                <th class="no-sort change-col"></th>
+                <th class="no-sort change-col-th"></th>
                 <th class="status-col-th"><spring:message code="admin.users.status"/><img class="icon-sort"
                                                                                           src="../../../resources/img/sort15.png"
                                                                                           width="8px" height="14px">

@@ -270,6 +270,9 @@ tbody.scrollContent {
 .workplace-col {
 	width: 15%;
 }
+.workplace-col-admin-th{
+	width: 15%
+}
 
 .date-col {
 	width: 20%;
@@ -279,6 +282,9 @@ tbody.scrollContent {
 	width: 30%;
 }
 .firstname-col {
+	width: 30%;
+}
+.firstname-col-th {
 	width: 30%;
 }
 .delete-col {
@@ -294,9 +300,15 @@ tbody.scrollContent {
 .role-col {
 	width: 10%;
 }
+.role-col-th {
+	width: 12%;
+}
 
 .change-col{
 	width: 5%;
+}
+.change-col-th{
+	width: 3%;
 }
 .user-col{
 	width: 5%;
@@ -309,7 +321,10 @@ tbody.scrollContent {
 	width:15%;
 }
 .workplace-col-orders-th{
-	width:15%;
+	width:14%;
+}
+.workplace-col-ord{
+	width:16%;
 }
 .title-col-orders{
 	width:18%;
@@ -319,14 +334,21 @@ tbody.scrollContent {
 }
 
 .title-col-user{
-	width: 27%;
+	width: 26%;
 }
 
 .auditorium-col-orders{
 	width:16%;
 }
 .auditorium-col-orders-th{
-	width:16%;
+	width:15%;
+}
+.auditorium-col-ord-th{
+	width: 16%;
+}
+
+.auditorium-col-ord{
+	width:14%;
 }
 
 .user-col-orders{
@@ -340,7 +362,7 @@ tbody.scrollContent {
 	width:15%;
 }
 .assistant-col-orders-th{
-	width:15%;
+	width:19%;
 }
 
 .date-col-orders{
@@ -349,12 +371,15 @@ tbody.scrollContent {
 .date-col-orders-th{
 	width:16%;
 }
+.date-col-ord{
+	width:21%;
+}
 
 .status-col-orders{
 	width:15%;
 }
 .status-col-orders-th{
-	width:13%;
+	width:14%;
 }
 
 .status-col-user{
@@ -365,12 +390,15 @@ tbody.scrollContent {
 	width: 20%;
 }
 .status-col-ord {
-	width: 13%;
+	width: 12%;
+}
+.status-col-ord-th {
+	width: 14%;
+}
+.indent{
+	width:2%;
 }
 
-.indent{
-	width:3%;
-}
 
 
 #hello {
@@ -746,6 +774,9 @@ tbody.scrollContent {
 }
 .order-table {
 	margin-top: 40px;
+}
+.assist-order-table {
+	margin-top: 20px;
 }
 .comment-block {
 	margin-top: 8px;

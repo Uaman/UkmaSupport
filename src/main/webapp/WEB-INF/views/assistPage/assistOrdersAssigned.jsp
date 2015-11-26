@@ -64,11 +64,11 @@
                 });
                 var trHTML = '';
                 $.each(response, function (i, order) {
-                    trHTML += "<tr><td>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
-                    '   <td>' + order.auditorium + "</td>" +
-                    '   <td>' + order.workplace_access_num + "</td>" +
-                    '   <td>' + '<a href="${pageContext.request.contextPath}/assist/mark_done/' + order.id + '">'  + order.status + '<a>'+ "</td>" +
-                    '   <td>' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
+                    trHTML += "<tr><td class='title-col'>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
+                    '   <td class="auditorium-col">' + order.auditorium + "</td>" +
+                    '   <td class="workplace-col">' + order.workplace_access_num + "</td>" +
+                    '   <td class="status-col-ord">' + '<a href="${pageContext.request.contextPath}/assist/mark_done/' + order.id + '">'  + order.status + '<a>'+ "</td>" +
+                    '   <td class="date-col">' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
                     "</tr>";
                 });
                 $('#records_table tbody').empty();
@@ -121,22 +121,26 @@
                     currentUser.firstName}!</p>
         </div>
 
-        <div id="AssistTableDiv">
-            <div class="AssistTable table-align">
-                <table id="records_table" class="AssistTable tbl table table-striped">
+        <div class="table-align bottom-block">
+            <table id="records_table" class="tbl table table-striped admin-table assist-order-table">
                     <thead>
-                    <tr>
-                        <th class="no-sort"><spring:message code="assist.orders.title"/></th>
-                        <th><spring:message code="assist.orders.auditorium"/></th>
-                        <th><spring:message code="assist.orders.workplace"/></th>
-                        <th><spring:message code="admin.orders.status"/></th>
-                        <th><spring:message code="admin.orders.date"/></th>
-                    </tr>
+                        <tr>
+                            <th class="no-sort title-col"><spring:message code="assist.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                                                                                                           width="8px" height="14px"></th>
+                            <th class="auditorium-col"><spring:message code="assist.orders.auditorium"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                                                                                                             width="8px" height="14px"></th>
+                            <th class="workplace-col-admin-th"><spring:message code="assist.orders.workplace"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                                                                                                                    width="8px" height="14px"></th>
+                            <th class="status-col-ord"><spring:message code="admin.orders.status"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                                                                                                        width="8px" height="14px"></th>
+                            <th class="date-col"><spring:message code="admin.orders.date"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                                                                                                width="8px" height="14px"></th>
+                            <th class="indent"></th>
+                        </tr>
                     </thead>
-                </table>
-            </div>
+            </table>
         </div>
-    </div>
+        </div>
     <div id="footer">
         <div class="thick"></div>
         <div class="thin"></div>
