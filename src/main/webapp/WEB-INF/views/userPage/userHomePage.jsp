@@ -119,7 +119,7 @@
     <div class="col-md-offset-7 top-block">
         <form id="add-order-form" class="form-horizontal" method="get" action="/user/createOrder">
             <div class="col-md-offset-7 col-md-4">
-                <button id="btn-add-order" type="submit" class="btn btn-primary btn-block"><spring:message
+                <button id="Adm_Button" type="submit" class="btn btn-primary btn-block"><spring:message
                         code="user.order"/></button>
             </div>
         </form>
