@@ -166,6 +166,76 @@ a img {
 	border: none;
 }
 
+/**** Table *****/
+
+.user-table tbody{
+	display: block;
+	max-height: 340px;
+	width: 100%;
+	overflow: hidden;
+	overflow-y: auto;
+}
+
+.user-table tr{
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+
+.admin-table tbody{
+	display: block;
+	max-height: 340px;
+	width: 100%;
+	overflow: hidden;
+	overflow-y: auto;
+}
+
+.admin-table tr{
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+
+
+html > body div.tableContainer {
+	overflow: hidden;
+	width: 430px;
+}
+
+div.tableContainer {
+	margin: 0 auto;
+	height: 590px;
+	overflow: auto;
+	width: 430px;
+}
+
+div.tableContainer table{
+	float: left;
+}
+
+
+thead.fixedHeader tr {
+	position: relative;
+}
+
+html > body thead.fixedHeader {
+	display: table;
+	overflow: auto;
+	width: 100%;
+}
+
+tbody.scrollContent {
+	display:block;
+	height: 410px;
+	overflow: auto;
+	width: 100%;
+}
+
+.table-auditorium{
+	margin: 0 auto;
+	width: 430px;
+}
+
 .table-align {
 	padding: 20px 20px 0 20px;
 	border-radius: 7px;
@@ -184,6 +254,125 @@ a img {
 	vertical-align: middle;
 }
 
+
+.btn-col {
+	width: 5%;
+}
+
+.title-col {
+	width: 25%;
+}
+
+.auditorium-col {
+	width: 15%;
+}
+
+.workplace-col {
+	width: 15%;
+}
+
+.date-col {
+	width: 20%;
+}
+
+.lastname-col {
+	width: 30%;
+}
+.firstname-col {
+	width: 30%;
+}
+.delete-col {
+	width: 5%;
+}
+
+.delete-col-th{
+	width: 8%;
+}
+.status-col-th{
+	width: 17%;
+}
+.role-col {
+	width: 10%;
+}
+
+.change-col{
+	width: 5%;
+}
+.user-col{
+	width: 5%;
+}
+.assistant-col{
+	width: 5%;
+}
+
+.workplace-col-orders{
+	width:15%;
+}
+.workplace-col-orders-th{
+	width:15%;
+}
+.title-col-orders{
+	width:18%;
+}
+.title-col-orders-th {
+	width: 18%;
+}
+
+.title-col-user{
+	width: 27%;
+}
+
+.auditorium-col-orders{
+	width:16%;
+}
+.auditorium-col-orders-th{
+	width:16%;
+}
+
+.user-col-orders{
+	width:12%;
+}
+.user-col-orders-th{
+	width:12%;
+}
+
+.assistant-col-orders{
+	width:15%;
+}
+.assistant-col-orders-th{
+	width:15%;
+}
+
+.date-col-orders{
+	width:16%;
+}
+.date-col-orders-th{
+	width:16%;
+}
+
+.status-col-orders{
+	width:15%;
+}
+.status-col-orders-th{
+	width:13%;
+}
+
+.status-col-user{
+	width:20%;
+}
+
+.status-col {
+	width: 20%;
+}
+.status-col-ord {
+	width: 13%;
+}
+
+.indent{
+	width:3%;
+}
+
+
 #hello {
     font-family: "Century Gothic", sans-serif;
     font-size: 30px;
@@ -195,6 +384,8 @@ a img {
 	background-color: #333366;
 	border-radius: 7px;
 }
+
+/**** Menu *****/
 
 .drop-menu-element {
 	color: #ffffff;
@@ -437,146 +628,10 @@ a img {
     height: 26px;
     padding-top: 4px;
 }
-.user-table tbody{
-	display: block;
-	max-height: 340px;
-	width: 100%;
-	overflow: hidden;
-	overflow-y: auto;
-}
-
-.user-table tr{
-	display: table;
-	width: 100%;
-	table-layout: fixed;
-}
-
-.admin-table tbody{
-	display: block;
-	max-height: 340px;
-	width: 100%;
-	overflow: hidden;
-	overflow-y: auto;
-}
-
-.admin-table tr{
-	display: table;
-	width: 100%;
-	table-layout: fixed;
-}
 
 .icon-sort{
 	margin-left: 5px;
 	cursor:pointer;
-}
-
-.btn-col {
-	width: 5%;
-}
-
-.title-col {
-	width: 25%;
-}
-
-.auditorium-col {
-	width: 15%;
-}
-
-.workplace-col {
-	width: 15%;
-}
-
-.status-col {
-	width: 20%;
-}
-.status-col-ord {
-	width: 13%;
-}
-
-.date-col {
-	width: 20%;
-}
-
-.lastname-col {
-	width: 30%;
-}
-.firstname-col {
-	width: 30%;
-}
-.delete-col {
-	width: 5%;
-}
-
-.delete-col-th{
-	width: 8%;
-}
-.status-col-th{
-	width: 17%;
-}
-.role-col {
-	width: 10%;
-}
-
-.change-col{
-	width: 5%;
-}
-.user-col{
-	width: 5%;
-}
-.assistant-col{
-	width: 5%;
-}
-
-.workplace-col-orders{
-	width:15%;
-}
-.workplace-col-orders-th{
-	width:15%;
-}
-.title-col-orders{
-	width:18%;
-}
-.title-col-orders-th {
-	width: 18%;
-}
-
-.auditorium-col-orders{
-	width:16%;
-}
-.auditorium-col-orders-th{
-	width:16%;
-}
-
-.user-col-orders{
-	width:12%;
-}
-.user-col-orders-th{
-	width:12%;
-}
-
-.assistant-col-orders{
-	width:15%;
-}
-.assistant-col-orders-th{
-	width:15%;
-}
-
-.date-col-orders{
-	width:16%;
-}
-.date-col-orders-th{
-	width:16%;
-}
-
-.status-col-orders{
-	width:15%;
-}
-.status-col-orders-th{
-	width:13%;
-}
-
-.indent{
-	width:3%;
 }
 
 #auditorium {
@@ -598,11 +653,12 @@ a img {
 }
 
 #comments {
-	height: 240px;
+	height: 300px;
 	overflow: auto;
 	margin-top: 15px;
 	margin-bottom: 15px;
 	border-radius: 7px;
+	padding: 0;
 }
 
 .txt-area {
@@ -613,6 +669,7 @@ a img {
 }
 
 #btn-add-comment {
+	margin-left: 20px;
 	width: 125px;
 	background-color: #333366;
 	border-radius: 7px;
@@ -632,44 +689,7 @@ a img {
 
 }
 
-html > body div.tableContainer {
-	overflow: hidden;
-	width: 430px;
-}
 
-div.tableContainer {
-	margin: 0 auto;
-	height: 590px;
-	overflow: auto;
-	width: 430px;
-}
-
-div.tableContainer table{
-	float: left;
-}
-
-
-thead.fixedHeader tr {
-	position: relative;
-}
-
-html > body thead.fixedHeader {
-	display: table;
-	overflow: auto;
-	width: 100%;
-}
-
-tbody.scrollContent {
-	display:block;
-	height: 410px;
-	overflow: auto;
-	width: 100%;
-}
-
-.table-auditorium{
-	margin: 0 auto;
-	width: 430px;
-}
 .error-text {
 	background-color: #e4b9b9;
 	padding: 5px;
@@ -721,7 +741,7 @@ tbody.scrollContent {
 .comment-date {
 	color: #333366;
 	font-family: "Century Gothic", sans-serif;
-	font-size: 15px;
+	font-size: 13px;
 	text-align: center;
 	padding-top: 6px;
 }
@@ -843,4 +863,42 @@ tbody.scrollContent {
 	background-color: #333366;
 	border-radius: 7px;
 	margin-left: -100px;
+}
+.comment-title {
+	background-color: rgba(51, 51, 102, 0.15);
+}
+.comment-title p {
+	padding: 10px;
+	color: #333366;
+	font-family: "Century Gothic", sans-serif;
+	font-size: 24px;
+}
+.order-inf {
+	height: 480px;
+	color: #333366;
+	font-family: "Century Gothic", sans-serif;
+	font-size: 18px;
+	padding-top: 10px;
+	border-right: solid 1px rgba(51, 51, 102, 0.15);
+}
+.comments-body {
+	margin-top: 10px;
+}
+.drop-inf {
+	font-size: 12px;
+}
+.drop-el {
+	padding: 20px 0 0 25px;
+	word-wrap: break-word;
+	display: none;
+}
+.click-to-drop:hover {
+	color: rgba(51, 51, 102, 0.7);
+	cursor: pointer;
+}
+.btn-edit-order {
+	background-color: #333366;
+	width: 125px;
+	border-radius: 7px;
+	font-family: "Trebuchet MS", sans-serif;
 }

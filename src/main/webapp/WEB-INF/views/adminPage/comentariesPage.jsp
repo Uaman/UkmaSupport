@@ -14,9 +14,19 @@
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#comments').scrollTop(99999999);
-            $('#content').keyup(function () {
+        $(document).ready(function() {
+            $('.click-to-drop').click(function() {
+                $(this).siblings('.drop-el').slideToggle('fast');
+                if ($(this).children('.drop-inf').hasClass('glyphicon-chevron-down')) {
+                    $(this).children('.drop-inf').removeClass('glyphicon-chevron-down');
+                    $(this).children('.drop-inf').addClass('glyphicon-chevron-up');
+                } else {
+                    $(this).children('.drop-inf').removeClass('glyphicon-chevron-up');
+                    $(this).children('.drop-inf').addClass('glyphicon-chevron-down');
+                }
+            });
+            $('#comments').scrollTop($('#comments').prop('scrollHeight'));
+            $('#content').keyup(function() {
                 if ($('#content').val() != '') {
                     $('#btn-add-comment').removeClass('disabled');
                 } else {
@@ -90,66 +100,84 @@
         </div>
     </nav>
 
-    <div id="order-inf">
-        <p class="body-text" id="order-title">Title: ${order.title}</p>
 
-        <p class="body-text" id="order-auditorium">Auditorium: ${order.auditorium}</p>
-
-        <p class="body-text" id="order-workplace">Workplace: ${order.workplace_access_num}</p>
-
-        <p class="body-text" id="order-date">Date: ${order.createdAt.toLocaleString()}</p>
-
-        <p class="body-text" id="order-description">Description: ${order.content}</p>
+    <div class="col-md-12 top-block comment-title">
+        <p>${order.title}</p>
     </div>
+
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-    <div id="comments" class="col-md-offset-2 col-md-8">
-        <c:forEach var="comment" items="${allCommentaries}" varStatus="count">
-            <c:choose>
-                <c:when test="${comment.author.role == 'USER'}">
-                    <div class="col-md-12 comment-block">
-                        <div class="col-md-3 comment-date">${comment.time.toLocaleString()}</div>
-                        <div class="col-md-offset-3 comment user-comment"><span
-                                class="bold-text">${comment.author.firstName}, ${comment.author.role}</span><br>${comment.content}
-                        </div>
-                    </div>
-                </c:when>
-                <c:when test="${comment.author.role == 'ASSISTANT'}">
-                    <div class="col-md-12 comment-block">
-                        <div class="col-md-9 comment assistant-comment"><span
-                                class="bold-text">${comment.author.firstName}, ${comment.author.role}</span><br>${comment.content}
-                        </div>
-                        <div class="col-md-offset-9 comment-date">${comment.time.toLocaleString()}</div>
-                    </div>
-                </c:when>
-                <c:otherwise>
-                    <div class="col-md-12 comment-block">
-                        <div class="col-md-9 comment admin-comment"><span
-                                class="bold-text">${comment.author.firstName}, ${comment.author.role}</span><br>${comment.content}
-                        </div>
-                        <div class="col-md-offset-9 comment-date">${comment.time.toLocaleString()}</div>
-                    </div>
-                </c:otherwise>
-            </c:choose>
-        </c:forEach>
-    </div>
-    <div id="add-comment" class="col-md-offset-2 col-md-8">
-        <form:form class="form-horizontal" action="/addComment/${id}" method="post" commandName="comment">
-            <div class="form-group">
-                <div class="col-md-12">
+    <div class="col-md-12 comments-body ">
+        <div class="col-md-4 order-inf">
+            <div>
+                <p class="click-to-drop"><i class="drop-inf glyphicon glyphicon-chevron-down"></i>auditorium</p>
+                <p class="drop-el">${order.auditorium}</p><hr>
+            </div>
+            <div>
+                <p class="click-to-drop"><i class="drop-inf glyphicon glyphicon-chevron-down"></i>workplace</p>
+                <p class="drop-el">${order.workplace_access_num}</p><hr>
+            </div>
+            <div>
+                <p class="click-to-drop"><i class="drop-inf glyphicon glyphicon-chevron-down"></i>date</p>
+                <p class="drop-el">${order.createdAt.toLocaleString()}</p><hr>
+            </div>
+            <div>
+                <p class="click-to-drop"><i class="drop-inf glyphicon glyphicon-chevron-down"></i>description</p>
+                <p class="drop-el">${order.content}</p><hr>
+            </div>
+            <div>
+                <button type="submit" action="" class="btn btn-primary btn-block btn-edit-order">Edit order</button>
+            </div>
+        </div>
+        <div class="col-md-offset-4">
+            <div id="comments" class="col-md-offset-1 col-md-10">
+                <c:forEach var="comment" items="${allCommentaries}" varStatus="count">
+                    <c:choose>
+                        <c:when test="${comment.author.role == 'USER'}">
+                            <div class="col-md-12 comment-block">
+                                <div class="col-md-3 comment-date">${comment.time.toLocaleString()}</div>
+                                <div class="col-md-offset-3 comment user-comment"><span
+                                        class="bold-text">${comment.author.firstName}, ${comment.author.role}</span><br>${comment.content}
+                                </div>
+                            </div>
+                        </c:when>
+                        <c:when test="${comment.author.role == 'ASSISTANT'}">
+                            <div class="col-md-12 comment-block">
+                                <div class="col-md-9 comment assistant-comment"><span
+                                        class="bold-text">${comment.author.firstName}, ${comment.author.role}</span><br>${comment.content}
+                                </div>
+                                <div class="col-md-offset-9 comment-date">${comment.time.toLocaleString()}</div>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="col-md-12 comment-block">
+                                <div class="col-md-9 comment admin-comment"><span
+                                        class="bold-text">${comment.author.firstName}, ${comment.author.role}</span><br>${comment.content}
+                                </div>
+                                <div class="col-md-offset-9 comment-date">${comment.time.toLocaleString()}</div>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+            </div>
+            <div id="add-comment" class="col-md-offset-1 col-md-10">
+                <form:form class="form-horizontal" action="/addComment/${id}" method="post" commandName="comment">
+                    <div class="form-group">
+                        <div class="col-md-12">
                     <textarea id="content" name="content" path="comment.content" class="col-md-12 txt-area" rows="4"
                               placeholder="write comment"></textarea>
-                </div>
-            </div>
+                        </div>
+                    </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-9">
-                    <button id="btn-add-comment" type="submit" class="btn btn-primary btn-block disabled">
-                        <spring:message code="admin.AddComment"/>
-                    </button>
-                </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-8">
+                            <button id="btn-add-comment" type="submit" class="btn btn-primary btn-block disabled">Add comment
+                            </button>
+                        </div>
+                    </div>
+                </form:form>
             </div>
-        </form:form>
+        </div>
     </div>
 
     <div id="footer">
