@@ -932,3 +932,66 @@ tbody.scrollContent {
 	border-radius: 7px;
 	font-family: "Trebuchet MS", sans-serif;
 }
+
+#download_all {
+	width: 220px;
+	background-color: #333366;
+	margin-top: -150px;
+	margin-left: -100px;
+}
+
+#From {
+	padding-top: 110px;
+	margin-left: 420px;
+	position: absolute;
+}
+
+#To {
+	position: absolute;
+	padding-top: 110px;
+	margin-left: 675px;
+}
+
+.Report_table {
+	margin-top: 0px;
+}
+
+.ReportsTable {
+	padding-top: 160px;
+}
+
+#left_label_report {
+	padding-top: 110px;
+	margin-left: 30px;
+	position: absolute;
+}
+
+#From2 {
+	position: absolute;
+	padding-top: 110px;
+	margin-left: 420px;
+}
+
+#To2 {
+	position: absolute;
+	padding-top: 110px;
+	margin-left: 675px;
+}
+
+.auditor_field {
+	position: absolute;
+	width: 150px;
+	margin-left: 100px;
+	margin-top: -25px;
+}
+
+.assist_field {
+	position: absolute;
+	width: 150px;
+	margin-left: 100px;
+	margin-top: -25px;
+}
+
+.from_field, .to_field {
+	text-align: center;
+}
