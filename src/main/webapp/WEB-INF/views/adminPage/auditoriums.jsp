@@ -24,77 +24,74 @@
 
                 });
 
-            }  });
+            }
+        });
 
-            $(document).ready(function () {
-                var auditoriumId;
-                $('#myModal').on('show.bs.modal', function (e) {
-                     auditoriumId = $(e.relatedTarget).attr('data-id');
-                });
-
-                    $("#setAssist").click(function () {
-
-                        var setAssist = $( "#assistant" ).val();
-                        setAssistance = {
-                            assistID: setAssist,
-                            auditoriumID:auditoriumId
-                        };
-
-                        var postParamForDatatable = $.ajax({
-                            url: "${pageContext.request.contextPath}/admin/setAssistToAuditorium",
-                            type: "POST",
-                            contentType: "application/json",
-                            data: JSON.stringify(setAssistance),  success: function (response) {
-                                $.ajax({
-                                    url: '/admin/getAuditoriums',
-                                    type: 'GET',
-                                    success: function (response) {
-                                        var sorted = response.sort(function (a, b) {
-                                            if (a.status < b.status) {
-                                                return 1;
-                                            }
-                                            if (a.status > b.status) {
-                                                return -1;
-                                            }
-                                            return 0;
-                                        });
-                                        var trHTML = '';
-                                        $.each(sorted, function (i, auditorium) {
-                                            if (auditorium.userId == 0) {
-                                                trHTML += "<tr>" +
-                                                        '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
-                                                            //  "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
-                                                        '<td width="230px">' + auditorium.assistantName + "</td>" +
-                                                            //'<td >' + "" + "</td>" +
-                                                        '   <td class="change-col">' + '<input type="image" src="../../../resources/img/edit.jpg" class="assistId" data-toggle="modal"' + 'data-id="' + auditorium.number + '"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
-                                                        "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
-                                                        "</tr>";
-                                            } else {
-                                                trHTML += "<tr>" +
-                                                        '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
-                                                            //   "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
-                                                        '<td width="230px">' + auditorium.assistantName + "</td>" +
-                                                        '   <td class="change-col">' + '<input type="image" src="../../../resources/img/edit.jpg" class="assistId" data-toggle="modal"' + 'data-id="' + auditorium.number + '"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
-                                                            //      "<td>" + '<form action="/admin/assistantReport/' + auditorium.userId + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
-                                                        "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
-                                                        "</tr>";
-                                            }
-                                        });
-                                        $('#records_table tbody').empty();
-                                        $('#records_table').append(trHTML);
-                                    }
-                                });
-                            }
-
-
-
-                        });
-                            });
-             //   });
+        $(document).ready(function () {
+            var auditoriumId;
+            $('#myModal').on('show.bs.modal', function (e) {
+                auditoriumId = $(e.relatedTarget).attr('data-id');
             });
 
+            $("#setAssist").click(function () {
+
+                var setAssist = $("#assistant").val();
+                setAssistance = {
+                    assistID: setAssist,
+                    auditoriumID: auditoriumId
+                };
+
+                var postParamForDatatable = $.ajax({
+                    url: "${pageContext.request.contextPath}/admin/setAssistToAuditorium",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(setAssistance), success: function (response) {
+                        $.ajax({
+                            url: '/admin/getAuditoriums',
+                            type: 'GET',
+                            success: function (response) {
+                                var sorted = response.sort(function (a, b) {
+                                    if (a.status < b.status) {
+                                        return 1;
+                                    }
+                                    if (a.status > b.status) {
+                                        return -1;
+                                    }
+                                    return 0;
+                                });
+                                var trHTML = '';
+                                $.each(sorted, function (i, auditorium) {
+                                    if (auditorium.userId == 0) {
+                                        trHTML += "<tr>" +
+                                                '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
+                                                    //  "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                                                '<td width="230px">' + auditorium.assistantName + "</td>" +
+                                                    //'<td >' + "" + "</td>" +
+                                                '   <td class="change-col">' + '<input type="image" src="../../../resources/img/edit.jpg" class="assistId" data-toggle="modal"' + 'data-id="' + auditorium.number + '"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
+                                                "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                                                "</tr>";
+                                    } else {
+                                        trHTML += "<tr>" +
+                                                '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
+                                                    //   "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                                                '<td width="230px">' + auditorium.assistantName + "</td>" +
+                                                '   <td class="change-col">' + '<input type="image" src="../../../resources/img/edit.jpg" class="assistId" data-toggle="modal"' + 'data-id="' + auditorium.number + '"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
+                                                    //      "<td>" + '<form action="/admin/assistantReport/' + auditorium.userId + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                                                "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                                                "</tr>";
+                                    }
+                                });
+                                $('#records_table tbody').empty();
+                                $('#records_table').append(trHTML);
+                            }
+                        });
+                    }
 
 
+                });
+            });
+            //   });
+        });
 
 
     </script>
@@ -102,7 +99,8 @@
         $(document).ready(function () {
             $("#test").click(function (e) {
 
-                var dataAuditorium = $("input").val();
+                var dataAuditorium = $("#auditoriumName").val();
+               // alert(dataAuditorium);
                 addAuditorium = {
                     auditorium: dataAuditorium
                 };
@@ -158,7 +156,6 @@
         });
 
 
-
         $(document).ready(function () {
             $("#records_table").tablesort();
         });
@@ -185,22 +182,22 @@
                 $.each(sorted, function (i, auditorium) {
                     if (auditorium.userId == 0) {
                         trHTML += "<tr>" +
-                        '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
-                      //  "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
-                        '<td width="230px">' + auditorium.assistantName + "</td>" +
-                        //'<td >' + "" + "</td>" +
+                                '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
+                                    //  "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                                '<td width="230px">' + auditorium.assistantName + "</td>" +
+                                    //'<td >' + "" + "</td>" +
                                 '   <td class="change-col">' + '<input type="image" src="../../../resources/img/edit.jpg" class="assistId" data-toggle="modal"' + 'data-id="' + auditorium.number + '"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
-                        "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
-                        "</tr>";
+                                "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                                "</tr>";
                     } else {
                         trHTML += "<tr>" +
-                        '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
-                     //   "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
-                        '<td width="230px">' + auditorium.assistantName + "</td>" +
-                                '   <td class="change-col">' + '<input type="image" src="../../../resources/img/edit.jpg" class="assistId" data-toggle="modal"' + 'data-id="' + auditorium.number  + '"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
-                  //      "<td>" + '<form action="/admin/assistantReport/' + auditorium.userId + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
-                        "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
-                        "</tr>";
+                                '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
+                                    //   "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                                '<td width="230px">' + auditorium.assistantName + "</td>" +
+                                '   <td class="change-col">' + '<input type="image" src="../../../resources/img/edit.jpg" class="assistId" data-toggle="modal"' + 'data-id="' + auditorium.number + '"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
+                                    //      "<td>" + '<form action="/admin/assistantReport/' + auditorium.userId + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                                "<td>" + '<form action="/admin/auditoriums/delete/' + auditorium.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                                "</tr>";
                     }
                 });
                 $('#records_table tbody').empty();
@@ -303,15 +300,16 @@
             <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
         </div>
     </div>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
         <div class="modal-dialog" style="width:300px;">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <center><h4 class="modal-title" id="myModalLabel1"><spring:message code="admin.set.assistants"/></h4></center>
+                    <center><h4 class="modal-title" id="myModalLabel1"><spring:message
+                            code="admin.set.assistants"/></h4></center>
                 </div>
                 <div class="modal-body">
-                    <select  id="assistant">
+                    <select id="assistant">
                         <option value="0">it's me</option>
                     </select>
                 </div>
@@ -335,7 +333,8 @@
                     </center>
                 </div>
                 <div class="modal-body">
-                    <center><input type="email" class="form-control form-style form-auditorium" placeholder=""
+                    <center><input type="email" id="auditoriumName" class="form-control form-style form-auditorium"
+                                   placeholder=""
                                    style="text-align: center;"></center>
                 </div>
                 <div class="modal-footer">
@@ -346,8 +345,10 @@
                     </center>
                 </div>
             </div>
+
         </div>
     </div>
+
 
 </div>
 </body>
