@@ -27,9 +27,13 @@
             }  });
 
             $(document).ready(function () {
+                var auditoriumId;
                 $('#myModal').on('show.bs.modal', function (e) {
-                    var auditoriumId = $(e.relatedTarget).attr('data-id');
-                    $("#setAssist").click(function (e) {
+                     auditoriumId = $(e.relatedTarget).attr('data-id');
+                });
+
+                    $("#setAssist").click(function () {
+
                         var setAssist = $( "#assistant" ).val();
                         setAssistance = {
                             assistID: setAssist,
@@ -40,8 +44,7 @@
                             url: "${pageContext.request.contextPath}/admin/setAssistToAuditorium",
                             type: "POST",
                             contentType: "application/json",
-                            data: JSON.stringify(setAssistance),
-                            success: function (response) {
+                            data: JSON.stringify(setAssistance),  success: function (response) {
                                 $.ajax({
                                     url: '/admin/getAuditoriums',
                                     type: 'GET',
@@ -82,9 +85,12 @@
                                     }
                                 });
                             }
-                                });
+
+
+
+                        });
                             });
-                });
+             //   });
             });
 
 

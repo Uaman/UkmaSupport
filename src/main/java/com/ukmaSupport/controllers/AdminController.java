@@ -366,7 +366,6 @@ public class AdminController {
     public String setAssistToAuditorium(@RequestBody Map<String, Object> searchParam) {
         String assistID = (String) searchParam.get("assistID");
         String auditoriumID=(String)searchParam.get("auditoriumID");
-        System.out.println(assistID +"   "+auditoriumID);
         Auditorium auditorium=auditoriumService.getByNumber(auditoriumID);
         auditorium.setUserId(Integer.parseInt(assistID));
         auditoriumService.update(auditorium);
