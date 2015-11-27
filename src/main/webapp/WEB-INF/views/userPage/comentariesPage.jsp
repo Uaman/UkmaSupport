@@ -47,22 +47,57 @@
 <body>
 
 <div id="wrap">
-    <nav id="header">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a href="/user/userhome"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
+
+    <c:if test="${currentUser.role == 'ASSISTANT'}">
+        <nav id="header">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="/assist/home"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                </div>
+
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle menu-element" data-toggle="dropdown"
+                               href="#"><spring:message code="assist.menu.Orders"/><b
+                                    class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li class="drop-menu-element"><a class="menu-element-li"
+                                                                 href="/assist/home">
+                                    <spring:message code="assist.menu.Assigned"/></a></li>
+                                <li class="drop-menu-element"><a class="menu-element-li"
+                                                                 href="/assist/created_orders">
+                                    <spring:message code="assist.menu.Created"/></a></li>
+                            </ul>
+                        </li>
+                        <li><a id="editAssistProfile" class="menu-element" href="/assist/edit_profile">
+                            <spring:message code="assist.menu.Profile"/></a></li>
+                        <li><a class="menu-element" href="/logout"><spring:message code="assist.menu.LogOut"/></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a class="menu-element" href="/user/userhome"> <spring:message
-                            code="admin.orders"/></a></li>
-                    <li><a id="editProfile" class="menu-element" href="/user/editProfile"><spring:message
-                            code="admin.edit"/></a></li>
-                    <li><a class="menu-element" href="/logout"><spring:message code="admin.logout"/></a></li>
-                </ul>
+        </nav>
+    </c:if>
+
+    <c:if test="${currentUser.role == 'USER'}">
+        <nav id="header">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="/user/userhome"><img id="logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="menu-element" href="/user/userhome"> <spring:message
+                                code="admin.orders"/></a></li>
+                        <li><a id="editProfile" class="menu-element" href="/user/editProfile"><spring:message
+                                code="admin.edit"/></a></li>
+                        <li><a class="menu-element" href="/logout"><spring:message code="admin.logout"/></a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </c:if>
 
     <div class="col-md-12 top-block comment-title">
         <p>${order.title}</p>

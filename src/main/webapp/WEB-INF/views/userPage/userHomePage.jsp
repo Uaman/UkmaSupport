@@ -41,11 +41,6 @@
                 }
             });
         }
-        jQuery(function ($) {
-            $('tbody tr[data-href]').addClass('clickable').click(function () {
-                window.location = $(this).attr('data-href');
-            });
-        });
 
         $.ajax({
             url: '${pageContext.request.contextPath}/user/allUserOrders',
@@ -113,7 +108,7 @@
     </nav>
     <div class="top-block col-md-6">
         <p id="hello"><spring:message
-                code="user.hello"/> ${currentUser.firstName}</p>
+                code="user.hello"/>${currentUser.firstName}</p>
     </div>
 
     <div class="col-md-offset-7 top-block">
