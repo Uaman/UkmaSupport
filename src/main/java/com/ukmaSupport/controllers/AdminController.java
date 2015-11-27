@@ -312,12 +312,12 @@ public class AdminController {
         return "redirect:/admin/auditoriums/" + name;
     }
 
-    @RequestMapping(value = "/admin/assistantReport/{id}", method = RequestMethod.GET)
-    public String assistantReport(@PathVariable("id") Integer id, Model model) {
+    @RequestMapping(value = "/admin/assistantReport/{date_from}/{date_to}/{id}", method = RequestMethod.GET)
+    public String assistantReport(@PathVariable("date_from") String date_from,@PathVariable("date_to") String date_to,@PathVariable("id") Integer id, Model model) {
         int countDone = orderService.getCountOrderByAssistant(id, DONE);
         int contUndone = orderService.getCountOrderByAssistant(id, UNDONE);
 
-        List<Order> orderList = orderService.getAllAssistOrders(id);
+        List<Order> orderList = orderService.getAllByAssisstIdDate(date_from, date_to, id);
         model.addAttribute("orderList", orderList);
         model.addAttribute("countDone", countDone);
         model.addAttribute("countUndone", contUndone);
@@ -451,6 +451,12 @@ public class AdminController {
         return "adminPage/reportAudit";
     }
 
+    @RequestMapping(value = "/admin/report_assist/{date_from}/{date_to}/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Order> getReportByAssist(@PathVariable("date_from") String date_from,@PathVariable("date_to") String date_to,@PathVariable("id") int id) {
+        return orderService.getAllByAssisstIdDate(date_from,date_to,id);
+
+    }
     @RequestMapping(value = "/admin/report_assist", method = RequestMethod.GET)
     public String reportByAssist(Model model) {
         List<User> assistants = userService.getByRole(ASSISTANT);

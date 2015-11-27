@@ -18,6 +18,8 @@ public interface OrderDao {
 
     void createOrUpdate(Order order);
 
+    List<Order> getAllByAssisstIdDate(String date_from,String date_to,int id);
+
     void update(Order order);
 
     Order getByUserIdAndId(int user_id,int id);

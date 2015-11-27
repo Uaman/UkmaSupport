@@ -58,6 +58,12 @@ public class OrderServiceImpl implements OrderService {
         orderDao.createOrUpdate(order);
     }
 
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    @Override
+    public List<Order> getAllByAssisstIdDate(String date_from, String date_to, int id) {
+        return orderDao.getAllByAssisstIdDate(date_from,date_to,id);
+    }
+
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
     @Override
     public void delete(int id) {
