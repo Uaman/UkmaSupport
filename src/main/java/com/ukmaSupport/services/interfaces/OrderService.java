@@ -8,15 +8,11 @@ public interface OrderService {
 
     Order getById(int id);
 
-    List<Order> getByStatus(String status);
-
     List<Order> getByAuditoriumNumber(String number);
 
     List<Order> getByWorkplaceAcessNum(int access_num);
 
     List<Order> getByUserId(int user_id);
-
-    List<Order> getByUserIdStatus(int user_id,String status);
 
     int getCountOrderByAssistant(int assistant_id,String status);
 
@@ -31,6 +27,4 @@ public interface OrderService {
     List<Order> getAll();
 
     List<Order> getAllAssistOrders(int assistid);
-
-    List<Order> getByAssistAndStatus(int assistid, String status);
 }

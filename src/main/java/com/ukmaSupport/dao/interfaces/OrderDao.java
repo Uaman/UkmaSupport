@@ -8,8 +8,6 @@ public interface OrderDao {
 
     Order getById(int id);
 
-    List<Order> getByStatus(String status);
-
     List<Order> getByAuditoriumNumber(String number);
 
     List<Order> getByWorkplaceAcessNum(int access_num);
@@ -17,8 +15,6 @@ public interface OrderDao {
     List<Order> getByUserId(int user_id);
 
     int getCountOrderByAssistant(int assistant_id,String status);
-
-    List<Order> getUserStatus(int user_id,String status);
 
     void createOrUpdate(Order order);
 
@@ -31,7 +27,5 @@ public interface OrderDao {
     List<Order> getAll();
 
     List<Order> getAllAssistOrders(int assistid);
-
-    List<Order> getByAssistAndStatus(int assistid, String status);
 
 }
