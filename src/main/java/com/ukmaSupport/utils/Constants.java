@@ -6,7 +6,7 @@ public class Constants {
 
     public static final String LOCAL_SERVER = "http://localhost:8080";
 
-    public static final String MAIL_SERVER = "uukkmmaa.ssuuppoorrtt@gmail.com";
+    public static final String MAIL_SERVER = "ukma.service.notification@gmail.com";
 
     public static final String VERIFICATION = "/verification?id=";
 
