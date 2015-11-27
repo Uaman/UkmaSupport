@@ -40,6 +40,9 @@
                     });
                 }
             });
+            $('#editbtn').click(function() {
+                window.location = "/user/editOrder/${id}";
+            });
         });
     </script>
 
@@ -124,7 +127,7 @@
                 <p class="drop-el">${order.content}</p><hr>
             </div>
             <div>
-                <button type="submit" action="" class="btn btn-primary btn-block btn-edit-order">Edit order</button>
+                <button id="editbtn" type="submit" action="" class="btn btn-primary btn-block btn-edit-order">Edit order</button>
             </div>
         </div>
         <div class="col-md-offset-4">
