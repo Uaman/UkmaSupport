@@ -36,10 +36,6 @@ public class AdminController {
     private OrderValidator orderValidator;
 
     @Autowired
-    @Qualifier("editOrderValidator")
-    private EditOrderValidator editOrderValidator;
-
-    @Autowired
     @Qualifier("audiroriumValidator")
     private AudiroriumValidator audiroriumValidator;
 
@@ -246,7 +242,7 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/orders/edit/save", method = RequestMethod.POST)
     public String orderEdited(@ModelAttribute("id") Integer id, @ModelAttribute("editOrder") Order order, ModelMap model, BindingResult result) {
-        editOrderValidator.validate(order, result);
+        orderValidator.validate(order, result);
         if (result.hasErrors()) {
             model.addAttribute("editOrder", order);
             return "adminPage/editOrder";

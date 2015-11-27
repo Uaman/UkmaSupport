@@ -26,15 +26,12 @@
 
     <bean id="property"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-          p:location="classpath:tech.properties" />
-
+          p:location="classpath:tech.properties"/>
 
     <bean id="myUserDetailsService" class="com.ukmaSupport.services.UserServices"/>
     <context:annotation-config/>
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
-
-
 
     <!-- error messages and validators for registration and password change -->
     <bean id="messageSource"
@@ -45,33 +42,24 @@
 
     <mvc:interceptors>
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-            <property name="paramName" value="lang" />
+            <property name="paramName" value="lang"/>
         </bean>
     </mvc:interceptors>
 
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-        <property name="defaultLocale" value="en" />
+        <property name="defaultLocale" value="en"/>
     </bean>
-
-    <!--<bean id="localeResolver"-->
-          <!--class="org.springframework.web.servlet.i18n.CookieLocaleResolver">-->
-        <!--<property name="defaultLocale" value="en"/>-->
-        <!--<property name="cookieMaxAge" value="1209600"/>-->
-        <!--<property name="cookieName" value="lang"/>-->
-    <!--</bean>-->
 
     <bean id="registrationValidator" class="com.ukmaSupport.utils.RegistrationValidator"/>
     <bean id="passChangeValidator" class="com.ukmaSupport.utils.PasswordChangeValidator"/>
     <bean id="orderValidator" class="com.ukmaSupport.utils.OrderValidator"/>
     <bean id="audiroriumValidator" class="com.ukmaSupport.utils.AudiroriumValidator"/>
-    <bean id="editOrderValidator" class="com.ukmaSupport.utils.EditOrderValidator"/>
     <!--><-->
 
     <!-- jdbcTemplate uses dataSource -->
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
@@ -103,14 +91,12 @@
     </bean>
     <!--><-->
 
-
     <!--> transaction-manager <-->
     <tx:annotation-driven transaction-manager="transactionManager"/>
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-
 
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.ResourceBundleViewResolver">

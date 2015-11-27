@@ -6,7 +6,6 @@ import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.OrderService;
 import com.ukmaSupport.services.interfaces.UserService;
 import com.ukmaSupport.services.interfaces.WorkplaceService;
-import com.ukmaSupport.utils.EditOrderValidator;
 import com.ukmaSupport.utils.OrderValidator;
 import com.ukmaSupport.utils.PasswordChangeValidator;
 import com.ukmaSupport.utils.PasswordEncryptor;
@@ -54,10 +53,6 @@ public class AssistController {
     @Autowired
     @Qualifier("orderValidator")
     private OrderValidator validatorOrder;
-
-    @Autowired
-    @Qualifier("editOrderValidator")
-    private EditOrderValidator editOrderValidator;
 
     @RequestMapping(value = "/assist/home", method = RequestMethod.GET)
     public String allAssistOrders(Model model) {
@@ -213,7 +208,7 @@ public class AssistController {
 
     @RequestMapping(value = "/assist/edit_order/save", method = RequestMethod.POST)
     public String orderEdited(@ModelAttribute("id") Integer id, @ModelAttribute("editOrder") Order order, ModelMap model, BindingResult result) {
-        editOrderValidator.validate(order, result);
+        validatorOrder.validate(order, result);
 
         if (result.hasErrors()) {
             model.addAttribute("title", order.getTitle());
