@@ -214,11 +214,9 @@ public class AdminController {
         if (assistant != null) assistantId = assistant.getId();
         order.setAssistantId(assistantId);
         order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
-
         orderService.createOrUpdate(order);
-
-        //newOrderMail.send(assistant.getEmail());
-
+        if (assistant != null)
+            newOrderMail.send(assistant.getEmail());
         return "redirect:/admin/myOrders";
     }
 
