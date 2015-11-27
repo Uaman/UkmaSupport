@@ -14,6 +14,8 @@
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script src="../../../resources/js/tsort.js"></script>
     <script src="../../../resources/js/calendar.js"></script>
+    <link type="text/css" href="../../../resources/css/jquery-ui.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../../resources/js/jquery-ui.min.js"></script>
     <script>
         $(document).ready(function () {
             $("#records_table").tablesort();
@@ -42,6 +44,19 @@
                 }
             });
         }
+
+        $(function() {
+            $( "#date_from" ).datepicker({
+                dateFormat: 'dd.mm.yy'
+            })
+        });
+
+        $(function() {
+            $( "#date_to" ).datepicker({
+                dateFormat: 'dd.mm.yy'
+            })
+        });
+
         jQuery(function ($) {
             $('tbody tr[data-href]').addClass('clickable').click(function () {
                 window.location = $(this).attr('data-href');
@@ -68,13 +83,11 @@
                 var trHTML = '';
                 $.each(response, function (i, order) {
                     trHTML += "<tr><td class='title-col-orders'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
-                    '   <td class="auditorium-col-orders">' + order.auditorium + "</td>" +
-                    '   <td class="workplace-col-orders">' + order.workplace_access_num + "</td>" +
-                    '   <td class="user-col-orders">' + order.userLastName + "</td>" +
-                    '   <td class="assistant-col-orders">' + order.assistantLastName + "</td>" +
-                    '   <td class="change-col">' + '<input type="image" src="../../../resources/img/edit.jpg" class="assistId" data-toggle="modal"' + 'data-id="' + order.id + '"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
-                    '   <td class="date-col-orders">' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                    '   <td class="status-col-orders">' + order.status + "</td></tr>";
+                            '   <td class="auditorium-col-orders">' + order.auditorium + "</td>" +
+                            '   <td class="workplace-col-orders">' + order.workplace_access_num + "</td>" +
+                            '   <td class="assistant-col-orders">' + order.assistantLastName + "</td>" +
+                            '   <td class="date-col-orders">' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
+                            '   <td class="status-col-orders">' + order.status + "</td></tr>";
                 });
                 $('#records_table tbody').empty();
                 $('#records_table').append(trHTML);
@@ -167,44 +180,47 @@
         <div id="From2">
             <label class="label-style">
                 <span class="from_label"><spring:message code="admin.report.dateFrom"/></span>
-                <input class="from_field" autocomplete="off" id="date_from" name="date_from" value="26.11.2015"
-                       type="text">
+                <input type="text" id="date_from" size="17">
             </label>
         </div>
 
         <div id="To2">
             <label class="label-style">
                 <span class="to_label"><spring:message code="admin.report.dateTo"/></span>
-                <input class="to_field" autocomplete="off" id="date_to" name="date_to" value="26.11.2015" type="text">
+                <input type="text" id="date_to" size="17">
             </label>
         </div>
     </div>
     <!--------------------------------------->
 
-    <div class="ReportsTable table-align bottom-block">
-        <table id="records_table" class="Report_table tbl table table-striped user-table order-table">
+    <div>
+        <p id="helloAssist"></p>
+    </div>
+    <div class="table-align bottom-block">
+        <table id="records_table" class="tbl table table-striped admin-table assist-order-table">
             <thead>
             <tr>
-                <th class="no-sort title-col"><spring:message code="admin.orders.title"/><img class="icon-sort"
+                <th class="no-sort title-col-orders-th"><spring:message
+                        code="admin.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                                                        width="8px" height="14px"></th>
+                <th class="auditorium-col-orders-th-report"><spring:message
+                        code="admin.orders.auditorium"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                                                             width="8px" height="14px"></th>
+                <th class="workplace-col-orders-th"><spring:message code="admin.orders.workplace"/><img
+                        class="icon-sort" src="../../../resources/img/sort15.png"
+                        width="8px" height="14px"></th>
+                <th class="assistant-col-orders-th-report"><spring:message
+                        code="admin.orders.assistant"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                                                            width="8px" height="14px"></th>
+                <th class="date-col-orders-th"><spring:message code="admin.orders.date"/><img class="icon-sort"
                                                                                               src="../../../resources/img/sort15.png"
                                                                                               width="8px" height="14px">
                 </th>
-                <th class="auditorium-col"><spring:message code="admin.orders.auditorium"/><img class="icon-sort"
-                                                                                                src="../../../resources/img/sort15.png"
-                                                                                                width="8px"
-                                                                                                height="14px"></th>
-                <th class="workplace-col"><spring:message code="assist.order.workplace"/><img class="icon-sort"
-                                                                                              src="../../../resources/img/sort15.png"
-                                                                                              width="8px" height="14px">
-                </th>
-                <th class="status-col"><spring:message code="admin.orders.status"/><img class="icon-sort"
-                                                                                        src="../../../resources/img/sort15.png"
-                                                                                        width="8px" height="14px"></th>
-                <th class="date-col"><spring:message code="admin.orders.date"/><img class="icon-sort"
-                                                                                    src="../../../resources/img/sort15.png"
-                                                                                    width="8px" height="14px"></th>
-                <th class="btn-col"></th>
-                <th class="btn-col"></th>
+                <th class="status-col-orders-th"><spring:message code="admin.orders.status"/><img class="icon-sort"
+                                                                                                  src="../../../resources/img/sort15.png"
+                                                                                                  width="8px"
+                                                                                                  height="14px"></th>
+                <th class="indent"></th>
             </tr>
             </thead>
         </table>

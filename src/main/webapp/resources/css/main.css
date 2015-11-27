@@ -995,3 +995,16 @@ tbody.scrollContent {
 .from_field, .to_field {
 	text-align: center;
 }
+
+#date_from{
+	text-align: center;
+}
+#date_to{
+	text-align: center;
+}
+.auditorium-col-orders-th-report{
+	width:17%;
+}
+.assistant-col-orders-th-report{
+	width:17%;
+}
