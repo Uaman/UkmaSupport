@@ -14,10 +14,6 @@
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script src="../../../resources/js/tsort.js"></script>
     <script>
-        $(document).ready(function () {
-            $("#records_table").tablesort();
-            var deleteLink = $("a:contains('Delete')");
-        });
         function formatDate(date, fmt) {
             function pad(value) {
                 return (value.toString().length < 2) ? '0' + value : value;
@@ -42,11 +38,6 @@
                 }
             });
         }
-        jQuery(function ($) {
-            $('tbody tr[data-href]').addClass('clickable').click(function () {
-                window.location = $(this).attr('data-href');
-            });
-        });
         $.ajax({
             url: '/admin/users/getUserProfile/' + '${id}',
             type: 'GET',
