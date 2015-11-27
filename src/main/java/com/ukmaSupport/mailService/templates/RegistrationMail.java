@@ -15,9 +15,9 @@ public class RegistrationMail {
 
     public void send(String toAddr, int userId){
         String subject = "Welcome to UKMA Support";
-        String link = Constants.SERVER + Constants.VERIFICATION + userId;
+        String link = Constants.LOCAL_SERVER + Constants.VERIFICATION + userId;
         String body = "Welcome to UKMA Support." + "\n\n" + "Please verify your email " + link +
-                "\n\nUKMA Support\n" + Constants.SERVER;
+                "\n\nUKMA Support\n" + Constants.LOCAL_SERVER;
 
         mailService.sendEmail(toAddr, FROM_ADDR, subject, body);
     }
