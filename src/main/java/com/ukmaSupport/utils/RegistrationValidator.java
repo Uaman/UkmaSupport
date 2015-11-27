@@ -14,7 +14,7 @@ public class RegistrationValidator implements Validator {
     private UserService userDao;
 
     private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-    private static final String FIO_PATTERN = "[\\p{InCyrillic}]+";
+    private static final String FIO_PATTERN = "[\\p{InCyrillic}|']+";
     private static final String PASSWORD_PATTERN = "((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$";
 
     public boolean supports(Class<?> paramClass) {
