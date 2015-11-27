@@ -85,7 +85,8 @@
                    method="post" commandName="editOrder">
             <div class="form-group">
                 <div class="col-md-6" display="inline-block">
-                    <input type="text" class="form-control form-style" id="title" name="title" value="${title}"
+                    <input type="text" class="form-control form-style" id="title" name="title"
+                           value="${editOrder.title}"
                            path="title">
                 </div>
                 <div class="error" id="title-error"><form:errors path="title" class="" id="title.errors"/></div>
@@ -95,14 +96,15 @@
                 <div class="col-md-3">
                     <label class="label-style" for="auditorium"><spring:message
                             code="user.auditoriums.title"/>:</label>
-                    <form:input id="auditorium" path="auditorium" name="auditorium" type="text" value="${auditorium}"
+                    <form:input id="auditorium" path="auditorium" name="auditorium" type="text"
+                                value="${editOrder.auditorium}"
                                 class="form-control select-style" READONLY="true"/>
                 </div>
                 <div class="col-md-3">
                     <label class="label-style" for="workplace_access_num"><spring:message
                             code="user.workplace.number"/>:</label>
                     <form:input id="workplace_access_num" path="workplace_access_num" name="workplace_access_num"
-                                type="text" value=""
+                                type="text" value="${editOrder.workplace_access_num}"
                                 class="form-control select-style" READONLY="true"/>
                 </div>
 
@@ -114,11 +116,11 @@
             <div class="form-group">
                 <div class="col-md-6">
                     <textarea class="col-md-12" rows="5" id="content" name="content" path="content"
-                            >${content}</textarea>
+                            >${editOrder.content}</textarea>
                 </div>
                 <div class="error" id="content-error"><form:errors path="content" class="" id="content.errors"/></div>
             </div>
-            <input type="hidden" name="id" value="${id}"/>
+            <input type="hidden" name="id" value="${editOrder.id}"/>
 
             <div class="form-group">
                 <div class="col-md-6">

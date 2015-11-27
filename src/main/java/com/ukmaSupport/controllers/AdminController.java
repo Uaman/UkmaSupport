@@ -236,41 +236,23 @@ public class AdminController {
     public String editOrder(@PathVariable("id") Integer id, Model model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
-
         int userId = (Integer) session.getAttribute("id");
-
         Order order = orderService.getByUserIdAndId(userId, id);
-        if (order == null) {
+        if (order == null)
             return "redirect:/admin/myOrders";
-        }
-        model.addAttribute("title", order.getTitle());
-        model.addAttribute("workplace", order.getWorkplace());
-        model.addAttribute("auditorium", order.getAuditorium());
-        model.addAttribute("content", order.getContent());
-        model.addAttribute("id", order.getId());
         model.addAttribute("editOrder", order);
-
         return "adminPage/editOrder";
     }
 
     @RequestMapping(value = "/admin/orders/edit/save", method = RequestMethod.POST)
     public String orderEdited(@ModelAttribute("id") Integer id, @ModelAttribute("editOrder") Order order, ModelMap model, BindingResult result) {
         editOrderValidator.validate(order, result);
-
         if (result.hasErrors()) {
-
-            model.addAttribute("title", order.getTitle());
-            model.addAttribute("workplace", order.getWorkplace());
-            model.addAttribute("auditorium", order.getAuditorium());
-            model.addAttribute("content", order.getContent());
-            model.addAttribute("id", order.getId());
             model.addAttribute("editOrder", order);
             return "adminPage/editOrder";
         }
-        order.setId(id);
         order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
         orderService.update(order);
-
         return "redirect:/admin/myOrders";
     }
 
