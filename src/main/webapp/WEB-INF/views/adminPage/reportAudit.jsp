@@ -68,7 +68,7 @@
                     trHTML += "<tr><td class='title-col-orders'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
                     '   <td class="auditorium-col-orders">' + order.auditorium + "</td>" +
                     '   <td class="workplace-col-orders">' + order.workplace_access_num + "</td>" +
-                    '   <td class="user-col-orders">' + order.userId + "</td>" +
+                    '   <td class="user-col-orders">' + order.userLastName + "</td>" +
                     '   <td class="assistant-col-orders">' + order.assistantLastName + "</td>" +
                     '   <td class="change-col">' + '<input type="image" src="../../../resources/img/edit.jpg" class="assistId" data-toggle="modal"' + 'data-id="' + order.id + '"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
                     '   <td class="date-col-orders">' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
