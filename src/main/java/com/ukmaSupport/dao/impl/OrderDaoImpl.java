@@ -21,11 +21,15 @@ public class OrderDaoImpl implements OrderDao {
     private JdbcTemplate jdbcTemplate;
     private static final String GET_ALL_ORDERS = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, concat(users.last_name, '') AS assist, (SELECT concat(users.last_name, '') AS userName FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id";
 
+    private static final String GET_ALL_ORDERS_DATE = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, concat(users.last_name, '') AS assist, (SELECT concat(users.last_name, '') AS userName FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE to_char(orders.created_at, 'YYYY-MM-DD')>=? AND to_char(orders.created_at, 'YYYY-MM-DD')<=? ";
+
     private static final String GET_ALL_ORDERS_BY_USER_ID = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, concat(users.last_name, '') AS assist, (SELECT concat(users.last_name, '') AS userName FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE orders.user_id=?";
 
-    private static final String GET_ALL_ORDERS_BY_ASSIST_ID_DATE = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, concat(users.last_name, '') AS assist, (SELECT concat(users.last_name, '') AS userName FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE to_char(orders.created_at, 'YYYY-MM-DD')>=? AND to_char(orders.created_at, 'YYYY-MM-DD')<? AND orders.assistant_id=?";
+    private static final String GET_ALL_ORDERS_BY_ASSIST_ID_DATE = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, concat(users.last_name, '') AS assist, (SELECT concat(users.last_name, '') AS userName FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE to_char(orders.created_at, 'YYYY-MM-DD')>=? AND to_char(orders.created_at, 'YYYY-MM-DD')<=? AND orders.assistant_id=?";
 
     private static final String GET_ALL_ORDERS_BY_AUDITORIUM_NUMBER = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, concat(users.last_name, '') AS assist, (SELECT concat(users.last_name, '') AS userName FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE auditorium.number=?";
+
+    private static final String GET_ALL_ORDERS_BY_AUDITORIUM_NUMBER_DATE = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, concat(users.last_name, '') AS assist, (SELECT concat(users.last_name, '') AS userName FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE to_char(orders.created_at, 'YYYY-MM-DD')>=? AND to_char(orders.created_at, 'YYYY-MM-DD')<=? AND auditorium.number=?";
 
     private static final String GET_ALL_ORDERS_BY_WORKPLACE_ACCESS_NUM = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, concat(users.last_name, '') AS assist, (SELECT concat(users.last_name, '') AS userName FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE workplace.access_num=?";
 
@@ -107,6 +111,11 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
+    public List<Order> getAllByAuditoriumAndDate(String date_from, String date_to, String number) {
+        return jdbcTemplate.query(GET_ALL_ORDERS_BY_AUDITORIUM_NUMBER_DATE, new Object[]{date_from, date_to, number}, rowMapper);
+    }
+
+    @Override
     public void update(Order order) {
         jdbcTemplate.update(UPDATE, order.getAssistantId(), order.getTitle(), order.getContent(), order.getCreatedAt(), order.getId());
     }
@@ -119,6 +128,11 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public List<Order> getAll() {
         return jdbcTemplate.query(GET_ALL_ORDERS, rowMapper);
+    }
+
+    @Override
+    public List<Order> getAllByDate(String date_from, String date_to) {
+        return jdbcTemplate.query(GET_ALL_ORDERS_DATE, new Object[]{date_from, date_to}, rowMapper);
     }
 
     @Override

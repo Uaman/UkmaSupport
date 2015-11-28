@@ -64,6 +64,16 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.getAllByAssisstIdDate(date_from,date_to,id);
     }
 
+    @Override
+    public List<Order> getAllByDate(String date_from, String date_to) {
+        return orderDao.getAllByDate(date_from,date_to);
+    }
+
+    @Override
+    public List<Order> getAllByAuditoriumAndDate(String date_from, String date_to, String number) {
+        return orderDao.getAllByAuditoriumAndDate(date_from,date_to,number);
+    }
+
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
     @Override
     public void delete(int id) {

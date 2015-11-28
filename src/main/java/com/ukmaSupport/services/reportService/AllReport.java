@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service("workplaceReport")
-public class WorkplaceReport extends AbstractExcelView {
+public class AllReport extends AbstractExcelView {
     @Override
     protected void buildExcelDocument(Map<String, Object> model, org.apache.poi.hssf.usermodel.HSSFWorkbook workbook, HttpServletRequest request, HttpServletResponse response) throws Exception {
         // get data model which is passed by the Spring container

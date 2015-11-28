@@ -20,6 +20,10 @@ public interface OrderService {
 
     List<Order> getAllByAssisstIdDate(String date_from,String date_to,int id);
 
+    List<Order> getAllByDate(String date_from, String date_to);
+
+    List<Order> getAllByAuditoriumAndDate(String date_from,String date_to,String number);
+
     void delete(int id);
 
     void update(Order order);

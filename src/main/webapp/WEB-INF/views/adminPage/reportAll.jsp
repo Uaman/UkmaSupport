@@ -14,7 +14,7 @@
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script src="../../../resources/js/tsort.js"></script>
     <script src="../../../resources/js/calendar.js"></script>
-    <link type="text/css" href="../../../resources/css/jquery-ui.css" rel="stylesheet" />
+    <link type="text/css" href="../../../resources/css/jquery-ui.css" rel="stylesheet"/>
     <script type="text/javascript" src="../../../resources/js/jquery-ui.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -45,15 +45,15 @@
             });
         }
 
-        $(function() {
-            $( "#date_from" ).datepicker({
-                dateFormat: 'dd.mm.yy'
+        $(function () {
+            $("#date_from").datepicker({
+                dateFormat: 'yy-mm-dd'
             })
         });
 
-        $(function() {
-            $( "#date_to" ).datepicker({
-                dateFormat: 'dd.mm.yy'
+        $(function () {
+            $("#date_to").datepicker({
+                dateFormat: 'yy-mm-dd'
             })
         });
 
@@ -65,35 +65,44 @@
 
         /*------------------------------------------------*/
 
-        $.ajax({
-            url: '/admin/getAllOrders',
-            type: 'GET',
-            data: {
-                text: $("#sel2").val()
-            },
-            success: function (response) {
-                var sorted = response.sort(function (a, b) {
-                    if (a.createdAt < b.createdAt) {
-                        return 1;
-                    }
-                    if (a.createdAt > b.createdAt) {
-                        return -1;
-                    }
-                    return 0;
+        $(document).ready(function () {
+            $('#date_from').change(function () {
+                $('#date_to').change(function () {
+                    //fire your ajax call
+                    var date_from = $("#date_from").val();
+                    var date_to = $("#date_to").val();
+
+                    $("#download_report_button").attr("action", "/admin/allReport/" + date_from + "/" + date_to);
+                    $.ajax({
+                        url: '/admin/get_report_assist/' + date_from + '/' + date_to,
+                        type: 'GET',
+                        success: function (response) {
+                            var sorted = response.sort(function (a, b) {
+                                if (a.createdAt < b.createdAt) {
+                                    return 1;
+                                }
+                                if (a.createdAt > b.createdAt) {
+                                    return -1;
+                                }
+                                return 0;
+                            });
+                            var trHTML = '';
+                            $.each(response, function (i, order) {
+                                trHTML += "<tr><td class='title-col-orders'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
+                                        '   <td class="auditorium-col-orders">' + order.auditorium + "</td>" +
+                                        '   <td class="workplace-col-orders">' + order.workplace_access_num + "</td>" +
+                                        '   <td class="assistant-col-orders">' + order.assistantLastName + "</td>" +
+                                        '   <td class="date-col-orders">' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
+                                        '   <td class="status-col-orders">' + order.status + "</td></tr>";
+                            });
+                            $('#records_table tbody').empty();
+                            $('#records_table').append(trHTML);
+                        }
+                    });
                 });
-                var trHTML = '';
-                $.each(response, function (i, order) {
-                    trHTML += "<tr><td class='title-col-orders'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
-                            '   <td class="auditorium-col-orders">' + order.auditorium + "</td>" +
-                            '   <td class="workplace-col-orders">' + order.workplace_access_num + "</td>" +
-                            '   <td class="assistant-col-orders">' + order.assistantLastName + "</td>" +
-                            '   <td class="date-col-orders">' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                            '   <td class="status-col-orders">' + order.status + "</td></tr>";
-                });
-                $('#records_table tbody').empty();
-                $('#records_table').append(trHTML);
-            }
+            });
         });
+
     </script>
 </head>
 

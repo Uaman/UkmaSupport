@@ -57,7 +57,6 @@
         }
 
         $(function () {
-
             $("#date_from").datepicker({
                 dateFormat: 'yy-mm-dd'
             })
@@ -78,9 +77,6 @@
         /*------------------------------------------------*/
 
         $(document).ready(function () {
-            $("#test").click(function (e) {
-
-            });
             $('#date_from').change(function () {
                 $('#date_to').change(function () {
                     //fire your ajax call

@@ -18,6 +18,19 @@
         $(document).ready(function () {
             $("#records_table").tablesort();
         });
+
+        $.ajax({
+            url: '/admin/getAuditoriums',
+            type: 'GET',
+            success: function (data) {
+                $('#auditorium').append($('<option>').text(' <spring:message code="admin.report.auditorium"/>'));
+                $.each(data, function (i, auditorium) {
+                    $('#auditor_field').append($('<option>').text(auditorium.number).attr('value', auditorium.number));
+
+                });
+
+            }
+        });
         function formatDate(date, fmt) {
             function pad(value) {
                 return (value.toString().length < 2) ? '0' + value : value;
@@ -43,54 +56,67 @@
             });
         }
 
-        $(function() {
-            $( "#date_from" ).datepicker({
-                dateFormat: 'dd.mm.yy'
+        $(function () {
+
+            $("#date_from").datepicker({
+                dateFormat: 'yy-mm-dd'
             })
         });
 
-        $(function() {
-            $( "#date_to" ).datepicker({
-                dateFormat: 'dd.mm.yy'
+        $(function () {
+            $("#date_to").datepicker({
+                dateFormat: 'yy-mm-dd'
             })
         });
+
 
         jQuery(function ($) {
             $('tbody tr[data-href]').addClass('clickable').click(function () {
                 window.location = $(this).attr('data-href');
             });
         });
-
         /*------------------------------------------------*/
-        $.ajax({
-            url: '/admin/getAllOrders',
-            type: 'GET',
-            data: {
-                text: $("#sel2").val()
-            },
-            success: function (response) {
-                var sorted = response.sort(function (a, b) {
-                    if (a.createdAt < b.createdAt) {
-                        return 1;
-                    }
-                    if (a.createdAt > b.createdAt) {
-                        return -1;
-                    }
-                    return 0;
+        $(document).ready(function () {
+            $('#date_from').change(function () {
+                $('#date_to').change(function () {
+                    //fire your ajax call
+                    var date_from = $("#date_from").val();
+                    var date_to = $("#date_to").val();
+                    var audit_number = $("#auditor_field").val();
+
+
+                    $("#download_report_button").attr("action","/admin/auditoriumReport/"+date_from + "/" + date_to + "/" + audit_number);
+                    $.ajax({
+                        url: '/admin/get_report_audit/' + date_from + '/' + date_to + '/' + audit_number,
+                        type: 'GET',
+                        success: function (response) {
+                            var sorted = response.sort(function (a, b) {
+                                if (a.createdAt < b.createdAt) {
+                                    return 1;
+                                }
+                                if (a.createdAt > b.createdAt) {
+                                    return -1;
+                                }
+                                return 0;
+                            });
+                            var trHTML = '';
+                            $.each(response, function (i, order) {
+                                trHTML += "<tr><td class='title-col-orders'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
+                                        '   <td class="auditorium-col-orders">' + order.auditorium + "</td>" +
+                                        '   <td class="workplace-col-orders">' + order.workplace_access_num + "</td>" +
+                                        '   <td class="assistant-col-orders">' + order.assistantLastName + "</td>" +
+                                        '   <td class="date-col-orders">' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
+                                        '   <td class="status-col-orders">' + order.status + "</td></tr>";
+                            });
+                            $('#records_table tbody').empty();
+                            $('#records_table').append(trHTML);
+                        }
+                    });
                 });
-                var trHTML = '';
-                $.each(response, function (i, order) {
-                    trHTML += "<tr><td class='title-col-orders'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
-                            '   <td class="auditorium-col-orders">' + order.auditorium + "</td>" +
-                            '   <td class="workplace-col-orders">' + order.workplace_access_num + "</td>" +
-                            '   <td class="assistant-col-orders">' + order.assistantLastName + "</td>" +
-                            '   <td class="date-col-orders">' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                            '   <td class="status-col-orders">' + order.status + "</td></tr>";
-                });
-                $('#records_table tbody').empty();
-                $('#records_table').append(trHTML);
-            }
+            });
         });
+        /*------------------------------------------------*/
+
     </script>
 </head>
 
@@ -169,10 +195,7 @@
                     path="auditorium"
                     >
                 <option value="" disabled selected>
-                    <spring:message code="admin.report.auditorium"/></option>
-                <c:forEach items="${auditoriums}" var="item" varStatus="count">
-                    <option value="${item.number}">${item.number}</option>
-                </c:forEach>
+                   </option>
             </select>
         </div>
 

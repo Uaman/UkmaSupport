@@ -20,6 +20,8 @@ public interface OrderDao {
 
     List<Order> getAllByAssisstIdDate(String date_from,String date_to,int id);
 
+    List<Order> getAllByAuditoriumAndDate(String date_from,String date_to,String number);
+
     void update(Order order);
 
     Order getByUserIdAndId(int user_id,int id);
@@ -27,6 +29,8 @@ public interface OrderDao {
     void delete(int id);
 
     List<Order> getAll();
+
+    List<Order> getAllByDate(String date_from,String date_to);
 
     List<Order> getAllAssistOrders(int assistid);
 
