@@ -39,7 +39,9 @@ public class OrderDaoImpl implements OrderDao {
 
     private static final String GET_ALL_ASSIST_ORDERS = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, users.last_name AS assist, (SELECT concat(users.last_name, '') AS userName FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE assistant_id=?";
 
-    private static final String GET_ALL_ORDERS_BY_ASSIST_AND_STATUS = "SELECT COUNT (orders.status) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE orders.assistant_id=? AND orders.status=? ";
+    private static final String GET_COUNT_BY_ASSIST_AND_STATUS_DATE = "SELECT COUNT (orders.status) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE to_char(orders.created_at, 'YYYY-MM-DD')>=? AND to_char(orders.created_at, 'YYYY-MM-DD')<=? AND orders.assistant_id=? AND orders.status=? ";
+
+    private static final String GET_COUNT_BY_DATE = "SELECT COUNT (orders.status) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE to_char(orders.created_at, 'YYYY-MM-DD')>=? AND to_char(orders.created_at, 'YYYY-MM-DD')<=? AND orders.status=?";
 
     private static final String DELETE_ORDER = "DELETE FROM orders WHERE id=?";
 
@@ -54,11 +56,7 @@ public class OrderDaoImpl implements OrderDao {
         return jdbcTemplate.queryForObject(GET_ORDER_BY_ID, new Object[]{id}, rowMapper);
     }
 
-    @Override
-    public int getCountOrderByAssistant(int assistant_id, String status) {
-        int total = jdbcTemplate.queryForObject(GET_ALL_ORDERS_BY_ASSIST_AND_STATUS, new Object[]{assistant_id, status}, Integer.class);
-        return total;
-    }
+
 
     @Override
     public List<Order> getByAuditoriumNumber(String number) {
@@ -74,6 +72,18 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public List<Order> getByUserId(int user_id) {
         return jdbcTemplate.query(GET_ALL_ORDERS_BY_USER_ID, new Object[]{user_id}, rowMapper);
+    }
+
+    @Override
+    public int getCountOrderByAssistantDate(String date_from, String date_to, int assistant_id, String status) {
+        int total = jdbcTemplate.queryForObject(GET_COUNT_BY_ASSIST_AND_STATUS_DATE, new Object[]{date_from,date_to,assistant_id, status}, Integer.class);
+        return total;
+    }
+
+    @Override
+    public int getCountOrderByDate(String date_from, String date_to,String status) {
+        int total = jdbcTemplate.queryForObject(GET_COUNT_BY_DATE, new Object[]{date_from,date_to,status}, Integer.class);
+        return total;
     }
 
     public Order getByUserIdAndId(int user_id, int id) {

@@ -291,8 +291,8 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/assistantReport/{date_from}/{date_to}/{id}", method = RequestMethod.GET)
     public String assistantReport(@PathVariable("date_from") String date_from,@PathVariable("date_to") String date_to,@PathVariable("id") Integer id, Model model) {
-        int countDone = orderService.getCountOrderByAssistant(id, DONE);
-        int contUndone = orderService.getCountOrderByAssistant(id, UNDONE);
+        int countDone = orderService.getCountOrderByAssistantDate(date_from, date_to, id, DONE);
+        int contUndone = orderService.getCountOrderByAssistantDate(date_from, date_to, id, UNDONE);
 
         List<Order> orderList = orderService.getAllByAssisstIdDate(date_from, date_to, id);
         model.addAttribute("orderList", orderList);
@@ -310,8 +310,13 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/allReport/{date_from}/{date_to}", method = RequestMethod.GET)
     public String allReport(@PathVariable("date_from") String date_from,@PathVariable("date_to") String date_to,Model model) {
+        int countDone = orderService.getCountOrderByDate(date_from, date_to, DONE);
+        int contUndone = orderService.getCountOrderByDate(date_from, date_to, UNDONE);
+
         List<Order> orderList = orderService.getAllByDate(date_from, date_to);
         model.addAttribute("orderList", orderList);
+        model.addAttribute("countDone", countDone);
+        model.addAttribute("countUndone", contUndone);
         return "allReport";
     }
 
