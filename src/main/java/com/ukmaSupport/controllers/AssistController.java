@@ -1,5 +1,6 @@
 package com.ukmaSupport.controllers;
 
+import com.ukmaSupport.mailService.templates.NewOrderMail;
 import com.ukmaSupport.mailService.templates.OrderIsDoneMail;
 import com.ukmaSupport.models.*;
 import com.ukmaSupport.services.interfaces.AuditoriumService;
@@ -44,6 +45,9 @@ public class AssistController {
     private AuditoriumService auditoriumService;
 
     @Autowired
+    private NewOrderMail newOrderMail;
+
+    @Autowired
     private OrderIsDoneMail orderIsDoneMail;
 
     @Autowired
@@ -54,9 +58,6 @@ public class AssistController {
     @Qualifier("orderValidator")
     private OrderValidator validatorOrder;
 
-    @Autowired
-    @Qualifier("orderValidator")
-    private OrderValidator editOrderValidator;
 
     @RequestMapping(value = "/assist/home", method = RequestMethod.GET)
     public String allAssistOrders(Model model) {
@@ -163,22 +164,24 @@ public class AssistController {
         order.setAssistantId(assistantId);
         order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
         orderService.createOrUpdate(order);
+        if (assistant != null)
+            newOrderMail.send(assistant.getEmail());
         return "redirect:/assist/created_orders";
     }
 
     @RequestMapping(value = "/assist/mark_done/{id}", method = RequestMethod.GET)
     public String setToDone(@PathVariable("id") Integer id, Model model) {
         Order order = orderService.getById(id);
-        System.out.println(order.getStatus());
-        if(order.getStatus().equals(DONE)) {
+        if (order.getStatus().equals(DONE)) {
             order.setStatus(UNDONE);
-        }else {
+        } else {
             order.setStatus(DONE);
         }
         orderService.createOrUpdate(order);
 
-       // User user = userService.getById(order.getUserId());
-        //orderIsDoneMail.send(user.getEmail());
+        User user = userService.getById(order.getUserId());
+        if (user != null)
+            orderIsDoneMail.send(user.getEmail());
 
         return "redirect:/assist/home";
     }
@@ -196,9 +199,9 @@ public class AssistController {
         int userId = (Integer) session.getAttribute("id");
         Order order = orderService.getByUserIdAndId(userId, id);
 
-            if (order == null) {
-                return "redirect:/assist/created_orders";
-            }
+        if (order == null) {
+            return "redirect:/assist/created_orders";
+        }
 
         model.addAttribute("title", order.getTitle());
         model.addAttribute("workplace", order.getWorkplace());
@@ -212,7 +215,7 @@ public class AssistController {
 
     @RequestMapping(value = "/assist/edit_order/save", method = RequestMethod.POST)
     public String orderEdited(@ModelAttribute("id") Integer id, @ModelAttribute("editOrder") Order order, ModelMap model, BindingResult result) {
-        editOrderValidator.validate(order, result);
+        validatorOrder.validate(order, result);
 
         if (result.hasErrors()) {
             model.addAttribute("title", order.getTitle());

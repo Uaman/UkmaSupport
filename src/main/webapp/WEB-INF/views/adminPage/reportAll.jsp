@@ -2,18 +2,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title><spring:message code="admin.user.title"/></title>
+    <title><spring:message code="admin.Title.Reports"/></title>
     <link href="../../../resources/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../../../resources/css/calendar.css" type="text/css" media="screen"/>
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script src="../../../resources/js/tsort.js"></script>
+    <script src="../../../resources/js/calendar.js"></script>
+    <link type="text/css" href="../../../resources/css/jquery-ui.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../../resources/js/jquery-ui.min.js"></script>
     <script>
+        $(document).ready(function () {
+            $("#records_table").tablesort();
+        });
         function formatDate(date, fmt) {
             function pad(value) {
                 return (value.toString().length < 2) ? '0' + value : value;
@@ -38,8 +44,29 @@
                 }
             });
         }
+
+        $(function() {
+            $( "#date_from" ).datepicker({
+                dateFormat: 'dd.mm.yy'
+            })
+        });
+
+        $(function() {
+            $( "#date_to" ).datepicker({
+                dateFormat: 'dd.mm.yy'
+            })
+        });
+
+        jQuery(function ($) {
+            $('tbody tr[data-href]').addClass('clickable').click(function () {
+                window.location = $(this).attr('data-href');
+            });
+        });
+
+        /*------------------------------------------------*/
+
         $.ajax({
-            url: '/admin/users/getUserProfile/' + '${id}',
+            url: '/admin/getAllOrders',
             type: 'GET',
             data: {
                 text: $("#sel2").val()
@@ -57,11 +84,11 @@
                 var trHTML = '';
                 $.each(response, function (i, order) {
                     trHTML += "<tr><td class='title-col-orders'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
-                    '   <td class="auditorium-col-orders">' + order.auditorium + "</td>" +
-                    '   <td class="workplace-col-orders">' + order.workplace_access_num + "</td>" +
-                    '   <td class="assistant-col-orders">' + order.assistantLastName + "</td>" +
-                    '   <td class="date-col-orders">' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                    '   <td class="status-col-orders">' + order.status + "</td></tr>";
+                            '   <td class="auditorium-col-orders">' + order.auditorium + "</td>" +
+                            '   <td class="workplace-col-orders">' + order.workplace_access_num + "</td>" +
+                            '   <td class="assistant-col-orders">' + order.assistantLastName + "</td>" +
+                            '   <td class="date-col-orders">' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
+                            '   <td class="status-col-orders">' + order.status + "</td></tr>";
                 });
                 $('#records_table tbody').empty();
                 $('#records_table').append(trHTML);
@@ -80,7 +107,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"><spring:message
+                        <a class="dropdown-toggle menu-element active" data-toggle="dropdown" href="#"><spring:message
                                 code="admin.reports"/><b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -97,7 +124,7 @@
                     <li><a class="menu-element" href="/admin/auditoriums"><spring:message
                             code="admin.auditoriums"/></a></li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle menu-element active" data-toggle="dropdown" href="#"><spring:message
+                        <a class="dropdown-toggle menu-element" data-toggle="dropdown" href="#"><spring:message
                                 code="admin.users"/><b
                                 class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -134,72 +161,66 @@
         </div>
     </nav>
 
-    <div id="profEdit" class="top-block bottom-block">
-        <form:form id="passChangeForm" class="form-horizontal" action="/admin/allUsers" method="get"
-                   commandName="passChangeForm">
-            <div class="centralWord row col-md-offset-1" colspan="2" align="center"><spring:message
-                    code="admin.users.account"/></div>
-            <div class="form-group row">
-                <label class="col-md-4 control-label" for="firstName"><spring:message
-                        code="registration.firstName"/></label>
+    <!--------------------------------------->
+    <div class="options">
+        <div id="From">
+            <label class="label-style">
+                <span class="from_label"><spring:message code="admin.report.dateFrom"/></span>
+                <input type="text" id="date_from" size="17">
+            </label>
+        </div>
 
-                <div class="col-md-4">
-                    <form:input id="firstName" path="firstName" name="firstName" type="text" value=""
-                                class="form-control form-style" READONLY="true"/>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-4 control-label" for="lastName"><spring:message
-                        code="registration.lastName"/></label>
-
-                <div class="col-md-4">
-                    <form:input id="lastName" path="lastName" name="lastName" type="text" value=""
-                                class="form-control form-style" READONLY="true"/>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-4 control-label" for="email"><spring:message
-                        code="registration.email"/></label>
-
-                <div class="col-md-4">
-                    <form:input id="email" path="email" name="email" type="text" value=""
-                                class="form-control form-style" READONLY="true"/>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-4 control-label" for="role"><spring:message
-                        code="admin.users.role"/></label>
-
-                <div class="col-md-4">
-                    <form:input id="role" path="role" name="role" type="text" value=""
-                                class="form-control form-style text-lowercase" READONLY="true"/>
-                </div>
-            </div>
-        </form:form>
+        <div id="To">
+            <label class="label-style">
+                <span class="to_label"><spring:message code="admin.report.dateTo"/></span>
+                <input type="text" id="date_to" size="17">
+            </label>
+        </div>
     </div>
-    <div class="table-align bottom-block top-table padding-tom">
-        <table id="records_table" class="tbl table table-striped admin-table" style="margin-top: -170px;">
+    <!--------------------------------------->
+    <div>
+        <p id="helloAssist"></p>
+    </div>
+    <div class="table-align bottom-block">
+        <table id="records_table" class="tbl table table-striped admin-table assist-order-table">
             <thead>
             <tr>
-                <th class="no-sort title-col-orders-th" style="margin-left: 20px;width:50px;"><spring:message
-                        code="admin.orders.title"/></th>
-                <th class="auditorium-col-orders-th" style="width: 70px;"><spring:message
+                <th class="no-sort title-col-orders-th"><spring:message
+                        code="admin.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                                                        width="8px" height="14px"></th>
+                <th class="auditorium-col-orders-th-report"><spring:message
                         code="admin.orders.auditorium"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                              width="8px" height="14px"></th>
-                <th class="workplace-col-orders-th" style="width: 70px;"><spring:message code="admin.orders.workplace"/><img
-                        class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
-                <th class="assistant-col-orders" style="width: 50px;"><spring:message
+                <th class="workplace-col-orders-th"><spring:message code="admin.orders.workplace"/><img
+                        class="icon-sort" src="../../../resources/img/sort15.png"
+                        width="8px" height="14px"></th>
+                <th class="assistant-col-orders-th-report"><spring:message
                         code="admin.orders.assistant"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                             width="8px" height="14px"></th>
-                <th class="date-col-orders-th" style="width: 50px;"><spring:message code="admin.orders.date"/><img
-                        class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
-                <th class="status-col-orders-th" style="width: 50px;"><spring:message code="admin.orders.status"/><img
-                        class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
+                <th class="date-col-orders-th"><spring:message code="admin.orders.date"/><img class="icon-sort"
+                                                                                              src="../../../resources/img/sort15.png"
+                                                                                              width="8px" height="14px">
+                </th>
+                <th class="status-col-orders-th"><spring:message code="admin.orders.status"/><img class="icon-sort"
+                                                                                                  src="../../../resources/img/sort15.png"
+                                                                                                  width="8px"
+                                                                                                  height="14px"></th>
+                <th class="indent"></th>
             </tr>
             </thead>
-
         </table>
     </div>
+
+    <!--------------------------------------->
+    <div class="col-md-offset-7 top-block">
+        <form id="download_report_button" class="form-horizontal" method="get" action="/admin/">
+            <div class="col-md-offset-7 col-md-4">
+                <button id="download_all" type="submit" class="btn btn-primary btn-block"><spring:message
+                        code="admin.download"/></button>
+            </div>
+        </form>
+    </div>
+    <!--------------------------------------->
 
     <div id="footer">
         <div class="thick"></div>
@@ -210,7 +231,6 @@
             <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
         </div>
     </div>
-
 </div>
 </body>
 </html>

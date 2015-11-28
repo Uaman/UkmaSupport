@@ -181,7 +181,7 @@
                                                                                               width="8px" height="14px"></th>
                 <th class="auditorium-col"><spring:message code="admin.orders.auditorium"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                                                                 width="8px" height="14px"></th>
-                <th class="workplace-col"><spring:message code="admin.orders.workplace"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                <th class="workplace-col-admin-th"><spring:message code="admin.orders.workplace"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                                                               width="8px" height="14px"></th>
                 <th class="status-col-ord"><spring:message code="admin.orders.status"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                                                         width="8px" height="14px"></th>

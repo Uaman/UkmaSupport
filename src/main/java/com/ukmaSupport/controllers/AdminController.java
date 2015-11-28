@@ -214,11 +214,9 @@ public class AdminController {
         if (assistant != null) assistantId = assistant.getId();
         order.setAssistantId(assistantId);
         order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
-
         orderService.createOrUpdate(order);
-
-        //newOrderMail.send(assistant.getEmail());
-
+        if (assistant != null)
+            newOrderMail.send(assistant.getEmail());
         return "redirect:/admin/myOrders";
     }
 
@@ -232,20 +230,11 @@ public class AdminController {
     public String editOrder(@PathVariable("id") Integer id, Model model) {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
-
         int userId = (Integer) session.getAttribute("id");
-
         Order order = orderService.getByUserIdAndId(userId, id);
-        if (order == null) {
+        if (order == null)
             return "redirect:/admin/myOrders";
-        }
-        model.addAttribute("title", order.getTitle());
-        model.addAttribute("workplace", order.getWorkplace());
-        model.addAttribute("auditorium", order.getAuditorium());
-        model.addAttribute("content", order.getContent());
-        model.addAttribute("id", order.getId());
         model.addAttribute("editOrder", order);
-
         return "adminPage/editOrder";
     }
 
@@ -254,19 +243,11 @@ public class AdminController {
         orderValidator.validate(order, result);
 
         if (result.hasErrors()) {
-
-            model.addAttribute("title", order.getTitle());
-            model.addAttribute("workplace", order.getWorkplace());
-            model.addAttribute("auditorium", order.getAuditorium());
-            model.addAttribute("content", order.getContent());
-            model.addAttribute("id", order.getId());
             model.addAttribute("editOrder", order);
             return "adminPage/editOrder";
         }
-        order.setId(id);
         order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
         orderService.update(order);
-
         return "redirect:/admin/myOrders";
     }
 
@@ -308,12 +289,12 @@ public class AdminController {
         return "redirect:/admin/auditoriums/" + name;
     }
 
-    @RequestMapping(value = "/admin/assistantReport/{id}", method = RequestMethod.GET)
-    public String assistantReport(@PathVariable("id") Integer id, Model model) {
+    @RequestMapping(value = "/admin/assistantReport/{date_from}/{date_to}/{id}", method = RequestMethod.GET)
+    public String assistantReport(@PathVariable("date_from") String date_from,@PathVariable("date_to") String date_to,@PathVariable("id") Integer id, Model model) {
         int countDone = orderService.getCountOrderByAssistant(id, DONE);
         int contUndone = orderService.getCountOrderByAssistant(id, UNDONE);
 
-        List<Order> orderList = orderService.getAllAssistOrders(id);
+        List<Order> orderList = orderService.getAllByAssisstIdDate(date_from, date_to, id);
         model.addAttribute("orderList", orderList);
         model.addAttribute("countDone", countDone);
         model.addAttribute("countUndone", contUndone);
@@ -441,14 +422,30 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/report_auditorium", method = RequestMethod.GET)
     public String reportByAuditorium(Model model) {
+        List<Auditorium> auditoriums = auditoriumService.getAll();
+        model.addAttribute("auditoriums", auditoriums);
         model.addAttribute("link", "report_auditorium");
         return "adminPage/reportAudit";
     }
 
+    @RequestMapping(value = "/admin/report_assist/{date_from}/{date_to}/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Order> getReportByAssist(@PathVariable("date_from") String date_from,@PathVariable("date_to") String date_to,@PathVariable("id") int id) {
+        return orderService.getAllByAssisstIdDate(date_from,date_to,id);
+
+    }
     @RequestMapping(value = "/admin/report_assist", method = RequestMethod.GET)
     public String reportByAssist(Model model) {
+        List<User> assistants = userService.getByRole(ASSISTANT);
+        model.addAttribute("assistants", assistants);
         model.addAttribute("link", "report_assist");
         return "adminPage/reportAssist";
+    }
+
+    @RequestMapping(value = "/admin/report_all", method = RequestMethod.GET)
+    public String reportAll(Model model) {
+        model.addAttribute("link", "report_all");
+        return "adminPage/reportAll";
     }
 
     /**
@@ -467,4 +464,6 @@ public class AdminController {
     List<Order> getReportByAssist(@PathVariable("id") int id) {
         return orderService.getAllAssistOrders(id);
     }
+
+
 }

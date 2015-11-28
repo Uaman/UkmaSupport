@@ -44,7 +44,7 @@
                                 <spring:message code="assist.menu.Created"/></a></li>
                         </ul>
                     </li>
-                    <li><a id="editAssistProfile" class="menu-element" href="/assist/edit_profile">
+                    <li><a id="editAssistProfile" class="menu-element active" href="/assist/edit_profile">
                         <spring:message code="assist.menu.Profile"/></a></li>
                     <li><a class="menu-element" href="/logout"><spring:message code="assist.menu.LogOut"/></a>
                     </li>

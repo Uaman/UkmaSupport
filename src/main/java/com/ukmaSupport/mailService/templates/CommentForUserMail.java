@@ -7,16 +7,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CommentForUserMail {
-    private static final String FROM_ADDR = Constants.MAIL_SERVER;
 
     @Autowired
     private MailService mailService;
 
-    public void send(String toAddr, int orderId){
+    public void send(String toAddr, int orderId) {
         String subject = "Your order has been commented";
-        String link = Constants.SERVER + Constants.COMMENTS + orderId;
-        String body = "Your order has been commented. Details: " + link + "\n\nUKMA Support\n" + Constants.SERVER;
+        String link = Constants.LOCAL_SERVER + Constants.COMMENTS + orderId;
+        String body = "Your order has been commented. Details: " + link + "\n\nUKMA Support\n" + Constants.LOCAL_SERVER;
 
-        mailService.sendEmail(toAddr, FROM_ADDR, subject, body);
+        mailService.sendEmail(toAddr, subject, body);
     }
 }

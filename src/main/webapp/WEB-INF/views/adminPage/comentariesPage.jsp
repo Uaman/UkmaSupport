@@ -13,6 +13,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('.click-to-drop').click(function() {
@@ -39,6 +40,9 @@
                         return false;
                     });
                 }
+            });
+            $('#editbtn').click(function() {
+                window.location = "/admin/orders/edit/${id}";
             });
         });
     </script>
@@ -136,7 +140,7 @@
                 <p class="drop-el">${order.content}</p><hr>
             </div>
             <div>
-                <button type="submit" action="" class="btn btn-primary btn-block btn-edit-order">Edit order</button>
+                <button id="editbtn" type="submit" action="/admin/orders/edit/${id}" class="btn btn-primary btn-block btn-edit-order">Edit order</button>
             </div>
         </div>
         <div class="col-md-offset-4">

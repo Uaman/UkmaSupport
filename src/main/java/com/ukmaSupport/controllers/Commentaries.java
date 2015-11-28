@@ -10,6 +10,7 @@ import com.ukmaSupport.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,12 +45,12 @@ public class Commentaries {
         Comment comment = new Comment();
 
         Order currentOrder = orderService.getById(ordereId);
+        User user = userService.getById(getCurrentUser());
 
         model.addAttribute("order", currentOrder);
         model.addAttribute("allCommentaries",commentaries);
         model.addAttribute("comment",comment);
-        
-        User user = userService.getById(getCurrentUser());
+        model.addAttribute("currentUser", user);
 
         if(user.getRole().equals("ADMIN")){
             return "adminPage/comentariesPage";
