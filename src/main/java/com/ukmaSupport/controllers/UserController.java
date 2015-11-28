@@ -6,7 +6,6 @@ import com.ukmaSupport.services.interfaces.AuditoriumService;
 import com.ukmaSupport.services.interfaces.OrderService;
 import com.ukmaSupport.services.interfaces.UserService;
 import com.ukmaSupport.services.interfaces.WorkplaceService;
-import com.ukmaSupport.utils.EditOrderValidator;
 import com.ukmaSupport.utils.OrderValidator;
 import com.ukmaSupport.utils.PasswordChangeValidator;
 import com.ukmaSupport.utils.PasswordEncryptor;
@@ -54,9 +53,6 @@ public class UserController {
     @Autowired
     @Qualifier("orderValidator")
     private OrderValidator validator;
-    @Autowired
-    @Qualifier("editOrderValidator")
-    private EditOrderValidator editOrderValidator;
 
     @RequestMapping(value = "/user/ajaxtest", method = RequestMethod.GET)
     public
@@ -115,9 +111,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/allUserOrders", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    List<Order> allUserOrders() {
+    public @ResponseBody List<Order> allUserOrders() {
 
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
@@ -158,7 +152,7 @@ public class UserController {
 
     @RequestMapping(value = "/user/editOrder/save", method = RequestMethod.POST)
     public String orderEdited(@ModelAttribute("id") Integer id, @ModelAttribute("editOrder") Order order, ModelMap model, BindingResult result) {
-        editOrderValidator.validate(order, result);
+        validator.validate(order, result);
 
         if (result.hasErrors()) {
             model.addAttribute("title", order.getTitle());
