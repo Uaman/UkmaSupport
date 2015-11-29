@@ -25,7 +25,7 @@
 
   <div class="top-block">
     <p id="error404" class="centralWord"><spring:message code="error.404"/></p>
-    <a class="centralButton btn btn-primary button-style" href="/index"><spring:message code="registration.mainPage"/></a>
+    <a class="centralButton btn btn-primary button-style" href="/"><spring:message code="registration.mainPage"/></a>
   </div>
 
   <div id="footer">
