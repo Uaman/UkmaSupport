@@ -14,6 +14,9 @@
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script src="../../../resources/js/tsort.js"></script>
     <script>
+        $(document).ready(function () {
+            $("#records_table").tablesort();
+        });
         function formatDate(date, fmt) {
             function pad(value) {
                 return (value.toString().length < 2) ? '0' + value : value;
@@ -182,7 +185,8 @@
             <thead>
             <tr>
                 <th class=" title-col-orders-th" style="margin-left: 20px;width:50px;"><spring:message
-                        code="admin.orders.title"/></th>
+                        code="admin.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                                                        width="8px" height="14px"></th>
                 <th class="auditorium-col-orders-th" style="width: 70px;"><spring:message
                         code="admin.orders.auditorium"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                              width="8px" height="14px"></th>

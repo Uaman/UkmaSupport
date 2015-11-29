@@ -17,8 +17,6 @@
             $("#test").click(function (e) {
 
                 var dataWorkplaces = parseInt($("#lol").val());
-                // alert(dataWorkplaces);
-                // alert(${name});
                 addWorkplaces = {
                     workplaces: dataWorkplaces,
                     number: "${name}"
@@ -63,12 +61,6 @@
         $(document).ready(function () {
             $("#records_table").tablesort();
         });
-        jQuery(function ($) {
-            $('tbody tr[data-href]').addClass('clickable').click(function () {
-                window.location = $(this).attr('data-href');
-            });
-        });
-
         $.ajax({
             url: '/admin/auditoriums/${name}/getWorkplaces',
             type: 'GET',

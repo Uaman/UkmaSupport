@@ -104,7 +104,6 @@
     <script>
         $(document).ready(function () {
             $("#records_table").tablesort();
-            var deleteLink = $("a:contains('Delete')");
         });
         function formatDate(date, fmt) {
             function pad(value) {
@@ -130,11 +129,6 @@
                 }
             });
         }
-        jQuery(function ($) {
-            $('tbody tr[data-href]').addClass('clickable').click(function () {
-                window.location = $(this).attr('data-href');
-            });
-        });
         $.ajax({
             url: '/admin/getAllOrders',
             type: 'GET',

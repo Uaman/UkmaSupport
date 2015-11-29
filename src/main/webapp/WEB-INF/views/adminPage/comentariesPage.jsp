@@ -15,8 +15,8 @@
     <script src="../../../resources/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('.click-to-drop').click(function() {
+        $(document).ready(function () {
+            $('.click-to-drop').click(function () {
                 $(this).siblings('.drop-el').slideToggle('fast');
                 if ($(this).children('.drop-inf').hasClass('glyphicon-chevron-down')) {
                     $(this).children('.drop-inf').removeClass('glyphicon-chevron-down');
@@ -27,21 +27,21 @@
                 }
             });
             $('#comments').scrollTop($('#comments').prop('scrollHeight'));
-            $('.add-comment-form').submit(function() {
+            $('.add-comment-form').submit(function () {
                 return false;
             });
-            $('#content').keyup(function() {
+            $('#content').keyup(function () {
                 if ($('#content').val() != '') {
                     $('#btn-add-comment').removeClass('disabled');
                     $('.add-comment-form').unbind();
                 } else {
                     $('#btn-add-comment').addClass('disabled');
-                    $('.add-comment-form').submit(function() {
+                    $('.add-comment-form').submit(function () {
                         return false;
                     });
                 }
             });
-            $('#editbtn').click(function() {
+            $('#editbtn').click(function () {
                 window.location = "/admin/orders/edit/${id}";
             });
         });
@@ -125,22 +125,32 @@
         <div class="col-md-4 order-inf">
             <div>
                 <p class="click-to-drop"><i class="drop-inf glyphicon glyphicon-chevron-down"></i>auditorium</p>
-                <p class="drop-el">${order.auditorium}</p><hr>
+
+                <p class="drop-el">${order.auditorium}</p>
+                <hr>
             </div>
             <div>
                 <p class="click-to-drop"><i class="drop-inf glyphicon glyphicon-chevron-down"></i>workplace</p>
-                <p class="drop-el">${order.workplace_access_num}</p><hr>
+
+                <p class="drop-el">${order.workplace_access_num}</p>
+                <hr>
             </div>
             <div>
                 <p class="click-to-drop"><i class="drop-inf glyphicon glyphicon-chevron-down"></i>date</p>
-                <p class="drop-el">${order.createdAt.toLocaleString()}</p><hr>
+
+                <p class="drop-el">${order.createdAt.toLocaleString()}</p>
+                <hr>
             </div>
             <div>
                 <p class="click-to-drop"><i class="drop-inf glyphicon glyphicon-chevron-down"></i>description</p>
-                <p class="drop-el">${order.content}</p><hr>
+
+                <p class="drop-el">${order.content}</p>
+                <hr>
             </div>
             <div>
-                <button id="editbtn" type="submit" action="/admin/orders/edit/${id}" class="btn btn-primary btn-block btn-edit-order">Edit order</button>
+                <button id="editbtn" type="submit" action="/admin/orders/edit/${id}"
+                        class="btn btn-primary btn-block btn-edit-order">Edit order
+                </button>
             </div>
         </div>
         <div class="col-md-offset-4">
@@ -175,7 +185,8 @@
                 </c:forEach>
             </div>
             <div id="add-comment" class="col-md-offset-1 col-md-10">
-                <form:form class="form-horizontal add-comment-form" action="/addComment/${id}" method="post" commandName="comment">
+                <form:form class="form-horizontal add-comment-form" action="/addComment/${id}" method="post"
+                           commandName="comment">
                     <div class="form-group">
                         <div class="col-md-12">
                     <textarea id="content" name="content" path="comment.content" class="col-md-12 txt-area" rows="4"
@@ -185,7 +196,8 @@
 
                     <div class="form-group">
                         <div class="col-md-offset-8">
-                            <button id="btn-add-comment" type="submit" class="btn btn-primary btn-block disabled">Add comment
+                            <button id="btn-add-comment" type="submit" class="btn btn-primary btn-block disabled">Add
+                                comment
                             </button>
                         </div>
                     </div>
