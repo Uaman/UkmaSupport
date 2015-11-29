@@ -64,8 +64,8 @@ public class UserController {
 
     @RequestMapping(value = "/user/userhome", method = RequestMethod.GET)
     public String listUserOrders(ModelMap model) {
-        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        HttpSession session = attr.getRequest().getSession();
+        HttpSession session = getCurrentSession();
+        session.setAttribute("orderEdit",null);
         User currentUser = userService.getById((Integer) session.getAttribute("id"));
         model.addAttribute("currentUser", currentUser);
         return "userPage/userHomePage";
@@ -82,9 +82,7 @@ public class UserController {
 
     @RequestMapping(value = "/user/createOrder", method = RequestMethod.POST)
     public String createOrderPost(@ModelAttribute("newOrder") Order order, ModelMap model, BindingResult result) {
-        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        HttpSession session = attr.getRequest().getSession();
-        int userId = (Integer) session.getAttribute("id");
+        int userId = (Integer) getCurrentSession().getAttribute("id");
         validator.validate(order, result);
         if (result.hasErrors()) {
             List<Auditorium> auditoriums = auditoriumService.getAll();
@@ -112,11 +110,7 @@ public class UserController {
 
     @RequestMapping(value = "/user/allUserOrders", method = RequestMethod.GET)
     public @ResponseBody List<Order> allUserOrders() {
-
-        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        HttpSession session = attr.getRequest().getSession();
-
-        int userId = (Integer) session.getAttribute("id");
+        int userId = (Integer) getCurrentSession().getAttribute("id");
         System.out.println(userId);
         List<Order> orders = orderService.getByUserId(userId);
         return orders;
@@ -128,12 +122,15 @@ public class UserController {
         return "redirect:/user/userhome";
     }
 
+    private HttpSession getCurrentSession(){
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        return attr.getRequest().getSession();
+    }
+
     @RequestMapping(value = "/user/editOrder/{id}", method = RequestMethod.GET)
     public String editOrder(@PathVariable("id") Integer id, Model model) {
-        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        HttpSession session = attr.getRequest().getSession();
 
-        int userId = (Integer) session.getAttribute("id");
+        int userId = (Integer) getCurrentSession().getAttribute("id");
 
 
         Order order = orderService.getByUserIdAndId(userId, id);
@@ -166,6 +163,10 @@ public class UserController {
         order.setId(id);
         order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
         orderService.update(order);
+        Integer orderId = (Integer) getCurrentSession().getAttribute("orderEdit");
+        if(orderId != null){
+            return "redirect:/addComment/"+orderId;
+        }
 
         return "redirect:/user/userhome";
     }

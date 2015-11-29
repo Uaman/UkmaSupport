@@ -13,7 +13,6 @@ import com.ukmaSupport.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,12 +53,14 @@ public class CommentariesController {
         Comment comment = new Comment();
 
         Order currentOrder = orderService.getById(ordereId);
-        User user = userService.getById(getCurrentUser());
+        User user = userService.getById((Integer) getCurrentSession().getAttribute("id"));
 
         model.addAttribute("order", currentOrder);
         model.addAttribute("allCommentaries",commentaries);
         model.addAttribute("comment",comment);
         model.addAttribute("currentUser", user);
+
+        getCurrentSession().setAttribute("orderEdit",ordereId);
 
         if(user.getRole().equals("ADMIN")){
             return "adminPage/comentariesPage";
@@ -72,21 +73,21 @@ public class CommentariesController {
         System.out.println("comm:" + request.getParameter("content"));
 
         commentService.createComment(createCommentObject(ordereId, content));
-        sentNotification(ordereId,getCurrentUser());
+        sentNotification(ordereId,(Integer)getCurrentSession().getAttribute("id"));
         return "redirect:/addComment/{id}";
     }
 
-    private int getCurrentUser(){
+    private HttpSession getCurrentSession(){
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
-        return (Integer) session.getAttribute("id");
+        return session;
     }
 
     private Comment createCommentObject(int orderId, String content){
         Comment comment = new Comment();
 
         User author = new User();
-        author.setId(getCurrentUser());
+        author.setId((Integer) getCurrentSession().getAttribute("id"));
 
         comment.setOrderId(orderId);
         comment.setContent(content);
@@ -112,6 +113,7 @@ public class CommentariesController {
             if(!currentUser.getEmail().equals(orderAuthor.getEmail())){
                 commentForUserMail.send(orderAuthor.getEmail(),currentOrderId);
             }
+            //send super admin
         }else if(currentUser.getRole().equals(UserRoles.ADMIN.toString())){
             User orderAuthor = userService.getById(currentOrder.getUserId());
             User orderAssistant = userService.getById(currentOrder.getAssistantId());
