@@ -36,10 +36,6 @@ public class AdminController {
     private OrderValidator orderValidator;
 
     @Autowired
-    @Qualifier("audiroriumValidator")
-    private AudiroriumValidator audiroriumValidator;
-
-    @Autowired
     private NewOrderMail newOrderMail;
 
     @Autowired
