@@ -9,11 +9,11 @@
     <link href="../../../resources/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="../../../resources/css/calendar.css" type="text/css" media="screen"/>
+
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script src="../../../resources/js/tsort.js"></script>
-    <script src="../../../resources/js/calendar.js"></script>
+
     <link type="text/css" href="../../../resources/css/jquery-ui.css" rel="stylesheet"/>
     <script type="text/javascript" src="../../../resources/js/jquery-ui.min.js"></script>
     <script>
@@ -48,31 +48,15 @@
         $(function(){
 
             $("#date_from").datepicker({
-
+                dateFormat: 'yy-mm-dd',
                 maxDate: new Date(),
-
-                numberOfMonths: 1,
-
-                onSelect: function(selectedDate) {
-
-                    $("#date_to").datepicker("option","minDate", selectedDate)
-
-                }
-
+                numberOfMonths: 1
             });
 
             $("#date_to").datepicker({
-
+                dateFormat: 'yy-mm-dd',
                 maxDate: new Date(),
-
-                numberOfMonths: 1,
-
-                onSelect: function(selectedDate) {
-
-                    $("#date_from").datepicker("option","maxDate", selectedDate)
-
-                }
-
+                numberOfMonths: 1
             });
 
         });
@@ -91,6 +75,7 @@
                     //fire your ajax call
                     var date_from = $("#date_from").val();
                     var date_to = $("#date_to").val();
+
 
                     $("#download_report_button").attr("action", "/admin/allReport/" + date_from + "/" + date_to);
                     $.ajax({

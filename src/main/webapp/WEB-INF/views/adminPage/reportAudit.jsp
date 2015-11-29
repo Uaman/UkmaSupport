@@ -59,31 +59,15 @@
         $(function(){
 
             $("#date_from").datepicker({
-
+                dateFormat: 'yy-mm-dd',
                 maxDate: new Date(),
-
-                numberOfMonths: 1,
-
-                onSelect: function(selectedDate) {
-
-                    $("#date_to").datepicker("option","minDate", selectedDate)
-
-                }
-
+                numberOfMonths: 1
             });
 
             $("#date_to").datepicker({
-
+                dateFormat: 'yy-mm-dd',
                 maxDate: new Date(),
-
-                numberOfMonths: 1,
-
-                onSelect: function(selectedDate) {
-
-                    $("#date_from").datepicker("option","maxDate", selectedDate)
-
-                }
-
+                numberOfMonths: 1
             });
 
         });
@@ -103,7 +87,8 @@
                     var date_to = $("#date_to").val();
                     var audit_number = $("#auditor_field").val();
 
-
+                    alert(date_from);
+                    alert(date_to);
                     $("#download_report_button").attr("action","/admin/auditoriumReport/"+date_from + "/" + date_to + "/" + audit_number);
                     $.ajax({
                         url: '/admin/get_report_audit/' + date_from + '/' + date_to + '/' + audit_number,

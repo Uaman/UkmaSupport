@@ -12,7 +12,7 @@
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script src="../../../resources/js/tsort.js"></script>
-    <link type="text/css" href="../../../resources/css/jquery-ui.css" rel="stylesheet"/>
+    <link type="text/css" href="../../../resources/css/jquery-ui.css" rel="stylesheet" />
     <script type="text/javascript" src="../../../resources/js/jquery-ui.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -59,35 +59,18 @@
         $(function(){
 
             $("#date_from").datepicker({
-
+                dateFormat: 'yy-mm-dd',
                 maxDate: new Date(),
-
-                numberOfMonths: 1,
-
-                onSelect: function(selectedDate) {
-
-                    $("#date_to").datepicker("option","minDate", selectedDate)
-
-                }
-
+                numberOfMonths: 1
             });
 
             $("#date_to").datepicker({
-
+                dateFormat: 'yy-mm-dd',
                 maxDate: new Date(),
-
-                numberOfMonths: 1,
-
-                onSelect: function(selectedDate) {
-
-                    $("#date_from").datepicker("option","maxDate", selectedDate)
-
-                }
-
+                numberOfMonths: 1
             });
 
         });
-
 
         jQuery(function ($) {
             $('tbody tr[data-href]').addClass('clickable').click(function () {
@@ -222,14 +205,14 @@
         <div id="From2">
             <label class="label-style">
                 <span class="from_label"><spring:message code="admin.report.dateFrom"/></span>
-                <input type="date" id="date_from" size="17">
+                <input type="text" id="date_from" name="date_form" size="17">
             </label>
         </div>
 
         <div id="To2">
             <label class="label-style">
                 <span class="to_label"><spring:message code="admin.report.dateTo"/></span>
-                <input type="date" id="date_to" size="17">
+                <input type="text" id="date_to" name="date_to" size="17">
             </label>
         </div>
     </div>
