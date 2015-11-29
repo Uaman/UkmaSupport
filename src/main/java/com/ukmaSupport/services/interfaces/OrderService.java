@@ -30,6 +30,8 @@ public interface OrderService {
 
     void update(Order order);
 
+    void updateAddingAssistantToAuditorium(int assistId, int audId);
+
     Order getByUserIdAndId(int user_id,int id);
 
     List<Order> getAll();

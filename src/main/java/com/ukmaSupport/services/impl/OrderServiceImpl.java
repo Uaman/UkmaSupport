@@ -91,6 +91,12 @@ public class OrderServiceImpl implements OrderService {
         orderDao.update(order);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
+    @Override
+    public void updateAddingAssistantToAuditorium(int assistId, int audId) {
+        orderDao.updateAddingAssistantToAuditorium(assistId, audId);
+    }
+
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
     public Order getByUserIdAndId(int user_id, int id) {
