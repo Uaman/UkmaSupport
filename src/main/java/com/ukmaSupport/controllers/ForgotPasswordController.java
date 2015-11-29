@@ -39,8 +39,10 @@ public class ForgotPasswordController {
 
         modelMap.addAttribute("email", email);
 
-        if(email == null || email.trim().isEmpty())
+        if(email == null || email.trim().isEmpty()) {
             modelMap.addAttribute("error", "Item Email is required!");
+            return "registration/forgotPassword";
+        }
         else{
 
             List<User> users = userService.getAll();
