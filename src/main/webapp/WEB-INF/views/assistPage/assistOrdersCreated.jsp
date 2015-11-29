@@ -142,7 +142,7 @@
             <table id="records_table" class="tbl table table-striped admin-table order-table">
                 <thead>
                 <tr>
-                    <th class="no-sort title-col"><spring:message code="assist.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
+                    <th class="title-col"><spring:message code="assist.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
                     <th class="auditorium-col-ord-th"><spring:message code="assist.orders.auditorium"/><img class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
                     <th class="workplace-col"><spring:message code="assist.orders.workplace"/><img class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
                     <th class="status-col-ord"><spring:message code="admin.orders.status"/><img class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>

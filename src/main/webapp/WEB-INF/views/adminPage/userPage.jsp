@@ -181,7 +181,7 @@
         <table id="records_table" class="tbl table table-striped admin-table" style="margin-top: -170px;">
             <thead>
             <tr>
-                <th class="no-sort title-col-orders-th" style="margin-left: 20px;width:50px;"><spring:message
+                <th class=" title-col-orders-th" style="margin-left: 20px;width:50px;"><spring:message
                         code="admin.orders.title"/></th>
                 <th class="auditorium-col-orders-th" style="width: 70px;"><spring:message
                         code="admin.orders.auditorium"/><img class="icon-sort" src="../../../resources/img/sort15.png"

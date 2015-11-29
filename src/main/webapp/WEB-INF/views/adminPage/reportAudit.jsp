@@ -224,7 +224,7 @@
         <table id="records_table" class="tbl table table-striped admin-table assist-order-table">
             <thead>
             <tr>
-                <th class="no-sort title-col-orders-th"><spring:message
+                <th class="title-col-orders-th"><spring:message
                         code="admin.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                         width="8px" height="14px"></th>
                 <th class="auditorium-col-orders-th-report"><spring:message

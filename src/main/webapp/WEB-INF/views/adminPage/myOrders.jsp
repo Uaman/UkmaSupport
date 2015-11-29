@@ -177,7 +177,7 @@
         <table id="records_table" class="tbl table table-striped admin-table order-table">
             <thead>
             <tr>
-                <th class="no-sort title-col"><spring:message code="admin.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                <th class="title-col"><spring:message code="admin.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                                                               width="8px" height="14px"></th>
                 <th class="auditorium-col"><spring:message code="admin.orders.auditorium"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                                                                 width="8px" height="14px"></th>
