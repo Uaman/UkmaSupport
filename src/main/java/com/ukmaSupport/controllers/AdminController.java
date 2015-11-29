@@ -324,7 +324,8 @@ public class AdminController {
     public String saveAuditorium(@RequestBody Map<String, Object> searchParam, Auditorium auditorium) {
         String number = (String) searchParam.get("auditorium");
         auditorium.setNumber(number);
-        auditoriumService.save(auditorium);
+        if(number.matches("^[\\d]{1}[\\u002D]{1}[\\d]{3}$"))
+            auditoriumService.save(auditorium);
         return "redirect:/admin/auditoriums";
     }
 
