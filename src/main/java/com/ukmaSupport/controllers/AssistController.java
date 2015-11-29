@@ -181,7 +181,7 @@ public class AssistController {
 
         User user = userService.getById(order.getUserId());
         if (user != null)
-            orderIsDoneMail.send(user.getEmail());
+            orderIsDoneMail.send(user.getEmail(), order.getId());
 
         return "redirect:/assist/home";
     }
