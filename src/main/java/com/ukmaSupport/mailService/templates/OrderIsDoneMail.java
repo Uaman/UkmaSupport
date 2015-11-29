@@ -13,7 +13,7 @@ public class OrderIsDoneMail {
 
     public void send(String toAddr/*, String link*/) {
         String subject = "Your order is done";
-        String body = "Your order is done. Details: " + /*link +*/ "\n\nUKMA Support\n" + Constants.LOCAL_SERVER;
+        String body = "Your order is done. Details: " + /*link +*/ "\n\nUKMA Support\n" + Constants.SERVER;
 
         mailService.sendEmail(toAddr, subject, body);
     }
