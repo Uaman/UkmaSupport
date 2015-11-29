@@ -45,16 +45,36 @@
             });
         }
 
-        $(function () {
-            $("#date_from").datepicker({
-                dateFormat: 'yy-mm-dd'
-            })
-        });
+        $(function(){
 
-        $(function () {
+            $("#date_from").datepicker({
+
+                maxDate: new Date(),
+
+                numberOfMonths: 1,
+
+                onSelect: function(selectedDate) {
+
+                    $("#date_to").datepicker("option","minDate", selectedDate)
+
+                }
+
+            });
+
             $("#date_to").datepicker({
-                dateFormat: 'yy-mm-dd'
-            })
+
+                maxDate: new Date(),
+
+                numberOfMonths: 1,
+
+                onSelect: function(selectedDate) {
+
+                    $("#date_from").datepicker("option","maxDate", selectedDate)
+
+                }
+
+            });
+
         });
 
         jQuery(function ($) {
