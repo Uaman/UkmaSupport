@@ -108,7 +108,19 @@ public class CommentariesController {
                 commentForAssistMail.send(assistant.getEmail(),currentOrderId);
             }
         }else if(currentUser.getRole().equals(UserRoles.ASSISTANT.toString())){
-
+            User orderAuthor = userService.getById(currentOrder.getUserId());
+            if(!currentUser.getEmail().equals(orderAuthor.getEmail())){
+                commentForUserMail.send(orderAuthor.getEmail(),currentOrderId);
+            }
+        }else if(currentUser.getRole().equals(UserRoles.ADMIN.toString())){
+            User orderAuthor = userService.getById(currentOrder.getUserId());
+            User orderAssistant = userService.getById(currentOrder.getAssistantId());
+            if(orderAssistant != null){
+                commentForAssistMail.send(orderAssistant.getEmail(),currentOrderId);
+            }
+            if(!currentUser.getEmail().equals(orderAuthor.getEmail())){
+                commentForUserMail.send(orderAuthor.getEmail(),currentOrderId);
+            }
         }
 
     }
