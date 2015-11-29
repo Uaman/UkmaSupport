@@ -14,7 +14,9 @@ public interface OrderService {
 
     List<Order> getByUserId(int user_id);
 
-    int getCountOrderByAssistant(int assistant_id,String status);
+    int getCountOrderByAssistantDate(String date_from,String date_to,int assistant_id,String status);
+
+    int getCountOrderByDate(String date_from,String date_to,String status);
 
     void createOrUpdate(Order order);
 

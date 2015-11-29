@@ -23,7 +23,7 @@
             url: '/admin/getAuditoriums',
             type: 'GET',
             success: function (data) {
-                $('#auditorium').append($('<option>').text(' <spring:message code="admin.report.auditorium"/>'));
+              //  $('#auditor_field').append($('<option>').text('<spring:message code="admin.report.auditorium"/>'));
                 $.each(data, function (i, auditorium) {
                     $('#auditor_field').append($('<option>').text(auditorium.number).attr('value', auditorium.number));
 
@@ -213,7 +213,7 @@
             <select name="auditorium" class="auditor_field form-control select-style" id="auditor_field"
                     path="auditorium"
                     >
-                <option value="" disabled selected>
+                <option value="" disabled selected><spring:message code="admin.report.auditorium"/>
                    </option>
             </select>
         </div>

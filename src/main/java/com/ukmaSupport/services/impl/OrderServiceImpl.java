@@ -48,8 +48,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
-    public int getCountOrderByAssistant(int assistant_id, String status) {
-        return orderDao.getCountOrderByAssistant(assistant_id, status);
+    public int getCountOrderByAssistantDate(String date_from,String date_to,int assistant_id,String status) {
+        return orderDao.getCountOrderByAssistantDate(date_from,date_to, assistant_id, status);
+    }
+
+    @Override
+    public int getCountOrderByDate(String date_from,String date_to,String status) {
+        return orderDao.getCountOrderByDate(date_from,date_to,status);
     }
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
