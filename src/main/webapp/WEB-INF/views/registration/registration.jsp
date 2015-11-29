@@ -19,7 +19,7 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a id="login" class="menu-element" href="/"><spring:message code="registration.login"/></a></li>
+                    <li><a id="login" class="menu-element" href="/login"><spring:message code="registration.login"/></a></li>
                 </ul>
             </div>
         </div>

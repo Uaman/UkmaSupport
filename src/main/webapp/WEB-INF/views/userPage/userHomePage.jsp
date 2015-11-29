@@ -59,7 +59,7 @@
                 $.each(sorted, function (i, order) {
                     if (order.status == "Undone") {
                         trHTML += "<tr>"
-                                + "<td class='title-col-user'>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
+                                + "<td class='title-col-user'>" + '<a href="/addComment/' + order.id + '">' + order.title.substring(0,15) + '</a>' + "</td>" +
                                 "<td class='auditorium-col'>" + order.auditorium + "</td>" +
                                 "<td class='workplace-col'>" + order.workplace_access_num + "</td>" +
                                 "<td class='status-col-user'>" + order.status + "</td>" +
@@ -69,7 +69,7 @@
                                 "</tr>";
                     } else {
                         trHTML += "<tr>" +
-                                "<td class='title-col-user'>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
+                                "<td class='title-col-user'>" + '<a href="/addComment/' + order.id + '">' + order.title.substring(0,15) + '</a>' + "</td>" +
                                 "<td class='auditorium-col'>" + order.workplace_id + "</td>" +
                                 "<td class='workplace-col'>" + order.workplace_access_num + "</td>" +
                                 "<td class='status-col-user'>" + order.status + "</td>" +
