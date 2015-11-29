@@ -1,9 +1,12 @@
 package com.ukmaSupport.controllers;
 
 
+import com.ukmaSupport.mailService.templates.CommentForAssistMail;
+import com.ukmaSupport.mailService.templates.CommentForUserMail;
 import com.ukmaSupport.models.Comment;
 import com.ukmaSupport.models.Order;
 import com.ukmaSupport.models.User;
+import com.ukmaSupport.models.enums.UserRoles;
 import com.ukmaSupport.services.interfaces.CommentService;
 import com.ukmaSupport.services.interfaces.OrderService;
 import com.ukmaSupport.services.interfaces.UserService;
@@ -26,13 +29,19 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/addComment")
-public class Commentaries {
+public class CommentariesController {
 
     @Autowired
     private CommentService commentService;
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private CommentForAssistMail commentForAssistMail;
+
+    @Autowired
+    private CommentForUserMail commentForUserMail;
 
     @Autowired
     private UserService userService;
@@ -87,7 +96,20 @@ public class Commentaries {
         return comment;
     }
 
-    private void sentNotification (int orderId, int auth){
+    private void sentNotification (int currentOrderId, int currentUserId){
+        User currentUser = userService.getById(currentUserId);
+        //Get super admin
+        Order currentOrder = orderService.getById(currentOrderId);
+
+        if(currentUser.getRole().equals(UserRoles.USER.toString()) ||
+                currentUser.getRole().equals(UserRoles.PROFESSOR.toString())){
+            User assistant = userService.getById(currentOrder.getAssistantId());
+            if(assistant != null){
+                commentForAssistMail.send(assistant.getEmail(),currentOrderId);
+            }
+        }else if(currentUser.getRole().equals(UserRoles.ASSISTANT.toString())){
+
+        }
 
     }
 }
