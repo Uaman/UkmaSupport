@@ -12,7 +12,7 @@ public class NewOrderMail {
 
     public void send(String toAddr/*, String link*/) {
         String subject = "You have new order";
-        String body = "You have new order. Details: " + /*link +*/ "\n\nUKMA Support\n" + Constants.LOCAL_SERVER;
+        String body = "You have new order. Details: " + /*link +*/ "\n\nUKMA Support\n" + Constants.SERVER;
         mailService.sendEmail(toAddr, subject, body);
     }
 }
