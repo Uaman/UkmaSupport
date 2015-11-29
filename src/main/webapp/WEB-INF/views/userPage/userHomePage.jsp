@@ -123,7 +123,7 @@
         <table id="records_table" class="tbl table table-striped user-table order-table">
             <thead>
             <tr>
-                <th class="no-sort title-col"><spring:message code="admin.orders.title"/><img class="icon-sort"
+                <th class="title-col"><spring:message code="admin.orders.title"/><img class="icon-sort"
                                                                                               src="../../../resources/img/sort15.png"
                                                                                               width="8px" height="14px">
                 </th>

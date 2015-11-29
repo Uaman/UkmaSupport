@@ -87,8 +87,6 @@
                     var date_to = $("#date_to").val();
                     var audit_number = $("#auditor_field").val();
 
-                    alert(date_from);
-                    alert(date_to);
                     $("#download_report_button").attr("action","/admin/auditoriumReport/"+date_from + "/" + date_to + "/" + audit_number);
                     $.ajax({
                         url: '/admin/get_report_audit/' + date_from + '/' + date_to + '/' + audit_number,
