@@ -8,10 +8,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 @Repository("orderDao")
@@ -142,11 +139,18 @@ public class OrderDaoImpl implements OrderDao {
     private static final String UPDATE_ADDING_ASSISTANTS_TO_AUDITORIUM = "UPDATE orders SET assistant_id=? " +
             "WHERE workplace_id IN (SELECT workplace.id FROM workplace WHERE workplace.auditorium_id=?) AND status='not done'";
 
+    private static final String ORDER_BY_TIME = "SELECT orders.id FROM orders" +
+            " WHERE orders.created_at=?";
+
     @Override
     public Order getById(int id) {
         return jdbcTemplate.queryForObject(GET_ORDER_BY_ID, new Object[]{id}, rowMapper);
     }
 
+    @Override
+    public Order getByTime(Date time) {
+        return jdbcTemplate.queryForObject(ORDER_BY_TIME, new Object[]{time}, simpleRowMapper);
+    }
 
 
     @Override
@@ -267,4 +271,15 @@ public class OrderDaoImpl implements OrderDao {
             return order;
         }
     };
+
+    private static final RowMapper<Order> simpleRowMapper = new RowMapper<Order>() {
+
+        @Override
+        public Order mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Order order = new Order();
+            order.setId(rs.getInt("id"));
+            return order;
+        }
+    };
+
 }

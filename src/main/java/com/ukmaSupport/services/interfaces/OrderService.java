@@ -2,11 +2,14 @@ package com.ukmaSupport.services.interfaces;
 
 import com.ukmaSupport.models.Order;
 
+import java.util.Date;
 import java.util.List;
 
 public interface OrderService {
 
     Order getById(int id);
+
+    Order getByTime(java.sql.Date time);
 
     List<Order> getByAuditoriumNumber(String number);
 
