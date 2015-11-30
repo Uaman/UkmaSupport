@@ -337,29 +337,6 @@
             <a href="?lang=ua" class="language"><spring:message code="language.ua"/></a>
         </div>
     </div>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-        <div class="modal-dialog" style="width:300px;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <center><h4 class="modal-title" id="myModalLabel1"><spring:message
-                            code="admin.set.assistants"/></h4></center>
-                </div>
-                <div class="modal-body">
-                    <select id="assistant">
-                        <option value="0">it's me</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <center>
-                        <button type="button" id="setAssist" type="submit" class="btn btn-default"
-                                data-dismiss="modal">Ok
-                        </button>
-                    </center>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="modal fade" id="addAuditorium" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" style="width:300px;">
