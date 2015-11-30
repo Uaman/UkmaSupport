@@ -424,7 +424,7 @@ public class AdminController {
         String pass = PasswordEncryptor.encode(editForm.getPassword());
         user.setPassword(pass);
         userService.saveOrUpdate(user);
-        return "userPage/passwordChangeSuccess";
+        return "redirect:/admin/allUsers";
     }
 
     @RequestMapping(value = "/admin/users/userProfile/{id}", method = RequestMethod.GET)

@@ -125,7 +125,7 @@ public class AssistController {
         String pass = PasswordEncryptor.encode(editForm.getPassword());
         assist.setPassword(pass);
         userService.saveOrUpdate(assist);
-        return "assistPage/changePasswordSuccess";
+        return "redirect:/assist/home";
     }
 
     @RequestMapping(value = "/assist/create_order", method = RequestMethod.GET)

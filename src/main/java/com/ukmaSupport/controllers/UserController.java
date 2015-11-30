@@ -196,6 +196,6 @@ public class UserController {
         String pass = PasswordEncryptor.encode(editForm.getPassword());
         user.setPassword(pass);
         userService.saveOrUpdate(user);
-        return "userPage/passwordChangeSuccess";
+        return "redirect:/user/userhome";
     }
 }
