@@ -33,13 +33,13 @@
                         if (auditorium.userId == 0) {
                             trHTML += "<tr>" +
                                     '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
-                                    '<td>' + '<select class="assist select-style" data-id="' + auditorium.number + '" onchange="func($(this))"><option class="current-assist" value="' + auditorium.userId + '">' + auditorium.assistantName + '</option></select>' + "</td>" +
+                                    '<td>' + '<select  id="myselect" data-hidden="true" class="assist select-style" data-id="' + auditorium.number + '" onchange="func($(this))"><option class="current-assist" value="' + auditorium.userId + '">' + auditorium.assistantName + '</option></select>' + "</td>" +
                                     "<td>" + '<button data-id="' + auditorium.id + '" class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button>' + "</td>" +
                                     "</tr>";
                         } else {
                             trHTML += "<tr>" +
                                     '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
-                                    '<td>' + '<select class="assist select-style" data-id="' + auditorium.number + '" onchange="func($(this))"><option class="current-assist" value="' + auditorium.userId + '">' + auditorium.assistantName + '</option></select>' + "</td>" +
+                                    '<td>' + '<select class="assist select-style" data-hidden="true" data-id="' + auditorium.number + '" onchange="func($(this))"><option class="current-assist" value="' + auditorium.userId + '">' + auditorium.assistantName + '</option></select>' + "</td>" +
                                     "<td>" + '<button data-id="' + auditorium.id + '" class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button>' + "</td>" +
                                     "</tr>";
                         }
@@ -50,6 +50,7 @@
                         url: '/admin/getAssistants',
                         type: 'GET',
                         success: function (data) {
+                            $('.assist').append($('<option disabled=disabled>').text('_ _ _ _ _ _ _'));
                             $('.assist').append($('<option>').text('Set empty').attr('value', 0));
                             $.each(data, function (i, user) {
                                 $('.assist').append($('<option>').text(user.firstName + ' ' + user.lastName).attr('value', user.id));
@@ -77,6 +78,19 @@
             $("#records_table").tablesort();
         });
 
+        (document).ready(function () {
+            $('.assist option:selected').hide(); //initialise
+
+            $('.assist').change(function(){
+
+                $('.assist option').show(200, function(){
+
+                    $('.assist option:selected').hide();
+
+                });
+
+            });
+        });
 
         var auditoriumId;
         var setAssistant;

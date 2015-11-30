@@ -176,8 +176,7 @@ public class AdminController {
     public
     @ResponseBody
     List<Workplace> getWorkplaces(@RequestParam("text") String text) {
-        List<Workplace> workplaces = workplaceService.getByAuditoryName(text);
-        return workplaces;
+        return workplaceService.getByAuditoryName(text);
     }
 
     @RequestMapping(value = "/admin/orders/createOrder", method = RequestMethod.GET)
@@ -320,7 +319,7 @@ public class AdminController {
     public String saveAuditorium(@RequestBody Map<String, Object> searchParam, Auditorium auditorium) {
         String number = (String) searchParam.get("auditorium");
         auditorium.setNumber(number);
-        if(number.matches("^[\\d]{1}[\\u002D]{1}[\\d]{3}$"))
+        //if(number.matches("^[\\d]{1}[\\u002D]{1}[\\d]{3}$"))//????
             auditoriumService.save(auditorium);
         return "redirect:/admin/auditoriums";
     }

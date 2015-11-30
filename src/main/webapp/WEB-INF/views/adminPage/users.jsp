@@ -17,44 +17,45 @@
         $(document).ready(function () {
             var userId;
             $('#myModal').on('show.bs.modal', function (e) {
-                var userId = $(e.relatedTarget).attr('data-id');
-                $("#test").click(function (e) {
-                    var dataRole = $('input:radio[name=role]:checked').val();
+                userId = $(e.relatedTarget).attr('data-id');
+            });
+            $("#test").click(function (e) {
+                var dataRole = $('input:radio[name=role]:checked').val();
 
-                    changeRole = {
-                        role: dataRole,
-                        userId: userId
-                    };
+                changeRole = {
+                    role: dataRole,
+                    userId: userId
+                };
 
-                    var postParamForDatatable = $.ajax({
-                        url: "${pageContext.request.contextPath}/admin/changeRole",
-                        type: "POST",
-                        contentType: "application/json",
-                        data: JSON.stringify(changeRole),
-                        success: function (response) {
-                            $.ajax({
-                                url: '/admin/get' + '${link}',
-                                type: 'GET',
-                                success: function (response) {
-                                    var trHTML = '';
-                                    $.each(response, function (i, user) {
-                                        trHTML += "<tr><td class='lastname-col'>" + '<a href="/admin/users/userProfile/' + user.id + '">' + user.lastName + "</td>" +
-                                        '<td class="firstname-col">' + user.firstName + "</td>" +
-                                        '<td class="role-col">' + user.role.toString().toLowerCase() + "</td>" +
-                                        '   <td class="change-col">' + '<input type="image" src="../../../resources/img/edit.jpg" class="userId" data-toggle="modal"' + 'data-id="' + user.id + '"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
+                var postParamForDatatable = $.ajax({
+                    url: "${pageContext.request.contextPath}/admin/changeRole",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(changeRole),
+                    success: function (response) {
+                        $.ajax({
+                            url: '/admin/get' + '${link}',
+                            type: 'GET',
+                            success: function (response) {
+                                var trHTML = '';
+                                $.each(response, function (i, user) {
+                                    trHTML += "<tr><td class='lastname-col'>" + '<a href="/admin/users/userProfile/' + user.id + '">' + user.lastName + "</td>" +
+                                            '<td class="firstname-col">' + user.firstName + "</td>" +
+                                            '<td class="role-col">' + user.role.toString().toLowerCase() + "</td>" +
+                                            '   <td class="change-col">' + '<input type="image" src="../../../resources/img/edit.jpg" class="userId" data-toggle="modal"' + 'data-id="' + user.id + '"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
 
-                                        '<td class="status-col">' + '<a href="/admin/users/changeStatus/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
-                                        "<td class='delete-col'>" + '<form action="/admin/users/delete/' + user.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
-                                        "</tr>";
-                                    });
-                                    $('#records_table tbody').empty();
-                                    $('#records_table').append(trHTML);
-                                }
-                            });
-                        }
-                    });
+                                            '<td class="status-col">' + '<a href="/admin/users/changeStatus/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
+                                            "<td class='delete-col'>" + '<form action="/admin/users/delete/' + user.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
+                                            "</tr>";
+                                });
+                                $('#records_table tbody').empty();
+                                $('#records_table').append(trHTML);
+                            }
+                        });
+                    }
                 });
             });
+
         });
 
     </script>
@@ -82,13 +83,13 @@
                 var trHTML = '';
                 $.each(response, function (i, user) {
                     trHTML += "<tr><td class='lastname-col'>" + '<a href="/admin/users/userProfile/' + user.id + '">' + user.lastName + "</td>" +
-                    '<td class="firstname-col">' + user.firstName + "</td>" +
-                    '<td class="role-col">' + user.role.toString().toLowerCase() + "</td>" +
-                    '   <td class="change-col">' + '<input type="image" src="../../../resources/img/edit.jpg" class="userId" data-toggle="modal"' + 'data-id="' + user.id + '"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
+                            '<td class="firstname-col">' + user.firstName + "</td>" +
+                            '<td class="role-col">' + user.role.toString().toLowerCase() + "</td>" +
+                            '   <td class="change-col">' + '<input type="image" src="../../../resources/img/edit.jpg" class="userId" data-toggle="modal"' + 'data-id="' + user.id + '"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
 
-                    '<td class="status-col">' + '<a href="/admin/users/changeStatus/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
-                    "<td class='delete-col'>" + '<form action="/admin/users/delete/' + user.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
-                    "</tr>";
+                            '<td class="status-col">' + '<a href="/admin/users/changeStatus/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
+                            "<td class='delete-col'>" + '<form action="/admin/users/delete/' + user.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
+                            "</tr>";
                 });
                 $('#records_table tbody').empty();
                 $('#records_table').append(trHTML);
