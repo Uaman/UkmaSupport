@@ -99,7 +99,7 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="/"><img id="adm_logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                <a href="/admin/allUsers"><img id="adm_logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
