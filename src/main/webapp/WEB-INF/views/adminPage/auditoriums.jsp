@@ -97,6 +97,7 @@
                                         type: "GET",
                                         success: function (response) {
                                             $(this).parents('tr').remove();
+                                            $(this).parents('tr').hide();
                                         }
                                     });
                                 });
@@ -173,7 +174,43 @@
                                         url: '/admin/auditoriums/delete/' + $(this).attr("data-id"),
                                         type: "GET",
                                         success: function (response) {
-                                            $(this).parents('tr').remove();
+                                            $.ajax({
+                                                url: '/admin/getAuditoriums',
+                                                type: 'GET',
+                                                success: function (response) {
+                                                    var sorted = response.sort(function (a, b) {
+                                                        if (a.status < b.status) {
+                                                            return 1;
+                                                        }
+                                                        if (a.status > b.status) {
+                                                            return -1;
+                                                        }
+                                                        return 0;
+                                                    });
+                                                    var trHTML = '';
+                                                    $.each(sorted, function (i, auditorium) {
+                                                        if (auditorium.userId == 0) {
+                                                            trHTML += "<tr>" +
+                                                                    '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
+                                                                        //  "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                                                                    '<td>' + '<select class="assist select-style" data-id="' + auditorium.number + '" onchange="func($(this))"><option class="current-assist" value="' + auditorium.userId + '">' + auditorium.assistantName + '</option></select>' + "</td>" +
+                                                                        //'<td >' + "" + "</td>" +
+                                                                    "<td>" + '<button data-id="' + auditorium.id +'" class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button>' + "</td>" +
+                                                                    "</tr>";
+                                                        } else {
+                                                            trHTML += "<tr>" +
+                                                                    '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
+                                                                        //   "<td>" + '<form action="/admin/auditoriumReport/' + auditorium.number + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                                                                    '<td>' + '<select class="assist select-style" data-id="' + auditorium.number + '" onchange="func($(this))"><option class="current-assist" value="' + auditorium.userId + '">' + auditorium.assistantName + '</option></select>' + "</td>" +
+                                                                        //      "<td>" + '<form action="/admin/assistantReport/' + auditorium.userId + '"><button class="glyphicon glyphicon-save-file" type="submit"></button></form>' + "</td>" +
+                                                                    "<td>" + '<button data-id="' + auditorium.id +'" class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button>' + "</td>" +
+                                                                    "</tr>";
+                                                        }
+                                                    });
+                                                    $('#records_table tbody').empty();
+                                                    $('#records_table').append(trHTML);
+                                        }
+                                    });
                                         }
                                     });
                                 });
