@@ -61,6 +61,10 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/allUsers", method = RequestMethod.GET)
     public String allUsers(Model model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        int adminId = (Integer) session.getAttribute("id");
+        model.addAttribute("adminId", adminId);
         model.addAttribute("link", "AllUsers");
         return "adminPage/users";
     }
@@ -74,6 +78,9 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
     public String users(Model model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        int adminId = (Integer) session.getAttribute("id");
         model.addAttribute("link", "Users");
         return "adminPage/users";
     }
@@ -87,6 +94,9 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/assistants", method = RequestMethod.GET)
     public String assistants(Model model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        int adminId = (Integer) session.getAttribute("id");
         model.addAttribute("link", "Assistants");
         return "adminPage/users";
     }
@@ -100,6 +110,9 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/professors", method = RequestMethod.GET)
     public String professors(Model model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        int adminId = (Integer) session.getAttribute("id");
         model.addAttribute("link", "Professors");
         return "adminPage/users";
     }
@@ -113,6 +126,9 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/blockedUsers", method = RequestMethod.GET)
     public String blockedUsers(Model model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        int adminId = (Integer) session.getAttribute("id");
         model.addAttribute("link", "BlockedUsers");
         return "adminPage/users";
     }
