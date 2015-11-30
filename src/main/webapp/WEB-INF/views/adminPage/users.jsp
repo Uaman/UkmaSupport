@@ -42,10 +42,12 @@
                                         '<td class="firstname-col">' + user.firstName + "</td>" +
                                         '<td class="role-col">' + user.role.toString().toLowerCase() + "</td>" +
                                         '   <td class="change-col">' + '<input type="image" src="../../../resources/img/edit.jpg" class="userId" data-toggle="modal"' + 'data-id="' + user.id + '"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
-
-                                        '<td class="status-col">' + '<a href="/admin/users/changeStatus/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
-                                        "<td class='delete-col'>" + '<form action="/admin/users/delete/' + user.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
-                                        "</tr>";
+                                        '<td class="status-col">' + '<a href="/admin/users/changeStatus/' + user.id + '">' + user.accountStatus + '</a>' + "</td>"+
+                                        "<td class='delete-col'>";
+                                        if (user.role.localeCompare("ADMIN")) {
+                                            trHTML += '<form action="/admin/users/delete/' + user.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>';
+                                        }
+                                        trHTML += "</td></tr>";
                                     });
                                     $('#records_table tbody').empty();
                                     $('#records_table').append(trHTML);
@@ -85,10 +87,12 @@
                     '<td class="firstname-col">' + user.firstName + "</td>" +
                     '<td class="role-col">' + user.role.toString().toLowerCase() + "</td>" +
                     '   <td class="change-col">' + '<input type="image" src="../../../resources/img/edit.jpg" class="userId" data-toggle="modal"' + 'data-id="' + user.id + '"  data-target="#myModal" width="15px" height="15px" style="margin-left: 5px; margin-top: 0px;float:left;">' + "</td>" +
-
-                    '<td class="status-col">' + '<a href="/admin/users/changeStatus/' + user.id + '">' + user.accountStatus + '</a>' + "</td>" +
-                    "<td class='delete-col'>" + '<form action="/admin/users/delete/' + user.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
-                    "</tr>";
+                    '<td class="status-col">' + '<a href="/admin/users/changeStatus/' + user.id + '">' + user.accountStatus + '</a>' + "</td>"+
+                    "<td class='delete-col'>";
+                    if (user.role.localeCompare("ADMIN")) {
+                        trHTML += '<form action="/admin/users/delete/' + user.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>';
+                    }
+                    trHTML += "</td></tr>";
                 });
                 $('#records_table tbody').empty();
                 $('#records_table').append(trHTML);
