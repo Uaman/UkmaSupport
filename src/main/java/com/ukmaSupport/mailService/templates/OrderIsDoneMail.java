@@ -11,9 +11,10 @@ public class OrderIsDoneMail {
     @Autowired
     private MailService mailService;
 
-    public void send(String toAddr/*, String link*/) {
+    public void send(String toAddr, int orderId) {
         String subject = "Your order is done";
-        String body = "Your order is done. Details: " + /*link +*/ "\n\nUKMA Support\n" + Constants.LOCAL_SERVER;
+        String link = Constants.SERVER + Constants.COMMENTS + orderId;
+        String body = "Your order is done. Details: " + link + "\n\nUKMA Support\n" + Constants.SERVER;
 
         mailService.sendEmail(toAddr, subject, body);
     }

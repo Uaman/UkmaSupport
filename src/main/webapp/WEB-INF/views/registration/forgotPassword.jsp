@@ -46,13 +46,13 @@
       <div class="form-group">
         <div class="col-md-offset-1 col-md-10">
           <c:if test="${not empty error}">
-            <spring:message code="forgotPassword.error.emptyEmail"/>
+            <font color="red"><spring:message code="forgotPassword.error.emptyEmail"/></font>
           </c:if>
           <c:if test="${not empty success}">
             ${success}
           </c:if>
           <c:if test="${not empty noSuchUser}">
-            <spring:message code="forgotPassword.error.noUser"/>
+            <font color="red"><spring:message code="forgotPassword.error.noUser"/></font>
           </c:if>
         </div>
       </div>

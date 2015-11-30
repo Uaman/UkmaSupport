@@ -22,14 +22,15 @@ public class UserServices implements UserDetailsService {
     private UserService userDao;
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        com.ukmaSupport.models.User user = userDao.getByEmail(s);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        String result = email.toLowerCase();
+        com.ukmaSupport.models.User user = userDao.getByEmail(result);
         if(user == null)
             throw new UsernameNotFoundException("user not found");
-        System.out.println("Username:"+s+" role:"+user.getRole());
+        System.out.println("Username:"+result+" role:"+user.getRole());
         boolean isActive = true;
         if(!user.getAccountStatus().equals(ACTIVE_STATUS)) isActive = false;
-        UserDetails u = new User(s, user.getPassword(), true, true, true, isActive, getAuthority(user.getRole()));
+        UserDetails u = new User(result, user.getPassword(), true, true, true, isActive, getAuthority(user.getRole()));
 
         return u;
     }

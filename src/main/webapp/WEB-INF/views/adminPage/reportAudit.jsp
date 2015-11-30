@@ -18,6 +18,19 @@
         $(document).ready(function () {
             $("#records_table").tablesort();
         });
+
+        $.ajax({
+            url: '/admin/getAuditoriums',
+            type: 'GET',
+            success: function (data) {
+              //  $('#auditor_field').append($('<option>').text('<spring:message code="admin.report.auditorium"/>'));
+                $.each(data, function (i, auditorium) {
+                    $('#auditor_field').append($('<option>').text(auditorium.number).attr('value', auditorium.number));
+
+                });
+
+            }
+        });
         function formatDate(date, fmt) {
             function pad(value) {
                 return (value.toString().length < 2) ? '0' + value : value;
@@ -43,54 +56,69 @@
             });
         }
 
-        $(function() {
-            $( "#date_from" ).datepicker({
-                dateFormat: 'dd.mm.yy'
-            })
+        $(function(){
+
+            $("#date_from").datepicker({
+                dateFormat: 'yy-mm-dd',
+                maxDate: new Date(),
+                numberOfMonths: 1
+            });
+
+            $("#date_to").datepicker({
+                dateFormat: 'yy-mm-dd',
+                maxDate: new Date(),
+                numberOfMonths: 1
+            });
+
         });
 
-        $(function() {
-            $( "#date_to" ).datepicker({
-                dateFormat: 'dd.mm.yy'
-            })
-        });
 
         jQuery(function ($) {
             $('tbody tr[data-href]').addClass('clickable').click(function () {
                 window.location = $(this).attr('data-href');
             });
         });
-
         /*------------------------------------------------*/
-        $.ajax({
-            url: '/admin/getAllOrders',
-            type: 'GET',
-            data: {
-                text: $("#sel2").val()
-            },
-            success: function (response) {
-                var sorted = response.sort(function (a, b) {
-                    if (a.createdAt < b.createdAt) {
-                        return 1;
-                    }
-                    if (a.createdAt > b.createdAt) {
-                        return -1;
-                    }
-                    return 0;
+        $(document).ready(function () {
+            $('#date_from').change(function () {
+                $('#date_to').change(function () {
+                    //fire your ajax call
+                    var date_from = $("#date_from").val();
+                    var date_to = $("#date_to").val();
+                    var audit_number = $("#auditor_field").val();
+
+                    $("#download_report_button").attr("action","/admin/auditoriumReport/"+date_from + "/" + date_to + "/" + audit_number);
+                    $.ajax({
+                        url: '/admin/get_report_audit/' + date_from + '/' + date_to + '/' + audit_number,
+                        type: 'GET',
+                        success: function (response) {
+                            var sorted = response.sort(function (a, b) {
+                                if (a.createdAt < b.createdAt) {
+                                    return 1;
+                                }
+                                if (a.createdAt > b.createdAt) {
+                                    return -1;
+                                }
+                                return 0;
+                            });
+                            var trHTML = '';
+                            $.each(response, function (i, order) {
+                                trHTML += "<tr><td class='title-col-orders'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
+                                        '   <td class="auditorium-col-orders">' + order.auditorium + "</td>" +
+                                        '   <td class="workplace-col-orders">' + order.workplace_access_num + "</td>" +
+                                        '   <td class="assistant-col-orders">' + order.assistantLastName + "</td>" +
+                                        '   <td class="date-col-orders">' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
+                                        '   <td class="status-col-orders">' + order.status + "</td></tr>";
+                            });
+                            $('#records_table tbody').empty();
+                            $('#records_table').append(trHTML);
+                        }
+                    });
                 });
-                var trHTML = '';
-                $.each(response, function (i, order) {
-                    trHTML += "<tr><td class='title-col-orders'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
-                            '   <td class="auditorium-col-orders">' + order.auditorium + "</td>" +
-                            '   <td class="workplace-col-orders">' + order.workplace_access_num + "</td>" +
-                            '   <td class="assistant-col-orders">' + order.assistantLastName + "</td>" +
-                            '   <td class="date-col-orders">' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                            '   <td class="status-col-orders">' + order.status + "</td></tr>";
-                });
-                $('#records_table tbody').empty();
-                $('#records_table').append(trHTML);
-            }
+            });
         });
+        /*------------------------------------------------*/
+
     </script>
 </head>
 
@@ -168,25 +196,22 @@
             <select name="auditorium" class="auditor_field form-control select-style" id="auditor_field"
                     path="auditorium"
                     >
-                <option value="" disabled selected>
-                    <spring:message code="admin.report.auditorium"/></option>
-                <c:forEach items="${auditoriums}" var="item" varStatus="count">
-                    <option value="${item.number}">${item.number}</option>
-                </c:forEach>
+                <option value="" disabled selected><spring:message code="admin.report.auditorium"/>
+                   </option>
             </select>
         </div>
 
         <div id="From2">
             <label class="label-style">
                 <span class="from_label"><spring:message code="admin.report.dateFrom"/></span>
-                <input type="text" id="date_from" size="17">
+                <input type="text" id="date_from" name="date_form" size="17">
             </label>
         </div>
 
         <div id="To2">
             <label class="label-style">
                 <span class="to_label"><spring:message code="admin.report.dateTo"/></span>
-                <input type="text" id="date_to" size="17">
+                <input type="text" id="date_to" name="date_to" size="17">
             </label>
         </div>
     </div>
@@ -199,7 +224,7 @@
         <table id="records_table" class="tbl table table-striped admin-table assist-order-table">
             <thead>
             <tr>
-                <th class="no-sort title-col-orders-th"><spring:message
+                <th class="title-col-orders-th"><spring:message
                         code="admin.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                         width="8px" height="14px"></th>
                 <th class="auditorium-col-orders-th-report"><spring:message

@@ -42,6 +42,7 @@ public class Registration {
         if (result.hasErrors())
             return "registration/registration";
         user = PasswordEncryptor.encodeUser(user);
+        user.setEmail(user.getEmail().toLowerCase());
         userService.saveOrUpdate(user);
         String email = user.getEmail();
         user = userService.getByEmail(email);

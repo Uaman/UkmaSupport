@@ -48,14 +48,35 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     @Override
-    public int getCountOrderByAssistant(int assistant_id, String status) {
-        return orderDao.getCountOrderByAssistant(assistant_id, status);
+    public int getCountOrderByAssistantDate(String date_from,String date_to,int assistant_id,String status) {
+        return orderDao.getCountOrderByAssistantDate(date_from,date_to, assistant_id, status);
+    }
+
+    @Override
+    public int getCountOrderByDate(String date_from,String date_to,String status) {
+        return orderDao.getCountOrderByDate(date_from,date_to,status);
     }
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
     @Override
     public void createOrUpdate(Order order) {
         orderDao.createOrUpdate(order);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    @Override
+    public List<Order> getAllByAssisstIdDate(String date_from, String date_to, int id) {
+        return orderDao.getAllByAssisstIdDate(date_from,date_to,id);
+    }
+
+    @Override
+    public List<Order> getAllByDate(String date_from, String date_to) {
+        return orderDao.getAllByDate(date_from,date_to);
+    }
+
+    @Override
+    public List<Order> getAllByAuditoriumAndDate(String date_from, String date_to, String number) {
+        return orderDao.getAllByAuditoriumAndDate(date_from,date_to,number);
     }
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
@@ -68,6 +89,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void update(Order order) {
         orderDao.update(order);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Exception.class)
+    @Override
+    public void updateAddingAssistantToAuditorium(int assistId, int audId) {
+        orderDao.updateAddingAssistantToAuditorium(assistId, audId);
     }
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

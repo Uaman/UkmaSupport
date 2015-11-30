@@ -59,24 +59,24 @@
                 $.each(sorted, function (i, order) {
                     if (order.status == "Undone") {
                         trHTML += "<tr>"
-                        + "<td class='title-col-user'>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
-                        "<td class='auditorium-col'>" + order.auditorium + "</td>" +
-                        "<td class='workplace-col'>" + order.workplace_access_num + "</td>" +
-                        "<td class='status-col-user'>" + order.status + "</td>" +
-                        "<td class='date-col'>" + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                        "<td class='btn-col'>" + '<form action="/user${pageContext.request.contextPath}/editOrder/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></form>' + "</td>" +
-                        "<td class='btn-col'>" + '<form action="/user${pageContext.request.contextPath}/delete/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
-                        "</tr>";
+                                + "<td class='title-col-user'>" + '<a href="/addComment/' + order.id + '">' + order.title.substring(0,15) + '</a>' + "</td>" +
+                                "<td class='auditorium-col'>" + order.auditorium + "</td>" +
+                                "<td class='workplace-col'>" + order.workplace_access_num + "</td>" +
+                                "<td class='status-col-user'>" + order.status + "</td>" +
+                                "<td class='date-col'>" + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
+                                "<td class='btn-col'>" + '<form action="/user${pageContext.request.contextPath}/editOrder/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                                "<td class='btn-col'>" + '<form action="/user${pageContext.request.contextPath}/delete/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                                "</tr>";
                     } else {
                         trHTML += "<tr>" +
-                        "<td class='title-col-user'>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
-                        "<td class='auditorium-col'>" + order.workplace_id + "</td>" +
-                        "<td class='workplace-col'>" + order.workplace_access_num + "</td>" +
-                        "<td class='status-col-user'>" + order.status + "</td>" +
-                        "<td class='date-col'>" + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                        "<td class='btn-col'>" + "  " + "</td>" +
-                        "<td class='btn-col'>" + '<form action="/user${pageContext.request.contextPath}/delete/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
-                        "</tr>";
+                                "<td class='title-col-user'>" + '<a href="/addComment/' + order.id + '">' + order.title.substring(0,15) + '</a>' + "</td>" +
+                                "<td class='auditorium-col'>" + order.workplace_id + "</td>" +
+                                "<td class='workplace-col'>" + order.workplace_access_num + "</td>" +
+                                "<td class='status-col-user'>" + order.status + "</td>" +
+                                "<td class='date-col'>" + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
+                                "<td class='btn-col'>" + "  " + "</td>" +
+                                "<td class='btn-col'>" + '<form action="/user${pageContext.request.contextPath}/delete/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td>" +
+                                "</tr>";
                     }
                 });
                 $('#records_table tbody').empty();
@@ -123,15 +123,23 @@
         <table id="records_table" class="tbl table table-striped user-table order-table">
             <thead>
             <tr>
-                <th class="no-sort title-col"><spring:message code="admin.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png"
-                                                                                              width="8px" height="14px"></th>
-                <th class="auditorium-col"><spring:message code="admin.orders.auditorium"/><img class="icon-sort" src="../../../resources/img/sort15.png"
-                                                                                                width="8px" height="14px"></th>
-                <th class="workplace-col"><spring:message code="assist.order.workplace"/><img class="icon-sort" src="../../../resources/img/sort15.png"
-                                                                                              width="8px" height="14px"></th>
-                <th class="status-col"><spring:message code="admin.orders.status"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                <th class="title-col"><spring:message code="admin.orders.title"/><img class="icon-sort"
+                                                                                              src="../../../resources/img/sort15.png"
+                                                                                              width="8px" height="14px">
+                </th>
+                <th class="auditorium-col"><spring:message code="admin.orders.auditorium"/><img class="icon-sort"
+                                                                                                src="../../../resources/img/sort15.png"
+                                                                                                width="8px"
+                                                                                                height="14px"></th>
+                <th class="workplace-col"><spring:message code="assist.order.workplace"/><img class="icon-sort"
+                                                                                              src="../../../resources/img/sort15.png"
+                                                                                              width="8px" height="14px">
+                </th>
+                <th class="status-col"><spring:message code="admin.orders.status"/><img class="icon-sort"
+                                                                                        src="../../../resources/img/sort15.png"
                                                                                         width="8px" height="14px"></th>
-                <th class="date-col"><spring:message code="admin.orders.date"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                <th class="date-col"><spring:message code="admin.orders.date"/><img class="icon-sort"
+                                                                                    src="../../../resources/img/sort15.png"
                                                                                     width="8px" height="14px"></th>
                 <th class="btn-col"></th>
                 <th class="btn-col"></th>

@@ -64,7 +64,7 @@
                 var trHTML = '';
                 $.each(response, function (i, order) {
                     if (order.status == "Undone") {
-                        trHTML += "<tr><td class='title-col-user'>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
+                        trHTML += "<tr><td class='title-col-user'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
                                 '   <td class="auditorium-col-ord">' + order.auditorium + "</td>" +
                                 '   <td class="workplace-col-ord">' + order.workplace_access_num + "</td>" +
                                 '   <td class="status-col-ord">' + order.status + "</td>" +
@@ -72,7 +72,7 @@
                                 '   <td class="btn-col">' + '<form action="${pageContext.request.contextPath}/assist/edit_order/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></button></form>' + "</td>" +
                                 '   <td class="btn-col">' + '<form action="${pageContext.request.contextPath}/assist/delete_order/' + order.id + '"><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></form>' + "</td></tr>";
                     } else {
-                        trHTML += "<tr><td class='title-col-user'>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
+                        trHTML += "<tr><td class='title-col-user'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
                                 '   <td class="auditorium-col-ord">' + order.workplace_id + "</td>" +
                                 '   <td class="workplace-col-ord">' + order.workplace_access_num + "</td>" +
                                 '   <td class="status-col-ord">' + order.status + "</td>" +
@@ -142,7 +142,7 @@
             <table id="records_table" class="tbl table table-striped admin-table order-table">
                 <thead>
                 <tr>
-                    <th class="no-sort title-col"><spring:message code="assist.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
+                    <th class="title-col"><spring:message code="assist.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
                     <th class="auditorium-col-ord-th"><spring:message code="assist.orders.auditorium"/><img class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
                     <th class="workplace-col"><spring:message code="assist.orders.workplace"/><img class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
                     <th class="status-col-ord"><spring:message code="admin.orders.status"/><img class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>

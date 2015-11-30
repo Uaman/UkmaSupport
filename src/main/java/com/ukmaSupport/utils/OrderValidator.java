@@ -26,7 +26,7 @@ public class OrderValidator implements Validator {
                 errors.rejectValue("title", "valid.order.title");
             } else if (order.getTitle().length() < 8) {
                 errors.rejectValue("title", "valid.order.shortTitle");
-            } else if (order.getTitle().length() > 20) {
+            } else if (order.getTitle().length() > 40) {
                 errors.rejectValue("title", "valid.order.tooLongTitle");
             }
 

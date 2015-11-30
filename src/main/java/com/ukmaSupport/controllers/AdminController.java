@@ -36,10 +36,6 @@ public class AdminController {
     private OrderValidator orderValidator;
 
     @Autowired
-    @Qualifier("audiroriumValidator")
-    private AudiroriumValidator audiroriumValidator;
-
-    @Autowired
     private NewOrderMail newOrderMail;
 
     @Autowired
@@ -214,11 +210,9 @@ public class AdminController {
         if (assistant != null) assistantId = assistant.getId();
         order.setAssistantId(assistantId);
         order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
-
         orderService.createOrUpdate(order);
-
-        //newOrderMail.send(assistant.getEmail());
-
+        if (assistant != null)
+            newOrderMail.send(assistant.getEmail());
         return "redirect:/admin/myOrders";
     }
 
@@ -243,6 +237,7 @@ public class AdminController {
     @RequestMapping(value = "/admin/orders/edit/save", method = RequestMethod.POST)
     public String orderEdited(@ModelAttribute("id") Integer id, @ModelAttribute("editOrder") Order order, ModelMap model, BindingResult result) {
         orderValidator.validate(order, result);
+
         if (result.hasErrors()) {
             model.addAttribute("editOrder", order);
             return "adminPage/editOrder";
@@ -290,37 +285,43 @@ public class AdminController {
         return "redirect:/admin/auditoriums/" + name;
     }
 
-    @RequestMapping(value = "/admin/assistantReport/{id}", method = RequestMethod.GET)
-    public String assistantReport(@PathVariable("id") Integer id, Model model) {
-        int countDone = orderService.getCountOrderByAssistant(id, DONE);
-        int contUndone = orderService.getCountOrderByAssistant(id, UNDONE);
+    @RequestMapping(value = "/admin/assistantReport/{date_from}/{date_to}/{id}", method = RequestMethod.GET)
+    public String assistantReport(@PathVariable("date_from") String date_from,@PathVariable("date_to") String date_to,@PathVariable("id") Integer id, Model model) {
+        int countDone = orderService.getCountOrderByAssistantDate(date_from, date_to, id, DONE);
+        int contUndone = orderService.getCountOrderByAssistantDate(date_from, date_to, id, UNDONE);
 
-        List<Order> orderList = orderService.getAllAssistOrders(id);
+        List<Order> orderList = orderService.getAllByAssisstIdDate(date_from, date_to, id);
         model.addAttribute("orderList", orderList);
         model.addAttribute("countDone", countDone);
         model.addAttribute("countUndone", contUndone);
         return "assistantReport";
     }
 
-    @RequestMapping(value = "/admin/auditoriumReport/{number}", method = RequestMethod.GET)
-    public String auditoriumReport(@PathVariable("number") String number, Model model) {
-        List<Order> orderList = orderService.getByAuditoriumNumber(number);
+    @RequestMapping(value = "/admin/auditoriumReport/{date_from}/{date_to}/{number}", method = RequestMethod.GET)
+    public String auditoriumReport(@PathVariable("date_from") String date_from,@PathVariable("date_to") String date_to,@PathVariable("number") String number, Model model) {
+        List<Order> orderList = orderService.getAllByAuditoriumAndDate(date_from,date_to,number);
         model.addAttribute("orderList", orderList);
         return "auditoriumReport";
     }
 
-    @RequestMapping(value = "/admin/workplaceReport/{acess_num}", method = RequestMethod.GET)
-    public String workplaceReport(@PathVariable("acess_num") Integer acess_num, Model model) {
-        List<Order> orderList = orderService.getByWorkplaceAcessNum(acess_num);
+    @RequestMapping(value = "/admin/allReport/{date_from}/{date_to}", method = RequestMethod.GET)
+    public String allReport(@PathVariable("date_from") String date_from,@PathVariable("date_to") String date_to,Model model) {
+        int countDone = orderService.getCountOrderByDate(date_from, date_to, DONE);
+        int contUndone = orderService.getCountOrderByDate(date_from, date_to, UNDONE);
+
+        List<Order> orderList = orderService.getAllByDate(date_from, date_to);
         model.addAttribute("orderList", orderList);
-        return "workplaceReport";
+        model.addAttribute("countDone", countDone);
+        model.addAttribute("countUndone", contUndone);
+        return "allReport";
     }
 
     @RequestMapping(value = "/admin/createAuditoriums", method = RequestMethod.POST)
     public String saveAuditorium(@RequestBody Map<String, Object> searchParam, Auditorium auditorium) {
         String number = (String) searchParam.get("auditorium");
         auditorium.setNumber(number);
-        auditoriumService.save(auditorium);
+        if(number.matches("^[\\d]{1}[\\u002D]{1}[\\d]{3}$"))
+            auditoriumService.save(auditorium);
         return "redirect:/admin/auditoriums";
     }
 
@@ -429,6 +430,12 @@ public class AdminController {
         return "adminPage/reportAudit";
     }
 
+    @RequestMapping(value = "/admin/report_assist/{date_from}/{date_to}/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Order> getReportByAssist(@PathVariable("date_from") String date_from,@PathVariable("date_to") String date_to,@PathVariable("id") int id) {
+        return orderService.getAllByAssisstIdDate(date_from,date_to,id);
+
+    }
     @RequestMapping(value = "/admin/report_assist", method = RequestMethod.GET)
     public String reportByAssist(Model model) {
         List<User> assistants = userService.getByRole(ASSISTANT);
@@ -436,28 +443,23 @@ public class AdminController {
         model.addAttribute("link", "report_assist");
         return "adminPage/reportAssist";
     }
-
+    @RequestMapping(value = "/admin/get_report_audit/{date_from}/{date_to}/{number}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Order> getReportByAuditor(@PathVariable("date_from") String date_from,@PathVariable("date_to") String date_to,@PathVariable("number") String number) {
+        return orderService.getAllByAuditoriumAndDate(date_from,date_to,number);
+    }
     @RequestMapping(value = "/admin/report_all", method = RequestMethod.GET)
     public String reportAll(Model model) {
         model.addAttribute("link", "report_all");
         return "adminPage/reportAll";
     }
 
-    /**
-     * No Time intervals *
-     */
-    @RequestMapping(value = "/admin/get_report_audit/{number}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/get_report_assist/{date_from}/{date_to}", method = RequestMethod.GET)
     public
     @ResponseBody
-    List<Order> getReportByAuditor(@PathVariable("number") String number) {
-        return orderService.getByAuditoriumNumber(number);
-    }
-
-    @RequestMapping(value = "/admin/get_report_assist/{id}", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    List<Order> getReportByAssist(@PathVariable("id") int id) {
-        return orderService.getAllAssistOrders(id);
+    List<Order> getReportByAuditorium(@PathVariable("date_from") String date_from,@PathVariable("date_to") String date_to) {
+        return orderService.getAllByDate(date_from,date_to);
     }
 
 

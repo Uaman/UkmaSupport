@@ -53,7 +53,6 @@
                             });
                         }
                     });
-
                 });
             });
         });
@@ -63,12 +62,6 @@
     <script>
         $(document).ready(function () {
             $("#records_table").tablesort();
-            var deleteLink = $("a:contains('Delete')");
-        });
-        jQuery(function ($) {
-            $('tbody tr[data-href]').addClass('clickable').click(function () {
-                window.location = $(this).attr('data-href');
-            });
         });
         $.ajax({
             url: '/admin/get' + '${link}',
@@ -180,12 +173,13 @@
                                                                                             width="8px" height="14px">
                 </th>
                 <th class="firstname-col-th"><spring:message code="registration.firstName"/><img class="icon-sort"
-                                                                                              src="../../../resources/img/sort15.png"
-                                                                                              width="8px" height="14px">
+                                                                                                 src="../../../resources/img/sort15.png"
+                                                                                                 width="8px"
+                                                                                                 height="14px">
                 </th>
                 <th class="role-col-th"><spring:message code="admin.users.role"/><img class="icon-sort"
-                                                                                   src="../../../resources/img/sort15.png"
-                                                                                   width="8px" height="14px"></th>
+                                                                                      src="../../../resources/img/sort15.png"
+                                                                                      width="8px" height="14px"></th>
                 <th class="no-sort change-col-th"></th>
                 <th class="status-col-th"><spring:message code="admin.users.status"/><img class="icon-sort"
                                                                                           src="../../../resources/img/sort15.png"
@@ -210,7 +204,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <center><h4 class="modal-title" id="myModalLabel"><spring:message code="admin.users.editRole"/></h4></center>
+                    <center><h4 class="modal-title" id="myModalLabel"><spring:message code="admin.users.editRole"/></h4>
+                    </center>
                 </div>
                 <div class="modal-body">
                     <input type="radio" name="role" value="Assistant"><spring:message code="admin.users.assistant"/><Br>

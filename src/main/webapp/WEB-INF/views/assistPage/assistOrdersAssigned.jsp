@@ -64,7 +64,7 @@
                 });
                 var trHTML = '';
                 $.each(response, function (i, order) {
-                    trHTML += "<tr><td class='title-col'>" + '<a href="/addComment/' + order.id + '">' + order.title + '</a>' + "</td>" +
+                    trHTML += "<tr><td class='title-col'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
                     '   <td class="auditorium-col">' + order.auditorium + "</td>" +
                     '   <td class="workplace-col">' + order.workplace_access_num + "</td>" +
                     '   <td class="status-col-ord">' + '<a href="${pageContext.request.contextPath}/assist/mark_done/' + order.id + '">'  + order.status + '<a>'+ "</td>" +
@@ -125,7 +125,7 @@
             <table id="records_table" class="tbl table table-striped admin-table assist-order-table">
                     <thead>
                         <tr>
-                            <th class="no-sort title-col"><spring:message code="assist.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                            <th class="title-col"><spring:message code="assist.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                                                                            width="8px" height="14px"></th>
                             <th class="auditorium-col"><spring:message code="assist.orders.auditorium"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                                                                              width="8px" height="14px"></th>

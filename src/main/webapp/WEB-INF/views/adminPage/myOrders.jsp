@@ -15,7 +15,6 @@
     <script>
         $(document).ready(function () {
             $("#records_table").tablesort();
-            var deleteLink = $("a:contains('Delete')");
         });
         function formatDate(date, fmt) {
             function pad(value) {
@@ -41,11 +40,6 @@
                 }
             });
         }
-        jQuery(function ($) {
-            $('tbody tr[data-href]').addClass('clickable').click(function () {
-                window.location = $(this).attr('data-href');
-            });
-        });
         $.ajax({
             url: '/admin/getMyOrders',
             type: 'GET',
@@ -177,15 +171,24 @@
         <table id="records_table" class="tbl table table-striped admin-table order-table">
             <thead>
             <tr>
-                <th class="no-sort title-col"><spring:message code="admin.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png"
-                                                                                              width="8px" height="14px"></th>
-                <th class="auditorium-col"><spring:message code="admin.orders.auditorium"/><img class="icon-sort" src="../../../resources/img/sort15.png"
-                                                                                                width="8px" height="14px"></th>
-                <th class="workplace-col-admin-th"><spring:message code="admin.orders.workplace"/><img class="icon-sort" src="../../../resources/img/sort15.png"
-                                                                                              width="8px" height="14px"></th>
-                <th class="status-col-ord"><spring:message code="admin.orders.status"/><img class="icon-sort" src="../../../resources/img/sort15.png"
-                                                                                        width="8px" height="14px"></th>
-                <th class="date-col"><spring:message code="admin.orders.date"/><img class="icon-sort" src="../../../resources/img/sort15.png"
+                <th class="title-col"><spring:message code="admin.orders.title"/><img class="icon-sort"
+                                                                                      src="../../../resources/img/sort15.png"
+                                                                                      width="8px" height="14px"></th>
+                <th class="auditorium-col"><spring:message code="admin.orders.auditorium"/><img class="icon-sort"
+                                                                                                src="../../../resources/img/sort15.png"
+                                                                                                width="8px"
+                                                                                                height="14px"></th>
+                <th class="workplace-col-admin-th"><spring:message code="admin.orders.workplace"/><img class="icon-sort"
+                                                                                                       src="../../../resources/img/sort15.png"
+                                                                                                       width="8px"
+                                                                                                       height="14px">
+                </th>
+                <th class="status-col-ord"><spring:message code="admin.orders.status"/><img class="icon-sort"
+                                                                                            src="../../../resources/img/sort15.png"
+                                                                                            width="8px" height="14px">
+                </th>
+                <th class="date-col"><spring:message code="admin.orders.date"/><img class="icon-sort"
+                                                                                    src="../../../resources/img/sort15.png"
                                                                                     width="8px" height="14px"></th>
                 <th class="btn-col"></th>
                 <th class="btn-col"></th>

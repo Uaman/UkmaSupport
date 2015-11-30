@@ -9,12 +9,12 @@
     <link href="../../../resources/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="../../../resources/css/calendar.css" type="text/css" media="screen"/>
+
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script src="../../../resources/js/tsort.js"></script>
-    <script src="../../../resources/js/calendar.js"></script>
-    <link type="text/css" href="../../../resources/css/jquery-ui.css" rel="stylesheet" />
+
+    <link type="text/css" href="../../../resources/css/jquery-ui.css" rel="stylesheet"/>
     <script type="text/javascript" src="../../../resources/js/jquery-ui.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -45,16 +45,20 @@
             });
         }
 
-        $(function() {
-            $( "#date_from" ).datepicker({
-                dateFormat: 'dd.mm.yy'
-            })
-        });
+        $(function(){
 
-        $(function() {
-            $( "#date_to" ).datepicker({
-                dateFormat: 'dd.mm.yy'
-            })
+            $("#date_from").datepicker({
+                dateFormat: 'yy-mm-dd',
+                maxDate: new Date(),
+                numberOfMonths: 1
+            });
+
+            $("#date_to").datepicker({
+                dateFormat: 'yy-mm-dd',
+                maxDate: new Date(),
+                numberOfMonths: 1
+            });
+
         });
 
         jQuery(function ($) {
@@ -64,35 +68,46 @@
         });
 
         /*------------------------------------------------*/
-        $.ajax({
-            url: '/admin/getAllOrders',
-            type: 'GET',
-            data: {
-                text: $("#sel2").val()
-            },
-            success: function (response) {
-                var sorted = response.sort(function (a, b) {
-                    if (a.createdAt < b.createdAt) {
-                        return 1;
-                    }
-                    if (a.createdAt > b.createdAt) {
-                        return -1;
-                    }
-                    return 0;
+
+        $(document).ready(function () {
+            $('#date_from').change(function () {
+                $('#date_to').change(function () {
+                    //fire your ajax call
+                    var date_from = $("#date_from").val();
+                    var date_to = $("#date_to").val();
+
+
+                    $("#download_report_button").attr("action", "/admin/allReport/" + date_from + "/" + date_to);
+                    $.ajax({
+                        url: '/admin/get_report_assist/' + date_from + '/' + date_to,
+                        type: 'GET',
+                        success: function (response) {
+                            var sorted = response.sort(function (a, b) {
+                                if (a.createdAt < b.createdAt) {
+                                    return 1;
+                                }
+                                if (a.createdAt > b.createdAt) {
+                                    return -1;
+                                }
+                                return 0;
+                            });
+                            var trHTML = '';
+                            $.each(response, function (i, order) {
+                                trHTML += "<tr><td class='title-col-orders'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
+                                        '   <td class="auditorium-col-orders">' + order.auditorium + "</td>" +
+                                        '   <td class="workplace-col-orders">' + order.workplace_access_num + "</td>" +
+                                        '   <td class="assistant-col-orders">' + order.assistantLastName + "</td>" +
+                                        '   <td class="date-col-orders">' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
+                                        '   <td class="status-col-orders">' + order.status + "</td></tr>";
+                            });
+                            $('#records_table tbody').empty();
+                            $('#records_table').append(trHTML);
+                        }
+                    });
                 });
-                var trHTML = '';
-                $.each(response, function (i, order) {
-                    trHTML += "<tr><td class='title-col-orders'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
-                            '   <td class="auditorium-col-orders">' + order.auditorium + "</td>" +
-                            '   <td class="workplace-col-orders">' + order.workplace_access_num + "</td>" +
-                            '   <td class="assistant-col-orders">' + order.assistantLastName + "</td>" +
-                            '   <td class="date-col-orders">' + formatDate(new Date(order.createdAt), '%d.%M.%Y %H:%m') + "</td>" +
-                            '   <td class="status-col-orders">' + order.status + "</td></tr>";
-                });
-                $('#records_table tbody').empty();
-                $('#records_table').append(trHTML);
-            }
+            });
         });
+
     </script>
 </head>
 
@@ -184,7 +199,7 @@
         <table id="records_table" class="tbl table table-striped admin-table assist-order-table">
             <thead>
             <tr>
-                <th class="no-sort title-col-orders-th"><spring:message
+                <th class="title-col-orders-th"><spring:message
                         code="admin.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                         width="8px" height="14px"></th>
                 <th class="auditorium-col-orders-th-report"><spring:message
