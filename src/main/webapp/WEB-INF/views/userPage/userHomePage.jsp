@@ -57,7 +57,7 @@
                 });
                 var trHTML = '';
                 $.each(sorted, function (i, order) {
-                    if (order.status == "Undone") {
+                    if (order.status == "not done") {
                         trHTML += "<tr>"
                                 + "<td class='title-col-user'>" + '<a href="/addComment/' + order.id + '">' + order.title.substring(0,15) + '</a>' + "</td>" +
                                 "<td class='auditorium-col'>" + order.auditorium + "</td>" +

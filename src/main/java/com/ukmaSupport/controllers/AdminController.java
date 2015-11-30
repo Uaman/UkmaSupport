@@ -51,7 +51,7 @@ public class AdminController {
     private OrderService orderService;
 
     private final static String DONE = "done";
-    private final static String UNDONE = "Undone";
+    private final static String UNDONE = "not done";
 
     private final static String USER = "USER";
     private final static String ASSISTANT = "ASSISTANT";
@@ -203,7 +203,7 @@ public class AdminController {
         }
 
         order.setUserId(userId);
-        order.setStatus("Undone");
+        order.setStatus("not done");
         order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
         User assistant = userService.getResponsibleAssistant(order.getAuditorium());
         int assistantId = 0;

@@ -12,9 +12,9 @@ public class CommentForAssistMail {
     private MailService mailService;
 
     public void send(String toAddr, int orderId) {
-        String subject = "Order assigned to you has been commented";
+        String subject = "New feedback on an assigned order";
         String link = Constants.SERVER + Constants.COMMENTS + orderId;
-        String body = "Order assigned to you has been commented. Details: " + link + "\n\nUKMA Support\n" + Constants.SERVER;
+        String body = "Someone has commented on one of the orders assigned to you. Details: " + link + "\n\nUKMA Support\n" + Constants.SERVER;
 
         mailService.sendEmail(toAddr, subject, body);
     }

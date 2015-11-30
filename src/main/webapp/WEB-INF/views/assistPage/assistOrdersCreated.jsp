@@ -63,7 +63,7 @@
                 });
                 var trHTML = '';
                 $.each(response, function (i, order) {
-                    if (order.status == "Undone") {
+                    if (order.status == "not done") {
                         trHTML += "<tr><td class='title-col-user'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
                                 '   <td class="auditorium-col-ord">' + order.auditorium + "</td>" +
                                 '   <td class="workplace-col-ord">' + order.workplace_access_num + "</td>" +

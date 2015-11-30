@@ -105,7 +105,7 @@
                         code="registration.lastName"/></label>
 
                 <div class="col-md-4">
-                    <form:input id="lastName" path="lastName" name="lastName" type="text" value=""
+                    <form:input id="lastName" path="lastName" name="lastName" type="password" value=""
                                 class="form-control form-style" READONLY="true"/>
                 </div>
             </div>
@@ -123,7 +123,7 @@
                         code="admin.oldPassword"/></label>
 
                 <div class="col-md-4">
-                    <form:input id="oldPassword" path="oldPassword" name="oldPassword" type="text" value=""
+                    <form:input id="oldPassword" path="oldPassword" name="oldPassword" type="password" value=""
                                 class="form-control form-style"/>
                 </div>
                 <div class="col-md-offset-9">
@@ -136,7 +136,7 @@
                         code="admin.newPassword"/></label>
 
                 <div class="col-md-4">
-                    <form:input id="password" path="password" name="password" type="text" value=""
+                    <form:input id="password" path="password" name="password" type="password" value=""
                                 class="form-control form-style"/>
                 </div>
                 <div class="col-md-offset-9">
@@ -149,7 +149,7 @@
                         code="registration.confPassword"/></label>
 
                 <div class="col-md-4">
-                    <form:input id="confPassword" path="confPassword" name="confPassword" type="text" value=""
+                    <form:input id="confPassword" path="confPassword" name="confPassword" type="password" value=""
                                 class="form-control form-style"/>
                 </div>
                 <div class="col-md-offset-9">

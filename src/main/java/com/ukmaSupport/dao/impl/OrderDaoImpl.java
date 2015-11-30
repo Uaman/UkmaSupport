@@ -140,7 +140,7 @@ public class OrderDaoImpl implements OrderDao {
     private static final String UPDATE = "UPDATE orders SET assistant_id=?, title=?, content=?, created_at=? WHERE id=?";
 
     private static final String UPDATE_ADDING_ASSISTANTS_TO_AUDITORIUM = "UPDATE orders SET assistant_id=? " +
-            "WHERE workplace_id IN (SELECT workplace.id FROM workplace WHERE workplace.auditorium_id=?) AND status='Undone'";
+            "WHERE workplace_id IN (SELECT workplace.id FROM workplace WHERE workplace.auditorium_id=?) AND status='not done'";
 
     @Override
     public Order getById(int id) {

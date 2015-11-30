@@ -12,9 +12,9 @@ public class NewOrderMail {
     private MailService mailService;
 
     public void send(String toAddr) {
-        String subject = "You have new order";
+        String subject = "You have a new order";
         //String link = Constants.SERVER + Constants.COMMENTS + orderId;
-        String body = "You have new order." + /*order.getTitle() +*/ "\n\nUKMA Support\n" + Constants.SERVER;
+        String body = "You have been assigned a new order." + /*order.getTitle() +*/ "\n\nUKMA Support\n" + Constants.SERVER;
         mailService.sendEmail(toAddr, subject, body);
     }
 }

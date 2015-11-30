@@ -30,7 +30,7 @@ import java.util.List;
 public class AssistController {
 
     private final static String DONE = "done";
-    private final static String UNDONE = "Undone";
+    private final static String UNDONE = "not done";
 
     @Autowired
     private OrderService orderService;
