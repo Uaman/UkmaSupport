@@ -50,7 +50,6 @@
                         url: '/admin/getAssistants',
                         type: 'GET',
                         success: function (data) {
-                            $('.assist').append($('<option disabled=disabled>').text('_ _ _ _ _ _ _'));
                             $('.assist').append($('<option>').text('Set empty').attr('value', 0));
                             $.each(data, function (i, user) {
                                 $('.assist').append($('<option>').text(user.firstName + ' ' + user.lastName).attr('value', user.id));
@@ -78,19 +77,7 @@
             $("#records_table").tablesort();
         });
 
-        (document).ready(function () {
-            $('.assist option:selected').hide(); //initialise
 
-            $('.assist').change(function(){
-
-                $('.assist option').show(200, function(){
-
-                    $('.assist option:selected').hide();
-
-                });
-
-            });
-        });
 
         var auditoriumId;
         var setAssistant;
