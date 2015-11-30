@@ -19,29 +19,117 @@ public class OrderDaoImpl implements OrderDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    private static final String GET_ALL_ORDERS = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, concat(users.last_name, '') AS assist, (SELECT concat(users.last_name, '') AS userName FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id";
+    private static final String GET_ALL_ORDERS = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, " +
+            "workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, " +
+            "auditorium.number, concat(users.last_name, '') AS assist, " +
+            "(SELECT concat(users.last_name, '') AS userName " +
+            "FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) " +
+            "FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) " +
+            "LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id " +
+            "LEFT JOIN users ON users.id_user=orders.assistant_id";
 
-    private static final String GET_ALL_ORDERS_DATE = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, concat(users.last_name, '') AS assist, (SELECT concat(users.last_name, '') AS userName FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE to_char(orders.created_at, 'YYYY-MM-DD')>=? AND to_char(orders.created_at, 'YYYY-MM-DD')<=? ";
+    private static final String GET_ALL_ORDERS_DATE = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, " +
+            "workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, " +
+            "auditorium.number, concat(users.last_name, '') AS assist, " +
+            "(SELECT concat(users.last_name, '') AS userName " +
+            "FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) " +
+            "FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) " +
+            "LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id " +
+            "LEFT JOIN users ON users.id_user=orders.assistant_id " +
+            "WHERE to_char(orders.created_at, 'YYYY-MM-DD')>=? AND to_char(orders.created_at, 'YYYY-MM-DD')<=? ";
 
-    private static final String GET_ALL_ORDERS_BY_USER_ID = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, concat(users.last_name, '') AS assist, (SELECT concat(users.last_name, '') AS userName FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE orders.user_id=?";
+    private static final String GET_ALL_ORDERS_BY_USER_ID = "SELECT orders.id, orders.workplace_id, orders.user_id, " +
+            "orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, " +
+            "orders.status, auditorium.number, concat(users.last_name, '') AS assist, " +
+            "(SELECT concat(users.last_name, '') AS userName " +
+            "FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) " +
+            "FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) " +
+            "LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id " +
+            "LEFT JOIN users ON users.id_user=orders.assistant_id " +
+            "WHERE orders.user_id=?";
 
-    private static final String GET_ALL_ORDERS_BY_ASSIST_ID_DATE = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, concat(users.last_name, '') AS assist, (SELECT concat(users.last_name, '') AS userName FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE to_char(orders.created_at, 'YYYY-MM-DD')>=? AND to_char(orders.created_at, 'YYYY-MM-DD')<=? AND orders.assistant_id=?";
+    private static final String GET_ALL_ORDERS_BY_ASSIST_ID_DATE = "SELECT orders.id, orders.workplace_id, orders.user_id, " +
+            "orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, " +
+            "orders.created_at, orders.status, auditorium.number, concat(users.last_name, '') AS assist, " +
+            "(SELECT concat(users.last_name, '') AS userName " +
+            "FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) " +
+            "FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) " +
+            "LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id " +
+            "LEFT JOIN users ON users.id_user=orders.assistant_id " +
+            "WHERE to_char(orders.created_at, 'YYYY-MM-DD')>=? AND to_char(orders.created_at, 'YYYY-MM-DD')<=? AND orders.assistant_id=?";
 
-    private static final String GET_ALL_ORDERS_BY_AUDITORIUM_NUMBER = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, concat(users.last_name, '') AS assist, (SELECT concat(users.last_name, '') AS userName FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE auditorium.number=?";
+    private static final String GET_ALL_ORDERS_BY_AUDITORIUM_NUMBER = "SELECT orders.id, orders.workplace_id, orders.user_id, " +
+            "orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, " +
+            "orders.status, auditorium.number, concat(users.last_name, '') AS assist, " +
+            "(SELECT concat(users.last_name, '') AS userName " +
+            "FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) " +
+            "FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) " +
+            "LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id " +
+            "LEFT JOIN users ON users.id_user=orders.assistant_id " +
+            "WHERE auditorium.number=?";
 
-    private static final String GET_ALL_ORDERS_BY_AUDITORIUM_NUMBER_DATE = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, concat(users.last_name, '') AS assist, (SELECT concat(users.last_name, '') AS userName FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE to_char(orders.created_at, 'YYYY-MM-DD')>=? AND to_char(orders.created_at, 'YYYY-MM-DD')<=? AND auditorium.number=?";
+    private static final String GET_ALL_ORDERS_BY_AUDITORIUM_NUMBER_DATE = "SELECT orders.id, orders.workplace_id, orders.user_id, " +
+            "orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, " +
+            "orders.status, auditorium.number, concat(users.last_name, '') AS assist, " +
+            "(SELECT concat(users.last_name, '') AS userName " +
+            "FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) " +
+            "FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) " +
+            "LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id " +
+            "LEFT JOIN users ON users.id_user=orders.assistant_id " +
+            "WHERE to_char(orders.created_at, 'YYYY-MM-DD')>=? AND to_char(orders.created_at, 'YYYY-MM-DD')<=? AND auditorium.number=?";
 
-    private static final String GET_ALL_ORDERS_BY_WORKPLACE_ACCESS_NUM = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, concat(users.last_name, '') AS assist, (SELECT concat(users.last_name, '') AS userName FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE workplace.access_num=?";
+    private static final String GET_ALL_ORDERS_BY_WORKPLACE_ACCESS_NUM = "SELECT orders.id, orders.workplace_id, orders.user_id, " +
+            "orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, " +
+            "orders.created_at, orders.status, auditorium.number, concat(users.last_name, '') AS assist, " +
+            "(SELECT concat(users.last_name, '') AS userName " +
+            "FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) " +
+            "FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) " +
+            "LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id " +
+            "LEFT JOIN users ON users.id_user=orders.assistant_id " +
+            "WHERE workplace.access_num=?";
 
-    private static final String GET_ALL_ORDERS_BY_USER_ID_AND_ID = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, concat(users.last_name, '') AS assist, (SELECT concat(users.last_name, '') AS userName FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE orders.id=? AND orders.user_id=?";
+    private static final String GET_ALL_ORDERS_BY_USER_ID_AND_ID = "SELECT orders.id, orders.workplace_id, orders.user_id, " +
+            "orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, " +
+            "orders.status, auditorium.number, concat(users.last_name, '') AS assist, " +
+            "(SELECT concat(users.last_name, '') AS userName " +
+            "FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) " +
+            "FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) " +
+            "LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id " +
+            "LEFT JOIN users ON users.id_user=orders.assistant_id " +
+            "WHERE orders.id=? AND orders.user_id=?";
 
-    private static final String GET_ORDER_BY_ID = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, concat(users.last_name, '') AS assist, (SELECT concat(users.last_name, '') AS userName FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id  WHERE orders.id=?";
+    private static final String GET_ORDER_BY_ID = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, " +
+            "workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, " +
+            "auditorium.number, concat(users.last_name, '') AS assist, " +
+            "(SELECT concat(users.last_name, '') AS userName " +
+            "FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) " +
+            "FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) " +
+            "LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id " +
+            "LEFT JOIN users ON users.id_user=orders.assistant_id  " +
+            "WHERE orders.id=?";
 
-    private static final String GET_ALL_ASSIST_ORDERS = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, auditorium.number, users.last_name AS assist, (SELECT concat(users.last_name, '') AS userName FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE assistant_id=?";
+    private static final String GET_ALL_ASSIST_ORDERS = "SELECT orders.id, orders.workplace_id, orders.user_id, orders.assistant_id, " +
+            "workplace.auditorium_id, workplace.access_num, orders.title, orders.content, orders.created_at, orders.status, " +
+            "auditorium.number, users.last_name AS assist, " +
+            "(SELECT concat(users.last_name, '') AS userName " +
+            "FROM users INNER JOIN orders as ord ON orders.user_id=users.id_user and orders.id=id) " +
+            "FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) " +
+            "LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id " +
+            "LEFT JOIN users ON users.id_user=orders.assistant_id " +
+            "WHERE assistant_id=?";
 
-    private static final String GET_COUNT_BY_ASSIST_AND_STATUS_DATE = "SELECT COUNT (orders.status) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE to_char(orders.created_at, 'YYYY-MM-DD')>=? AND to_char(orders.created_at, 'YYYY-MM-DD')<=? AND orders.assistant_id=? AND orders.status=? ";
+    private static final String GET_COUNT_BY_ASSIST_AND_STATUS_DATE = "SELECT COUNT (orders.status) " +
+            "FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) " +
+            "LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id " +
+            "LEFT JOIN users ON users.id_user=orders.assistant_id " +
+            "WHERE to_char(orders.created_at, 'YYYY-MM-DD')>=? AND to_char(orders.created_at, 'YYYY-MM-DD')<=? " +
+            "AND orders.assistant_id=? AND orders.status=? ";
 
-    private static final String GET_COUNT_BY_DATE = "SELECT COUNT (orders.status) FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id LEFT JOIN users ON users.id_user=orders.assistant_id WHERE to_char(orders.created_at, 'YYYY-MM-DD')>=? AND to_char(orders.created_at, 'YYYY-MM-DD')<=? AND orders.status=?";
+    private static final String GET_COUNT_BY_DATE = "SELECT COUNT (orders.status) " +
+            "FROM (orders INNER JOIN workplace ON orders.workplace_id=workplace.id) " +
+            "LEFT JOIN auditorium ON workplace.auditorium_id=auditorium.id " +
+            "LEFT JOIN users ON users.id_user=orders.assistant_id " +
+            "WHERE to_char(orders.created_at, 'YYYY-MM-DD')>=? AND to_char(orders.created_at, 'YYYY-MM-DD')<=? AND orders.status=?";
 
     private static final String DELETE_ORDER = "DELETE FROM orders WHERE id=?";
 
@@ -51,7 +139,8 @@ public class OrderDaoImpl implements OrderDao {
 
     private static final String UPDATE = "UPDATE orders SET assistant_id=?, title=?, content=?, created_at=? WHERE id=?";
 
-    private static final String UPDATE_ADDING_ASSISTANTS_TO_AUDITORIUM = "UPDATE orders SET assistant_id=? WHERE workplace_id IN (SELECT workplace.id FROM workplace WHERE workplace.auditorium_id=?) AND status='Undone'";
+    private static final String UPDATE_ADDING_ASSISTANTS_TO_AUDITORIUM = "UPDATE orders SET assistant_id=? " +
+            "WHERE workplace_id IN (SELECT workplace.id FROM workplace WHERE workplace.auditorium_id=?) AND status='Undone'";
 
     @Override
     public Order getById(int id) {

@@ -20,23 +20,45 @@ public class UserDaoImpl implements UserDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private static final String GET_ALL_USERS = "SELECT users.id_user, user_roles.role, users.first_name, users.last_name, users.email, users.data_entry, users.password, users.status_account FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid";
+    private static final String GET_ALL_USERS = "SELECT users.id_user, user_roles.role, users.first_name, users.last_name, " +
+            "users.email, users.data_entry, users.password, users.status_account " +
+            "FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid";
 
-    private static final String GET_RESPONSIBLE_ASSISTANT = "SELECT users.id_user, user_roles.role, users.first_name, users.last_name, users.email, users.data_entry, users.password, users.status_account FROM user_roles INNER JOIN users ON users.user_roleid=user_roles.id INNER JOIN auditorium ON users.id_user=auditorium.user_id WHERE auditorium.number=?";
+    private static final String GET_RESPONSIBLE_ASSISTANT = "SELECT users.id_user, user_roles.role, users.first_name, " +
+            "users.last_name, users.email, users.data_entry, users.password, users.status_account " +
+            "FROM user_roles INNER JOIN users ON users.user_roleid=user_roles.id " +
+            "INNER JOIN auditorium ON users.id_user=auditorium.user_id " +
+            "WHERE auditorium.number=?";
 
-    private static final String GET_ALL_USERS_BY_ROLE = "SELECT users.id_user, user_roles.role, users.first_name, users.last_name, users.email, users.data_entry, users.password, users.status_account FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid WHERE user_roles.role = ?";
+    private static final String GET_ALL_USERS_BY_ROLE = "SELECT users.id_user, user_roles.role, users.first_name, " +
+            "users.last_name, users.email, users.data_entry, users.password, users.status_account " +
+            "FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid " +
+            "WHERE user_roles.role = ?";
 
-    private static final String GET_ALL_USERS_BY_STATUS = "SELECT users.id_user, user_roles.role, users.first_name, users.last_name, users.email, users.data_entry, users.password, users.status_account FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid WHERE users.status_account = ?";
+    private static final String GET_ALL_USERS_BY_STATUS = "SELECT users.id_user, user_roles.role, users.first_name, " +
+            "users.last_name, users.email, users.data_entry, users.password, users.status_account " +
+            "FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid " +
+            "WHERE users.status_account = ?";
 
-    private static final String GET_USER_BY_ID = "SELECT users.id_user, user_roles.role, users.first_name, users.last_name, users.email, users.data_entry, users.password, users.status_account FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid WHERE id_user = ? ";
+    private static final String GET_USER_BY_ID = "SELECT users.id_user, user_roles.role, users.first_name, " +
+            "users.last_name, users.email, users.data_entry, users.password, users.status_account " +
+            "FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid " +
+            "WHERE id_user = ? ";
 
-    private static final String GET_USER_BY_EMAIL = "SELECT users.id_user, user_roles.role, users.first_name, users.last_name, users.email, users.data_entry, users.password, users.status_account FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid WHERE email = ? ";
+    private static final String GET_USER_BY_EMAIL = "SELECT users.id_user, user_roles.role, users.first_name, " +
+            "users.last_name, users.email, users.data_entry, users.password, users.status_account " +
+            "FROM users INNER JOIN user_roles ON user_roles.id=users.user_roleid " +
+            "WHERE email = ? ";
 
     private static final String DELETE_USER = "DELETE FROM users WHERE id_user = ?";
 
-    private static final String INSERT_QUERY = "INSERT INTO users (user_roleid, first_name, last_name, email, data_entry, password, status_account) VALUES((SELECT user_roles.id FROM user_roles WHERE user_roles.role=?),?,?,?,?,?,?)";
+    private static final String INSERT_QUERY = "INSERT INTO users (user_roleid, first_name, last_name, email, data_entry, password, status_account) " +
+            "VALUES((SELECT user_roles.id FROM user_roles WHERE user_roles.role=?),?,?,?,?,?,?)";
 
-    private static final String UPDATE_QUERY = "UPDATE users SET user_roleid=(SELECT user_roles.id FROM user_roles WHERE user_roles.role=?), first_name=?, last_name=?, email=?, data_entry=?, password=?, status_account=? WHERE id_user=?";
+    private static final String UPDATE_QUERY = "UPDATE users " +
+            "SET user_roleid=(SELECT user_roles.id FROM user_roles WHERE user_roles.role=?), " +
+            "first_name=?, last_name=?, email=?, data_entry=?, password=?, status_account=? " +
+            "WHERE id_user=?";
 
     @Override
     public User getById(int id) {

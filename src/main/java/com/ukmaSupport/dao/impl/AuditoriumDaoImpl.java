@@ -34,7 +34,9 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
 
     @Override
     public Auditorium getByNumber(String number) {
-        String sql = "SELECT id,user_id,number, concat(users.first_name, ' ', users.last_name) AS assist FROM auditorium LEFT JOIN users ON users.id_user=auditorium.user_id WHERE number=?";
+        String sql = "SELECT id,user_id,number, concat(users.first_name, ' ', users.last_name) AS assist " +
+                "FROM auditorium LEFT JOIN users ON users.id_user=auditorium.user_id " +
+                "WHERE number=?";
         return jdbcTemplate.queryForObject(sql, new Object[]{number}, new AuditoriumMapper());
     }
 
@@ -45,7 +47,8 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
 
     @Override
     public List<Auditorium> getAll() {
-        String sql = "SELECT id,user_id,number, concat(users.first_name, ' ', users.last_name) AS assist FROM auditorium LEFT JOIN users ON users.id_user=auditorium.user_id";
+        String sql = "SELECT id,user_id,number, concat(users.first_name, ' ', users.last_name) AS assist " +
+                "FROM auditorium LEFT JOIN users ON users.id_user=auditorium.user_id";
         return this.jdbcTemplate.query(sql, new AuditoriumMapper());
     }
 }
