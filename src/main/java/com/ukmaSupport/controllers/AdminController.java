@@ -81,6 +81,7 @@ public class AdminController {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
         int adminId = (Integer) session.getAttribute("id");
+        model.addAttribute("adminId", adminId);
         model.addAttribute("link", "Users");
         return "adminPage/users";
     }
@@ -97,6 +98,7 @@ public class AdminController {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
         int adminId = (Integer) session.getAttribute("id");
+        model.addAttribute("adminId", adminId);
         model.addAttribute("link", "Assistants");
         return "adminPage/users";
     }
@@ -113,6 +115,7 @@ public class AdminController {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
         int adminId = (Integer) session.getAttribute("id");
+        model.addAttribute("adminId", adminId);
         model.addAttribute("link", "Professors");
         return "adminPage/users";
     }
@@ -129,6 +132,7 @@ public class AdminController {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession();
         int adminId = (Integer) session.getAttribute("id");
+        model.addAttribute("adminId", adminId);
         model.addAttribute("link", "BlockedUsers");
         return "adminPage/users";
     }
