@@ -26,8 +26,8 @@
                 $('#sel1').css('border-color', 'rgb(255, 0, 0)');
                 $('#sel2').css('border-color', 'rgb(255, 0, 0)');
             }
-            showTooltip($('#title'), 'help will be there');
-            showTooltip($('#content'), 'help will be there');
+            showTooltip($('#title'), '<spring:message code="help.title"/>');
+            showTooltip($('#content'), '<spring:message code="help.description"/>');
         });
         function showTooltip (el, text) {
             if ($("*[name!='auditorium_errors'][class='input-error-notif']").css('border-color') != 'rgb(255, 0, 0)') {
