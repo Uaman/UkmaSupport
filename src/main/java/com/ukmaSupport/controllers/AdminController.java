@@ -226,10 +226,8 @@ public class AdminController {
         order.setUserId(userId);
         order.setStatus("not done");
 
-        Date date = new Date();
-        long dateTime = date.getTime();
-
-        order.setCreatedAt(new Timestamp(dateTime));
+        Timestamp timestamp = new Timestamp(new Date().getTime());
+        order.setCreatedAt(timestamp);
 
         User assistant = userService.getResponsibleAssistant(order.getAuditorium());
         int assistantId = 0;
@@ -238,7 +236,7 @@ public class AdminController {
         order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
         orderService.createOrUpdate(order);
 
-        //Order newOrder = orderService.getByTime(new java.sql.Date(dateTime));
+        //Order newOrder = orderService.getByTime(timestamp);
 
         if (assistant != null)
             newOrderMail.send(assistant.getEmail());

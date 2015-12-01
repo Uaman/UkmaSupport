@@ -95,10 +95,9 @@ public class UserController {
         order.setUserId(userId);
         order.setStatus(UNDONE);
 
-        Date date = new Date();
-        long dateTime = date.getTime();
+        Timestamp timestamp = new Timestamp(new Date().getTime());
 
-        order.setCreatedAt(new Timestamp(dateTime));
+        order.setCreatedAt(timestamp);
 
         User assistant = userService.getResponsibleAssistant(order.getAuditorium());
         int assistantId = 0;
@@ -108,7 +107,7 @@ public class UserController {
 
         orderService.createOrUpdate(order);
 
-        //Order newOrder = orderService.getByTime(new Timestamp(dateTime));
+        //Order newOrder = orderService.getByTime(timestamp);
 
         if (assistant != null)
             newOrderMail.send(assistant.getEmail());
