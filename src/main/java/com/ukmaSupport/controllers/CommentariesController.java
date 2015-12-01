@@ -28,7 +28,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/addComment")
-public class CommentsController {
+public class CommentariesController {
 
     @Autowired
     private CommentService commentService;
