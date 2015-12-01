@@ -22,9 +22,9 @@
             if($("*[name='confPassword_errors']").css('color') == 'rgb(255, 0, 0)') {
                 $('#confPassword').css('border-color', 'rgb(255, 0, 0)');
             }
-            showTooltip($('#oldPassword'), 'help will be there');
-            showTooltip($('#password'), 'help will be there');
-            showTooltip($('#confPassword'), 'help will be there');
+            showTooltip($('#oldPassword'), '<spring:message code="help.oldPassword"/>');
+            showTooltip($('#password'), '<spring:message code="valid.password2"/>');
+            showTooltip($('#confPassword'), '<spring:message code="valid.confPassword"/>');
         });
         function showTooltip (el, text) {
             if ($('.input-error-notif').css('border-color') != 'rgb(255, 0, 0)') {
