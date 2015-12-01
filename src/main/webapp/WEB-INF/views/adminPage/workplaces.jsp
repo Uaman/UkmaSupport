@@ -45,8 +45,8 @@
                                 var trHTML = '';
                                 $.each(sorted, function (i, workplace) {
                                     trHTML += "<tr>" +
-                                            '<td>' + workplace.accessNumber + "</td>" +
-                                            "<td>" + '<form action="/admin/auditoriums/${name}/workplaces/delete/' + workplace.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
+                                            "<td class='workplace-col'>" + workplace.accessNumber + "</td>" +
+                                            "<td class='icon-col'>" + '<form action="/admin/auditoriums/${name}/workplaces/delete/' + workplace.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
                                             "</tr>";
                                 });
                                 $('#records_table tbody').empty();
@@ -78,8 +78,8 @@
                 var trHTML = '';
                 $.each(sorted, function (i, workplace) {
                     trHTML += "<tr >" +
-                            '<td>' + workplace.accessNumber + "</td>" +
-                            "<td>" + '<form action="/admin/auditoriums/${name}/workplaces/delete/' + workplace.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
+                            "<td class='workplace-col'>" + workplace.accessNumber + "</td>" +
+                            "<td class='icon-col'>" + '<form action="/admin/auditoriums/${name}/workplaces/delete/' + workplace.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
                             "</tr>";
                 });
                 $('#records_table tbody').empty();
@@ -156,20 +156,24 @@
     </nav>
 
 
-    <div class="table-align bottom-block top-table">
-        <table id="records_table" class="tbl table table_auditorium table-striped">
-            <thead>
+    <div class="table-align top-table">
+        <div>
+        <table id="records_table" class="tbl-workplaces tbl table table_auditorium table-striped">
+            <thead class="fixedHeader">
             <tr>
-                <th><spring:message code="admin.workplaces.workplace"/><img class="icon-sort"
+                <th class="workplace-col"><spring:message code="admin.workplaces.workplace"/><img class="icon-sort"
                                                                             src="../../../resources/img/sort15.png"
                                                                             width="8px" height="14px"></th>
-                <th></th>
+                <th class="icon-col"></th>
             </tr>
             </thead>
+            <tbody class="scrollContent">
+            </tbody>
         </table>
+        </div>
     </div>
-    <center><a data-toggle="modal" data-target="#addWorkplace" class="btn btn-primary button-style"><spring:message
-            code="admin.workplaces.addWorkplace"/></a></center>
+    <center><button data-toggle="modal" data-target="#addWorkplace" class="btn btn-primary button-style"><spring:message
+            code="admin.workplaces.addWorkplace"/></button></center>
     <div id="footer">
         <div class="thick"></div>
         <div class="thin"></div>

@@ -185,7 +185,7 @@
     </nav>
 
     <div class="table-align bottom-block top-table">
-        <div id="tableContainer" class="tableContainer">
+        <div class="tableContainer">
             <table id="records_table" class="tbl table table_auditorium table-striped"
                    style="max-width: 100%; width: 430px; ">
                 <thead class="fixedHeader">

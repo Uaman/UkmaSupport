@@ -1025,5 +1025,13 @@ tbody.scrollContent {
 #edit-profile-title {
 	padding-right: 140px;
 }
-
+.tbl-workplaces {
+	width: 350px;
+}
+.workplace-col {
+	width: 300px;
+}
+.icon-col {
+	width: 50px;
+}
 
