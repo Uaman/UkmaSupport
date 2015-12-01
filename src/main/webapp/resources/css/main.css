@@ -630,18 +630,8 @@ tbody.scrollContent {
     padding-left: 15px;
 }
 
-.error {
-    color: red;
-}
-#title-error {
-    padding-top: 8px;
-}
 #workplace-error {
     padding-top: 21px;
-}
-
-#content-error {
-    padding-top: 39px;
 }
 
 .icon {

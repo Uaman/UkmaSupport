@@ -15,6 +15,25 @@
     <script src="../../../resources/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
+        $(document).ready(function() {
+            if($("*[name='title_error']").css('color') == 'rgb(255, 0, 0)') {
+                $('#title').css('border-color', 'rgb(255, 0, 0)');
+            }
+            if($("*[name='content_errors']").css('color') == 'rgb(255, 0, 0)') {
+                $('#content').css('border-color', 'rgb(255, 0, 0)');
+            }
+            if($("*[name='workplace_access_num_errors']").css('color') == 'rgb(255, 0, 0)') {
+                $('#sel1').css('border-color', 'rgb(255, 0, 0)');
+                $('#sel2').css('border-color', 'rgb(255, 0, 0)');
+            }
+            showTooltip($('#title'), 'help will be there');
+            showTooltip($('#content'), 'help will be there');
+        });
+        function showTooltip (el, text) {
+            if ($("*[name!='auditorium_errors'][class='input-error-notif']").css('border-color') != 'rgb(255, 0, 0)') {
+                el.tooltip({title: "" + text + "", placement: "right", trigger: "focus", animation: "true", delay: {show: 100}});
+            }
+        }
         function getWorkPlace() {
             $.ajax({
                 url: '/user/ajaxtest',
@@ -60,17 +79,12 @@
                    commandName="newOrder">
             <div class="form-group">
                 <div class="col-md-6">
-                    <div class="error" id="form-error"><form:errors class="" path="auditorium"
-                                                                    id="auditorium.errors"/></div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-6" display="inline-block">
                     <input type="text" class="form-control form-style" id="title" value="${newOrder.title}" name="title"
                            placeholder="<spring:message
                             code="user.title"/>" path="title">
                 </div>
-                <div class="error" id="title-error"><form:errors path="title" class="" id="title.errors"/></div>
+                <div class="col-md-offset-6"><form:errors path="title" id="title.errors" name="title_error"
+                                                                 cssClass="input-error-notif" element="div"/></div>
             </div>
             <div class="form-group">
                 <div class="col-md-3">
@@ -94,8 +108,8 @@
                                 code="user.workplace.number"/></option>
                     </select>
                 </div>
-                <div class="error" id="workplace-error"><form:errors path="workplace_access_num" class=""
-                                                                     id="workplace_access_num.errors"/></div>
+                <div id="workplace-error" class="col-md-offset-6"><form:errors path="workplace_access_num" id="workplace_access_num.errors"
+                                                                     name="workplace_access_num_errors" cssClass="input-error-notif" element="div"/></div>
 
             </div>
 
@@ -104,13 +118,21 @@
                     <textarea class="col-md-12" rows="5" id="content" name="content" path="content" placeholder="<spring:message
                             code="user.description"/>">${newOrder.content}</textarea>
                 </div>
-                <div class="error" id="content-error"><form:errors path="content" class="" id="content.errors"/></div>
+                <div class="col-md-offset-6"><form:errors path="content" id="content.errors" name="content_errors"
+                                                                   cssClass="input-error-notif" element="div"/></div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-6">
                     <button id="btn-create-order" type="submit" class="btn btn-primary btn-block"><spring:message
                             code="user.order.add"/></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <div class="error"><form:errors path="auditorium" name="auditorium_errors"
+                                                                    id="auditorium.errors"
+                                                                    cssClass="input-error-notif" element="div"/></div>
                 </div>
             </div>
         </form:form>
