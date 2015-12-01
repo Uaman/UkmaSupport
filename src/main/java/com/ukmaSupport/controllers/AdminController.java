@@ -56,6 +56,7 @@ public class AdminController {
     private final static String USER = "USER";
     private final static String ASSISTANT = "ASSISTANT";
     private final static String PROFESSOR = "PROFESSOR";
+    private final static String ADMIN = "ADMIN";
 
     private final static String BLOCKED = "blocked";
 
@@ -339,7 +340,7 @@ public class AdminController {
     public String saveAuditorium(@RequestBody Map<String, Object> searchParam, Auditorium auditorium) {
         String number = (String) searchParam.get("auditorium");
         auditorium.setNumber(number);
-        //if(number.matches("^[\\d]{1}[\\u002D]{1}[\\d]{3}$"))//????
+        if(number.matches("^[\\d]{1}[\\u002D]{1}[\\d]{3}$"))
             auditoriumService.save(auditorium);
         return "redirect:/admin/auditoriums";
     }
@@ -383,16 +384,16 @@ public class AdminController {
         User user = userService.getById(Integer.parseInt(id));
         String userRole = null;
         if (role.equals("Assistant")) {
-            userRole = "ASSISTANT";
+            userRole = ASSISTANT;
 
         } else if (role.equals("User")) {
-            userRole = "USER";
+            userRole = USER;
 
         } else if (role.equals("Admin")) {
-            userRole = "ADMIN";
+            userRole = ADMIN;
 
         } else if (role.equals("Professor")) {
-            userRole = "PROFESSOR";
+            userRole = PROFESSOR;
         }
         user.setRole(userRole);
         userService.saveOrUpdate(user);

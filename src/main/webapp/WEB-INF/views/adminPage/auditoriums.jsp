@@ -32,16 +32,16 @@
                     $.each(sorted, function (i, auditorium) {
                         if (auditorium.userId == 0) {
                             trHTML += "<tr>" +
-                                    '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
-                                    '<td>' + '<select  id="myselect" data-hidden="true" class="assist select-style" data-id="' + auditorium.number + '" onchange="func($(this))"><option class="current-assist" value="' + auditorium.userId + '">' + auditorium.assistantName + '</option></select>' + "</td>" +
-                                    "<td>" + '<button data-id="' + auditorium.id + '" class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button>' + "</td>" +
-                                    "</tr>";
+                            '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
+                            '<td>' + '<select  id="myselect" data-hidden="true" class="assist select-style" data-id="' + auditorium.number + '" onchange="func($(this))"><option class="current-assist" value="' + auditorium.userId + '">' + auditorium.assistantName + '</option></select>' + "</td>" +
+                            "<td>" + '<button data-id="' + auditorium.id + '" class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button>' + "</td>" +
+                            "</tr>";
                         } else {
                             trHTML += "<tr>" +
-                                    '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
-                                    '<td>' + '<select class="assist select-style" data-hidden="true" data-id="' + auditorium.number + '" onchange="func($(this))"><option class="current-assist" value="' + auditorium.userId + '">' + auditorium.assistantName + '</option></select>' + "</td>" +
-                                    "<td>" + '<button data-id="' + auditorium.id + '" class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button>' + "</td>" +
-                                    "</tr>";
+                            '<td width="200px">' + '<a href="/admin/auditoriums/' + auditorium.number + '">' + auditorium.number + '</a>' + "</td>" +
+                            '<td>' + '<select class="assist select-style" data-hidden="true" data-id="' + auditorium.number + '" onchange="func($(this))"><option class="current-assist" value="' + auditorium.userId + '">' + auditorium.assistantName + '</option></select>' + "</td>" +
+                            "<td>" + '<button data-id="' + auditorium.id + '" class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button>' + "</td>" +
+                            "</tr>";
                         }
                     });
                     $('#records_table tbody').empty();
@@ -54,7 +54,6 @@
                             $.each(data, function (i, user) {
                                 $('.assist').append($('<option>').text(user.firstName + ' ' + user.lastName).attr('value', user.id));
                             });
-
                         }
                     });
                     $('.icon-btn').click(function () {
@@ -66,18 +65,14 @@
                             }
                         });
                     });
-
                 }
             });
         }
-
 
         $(document).ready(function () {
             populateTable();
             $("#records_table").tablesort();
         });
-
-
 
         var auditoriumId;
         var setAssistant;
@@ -100,8 +95,6 @@
                     populateTable();
                 }
             });
-
-
         }
 
         $(document).ready(function () {
@@ -122,8 +115,6 @@
                         populateTable();
                     }
                 });
-
-
             });
         });
     </script>
