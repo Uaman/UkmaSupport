@@ -108,7 +108,7 @@ public class UserController {
 
         orderService.createOrUpdate(order);
 
-        //Order newOrder = orderService.getByTime(new java.sql.Date(dateTime));
+        //Order newOrder = orderService.getByTime(new Timestamp(dateTime));
 
         if (assistant != null)
             newOrderMail.send(assistant.getEmail());
