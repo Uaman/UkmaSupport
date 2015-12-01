@@ -31,7 +31,7 @@
         </div>
     </nav>
 
-    <div id="mainImage"><img src="../../../resources/img/var648.jpg" alt=""/></div>
+    <div id="mainImage"><img src="../../../resources/img/var507.jpg" alt=""/></div>
 
     <!--   <div id="mainImage"><img src="../../../resources/img/var4.jpg" alt=""/></div> -->
 
