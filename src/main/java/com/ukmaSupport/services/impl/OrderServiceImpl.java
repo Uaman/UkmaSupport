@@ -32,7 +32,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order getByTime(Timestamp time) {
-        return orderDao.getByTime(time);
+        Order order;
+        try {
+            order = orderDao.getByTime(time);
+        } catch (Exception e) {
+            order = null;
+        }
+        return order;
     }
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
