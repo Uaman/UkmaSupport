@@ -119,7 +119,7 @@
                         code="registration.lastName"/></label>
 
                 <div class="col-md-4">
-                    <form:input id="lastName" path="lastName" name="lastName" type="password" value=""
+                    <form:input id="lastName" path="lastName" name="lastName" type="text" value=""
                                 class="form-control form-style" READONLY="true"/>
                 </div>
             </div>
