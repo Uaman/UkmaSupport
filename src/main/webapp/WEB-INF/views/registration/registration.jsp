@@ -12,11 +12,11 @@
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            showTooltip($('#firstName'), 'help will be there');
-            showTooltip($('#lastName'), 'help will be there');
-            showTooltip($('#email'), 'help will be there');
-            showTooltip($('#password'), 'help will be there');
-            showTooltip($('#confPassword'), 'help will be there');
+            showTooltip($('#firstName'), '<spring:message code="help.firstName"/>');
+            showTooltip($('#lastName'), '<spring:message code="help.lastName"/>');
+            showTooltip($('#email'), '<spring:message code="valid.email"/>');
+            showTooltip($('#password'), '<spring:message code="valid.password2"/>');
+            showTooltip($('#confPassword'), '<spring:message code="valid.confPassword"/>');
         });
         function showTooltip (el, text) {
             if ($('.input-error').css('border-color') != 'rgb(255, 0, 0)') {
