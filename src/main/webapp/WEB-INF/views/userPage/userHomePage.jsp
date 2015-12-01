@@ -57,7 +57,7 @@
                 });
                 var trHTML = '';
                 $.each(sorted, function (i, order) {
-                    if (order.status == "Undone") {
+                    if (order.status == "not done") {
                         trHTML += "<tr>"
                                 + "<td class='title-col-user'>" + '<a href="/addComment/' + order.id + '">' + order.title.substring(0,15) + '</a>' + "</td>" +
                                 "<td class='auditorium-col'>" + order.auditorium + "</td>" +
@@ -92,7 +92,7 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="/"><img id="logo" alt="brand" src="../../../resources/img/logo.png"
+                <a href="/user/userhome"><img id="logo" alt="brand" src="../../../resources/img/logo.png"
                                  style="width: 305px; height:65px; margin-top:11px;"></a>
             </div>
             <div class="collapse navbar-collapse">

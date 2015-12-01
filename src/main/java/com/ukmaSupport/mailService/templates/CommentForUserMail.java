@@ -12,9 +12,9 @@ public class CommentForUserMail {
     private MailService mailService;
 
     public void send(String toAddr, int orderId) {
-        String subject = "Your order has been commented";
+        String subject = "New response on an order you submitted";
         String link = Constants.SERVER + Constants.COMMENTS + orderId;
-        String body = "Your order has been commented. Details: " + link + "\n\nUKMA Support\n" + Constants.SERVER;
+        String body = "Someone has left a comment on an order you submitted. Details: " + link + "\n\nUKMA Support\n" + Constants.SERVER;
 
         mailService.sendEmail(toAddr, subject, body);
     }

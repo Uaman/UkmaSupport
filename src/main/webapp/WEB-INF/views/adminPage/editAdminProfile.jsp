@@ -12,11 +12,25 @@
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script>
-        jQuery(function ($) {
-            $('tbody tr[data-href]').addClass('clickable').click(function () {
-                window.location = $(this).attr('data-href');
-            });
+        $(document).ready(function() {
+            if($("*[name='oldPassword_errors']").css('color') == 'rgb(255, 0, 0)') {
+                $('#oldPassword').css('border-color', 'rgb(255, 0, 0)');
+            }
+            if($("*[name='password_errors']").css('color') == 'rgb(255, 0, 0)') {
+                $('#password').css('border-color', 'rgb(255, 0, 0)');
+            }
+            if($("*[name='confPassword_errors']").css('color') == 'rgb(255, 0, 0)') {
+                $('#confPassword').css('border-color', 'rgb(255, 0, 0)');
+            }
+            showTooltip($('#oldPassword'), 'help will be there');
+            showTooltip($('#password'), 'help will be there');
+            showTooltip($('#confPassword'), 'help will be there');
         });
+        function showTooltip (el, text) {
+            if ($('.input-error-notif').css('border-color') != 'rgb(255, 0, 0)') {
+                el.tooltip({title: "" + text + "", placement: "right", trigger: "focus", animation: "true", delay: {show: 100}});
+            }
+        }
     </script>
 </head>
 
@@ -26,7 +40,7 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="/"><img id="adm_logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                <a href="/admin/allUsers"><img id="adm_logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -105,7 +119,7 @@
                         code="registration.lastName"/></label>
 
                 <div class="col-md-4">
-                    <form:input id="lastName" path="lastName" name="lastName" type="text" value=""
+                    <form:input id="lastName" path="lastName" name="lastName" type="password" value=""
                                 class="form-control form-style" READONLY="true"/>
                 </div>
             </div>
@@ -123,12 +137,12 @@
                         code="admin.oldPassword"/></label>
 
                 <div class="col-md-4">
-                    <form:input id="oldPassword" path="oldPassword" name="oldPassword" type="text" value=""
+                    <form:input id="oldPassword" path="oldPassword" name="oldPassword" type="password" value=""
                                 class="form-control form-style"/>
                 </div>
                 <div class="col-md-offset-9">
-                    <form:errors path="oldPassword" class="regErrors" id="oldPassword.errors"
-                                 cssStyle="color: #ff0000;"/>
+                    <form:errors path="oldPassword" id="oldPassword.errors" name="oldPassword_errors"
+                                 cssClass="input-error-notif" element="div"/>
                 </div>
             </div>
             <div class="form-group row">
@@ -136,12 +150,12 @@
                         code="admin.newPassword"/></label>
 
                 <div class="col-md-4">
-                    <form:input id="password" path="password" name="password" type="text" value=""
+                    <form:input id="password" path="password" name="password" type="password" value=""
                                 class="form-control form-style"/>
                 </div>
                 <div class="col-md-offset-9">
-                    <form:errors path="password" class="regErrors" id="password.errors"
-                                 cssStyle="color: #ff0000;"/>
+                    <form:errors path="password" id="password.errors" name="password_errors"
+                                 cssClass="input-error-notif" element="div"/>
                 </div>
             </div>
             <div class="form-group row">
@@ -149,12 +163,12 @@
                         code="registration.confPassword"/></label>
 
                 <div class="col-md-4">
-                    <form:input id="confPassword" path="confPassword" name="confPassword" type="text" value=""
+                    <form:input id="confPassword" path="confPassword" name="confPassword" type="password" value=""
                                 class="form-control form-style"/>
                 </div>
                 <div class="col-md-offset-9">
-                    <form:errors path="confPassword" class="regErrors" id="confPassword.errors"
-                                 cssStyle="color: #ff0000;"/>
+                    <form:errors path="confPassword" id="confPassword.errors" name="confPassword_errors"
+                                 cssClass="input-error-notif" element="div"/>
                 </div>
             </div>
             <div class="form-group">

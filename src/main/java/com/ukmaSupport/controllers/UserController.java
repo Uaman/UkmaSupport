@@ -29,7 +29,7 @@ import java.util.List;
 public class UserController {
 
     private final static String DONE = "done";
-    private final static String UNDONE = "Undone";
+    private final static String UNDONE = "not done";
 
     @Autowired
     private OrderService orderService;
@@ -196,6 +196,6 @@ public class UserController {
         String pass = PasswordEncryptor.encode(editForm.getPassword());
         user.setPassword(pass);
         userService.saveOrUpdate(user);
-        return "userPage/passwordChangeSuccess";
+        return "redirect:/user/userhome";
     }
 }

@@ -58,7 +58,7 @@
                 });
                 var trHTML = '';
                 $.each(response, function (i, order) {
-                    if (order.status == "Undone") {
+                    if (order.status == "not done") {
                         trHTML += "<tr>"
                         + "<td class='title-col'>" + '<a href="/addComment/' + order.id + '">' + order.title.substr(0, 15) + '</a>' + "</td>" +
                         "<td class='auditorium-col'>" + order.auditorium + "</td>" +
@@ -93,7 +93,7 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="/"><img id="adm_logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                <a href="/admin/allUsers"><img id="adm_logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">

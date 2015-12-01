@@ -12,6 +12,25 @@
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script>
+        $(document).ready(function() {
+            if($("*[name='oldPassword_errors']").css('color') == 'rgb(255, 0, 0)') {
+                $('#oldPassword').css('border-color', 'rgb(255, 0, 0)');
+            }
+            if($("*[name='password_errors']").css('color') == 'rgb(255, 0, 0)') {
+                $('#password').css('border-color', 'rgb(255, 0, 0)');
+            }
+            if($("*[name='confPassword_errors']").css('color') == 'rgb(255, 0, 0)') {
+                $('#confPassword').css('border-color', 'rgb(255, 0, 0)');
+            }
+            showTooltip($('#oldPassword'), 'help will be there');
+            showTooltip($('#password'), 'help will be there');
+            showTooltip($('#confPassword'), 'help will be there');
+        });
+        function showTooltip (el, text) {
+            if ($('.input-error-notif').css('border-color') != 'rgb(255, 0, 0)') {
+                el.tooltip({title: "" + text + "", placement: "right", trigger: "focus", animation: "true", delay: {show: 100}});
+            }
+        }
         jQuery.ajax(url, {
             complete: function () {
                 location = '/assist/created_orders';
@@ -54,95 +73,80 @@
     </nav>
 
 
-        <div id="assistProfEdit" class="bottom-block top-block">
-            <form:form id="assistProfileForm" class="form-horizontal" action="edit_profile" method="post"
+        <div id="profEdit" class="bottom-block">
+            <form:form id="passChangeForm" class="form-horizontal" action="edit_profile" method="post"
                        commandName="passChangeForm">
-                <div class="centralWordEdit row col-md-offset-1" colspan="2" align="center">
-                    <spring:message
-                            code="assist.EditProfile"/></div>
-
+                <div class="centralWord row col-md-offset-1" colspan="2" align="center"><spring:message
+                        code="admin.hello"/></div>
                 <div class="form-group row">
-                    <label class="col-md-4 control-label" for="firstName">
-                        <spring:message code="registration.firstName"/></label>
+                    <label class="col-md-4 control-label" for="firstName"><spring:message
+                            code="registration.firstName"/></label>
 
                     <div class="col-md-4">
                         <form:input id="firstName" path="firstName" name="firstName" type="text" value=""
                                     class="form-control form-style" READONLY="true"/>
                     </div>
-                    <div class="col-md-offset-9">
-                        <form:errors path="firstName" class="regAssistErrors" id="firstName.errors"
-                                     cssStyle="color: #ff0000;"/>
-                    </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-4 control-label" for="lastName">
-                        <spring:message code="registration.lastName"/></label>
-
+                    <label class="col-md-4 control-label" for="lastName"><spring:message
+                            code="registration.lastName"/></label>
                     <div class="col-md-4">
                         <form:input id="lastName" path="lastName" name="lastName" type="text" value=""
                                     class="form-control form-style" READONLY="true"/>
                     </div>
-                    <div class="col-md-offset-9">
-                        <form:errors path="lastName" class="regAssistErrors" id="lastName.errors"
-                                     cssStyle="color: #ff0000;"/>
-                    </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-4 control-label" for="email">
-                        <spring:message code="registration.email"/></label>
+                    <label class="col-md-4 control-label" for="email"><spring:message
+                            code="registration.email"/></label>
 
                     <div class="col-md-4">
                         <form:input id="email" path="email" name="email" type="text" value=""
                                     class="form-control form-style" READONLY="true"/>
                     </div>
-                    <div class="col-md-offset-9">
-                        <form:errors path="email" class="regAssistErrors" id="email.errors"
-                                     cssStyle="color: #ff0000;"/>
-                    </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-4 control-label" for="oldPassword">
-                        <spring:message code="assist.OldPassword"/></label>
+                    <label class="col-md-4 control-label" for="oldPassword"><spring:message
+                            code="admin.oldPassword"/></label>
 
                     <div class="col-md-4">
                         <form:input id="oldPassword" path="oldPassword" name="oldPassword" type="password" value=""
                                     class="form-control form-style"/>
                     </div>
                     <div class="col-md-offset-9">
-                        <form:errors path="oldPassword" class="regAssistErrors" id="oldPassword.errors"
-                                     cssStyle="color: #ff0000;"/>
+                        <form:errors path="oldPassword" id="oldPassword.errors" name="oldPassword_errors"
+                                     cssClass="input-error-notif" element="div"/>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-4 control-label" for="password">
-                        <spring:message code="assist.NewPassword"/></label>
+                    <label class="col-md-4 control-label" for="password"><spring:message
+                            code="admin.newPassword"/></label>
 
                     <div class="col-md-4">
                         <form:input id="password" path="password" name="password" type="password" value=""
                                     class="form-control form-style"/>
                     </div>
                     <div class="col-md-offset-9">
-                        <form:errors path="password" class="regAssistErrors" id="password.errors"
-                                     cssStyle="color: #ff0000;"/>
+                        <form:errors path="password" id="password.errors" name="password_errors"
+                                     cssClass="input-error-notif" element="div"/>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-4 control-label" for="confPassword">
-                        <spring:message code="assist.ConfirmNewPassword"/></label>
+                    <label class="col-md-4 control-label" for="confPassword"><spring:message
+                            code="registration.confPassword"/></label>
 
                     <div class="col-md-4">
                         <form:input id="confPassword" path="confPassword" name="confPassword" type="password" value=""
                                     class="form-control form-style"/>
                     </div>
                     <div class="col-md-offset-9">
-                        <form:errors path="confPassword" class="regAssistErrors" id="confPassword.errors"
-                                     cssStyle="color: #ff0000;"/>
+                        <form:errors path="confPassword" id="confPassword.errors" name="confPassword_errors"
+                                     cssClass="input-error-notif" element="div"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-4  col-md-4">
-                        <button id="change-pass-button" type="submit" value="editAssistProfile"
-                                class="btn btn-primary btn-block button-style"><spring:message code="assist.Submit"/>
+                        <button id="change-pass-button" type="submit" value="editProfile"
+                                class="btn btn-primary btn-block button-style"><spring:message code="admin.confirm"/>
                         </button>
                     </div>
                 </div>

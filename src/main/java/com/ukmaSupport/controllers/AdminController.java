@@ -51,7 +51,7 @@ public class AdminController {
     private OrderService orderService;
 
     private final static String DONE = "done";
-    private final static String UNDONE = "Undone";
+    private final static String UNDONE = "not done";
 
     private final static String USER = "USER";
     private final static String ASSISTANT = "ASSISTANT";
@@ -61,6 +61,10 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/allUsers", method = RequestMethod.GET)
     public String allUsers(Model model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        int adminId = (Integer) session.getAttribute("id");
+        model.addAttribute("adminId", adminId);
         model.addAttribute("link", "AllUsers");
         return "adminPage/users";
     }
@@ -74,6 +78,10 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
     public String users(Model model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        int adminId = (Integer) session.getAttribute("id");
+        model.addAttribute("adminId", adminId);
         model.addAttribute("link", "Users");
         return "adminPage/users";
     }
@@ -87,6 +95,10 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/assistants", method = RequestMethod.GET)
     public String assistants(Model model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        int adminId = (Integer) session.getAttribute("id");
+        model.addAttribute("adminId", adminId);
         model.addAttribute("link", "Assistants");
         return "adminPage/users";
     }
@@ -100,6 +112,10 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/professors", method = RequestMethod.GET)
     public String professors(Model model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        int adminId = (Integer) session.getAttribute("id");
+        model.addAttribute("adminId", adminId);
         model.addAttribute("link", "Professors");
         return "adminPage/users";
     }
@@ -113,6 +129,10 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/blockedUsers", method = RequestMethod.GET)
     public String blockedUsers(Model model) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession();
+        int adminId = (Integer) session.getAttribute("id");
+        model.addAttribute("adminId", adminId);
         model.addAttribute("link", "BlockedUsers");
         return "adminPage/users";
     }
@@ -176,8 +196,7 @@ public class AdminController {
     public
     @ResponseBody
     List<Workplace> getWorkplaces(@RequestParam("text") String text) {
-        List<Workplace> workplaces = workplaceService.getByAuditoryName(text);
-        return workplaces;
+        return workplaceService.getByAuditoryName(text);
     }
 
     @RequestMapping(value = "/admin/orders/createOrder", method = RequestMethod.GET)
@@ -203,7 +222,7 @@ public class AdminController {
         }
 
         order.setUserId(userId);
-        order.setStatus("Undone");
+        order.setStatus("not done");
         order.setCreatedAt(new Timestamp(new java.util.Date().getTime()));
         User assistant = userService.getResponsibleAssistant(order.getAuditorium());
         int assistantId = 0;
@@ -320,7 +339,7 @@ public class AdminController {
     public String saveAuditorium(@RequestBody Map<String, Object> searchParam, Auditorium auditorium) {
         String number = (String) searchParam.get("auditorium");
         auditorium.setNumber(number);
-        if(number.matches("^[\\d]{1}[\\u002D]{1}[\\d]{3}$"))
+        //if(number.matches("^[\\d]{1}[\\u002D]{1}[\\d]{3}$"))//????
             auditoriumService.save(auditorium);
         return "redirect:/admin/auditoriums";
     }
@@ -405,7 +424,7 @@ public class AdminController {
         String pass = PasswordEncryptor.encode(editForm.getPassword());
         user.setPassword(pass);
         userService.saveOrUpdate(user);
-        return "userPage/passwordChangeSuccess";
+        return "redirect:/admin/allUsers";
     }
 
     @RequestMapping(value = "/admin/users/userProfile/{id}", method = RequestMethod.GET)

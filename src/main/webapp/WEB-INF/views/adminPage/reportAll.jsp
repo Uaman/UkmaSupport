@@ -49,12 +49,14 @@
 
             $("#date_from").datepicker({
                 dateFormat: 'yy-mm-dd',
+                minDate: '-1Y',
                 maxDate: new Date(),
                 numberOfMonths: 1
             });
 
             $("#date_to").datepicker({
                 dateFormat: 'yy-mm-dd',
+                minDate: '-1Y',
                 maxDate: new Date(),
                 numberOfMonths: 1
             });
@@ -116,7 +118,7 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="/"><img id="adm_logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                <a href="/admin/allUsers"><img id="adm_logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">

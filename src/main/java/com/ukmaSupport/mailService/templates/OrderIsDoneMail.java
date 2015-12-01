@@ -14,7 +14,7 @@ public class OrderIsDoneMail {
     public void send(String toAddr, int orderId) {
         String subject = "Your order is done";
         String link = Constants.SERVER + Constants.COMMENTS + orderId;
-        String body = "Your order is done. Details: " + link + "\n\nUKMA Support\n" + Constants.SERVER;
+        String body = "An order you submitted has now been completed. Details: " + link + "\n\nUKMA Support\n" + Constants.SERVER;
 
         mailService.sendEmail(toAddr, subject, body);
     }

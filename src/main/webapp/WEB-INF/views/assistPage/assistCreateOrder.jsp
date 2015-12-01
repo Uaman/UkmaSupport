@@ -13,6 +13,25 @@
     <script src="../../../resources/js/jquery-1.11.3.js"></script>
     <script src="../../../resources/js/bootstrap.min.js"></script>
     <script type="text/javascript">
+        $(document).ready(function() {
+            if($("*[name='title_error']").css('color') == 'rgb(255, 0, 0)') {
+                $('#title').css('border-color', 'rgb(255, 0, 0)');
+            }
+            if($('#assist_content_errors').css('color') == 'rgb(255, 0, 0)') {
+                $('#assist_description').css('border-color', 'rgb(255, 0, 0)');
+            }
+            if($("*[name='workplace_access_num_errors']").css('color') == 'rgb(255, 0, 0)') {
+                    $('#sel1').css('border-color', 'rgb(255, 0, 0)');
+                    $('#sel2').css('border-color', 'rgb(255, 0, 0)');
+            }
+            showTooltip($('#title'), 'help will be there');
+            showTooltip($('#assist_description'), 'help will be there');
+        });
+        function showTooltip (el, text) {
+            if ($("*[name!='auditorium_errors'][class='input-error-notif']").css('border-color') != 'rgb(255, 0, 0)') {
+                el.tooltip({title: "" + text + "", placement: "right", trigger: "focus", animation: "true", delay: {show: 100}});
+            }
+        }
         function getWorkPlace() {
             $.ajax({
                 url: '/ajaxAuditoriums',
@@ -73,21 +92,14 @@
             <form:form class="form-horizontal" id="newOrder" action="/assist/create_order" method="post"
                        commandName="newOrder">
                 <div class="form-group">
-                    <div class="col-md-6">
-                        <div id="form-error">
-                            <form:errors class="" path="auditorium" id="auditorium.errors"
-                                         cssStyle="color: #ff0000;"/></div>
-                    </div>
-                </div>
-                <div class="form-group">
                     <div class="col-md-6" display="inline-block">
                         <input type="text" class="form-control form-style" id="title" value="${newOrder.title}"
                                name="title"
                                placeholder="<spring:message code="user.title"/>" path="title">
 
                     </div>
-                    <div id="title-error"><form:errors path="title" class="" id="title.errors"
-                                                       cssStyle="color: #ff0000;"/></div>
+                    <div class="col-md-offset-6"><form:errors path="title" id="title.errors" name="title_error"
+                                                       cssClass="input-error-notif" element="div"/></div>
                 </div>
                 <div id="assistCreateCells" class="form-group">
                     <div class="col-md-3">
@@ -111,23 +123,33 @@
                                 <spring:message code="assist.order.workplace2"/></option>
                         </select>
                     </div>
-                    <div id="workplace-error"><form:errors path="workplace_access_num" class=""
-                                                           id="workplace_access_num.errors"
-                                                           cssStyle="color: #ff0000;"/></div>
+                    <div class="col-md-offset-6" id="workplace-error"><form:errors path="workplace_access_num"
+                                                           id="workplace_access_num.errors" name="workplace_access_num_errors"
+                                                           cssClass="input-error-notif" element="div"/></div>
                 </div>
 
                 <div class="form-group">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                     <textarea class="col-md-12" rows="5" id="assist_description" name="content" path="content"
                               placeholder="<spring:message code="user.description"/>"></textarea>
-                        <form:errors path="content" id="assist_content_errors"/>
                     </div>
+                        <div class="col-md-offset-6">
+                            <form:errors path="content" id="assist_content_errors"
+                                         cssClass="input-error-notif" element="div"/>
+                        </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-12">
                         <button id="assist_create_order_button" type="submit" class="btn btn-primary btn-block">
                             <spring:message code="assist.CreateOrder"/></button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <div >
+                            <form:errors path="auditorium" id="auditorium.errors" name = "auditorium_errors"
+                                         cssClass="input-error-notif" element="div"/></div>
                     </div>
                 </div>
             </form:form>

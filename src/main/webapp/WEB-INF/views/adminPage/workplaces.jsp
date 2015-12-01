@@ -23,7 +23,7 @@
                 };
 
 
-                var postParamForDatatable = $.ajax({
+                $.ajax({
                     url: "${pageContext.request.contextPath}/admin/createWorkplaces",
                     type: "POST",
                     contentType: "application/json",
@@ -45,9 +45,9 @@
                                 var trHTML = '';
                                 $.each(sorted, function (i, workplace) {
                                     trHTML += "<tr>" +
-                                    '<td>' + workplace.accessNumber + "</td>" +
-                                    "<td>" + '<form action="/admin/auditoriums/${name}/workplaces/delete/' + workplace.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
-                                    "</tr>";
+                                            '<td>' + workplace.accessNumber + "</td>" +
+                                            "<td>" + '<form action="/admin/auditoriums/${name}/workplaces/delete/' + workplace.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
+                                            "</tr>";
                                 });
                                 $('#records_table tbody').empty();
                                 $('#records_table').append(trHTML);
@@ -61,11 +61,7 @@
         $(document).ready(function () {
             $("#records_table").tablesort();
         });
-        jQuery(function ($) {
-            $('tbody tr[data-href]').addClass('clickable').click(function () {
-                window.location = $(this).attr('data-href');
-            });
-        });
+
         $.ajax({
             url: '/admin/auditoriums/${name}/getWorkplaces',
             type: 'GET',
@@ -82,9 +78,9 @@
                 var trHTML = '';
                 $.each(sorted, function (i, workplace) {
                     trHTML += "<tr >" +
-                    '<td>' + workplace.accessNumber + "</td>" +
-                    "<td>" + '<form action="/admin/auditoriums/${name}/workplaces/delete/' + workplace.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
-                    "</tr>";
+                            '<td>' + workplace.accessNumber + "</td>" +
+                            "<td>" + '<form action="/admin/auditoriums/${name}/workplaces/delete/' + workplace.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
+                            "</tr>";
                 });
                 $('#records_table tbody').empty();
                 $('#records_table').append(trHTML);
@@ -99,7 +95,7 @@
     <nav id="header">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="/"><img id="adm_logo" alt="brand" src="../../../resources/img/logo.png"></a>
+                <a href="/admin/allUsers"><img id="adm_logo" alt="brand" src="../../../resources/img/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">

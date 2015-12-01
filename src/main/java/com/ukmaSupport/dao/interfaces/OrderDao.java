@@ -8,6 +8,8 @@ public interface OrderDao {
 
     Order getById(int id);
 
+    Order getByTime(java.sql.Date time);
+
     List<Order> getByAuditoriumNumber(String number);
 
     List<Order> getByWorkplaceAcessNum(int access_num);

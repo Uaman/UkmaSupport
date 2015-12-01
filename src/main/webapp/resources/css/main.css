@@ -128,7 +128,7 @@ a {
 #mainRegister {
 	margin-left: 180px;
 	margin-right: 180px;
-	padding-top: 100px;
+	padding-top: 50px;
 }
 
 #profEdit {
@@ -630,18 +630,8 @@ tbody.scrollContent {
     padding-left: 15px;
 }
 
-.error {
-    color: red;
-}
-#title-error {
-    padding-top: 8px;
-}
 #workplace-error {
     padding-top: 21px;
-}
-
-#content-error {
-    padding-top: 39px;
 }
 
 .icon {
@@ -730,14 +720,6 @@ tbody.scrollContent {
 	margin-left: 15px;
 }
 
-.regAssistErrors {
-	margin-top: 8px;
-	color: #ff0000;
-	width: 200px;
-	position: absolute;
-	z-index: 999;
-	margin-left: -50px;
-}
 ::-webkit-scrollbar {
 	width: 10px;
 }
@@ -1007,3 +989,41 @@ tbody.scrollContent {
 .assistant-col-orders-th-report{
 	width:17%;
 }
+.assist {
+	color: #333366;
+	width: 180px;
+}
+.tooltip > .tooltip-inner {
+	margin-left: 10px;
+	background-color: rgba(51, 51, 102, 0.1);
+	color: #333366;
+	padding:  5px 10px;
+	font-size: 16px;
+	font-family: "Trebuchet MS", sans-serif;
+	border-radius: 7px;
+	word-wrap: break-word;
+    width: 250px;
+}
+.tooltip.right > .tooltip-arrow {
+	margin-left: 10px;
+	border-right: 5px solid rgba(51, 51, 102, 0.1);
+}
+.input-error-notif {
+	width: 220px;
+	text-align: center;
+	background-color: rgba(255, 0, 0, 0.1);
+	color: red;
+	font-size: 16px;
+	font-family: "Trebuchet MS", sans-serif;
+	word-wrap: break-word;
+	padding:  6px;
+	margin-left: 0;
+}
+.input-error {
+	border-color: red;
+}
+#edit-profile-title {
+	padding-right: 140px;
+}
+
+

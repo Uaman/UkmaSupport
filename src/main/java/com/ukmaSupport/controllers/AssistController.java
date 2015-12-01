@@ -30,7 +30,7 @@ import java.util.List;
 public class AssistController {
 
     private final static String DONE = "done";
-    private final static String UNDONE = "Undone";
+    private final static String UNDONE = "not done";
 
     @Autowired
     private OrderService orderService;
@@ -125,7 +125,7 @@ public class AssistController {
         String pass = PasswordEncryptor.encode(editForm.getPassword());
         assist.setPassword(pass);
         userService.saveOrUpdate(assist);
-        return "assistPage/changePasswordSuccess";
+        return "redirect:/assist/home";
     }
 
     @RequestMapping(value = "/assist/create_order", method = RequestMethod.GET)

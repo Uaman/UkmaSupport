@@ -28,7 +28,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/addComment")
-public class CommentariesController {
+public class CommentsController {
 
     @Autowired
     private CommentService commentService;
@@ -63,7 +63,7 @@ public class CommentariesController {
         getCurrentSession().setAttribute("orderEdit",ordereId);
 
         if(user.getRole().equals("ADMIN")){
-            return "adminPage/comentariesPage";
+            return "adminPage/commentsPage";
         }
         return "userPage/comentariesPage";
     }

@@ -8,6 +8,22 @@
     <link href="../../../resources/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css">
     <link rel="stylesheet" href="../../../resources/css/main.css" type="text/css" media="screen"/>
+    <script src="../../../resources/js/jquery-1.11.3.js"></script>
+    <script src="../../../resources/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            showTooltip($('#firstName'), 'help will be there');
+            showTooltip($('#lastName'), 'help will be there');
+            showTooltip($('#email'), 'help will be there');
+            showTooltip($('#password'), 'help will be there');
+            showTooltip($('#confPassword'), 'help will be there');
+        });
+        function showTooltip (el, text) {
+            if ($('.input-error').css('border-color') != 'rgb(255, 0, 0)') {
+                el.tooltip({title: "" + text + "", placement: "right", trigger: "focus", animation: "true", delay: {show: 100}});
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -30,23 +46,17 @@
         <form:form id="userForm" class="form-horizontal" action="register" method="post" commandName="userForm">
             <div class="RegistrationWord centralWord row col-md-offset-1" colspan="2" align="center"><spring:message
                     code="registration.hello"/></div>
-            <div class="form-group">
-                <div class="col-md-offset-4 col-md-6">
-                    <div class="error" id="form-error"><form:errors class="" path="dateOfEntry"
-                                                                    id="dateOfEntry.errors"/></div>
-                </div>
-            </div>
-            <div class="form-group row">
+            <div id="reg-top-input" class="form-group row">
                 <label class="col-md-4 control-label" for="firstName"><spring:message
                         code="registration.firstName"/></label>
 
                 <div class="col-md-4">
                     <form:input id="firstName" path="firstName" name="firstName" type="text" value=""
-                                class="form-control form-style"/>
+                                class="form-control form-style" cssErrorClass="form-control form-style input-error"/>
                 </div>
                 <div class="col-md-offset-11">
-                    <form:errors path="firstName" class="regErrors" id="firstName.errors"
-                                 cssStyle="color: #ff0000;"/>
+                    <form:errors path="firstName" id="firstName.errors"
+                                 cssClass="input-error-notif" element="div"/>
                 </div>
             </div>
             <div class="form-group row">
@@ -55,11 +65,11 @@
 
                 <div class="col-md-4">
                     <form:input id="lastName" path="lastName" name="lastName" type="text" value=""
-                                class="form-control form-style"/>
+                                class="form-control form-style" cssErrorClass="form-control form-style input-error"/>
                 </div>
                 <div class="col-md-offset-11">
-                    <form:errors path="lastName" class="regErrors" id="lastName.errors"
-                                 cssStyle="color: #ff0000;"/>
+                    <form:errors path="lastName" id="lastName.errors"
+                                 cssClass="input-error-notif" element="div"/>
                 </div>
             </div>
             <div class="form-group row">
@@ -68,11 +78,11 @@
 
                 <div class="col-md-4">
                     <form:input id="email" path="email" name="email" type="text" value=""
-                                class="form-control form-style"/>
+                                class="form-control form-style" cssErrorClass="form-control form-style input-error"/>
                 </div>
                 <div class="col-md-offset-11">
-                    <form:errors path="email" class="regErrors" id="email.errors"
-                                 cssStyle="color: #ff0000;"/>
+                    <form:errors path="email" id="email.errors"
+                                 cssClass="input-error-notif" element="div"/>
                 </div>
             </div>
             <div class="form-group row">
@@ -81,11 +91,11 @@
 
                 <div class="col-md-4">
                     <form:input id="password" path="password" name="password" type="password" value=""
-                                class="form-control form-style"/>
+                                class="form-control form-style" cssErrorClass="form-control form-style input-error"/>
                 </div>
                 <div class="col-md-offset-11">
-                    <form:errors path="password" class="regErrors" id="password.errors"
-                                 cssStyle="color: #ff0000;"/>
+                    <form:errors path="password" id="password.errors"
+                                 cssClass="input-error-notif" element="div"/>
                 </div>
             </div>
             <div class="form-group row">
@@ -94,11 +104,11 @@
 
                 <div class="col-md-4">
                     <form:input id="confPassword" path="confPassword" name="confPassword" type="password" value=""
-                                class="form-control form-style"/>
+                                class="form-control form-style" cssErrorClass="form-control form-style input-error"/>
                 </div>
                 <div class="col-md-offset-11">
-                    <form:errors path="confPassword" class="regErrors" id="confPassword.errors"
-                                 cssStyle="color: #ff0000;"/>
+                    <form:errors path="confPassword" id="confPassword.errors"
+                                 cssClass="input-error-notif" element="div"/>
                 </div>
             </div>
             <div class="form-group row">
@@ -107,6 +117,12 @@
                             class="btn btn-primary btn-block button-style"><spring:message
                             code="registration.register"/>
                     </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-4 col-md-6">
+                    <div class="error" id="form-error"><form:errors class="" path="dateOfEntry" id="dateOfEntry.errors"
+                                                                    cssClass="input-error-notif" element="div"/></div>
                 </div>
             </div>
         </form:form>
