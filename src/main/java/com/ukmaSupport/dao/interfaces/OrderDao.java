@@ -2,13 +2,14 @@ package com.ukmaSupport.dao.interfaces;
 
 import com.ukmaSupport.models.Order;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface OrderDao {
 
     Order getById(int id);
 
-    Order getByTime(java.sql.Date time);
+    Order getByTime(String time);
 
     List<Order> getByAuditoriumNumber(String number);
 

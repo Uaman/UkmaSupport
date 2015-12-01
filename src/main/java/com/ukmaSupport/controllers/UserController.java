@@ -23,6 +23,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -95,10 +96,9 @@ public class UserController {
         order.setUserId(userId);
         order.setStatus(UNDONE);
 
-        Date date = new Date();
-        long dateTime = date.getTime();
+        Timestamp timestamp = new Timestamp(new Date().getTime());
 
-        order.setCreatedAt(new Timestamp(dateTime));
+        order.setCreatedAt(timestamp);
 
         User assistant = userService.getResponsibleAssistant(order.getAuditorium());
         int assistantId = 0;
@@ -108,10 +108,11 @@ public class UserController {
 
         orderService.createOrUpdate(order);
 
-        //Order newOrder = orderService.getByTime(new java.sql.Date(dateTime));
+        String date = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(timestamp);
+        Order newOrder = orderService.getByTime(date);
 
         if (assistant != null)
-            newOrderMail.send(assistant.getEmail());
+            newOrderMail.send(assistant.getEmail(), newOrder.getId());
 
         return "redirect:/user/userhome";
     }

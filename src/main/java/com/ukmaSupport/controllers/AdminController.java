@@ -21,6 +21,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -226,10 +227,8 @@ public class AdminController {
         order.setUserId(userId);
         order.setStatus("not done");
 
-        Date date = new Date();
-        long dateTime = date.getTime();
-
-        order.setCreatedAt(new Timestamp(dateTime));
+        Timestamp timestamp = new Timestamp(new Date().getTime());
+        order.setCreatedAt(timestamp);
 
         User assistant = userService.getResponsibleAssistant(order.getAuditorium());
         int assistantId = 0;
@@ -238,10 +237,11 @@ public class AdminController {
         order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
         orderService.createOrUpdate(order);
 
-        //Order newOrder = orderService.getByTime(new java.sql.Date(dateTime));
+        String date = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(timestamp);
+        Order newOrder = orderService.getByTime(date);
 
         if (assistant != null)
-            newOrderMail.send(assistant.getEmail());
+            newOrderMail.send(assistant.getEmail(), newOrder.getId());
         return "redirect:/admin/myOrders";
     }
 
