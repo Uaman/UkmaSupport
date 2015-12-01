@@ -60,12 +60,14 @@
 
             $("#date_from").datepicker({
                 dateFormat: 'yy-mm-dd',
+                minDate: '-1Y',
                 maxDate: new Date(),
                 numberOfMonths: 1
             });
 
             $("#date_to").datepicker({
                 dateFormat: 'yy-mm-dd',
+                minDate: '-1Y',
                 maxDate: new Date(),
                 numberOfMonths: 1
             });
