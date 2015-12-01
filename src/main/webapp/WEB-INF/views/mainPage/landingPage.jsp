@@ -31,15 +31,13 @@
         </div>
     </nav>
 
-    <div id="mainImage"><img src="../../../resources/img/var648.jpg" alt=""/></div>
-
-    <!--   <div id="mainImage"><img src="../../../resources/img/var4.jpg" alt=""/></div> -->
+    <div id="mainImage"><img src="../../../resources/img/var507.jpg" alt=""/></div>
 
     <div id="mainInfo">
         <p id="pMainInfo"><spring:message code="mainPage.TEXT1"/> <span id="Ukma_support"><spring:message
                 code="mainPage.UKMASupport"/></span> <spring:message code="mainPage.TEXT2"/>
         </p>
-        <button id="main_registr_button" type="submit" value="register"
+        <button id="main_registr_button" type="submit"
                 class="btn btn-primary btn-block button-style">
             <a href="/register"><spring:message code="mainPage.registration"/></a>
         </button>
