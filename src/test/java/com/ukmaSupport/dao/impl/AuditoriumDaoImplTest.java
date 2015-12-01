@@ -40,4 +40,14 @@ public class AuditoriumDaoImplTest {
         verify(jdbcTemplate).update(any(String.class), eq(EXPECTED_USER_ID) ,eq(EXPECTED_NUMBER));
     }
 
+    @Test(expected = NullPointerException.class)
+    public void shouldThrowExceptionWhenAuditoriumIsNull(){
+        //given
+        Auditorium auditorium = null;
+        //when
+        dao.save(auditorium);
+        //then
+        verify(jdbcTemplate).update(any(String.class), eq(EXPECTED_USER_ID) ,eq(EXPECTED_NUMBER));
+    }
+
 }
