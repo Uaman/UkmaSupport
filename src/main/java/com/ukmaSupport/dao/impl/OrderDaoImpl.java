@@ -148,7 +148,7 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public Order getByTime(Date time) {
+    public Order getByTime(Timestamp time) {
         return jdbcTemplate.queryForObject(ORDER_BY_TIME, new Object[]{time}, simpleRowMapper);
     }
 
