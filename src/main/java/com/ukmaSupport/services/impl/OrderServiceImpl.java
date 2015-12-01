@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service("orderService")
@@ -26,6 +27,11 @@ public class OrderServiceImpl implements OrderService {
             order = null;
         }
         return order;
+    }
+
+    @Override
+    public Order getByTime(Date time) {
+        return orderDao.getByTime(time);
     }
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
