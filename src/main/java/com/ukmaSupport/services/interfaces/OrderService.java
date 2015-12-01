@@ -10,7 +10,7 @@ public interface OrderService {
 
     Order getById(int id);
 
-    Order getByTime(Timestamp time);
+    Order getByTime(String time);
 
     List<Order> getByAuditoriumNumber(String number);
 

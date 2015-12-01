@@ -23,6 +23,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -107,10 +108,11 @@ public class UserController {
 
         orderService.createOrUpdate(order);
 
-        //Order newOrder = orderService.getByTime(timestamp);
+        String date = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(timestamp);
+        Order newOrder = orderService.getByTime(date);
 
         if (assistant != null)
-            newOrderMail.send(assistant.getEmail());
+            newOrderMail.send(assistant.getEmail(), newOrder.getId());
 
         return "redirect:/user/userhome";
     }

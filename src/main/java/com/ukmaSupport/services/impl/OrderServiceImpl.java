@@ -31,7 +31,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order getByTime(Timestamp time) {
+    public Order getByTime(String time) {
         Order order;
         try {
             order = orderDao.getByTime(time);
