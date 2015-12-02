@@ -33,7 +33,7 @@ public class MainPage {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         System.out.println(auth.getName());
         if(!auth.getName().equals("anonymousUser")){
-            return "";
+            return "redirect:/succesfullRegistration";
         }
         return "mainPage/mainPage";
     }
