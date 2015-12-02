@@ -68,13 +68,7 @@
         <property name="password" value="${database.postgre.password}"/>
     </bean>
 
-    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
-        <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
-        <!--<property name="url"-->
-                  <!--value="${db.local.url}"/>-->
-        <!--<property name="username" value="${db.local.user}"/>-->
-        <!--<property name="password" value="${db.local.pass}"/>-->
-    <!--</bean>-->
+
     <!--><-->
 
     <!--> Mail Sender bean for sending emails <-->

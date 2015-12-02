@@ -30,6 +30,11 @@ public class MainPage {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String landingPage(ModelMap model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(auth.getName());
+        if(!auth.getName().equals("anonymousUser")){
+            return "";
+        }
         return "mainPage/mainPage";
     }
 
