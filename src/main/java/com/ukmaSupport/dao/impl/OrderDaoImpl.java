@@ -140,7 +140,7 @@ public class OrderDaoImpl implements OrderDao {
             "WHERE workplace_id IN (SELECT workplace.id FROM workplace WHERE workplace.auditorium_id=?) AND status='not done'";
 
     private static final String ORDER_BY_TIME = "SELECT orders.id FROM orders" +
-            " WHERE to_char(orders.created_at, 'YYYY-MM-DD HH24:MI')=?";
+            " WHERE to_char(orders.created_at, 'YYYY-MM-DD HH24:MI:SS')=?";
 
     @Override
     public Order getById(int id) {
@@ -193,7 +193,7 @@ public class OrderDaoImpl implements OrderDao {
                 PreparedStatement prepStat;
                 if (order.getId() == 0) {
                     prepStat = con.prepareStatement(INSERT_QUERY);
-                    prepStat.setTimestamp(6, new java.sql.Timestamp(new java.util.Date().getTime()));
+                    prepStat.setTimestamp(6, new java.sql.Timestamp(order.getCreatedAt().getTime()));
                 } else {
                     prepStat = con.prepareStatement(UPDATE_QUERY);
                     prepStat.setInt(8, order.getId());

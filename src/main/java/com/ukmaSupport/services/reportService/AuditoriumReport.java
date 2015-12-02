@@ -25,7 +25,7 @@ public class AuditoriumReport extends AbstractExcelView {
         List<Order> listOrder = (List<Order>) model.get("orderList");
         // create a new Excel sheet
         HSSFSheet sheet = workbook.createSheet("Orders");
-        sheet.setDefaultColumnWidth(15);
+        sheet.setDefaultColumnWidth(20);
         sheet.setDefaultRowHeight((short) (2 * sheet.getDefaultRowHeightInPoints()));
 
         // create style for header cells

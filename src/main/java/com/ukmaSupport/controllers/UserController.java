@@ -108,7 +108,8 @@ public class UserController {
 
         orderService.createOrUpdate(order);
 
-        String date = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(timestamp);
+        String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(timestamp);
+        System.out.println(date+"");
         Order newOrder = orderService.getByTime(date);
 
         if (assistant != null)

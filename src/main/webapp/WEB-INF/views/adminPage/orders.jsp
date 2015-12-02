@@ -279,8 +279,8 @@
                             code="admin.set.assistants"/></h4></center>
                 </div>
                 <div class="modal-body">
-                    <select id="assistant">
-                        <option value="0">it's me</option>
+                    <select id="assistant" class="assist select-style">
+                        <option class="current-assist" value="0">it's me</option>
                     </select>
                 </div>
                 <div class="modal-footer">
