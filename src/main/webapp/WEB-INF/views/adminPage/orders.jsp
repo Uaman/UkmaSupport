@@ -278,7 +278,7 @@
                     <center><h4 class="modal-title" id="myModalLabel1"><spring:message
                             code="admin.set.assistants"/></h4></center>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-center">
                     <select id="assistant" class="assist select-style">
                         <option class="current-assist" value="0">it's me</option>
                     </select>
