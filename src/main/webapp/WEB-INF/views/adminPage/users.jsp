@@ -182,7 +182,7 @@
     </nav>
 
     <div class="table-align bottom-block top-table">
-        <table id="records_table" class="tbl table table-striped admin-table">
+        <table id="records_table" class="tbl table table-striped admin-users-table admin-table">
             <thead>
             <tr>
                 <th class="lastname-col"><spring:message code="registration.lastName"/><img class="icon-sort"

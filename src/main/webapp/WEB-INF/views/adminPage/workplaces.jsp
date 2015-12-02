@@ -45,7 +45,7 @@
                                 var trHTML = '';
                                 $.each(sorted, function (i, workplace) {
                                     trHTML += "<tr>" +
-                                            "<td class='workplace-col'>" + workplace.accessNumber + "</td>" +
+                                            "<td class='workpl-col'>" + workplace.accessNumber + "</td>" +
                                             "<td class='icon-col'>" + '<form action="/admin/auditoriums/${name}/workplaces/delete/' + workplace.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
                                             "</tr>";
                                 });
@@ -78,7 +78,7 @@
                 var trHTML = '';
                 $.each(sorted, function (i, workplace) {
                     trHTML += "<tr >" +
-                            "<td class='workplace-col'>" + workplace.accessNumber + "</td>" +
+                            "<td class='workpl-col'>" + workplace.accessNumber + "</td>" +
                             "<td class='icon-col'>" + '<form action="/admin/auditoriums/${name}/workplaces/delete/' + workplace.id + '"><center><button class="icon-btn btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-remove icon" aria-hidden="true"></span></button></center></form>' + "</td>" +
                             "</tr>";
                 });
@@ -161,7 +161,7 @@
         <table id="records_table" class="tbl-workplaces tbl table table_auditorium table-striped">
             <thead class="fixedHeader">
             <tr>
-                <th class="workplace-col"><spring:message code="admin.workplaces.workplace"/><img class="icon-sort"
+                <th class="workpl-col"><spring:message code="admin.workplaces.workplace"/><img class="icon-sort"
                                                                             src="../../../resources/img/sort15.png"
                                                                             width="8px" height="14px"></th>
                 <th class="icon-col"></th>

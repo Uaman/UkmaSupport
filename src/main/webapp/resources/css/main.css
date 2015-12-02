@@ -234,6 +234,14 @@ tbody.scrollContent {
 .table-auditorium{
 	margin: 0 auto;
 	width: 430px;
+	margin-bottom: 15px;
+}
+
+.table-auditorium tbody {
+	display:block;
+	height: 388px;
+	overflow: auto;
+	width: 100%;
 }
 
 .table-align {
@@ -589,7 +597,7 @@ tbody.scrollContent {
 }
 
 #assistContent {
-	height: 700px;
+	height: 695px;
 	padding-bottom: 50px;
 }
 
@@ -798,7 +806,7 @@ tbody.scrollContent {
 	bottom: 0;
 	text-align: center;
 	width: 900px;
-	height: 50px;
+	height: 55px;
 	background-color: #fff;
 }
 
@@ -1028,10 +1036,27 @@ tbody.scrollContent {
 .tbl-workplaces {
 	width: 350px;
 }
-.workplace-col {
+.workpl-col {
 	width: 300px;
 }
 .icon-col {
 	width: 50px;
+}
+
+.specific-user-table tbody{
+	display: block;
+	max-height: 160px;
+	width: 100%;
+	overflow: hidden;
+	overflow-y: auto;
+}
+
+.specific-user-table tr{
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+.admin-users-table tbody {
+	max-height: 413px;
 }
 
