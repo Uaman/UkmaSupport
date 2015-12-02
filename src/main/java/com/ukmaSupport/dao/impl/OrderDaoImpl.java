@@ -140,7 +140,7 @@ public class OrderDaoImpl implements OrderDao {
             "WHERE workplace_id IN (SELECT workplace.id FROM workplace WHERE workplace.auditorium_id=?) AND status='not done'";
 
     private static final String ORDER_BY_TIME = "SELECT orders.id FROM orders" +
-            " WHERE to_char(orders.created_at, 'YYYY-MM-DD HH24:MI:SS')=?";
+            " WHERE to_char(orders.created_at, 'YYYY-MM-DD HH24:MI:SS.MS')=?";
 
     @Override
     public Order getById(int id) {

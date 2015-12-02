@@ -14,7 +14,7 @@ public class NewOrderMail {
     public void send(String toAddr, int orderId) {
         String subject = "You have a new order";
         String link = Constants.SERVER + Constants.COMMENTS + orderId;
-        String body = "You have been assigned a new order." + link + "\n\nUKMA Support\n" + Constants.SERVER;
+        String body = "You have been assigned a new order. Details: " + link + "\n\nUKMA Support\n" + Constants.SERVER;
         mailService.sendEmail(toAddr, subject, body);
     }
 }

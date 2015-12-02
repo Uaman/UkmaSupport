@@ -170,7 +170,7 @@ public class AssistController {
         order.setWorkplace_id(workplaceService.getByNumber(Integer.parseInt(order.getWorkplace_access_num())).getId());
         orderService.createOrUpdate(order);
 
-        String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(timestamp);
+        String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(timestamp);
         Order newOrder = orderService.getByTime(date);
 
         if (assistant != null)
