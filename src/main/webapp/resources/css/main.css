@@ -884,7 +884,7 @@ tbody.scrollContent {
 	margin-left: -100px;
 }
 .comment-title {
-	background-color: rgba(51, 51, 102, 0.15);
+	background-color: rgba(51, 51, 102, 0.1);
 }
 .comment-title p {
 	padding: 10px;
@@ -1060,3 +1060,11 @@ tbody.scrollContent {
 	max-height: 413px;
 }
 
+.order-done-message {
+	text-align: center;
+	padding: 20px;
+	font-family: "Century Gothic", sans-serif;
+	color: #333366;
+	font-size: 16px;
+	font-weight: bold;
+}

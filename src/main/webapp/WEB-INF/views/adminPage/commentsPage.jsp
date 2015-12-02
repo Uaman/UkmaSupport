@@ -46,6 +46,13 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            if ($('p').is('.order-done-message')) {
+                $('#btn-add-comment').css('display', 'none');
+            }
+        });
+    </script>
 
 </head>
 <body>
@@ -183,6 +190,11 @@
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
+                <c:if test="${order.status == 'done'}">
+                    <div class="col-md-12">
+                        <p class="order-done-message">Order has been done</p>
+                    </div>
+                </c:if>
             </div>
             <div id="add-comment" class="col-md-offset-1 col-md-10">
                 <form:form class="form-horizontal add-comment-form" action="/addComment/${id}" method="post"
