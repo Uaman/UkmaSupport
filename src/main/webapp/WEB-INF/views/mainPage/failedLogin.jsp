@@ -39,7 +39,7 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-1 col-md-10">
-                        <font color="red"><p id="loginFailed"><spring:message code="login.error"/></p></font>
+                        <p id="loginFailed" class="input-error-notif"><spring:message code="login.error"/></p>
                     </div>
                 </div>
 

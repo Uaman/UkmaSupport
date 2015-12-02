@@ -184,10 +184,8 @@
         </div>
     </nav>
 
-    <div class="table-align bottom-block top-table">
-        <div class="tableContainer">
-            <table id="records_table" class="tbl table table_auditorium table-striped"
-                   style="max-width: 100%; width: 430px; ">
+    <div class="table-align top-table">
+            <table id="records_table" class="tbl table table-auditorium table-striped">
                 <thead class="fixedHeader">
                 <tr>
                     <th width="187px" style="vertical-align: middle;"><spring:message
@@ -201,13 +199,12 @@
                     <th width="50px" class="no-sort"></th>
                 </tr>
                 </thead>
-                <tbody class="scrollContent">
+                <tbody>
                 </tbody>
             </table>
             <center><a data-toggle="modal" data-target="#addAuditorium"
                        class="btn btn-primary button-style"><spring:message
                     code="admin.addAuditorium"/></a></center>
-        </div>
     </div>
     <div id="footer">
         <div class="thick"></div>

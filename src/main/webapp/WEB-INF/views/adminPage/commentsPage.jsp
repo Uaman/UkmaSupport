@@ -46,6 +46,13 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function () {
+            if ($('p').is('.order-done-message')) {
+                $('#btn-add-comment').css('display', 'none');
+            }
+        });
+    </script>
 
 </head>
 <body>
@@ -124,32 +131,36 @@
     <div class="col-md-12 comments-body ">
         <div class="col-md-4 order-inf">
             <div>
-                <p class="click-to-drop"><i class="drop-inf glyphicon glyphicon-chevron-down"></i>auditorium</p>
+                <p class="click-to-drop"><i class="drop-inf glyphicon glyphicon-chevron-down"></i><spring:message
+                        code="commentaries.auditorium"/></p>
 
                 <p class="drop-el">${order.auditorium}</p>
                 <hr>
             </div>
             <div>
-                <p class="click-to-drop"><i class="drop-inf glyphicon glyphicon-chevron-down"></i>workplace</p>
+                <p class="click-to-drop"><i class="drop-inf glyphicon glyphicon-chevron-down"></i><spring:message
+                        code="commentaries.workplace"/></p>
 
                 <p class="drop-el">${order.workplace_access_num}</p>
                 <hr>
             </div>
             <div>
-                <p class="click-to-drop"><i class="drop-inf glyphicon glyphicon-chevron-down"></i>date</p>
+                <p class="click-to-drop"><i class="drop-inf glyphicon glyphicon-chevron-down"></i><spring:message
+                        code="commentaries.date"/></p>
 
                 <p class="drop-el">${order.createdAt.toLocaleString()}</p>
                 <hr>
             </div>
             <div>
-                <p class="click-to-drop"><i class="drop-inf glyphicon glyphicon-chevron-down"></i>description</p>
+                <p class="click-to-drop"><i class="drop-inf glyphicon glyphicon-chevron-down"></i><spring:message
+                        code="commentaries.description"/></p>
 
                 <p class="drop-el">${order.content}</p>
                 <hr>
             </div>
             <div>
                 <button id="editbtn" type="submit" action="/admin/orders/edit/${id}"
-                        class="btn btn-primary btn-block btn-edit-order">Edit order
+                        class="btn btn-primary btn-block btn-edit-order"><spring:message code="commentaries.edit"/>
                 </button>
             </div>
         </div>
@@ -183,6 +194,11 @@
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
+                <c:if test="${order.status == 'done'}">
+                    <div class="col-md-12">
+                        <p class="order-done-message"><spring:message code="commentaries.done"/></p>
+                    </div>
+                </c:if>
             </div>
             <div id="add-comment" class="col-md-offset-1 col-md-10">
                 <form:form class="form-horizontal add-comment-form" action="/addComment/${id}" method="post"
@@ -196,8 +212,8 @@
 
                     <div class="form-group">
                         <div class="col-md-offset-8">
-                            <button id="btn-add-comment" type="submit" class="btn btn-primary btn-block disabled">Add
-                                comment
+                            <button id="btn-add-comment" type="submit" class="btn btn-primary btn-block disabled">
+                                <spring:message code="commentaries.addComment"/>
                             </button>
                         </div>
                     </div>

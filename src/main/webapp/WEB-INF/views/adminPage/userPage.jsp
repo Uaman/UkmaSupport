@@ -181,7 +181,7 @@
         </form:form>
     </div>
     <div class="table-align bottom-block top-table padding-tom">
-        <table id="records_table" class="tbl table table-striped admin-table" style="margin-top: -170px;">
+        <table id="records_table" class="tbl table table-striped admin-table specific-user-table" style="margin-top: -170px;">
             <thead>
             <tr>
                 <th class=" title-col-orders-th" style="margin-left: 20px;width:50px;"><spring:message
