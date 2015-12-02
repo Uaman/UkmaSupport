@@ -1,7 +1,6 @@
 package com.ukmaSupport.services.reportService;
 
 import com.ukmaSupport.models.Order;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -28,7 +27,7 @@ public class AssistantReport extends AbstractExcelView {
         Integer contUndone= (Integer) model.get("countUndone");
         // create a new Excel sheet
         HSSFSheet sheet = workbook.createSheet("Orders");
-        sheet.setDefaultColumnWidth(20);
+        sheet.setDefaultColumnWidth(16);
         sheet.setDefaultRowHeight((short) (2 * sheet.getDefaultRowHeightInPoints()));
 
         // create style for header cells
@@ -86,15 +85,15 @@ public class AssistantReport extends AbstractExcelView {
 
         }
         HSSFRow aRow_ = sheet.createRow(listOrder.size()+1);
-        aRow_.setRowStyle((HSSFCellStyle) style);
+       // aRow_.setRowStyle((HSSFCellStyle) style);
         HSSFRow aRow = sheet.createRow(listOrder.size()+2);
         aRow.createCell(2).setCellValue("done :");
         aRow.createCell(3).setCellValue(countDone);
-        aRow.setRowStyle((HSSFCellStyle) style);
+        //aRow.setRowStyle((HSSFCellStyle) style);
         HSSFRow aRow1 = sheet.createRow(listOrder.size()+3);
         aRow1.createCell(2).setCellValue("not done :");
         aRow1.createCell(3).setCellValue(contUndone);
-        aRow1.setRowStyle((HSSFCellStyle) style);
+        //aRow1.setRowStyle((HSSFCellStyle) style);
     }
 
 }
