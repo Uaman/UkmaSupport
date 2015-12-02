@@ -20,7 +20,7 @@
                 $('#assistant').html('');// to clear the previous option
                 $('#assistant').append($('<option>').text("Set empty").attr('value', 0));
                 $.each(data, function (i, user) {
-                    $('#assistant').append($('<option>').text(user.lastName).attr('value', user.id));
+                    $('#assistant').append($('<option>').text(user.lastName + ' ' + user.firstName).attr('value', user.id));
                 });
             }
         });
