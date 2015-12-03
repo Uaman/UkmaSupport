@@ -1,6 +1,5 @@
 package com.ukmaSupport.dao.impl;
 
-import com.ukmaSupport.dao.interfaces.AuditoriumDao;
 import com.ukmaSupport.dao.mapper.AuditoriumMapper;
 import com.ukmaSupport.models.Auditorium;
 import org.junit.Test;
@@ -9,12 +8,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 
@@ -81,5 +76,29 @@ public class AuditoriumDaoImplTest {
         //then
         verify(jdbcTemplate).update(anyString(), eq(ID));
     }
+
+    @Test
+    public void shouldListAll() {
+        //give
+        //when
+        dao.getAll();
+        //then
+        verify(jdbcTemplate).query(anyString(), any(AuditoriumMapper.class));
+    }
+
+    @Test
+    public void shouldUpdateAuditorium() {
+        //give
+        Auditorium auditorium = new Auditorium();
+        auditorium.setUserId(ID);
+        auditorium.setNumber(EXPECTED_NUMBER);
+        auditorium.setId(ID);
+        //when
+        dao.update(auditorium);
+        //then
+        verify(jdbcTemplate).update(anyString(), eq(ID), eq(EXPECTED_NUMBER), eq(ID));
+    }
+
+
 
 }
