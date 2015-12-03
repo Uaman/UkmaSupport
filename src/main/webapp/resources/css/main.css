@@ -694,8 +694,8 @@ tbody.scrollContent {
 }
 
 #btn-add-comment {
-	margin-left: 20px;
-	width: 125px;
+	margin-left: 30px;
+	width: 150px;
 	background-color: #333366;
 	border-radius: 7px;
 }
@@ -743,13 +743,13 @@ tbody.scrollContent {
 	border-radius: 7px;
 }
 .user-comment {
-	background-color: rgba(188, 232, 241, 0.8);
+	background-color: rgba(188, 232, 241, 0.6);
 }
 .assistant-comment {
-	background-color: rgba(135, 206, 235, 0.8);
+	background-color: rgba(135, 206, 235, 0.6);
 }
 .admin-comment {
-	background-color: rgba(147, 112, 219, 0.8);
+	background-color: rgba(147, 112, 219, 0.6);
 }
 .bold-text {
 	font-weight: bold;
@@ -1067,4 +1067,7 @@ tbody.scrollContent {
 	color: #333366;
 	font-size: 16px;
 	font-weight: bold;
+}
+#edit-btn {
+	width: 150px;
 }

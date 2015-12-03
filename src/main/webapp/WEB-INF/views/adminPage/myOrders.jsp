@@ -153,10 +153,6 @@
         </div>
     </nav>
 
-    <div class="top-block col-md-6">
-        <p id="hello"><spring:message
-                code="user.hello"/> ${currentUser.firstName}</p>
-    </div>
 
     <div class="col-md-offset-7 top-block">
         <form id="add-order-form" class="form-horizontal" method="get" action="/admin/orders/createOrder">

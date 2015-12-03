@@ -49,6 +49,7 @@
         $(document).ready(function () {
             if ($('p').is('.order-done-message')) {
                 $('#btn-add-comment').css('display', 'none');
+                $('#content').attr('placeholder', '');
             }
         });
     </script>
@@ -146,7 +147,7 @@
                 <hr>
             </div>
             <div>
-                <button id="editbtn" type="submit" action="" class="btn btn-primary btn-block btn-edit-order">
+                <button id="edit-btn" type="submit" action="" class="btn btn-primary btn-block btn-edit-order">
                     <spring:message code="commentaries.edit"/></button>
             </div>
         </div>
@@ -197,7 +198,7 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-offset-8">
+                        <div class="col-md-offset-7">
                             <button id="btn-add-comment" type="submit" class="btn btn-primary btn-block disabled">
                                 <spring:message code="commentaries.addComment"/>
                             </button>
