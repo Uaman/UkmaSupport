@@ -217,7 +217,7 @@
     </div>
     <div class="modal fade" id="addAuditorium" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
-        <div class="modal-dialog" style="width:300px;">
+        <div class="modal-dialog modal-window">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -231,8 +231,8 @@
                 </div>
                 <div class="modal-footer">
                     <center>
-                        <button type="button" id="test" class="btn btn-default" data-dismiss="modal">
-                            <spring:message code="admin.AddAuditorium"/>
+                        <button type="button" id="test" class="btn button-style" data-dismiss="modal">
+                            <p class="modal-btn-text"><spring:message code="admin.AddAuditorium"/></p>
                         </button>
                     </center>
                 </div>

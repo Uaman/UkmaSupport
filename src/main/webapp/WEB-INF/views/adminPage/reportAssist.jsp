@@ -197,8 +197,7 @@
                 <span class="assist_label"><spring:message code="admin.report.assistant"/></span>
             </label>
 
-            <select name="assistant" class="assist_field form-control select-style" id="assist_field" path="assistant"
-                    >
+            <select name="assistant" class="assist_field form-control select-style" id="assist_field" path="assistant">
                 <option value="" disabled selected>
                     <spring:message code="admin.report.assistant"/></option>
             </select>
@@ -207,14 +206,14 @@
         <div id="From2">
             <label class="label-style">
                 <span class="from_label"><spring:message code="admin.report.dateFrom"/></span>
-                <input type="text" id="date_from" name="date_form" size="17">
+                <input class="input-style" type="text" id="date_from" name="date_form" size="17">
             </label>
         </div>
 
         <div id="To2">
             <label class="label-style">
                 <span class="to_label"><spring:message code="admin.report.dateTo"/></span>
-                <input type="text" id="date_to" name="date_to" size="17">
+                <input class="input-style" type="text" id="date_to" name="date_to" size="17">
             </label>
         </div>
     </div>
@@ -257,7 +256,7 @@
     <div class="col-md-offset-7 top-block">
         <form id="download_report_button" class="form-horizontal" method="get" action="/admin/">
             <div class="col-md-offset-7 col-md-4">
-                <button id="download_all" type="submit"  class="btn btn-primary btn-block"><spring:message
+                <button id="download_all" type="submit"  class="btn btn-primary btn-block button-style"><spring:message
                         code="admin.download"/></button>
             </div>
         </form>

@@ -271,7 +271,7 @@
         </div>
     </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-        <div class="modal-dialog" style="width:300px;">
+        <div class="modal-dialog modal-window">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -285,8 +285,8 @@
                 </div>
                 <div class="modal-footer">
                     <center>
-                        <button type="button" id="setAssist" type="submit" class="btn btn-default"
-                                data-dismiss="modal">Ok
+                        <button type="button" id="setAssist" type="submit" class="btn button-style"
+                                data-dismiss="modal"><p class="modal-btn-text">Ok</p>
                         </button>
                     </center>
                 </div>
