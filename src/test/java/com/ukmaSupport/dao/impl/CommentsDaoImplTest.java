@@ -17,7 +17,6 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class CommentsDaoImplTest {
 
-    private static final String EXPECTED_NUMBER = "number";
     private static final int ID = 1;
 
     @InjectMocks
