@@ -147,7 +147,7 @@
                 <hr>
             </div>
             <div>
-                <button id="edit-btn" type="submit" action="" class="btn btn-primary btn-block btn-edit-order">
+                <button id="editbtn" type="submit" action="" class="btn btn-primary btn-block btn-edit-order">
                     <spring:message code="commentaries.edit"/></button>
             </div>
         </div>
