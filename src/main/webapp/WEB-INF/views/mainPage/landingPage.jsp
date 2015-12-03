@@ -31,9 +31,7 @@
         </div>
     </nav>
 
-    <div id="mainImage"><img src="../../../resources/img/var507.jpg" alt=""/></div>
-
-    <!--   <div id="mainImage"><img src="../../../resources/img/var4.jpg" alt=""/></div> -->
+    <div id="mainImage"><img src="../../../resources/img/var563.jpg" alt=""/></div>
 
     <div id="mainInfo">
         <p id="pMainInfo"><spring:message code="mainPage.TEXT1"/> <span id="Ukma_support"><spring:message
