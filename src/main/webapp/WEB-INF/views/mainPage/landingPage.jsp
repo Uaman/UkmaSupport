@@ -30,8 +30,8 @@
             </div>
         </div>
     </nav>
-
-    <div id="mainImage"><img src="../../../resources/img/var563.jpg" alt=""/></div>
+    status
+    <div id="mainImage"><img src="../../../resources/img/var258.jpg" alt=""/></div>
 
     <div id="mainInfo">
         <p id="pMainInfo"><spring:message code="mainPage.TEXT1"/> <span id="Ukma_support"><spring:message
@@ -39,7 +39,7 @@
         </p>
         <form action="/register">
         <button id="main_registr_button" type="submit" value="register"
-                class="btn btn-primary btn-block button-style"">
+                class="btn btn-primary btn-block button-style">
             <spring:message code="mainPage.registration"/>
         </button>
         </form>
