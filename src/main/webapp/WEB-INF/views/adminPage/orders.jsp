@@ -229,34 +229,34 @@
     </nav>
 
     <div class="table-align bottom-block top-table">
-        <table id="records_table" class="tbl table table-striped admin-table">
+        <table id="records_table" class="tbl table table-striped admin-users-table admin-table">
             <thead>
             <tr>
-                <th class="title-col-orders-th"><spring:message
+                <th class="title-col-orders"><spring:message
                         code="admin.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                         width="8px" height="14px"></th>
-                <th class="auditorium-col-orders-th"><spring:message
+                <th class="auditorium-col-orders"><spring:message
                         code="admin.orders.auditorium"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                              width="8px" height="14px"></th>
-                <th class="workplace-col-orders-th"><spring:message code="admin.orders.workplace"/><img
+                <th class="workplace-col-orders"><spring:message code="admin.orders.workplace"/><img
                         class="icon-sort" src="../../../resources/img/sort15.png"
                         width="8px" height="14px"></th>
-                <th class="user-col-orders-th"><spring:message code="admin.orders.user"/><img class="icon-sort"
+                <th class="user-col-orders"><spring:message code="admin.orders.user"/><img class="icon-sort"
                                                                                               src="../../../resources/img/sort15.png"
                                                                                               width="8px" height="14px">
                 </th>
-                <th class="assistant-col-orders-th"><spring:message
+                <th class="assistant-col-orders"><spring:message
                         code="admin.orders.assistant"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                             width="8px" height="14px"></th>
-                <th class="date-col-orders-th"><spring:message code="admin.orders.date"/><img class="icon-sort"
+                <th class="change-col"></th>
+                <th class="date-col-orders"><spring:message code="admin.orders.date"/><img class="icon-sort"
                                                                                               src="../../../resources/img/sort15.png"
                                                                                               width="8px" height="14px">
                 </th>
-                <th class="status-col-orders-th"><spring:message code="admin.orders.status"/><img class="icon-sort"
+                <th class="status-col-orders"><spring:message code="admin.orders.status"/><img class="icon-sort"
                                                                                                   src="../../../resources/img/sort15.png"
                                                                                                   width="8px"
                                                                                                   height="14px"></th>
-                <th class="indent"></th>
             </tr>
             </thead>
         </table>

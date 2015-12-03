@@ -328,17 +328,12 @@ tbody.scrollContent {
 .workplace-col-orders{
 	width:15%;
 }
-.workplace-col-orders-th{
-	width:14%;
-}
+
 .workplace-col-ord{
 	width:16%;
 }
 .title-col-orders{
-	width:18%;
-}
-.title-col-orders-th {
-	width: 18%;
+	width:14%;
 }
 
 .title-col-user{
@@ -346,11 +341,9 @@ tbody.scrollContent {
 }
 
 .auditorium-col-orders{
-	width:16%;
+	width:13%;
 }
-.auditorium-col-orders-th{
-	width:15%;
-}
+
 .auditorium-col-ord-th{
 	width: 16%;
 }
@@ -360,34 +353,23 @@ tbody.scrollContent {
 }
 
 .user-col-orders{
-	width:12%;
-}
-.user-col-orders-th{
-	width:12%;
+	width:15%;
 }
 
 .assistant-col-orders{
-	width:15%;
-}
-.assistant-col-orders-th{
-	width:19%;
+	width:13%;
 }
 
 .date-col-orders{
-	width:16%;
+	width:15%;
 }
-.date-col-orders-th{
-	width:16%;
-}
+
 .date-col-ord{
 	width:21%;
 }
 
 .status-col-orders{
-	width:15%;
-}
-.status-col-orders-th{
-	width:14%;
+	width:10%;
 }
 
 .status-col-user{
@@ -403,11 +385,6 @@ tbody.scrollContent {
 .status-col-ord-th {
 	width: 14%;
 }
-.indent{
-	width:2%;
-}
-
-
 
 #hello {
     font-family: "Century Gothic", sans-serif;

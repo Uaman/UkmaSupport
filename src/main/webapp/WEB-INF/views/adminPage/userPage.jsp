@@ -184,20 +184,20 @@
         <table id="records_table" class="tbl table table-striped admin-table specific-user-table" style="margin-top: -170px;">
             <thead>
             <tr>
-                <th class=" title-col-orders-th" style="margin-left: 20px;width:50px;"><spring:message
+                <th class=" title-col-orders-th"><spring:message
                         code="admin.orders.title"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                         width="8px" height="14px"></th>
-                <th class="auditorium-col-orders-th" style="width: 70px;"><spring:message
+                <th class="auditorium-col-orders-th"><spring:message
                         code="admin.orders.auditorium"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                              width="8px" height="14px"></th>
-                <th class="workplace-col-orders-th" style="width: 70px;"><spring:message code="admin.orders.workplace"/><img
+                <th class="workplace-col-orders-th"><spring:message code="admin.orders.workplace"/><img
                         class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
-                <th class="assistant-col-orders" style="width: 50px;"><spring:message
+                <th class="assistant-col-orders"><spring:message
                         code="admin.orders.assistant"/><img class="icon-sort" src="../../../resources/img/sort15.png"
                                                             width="8px" height="14px"></th>
-                <th class="date-col-orders-th" style="width: 50px;"><spring:message code="admin.orders.date"/><img
+                <th class="date-col-orders-th"><spring:message code="admin.orders.date"/><img
                         class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
-                <th class="status-col-orders-th" style="width: 50px;"><spring:message code="admin.orders.status"/><img
+                <th class="status-col-orders-th"><spring:message code="admin.orders.status"/><img
                         class="icon-sort" src="../../../resources/img/sort15.png" width="8px" height="14px"></th>
             </tr>
             </thead>
